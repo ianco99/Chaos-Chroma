@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.kuznicki.eventchannel": {
+      "version": "https://github.com/ianco99/Kuznicki-Event-Channel.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "476e969870cec964a6f2b90360c6674627ac9354"
+    },
     "com.unity.2d.animation": {
       "version": "9.0.1",
       "depth": 1,

@@ -28,6 +28,11 @@ namespace Patterns.FSM
 
         }
 
+        public void FixedUpdate()
+        {
+
+        }
+
         public void OnExit()
         {
 

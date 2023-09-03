@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Patterns.FSM
 {
-    public class FiniteStateMachine<T> : MonoBehaviour
+    public class FiniteStateMachine<T>
     {
         private Dictionary<T, BaseState<T>> states;
         private BaseState<T> currentState;
@@ -18,6 +18,30 @@ namespace Patterns.FSM
         {
             if (!initialized)
                 initialized = true;
+        }
+
+        public void Update()
+        {
+            if(initialized)
+            {
+                currentState.Update();
+            }
+            else
+            {
+                throw new System.Exception("FSM not initialized");
+            }
+        }
+
+        public void FixedUpdate()
+        {
+            if (initialized)
+            {
+                currentState.FixedUpdate();
+            }
+            else
+            {
+                throw new System.Exception("FSM not initialized");
+            }
         }
 
         /// <summary>

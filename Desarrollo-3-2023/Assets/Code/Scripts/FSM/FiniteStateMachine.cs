@@ -16,14 +16,24 @@ namespace Patterns.FSM
 
         public void Init()
         {
-
+            if (!initialized)
+                initialized = true;
         }
 
+        /// <summary>
+        /// Adds newState to fsm's dictionary
+        /// </summary>
+        /// <param name="newState"></param>
         public void AddState(BaseState<T> newState)
         {
             states.Add(newState.ID, newState);
         }
 
+        /// <summary>
+        /// Gets state from fsm's dictionary
+        /// </summary>
+        /// <param name="stateID"></param>
+        /// <returns></returns>
         public BaseState<T> GetState(T stateID)
         {
             if (states.ContainsKey(stateID))
@@ -31,6 +41,22 @@ namespace Patterns.FSM
             return null;
         }
 
+        /// <summary>
+        /// Gets current state
+        /// </summary>
+        /// <returns></returns>
+        public BaseState<T> GetCurrentState()
+        {
+            if (currentState != null)
+                return currentState;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Sets current state, running OnExit() methods from previous and OnEnter() from new one
+        /// </summary>
+        /// <param name="state"></param>
         public void SetCurrentState(BaseState<T> state)
         {
             if (currentState == state) return;

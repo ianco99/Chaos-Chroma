@@ -1,7 +1,10 @@
-public interface IState  
+namespace Patterns.FSM
 {
-    public void OnEnter();
-    public void Update();
-    public void OnExit();
+    public interface IState
+    {
+        public void OnEnter();
+        public void Update();
+        public void OnExit();
 
+    }
 }

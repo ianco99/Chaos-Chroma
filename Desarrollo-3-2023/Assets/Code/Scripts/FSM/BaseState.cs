@@ -2,25 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseState : IState
+namespace Patterns.FSM
 {
-    public BaseState()
+    public abstract class BaseState<T> : IState
     {
+        public string Name { get; set; }
+        public T ID { get; private set; }
+        public BaseState(T id)
+        {
+            ID = id;
+        }
 
-    }
+        public BaseState(T id, string name) : this(id)
+        {
+            Name = name;
+        }
 
-    public void OnEnter()
-    {
+        public void OnEnter()
+        {
 
-    }
+        }
 
-    public void Update()
-    {
+        public void Update()
+        {
 
-    }
+        }
 
-    public void OnExit()
-    {
+        public void OnExit()
+        {
 
+        }
     }
 }
+

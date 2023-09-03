@@ -18,22 +18,22 @@ namespace Patterns.FSM
             Name = name;
         }
 
-        public void OnEnter()
+        public virtual void OnEnter()
         {
 
         }
 
-        public void Update()
+        public virtual void OnUpdate()
         {
 
         }
 
-        public void FixedUpdate()
+        public virtual void OnFixedUpdate()
         {
 
         }
 
-        public void OnExit()
+        public virtual void OnExit()
         {
 
         }

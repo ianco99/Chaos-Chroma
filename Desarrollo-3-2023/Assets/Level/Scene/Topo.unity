@@ -598,6 +598,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1981110840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981110842}
+  - component: {fileID: 1981110841}
+  m_Layer: 0
+  m_Name: InputEventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1981110841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981110840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9eb7d9bf1bd8040ac8618917b13cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrintTrace: 0
+  onMoveChannel: {fileID: 11400000, guid: 209bd0bfd097a704aa911f92960bf16d, type: 2}
+  onAttackChannel: {fileID: 11400000, guid: df70728ed15485349951f07efb6fab18, type: 2}
+  onBlockChannel: {fileID: 11400000, guid: 64ced9b29fb237e43ae36f5ac83ec087, type: 2}
+  onJumpChannel: {fileID: 11400000, guid: 5bd5763b8d7ab3146839296b932e21c0, type: 2}
+--- !u!4 &1981110842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981110840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.89318156, y: 5.817692, z: -7.1039987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2099068499
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +754,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099068499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2077fae36754c442aa69d21679ecaa3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5789db8387b05214a80a439b964e791b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  onMoveChannel: {fileID: 11400000, guid: 209bd0bfd097a704aa911f92960bf16d, type: 2}
+  onAttackChannel: {fileID: 11400000, guid: df70728ed15485349951f07efb6fab18, type: 2}
+  onBlockChannel: {fileID: 11400000, guid: 64ced9b29fb237e43ae36f5ac83ec087, type: 2}
+  onJumpChannel: {fileID: 11400000, guid: 5bd5763b8d7ab3146839296b932e21c0, type: 2}

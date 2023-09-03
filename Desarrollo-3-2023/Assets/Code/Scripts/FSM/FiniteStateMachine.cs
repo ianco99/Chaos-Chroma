@@ -24,7 +24,7 @@ namespace Patterns.FSM
         {
             if(initialized)
             {
-                currentState.Update();
+                currentState.OnUpdate();
             }
             else
             {
@@ -36,7 +36,7 @@ namespace Patterns.FSM
         {
             if (initialized)
             {
-                currentState.FixedUpdate();
+                currentState.OnFixedUpdate();
             }
             else
             {

@@ -9,6 +9,7 @@ namespace Patterns.FSM
         private Dictionary<T, BaseState<T>> states;
         private BaseState<T> currentState;
         private bool initialized;
+        
         public FiniteStateMachine()
         {
             states = new Dictionary<T, BaseState<T>>();

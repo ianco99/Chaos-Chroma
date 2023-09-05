@@ -15,8 +15,8 @@ public class PatrolState<T> : BaseState<T>
     public override void OnEnter()
     {
         base.OnEnter();
-
     }
+
     public override void OnUpdate()
     {
         base.OnUpdate();

@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour
         fsm = new FiniteStateMachine<EnemyStates>();
 
         patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState");
+        fsm = new FiniteStateMachine<EnemyStates>();
 
         fsm.AddState(patrolState);
 
@@ -36,15 +37,8 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         fsm.Update();
-    }
-
-
-    private void SetToPatrol()
-    {
-
     }
 }

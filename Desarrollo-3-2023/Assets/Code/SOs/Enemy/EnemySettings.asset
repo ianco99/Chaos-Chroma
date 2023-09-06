@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959eeab192a3aba45876b616635c6e76, type: 3}
+  m_Name: EnemySettings
+  m_EditorClassIdentifier: 
+  patrolPoints:
+  - {x: 11.84, y: 1.13, z: -7.1501412}
+  - {x: -13.44, y: 0.98, z: -7.1501412}

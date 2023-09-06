@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyStates startingState;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private EnemySettings settings;
+
 
     private FiniteStateMachine<EnemyStates> fsm;
     private PatrolState<EnemyStates> patrolState;

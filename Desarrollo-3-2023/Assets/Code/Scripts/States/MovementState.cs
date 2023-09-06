@@ -4,16 +4,22 @@ using UnityEngine;
 
 namespace Code.Scripts.States
 {
+    /// <summary>
+    /// Handler for movement state
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class MovementState<T> : BaseState<T>
     {
+        private readonly Rigidbody2D rb;
         private readonly Transform transform;
         private readonly float speed;
         private float dir;
         
-        public MovementState(T id, string name, float speed, Transform transform) : base(id, name)
+        public MovementState(T id, string name, float speed, Transform transform, Rigidbody2D rb) : base(id, name)
         {
             this.speed = speed;
             this.transform = transform;
+            this.rb = rb;
         }
         
         public override void OnEnter()
@@ -42,11 +48,15 @@ namespace Code.Scripts.States
         /// Moves current object in given direction
         /// </summary>
         /// <param name="direction"></param>
-        private void MoveInDirection(float direction)
+        protected void MoveInDirection(float direction)
         {
             transform.Translate(Vector3.right * (direction * speed * Time.deltaTime));
         }
 
+        /// <summary>
+        /// Assign the input value to the direction
+        /// </summary>
+        /// <param name="direction"></param>
         private void UpdateDir(float direction)
         {
             dir = direction;

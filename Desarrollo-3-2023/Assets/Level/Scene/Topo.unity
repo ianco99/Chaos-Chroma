@@ -716,6 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: 0
   rb: {fileID: 1933711565}
+  speed: 5
 --- !u!4 &1933711564
 Transform:
   m_ObjectHideFlags: 0
@@ -965,3 +966,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startState: 1
   speed: 5
+  rb: {fileID: 2099068501}

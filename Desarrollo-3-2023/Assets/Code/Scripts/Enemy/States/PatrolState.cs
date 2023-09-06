@@ -1,27 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using Code.Scripts.States;
 using UnityEngine;
-using Patterns.FSM;
 
-public class PatrolState<T> : BaseState<T>
+namespace Code.Scripts.Enemy.States
 {
-    private Rigidbody2D rb;
-    public Vector2 currentVelocity;
-    public PatrolState(Rigidbody2D rb, T id, string name) : base(id, name)
+    public class PatrolState<T> : MovementState<T>
     {
-        this.rb = rb;
-    }
+        public PatrolState(Rigidbody2D rb, T id, string name, float speed, Transform transform) : base(id, name, speed, transform, rb)
+        {
+        }
 
-    public override void OnEnter()
-    {
-        base.OnEnter();
-    }
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            Debug.Log("Entered Patrol");
+        }
 
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-
-        rb.AddForce(Vector2.right * 2);
-        currentVelocity = rb.velocity;
+        public override void OnUpdate()
+        {
+            MoveInDirection(-1);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Code.Scripts.Enemy.States;
 using UnityEngine;
 using Patterns.FSM;
 
@@ -14,20 +15,19 @@ public enum EnemyStates
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] EnemyStates startingState;
+    [SerializeField] private EnemyStates startingState;
     [SerializeField] private Rigidbody2D rb;
-
+    [SerializeField] private float speed;
+    
     private FiniteStateMachine<EnemyStates> fsm;
     private PatrolState<EnemyStates> patrolState;
 
     private void Awake()
     {
-        patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState");
+        patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", speed, transform);
         fsm = new FiniteStateMachine<EnemyStates>();
 
         fsm.AddState(patrolState);
-
-        patrolState.currentVelocity = Vector2.zero;
 
         fsm.SetCurrentState(fsm.GetState(startingState));
 

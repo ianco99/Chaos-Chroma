@@ -21,7 +21,8 @@ namespace Code.Scripts.Player
     {
         [SerializeField] private PlayerStates startState = PlayerStates.Idle;
         [SerializeField] private float speed = 5f;
-        
+        [SerializeField] private Rigidbody2D rb;
+                
         private MovementState<PlayerStates> movementState;
         
         private FiniteStateMachine<PlayerStates> fsm;
@@ -29,7 +30,7 @@ namespace Code.Scripts.Player
 
         private void Awake()
         {
-            movementState = new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, transform);
+            movementState = new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, transform, rb);
             fsm = new FiniteStateMachine<PlayerStates>();
             
             fsm.AddState(movementState);
@@ -58,7 +59,7 @@ namespace Code.Scripts.Player
 
         private void CheckPlayerState()
         {
-            if (moving)
+            if (moving && fsm.GetCurrentState() != fsm.GetState(PlayerStates.Move))
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
         }
 

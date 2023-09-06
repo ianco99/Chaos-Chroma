@@ -17,6 +17,9 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyStates startingState;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private EnemySettings settings;
+
+
     [SerializeField] private float speed;
     
     private FiniteStateMachine<EnemyStates> fsm;
@@ -24,6 +27,9 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        fsm = new FiniteStateMachine<EnemyStates>();
+
+        patrolState = new PatrolState<EnemyStates>(transform, settings, EnemyStates.Patrol, "PatrolState");
         patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", speed, transform);
         fsm = new FiniteStateMachine<EnemyStates>();
 

@@ -15,8 +15,7 @@ namespace Code.Scripts.States
             this.speed = speed;
             this.transform = transform;
         }
-
-
+        
         public override void OnEnter()
         {
             base.OnEnter();

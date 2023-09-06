@@ -1,19 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Patterns.FSM
 {
     public class FiniteStateMachine<T>
     {
-        private Dictionary<T, BaseState<T>> states;
+        private Dictionary<T, BaseState<T>> states = new();
         private BaseState<T> currentState;
         private bool initialized;
-        
-        public FiniteStateMachine()
-        {
-            states = new Dictionary<T, BaseState<T>>();
-        }
 
         public void Init()
         {
@@ -86,13 +79,11 @@ namespace Patterns.FSM
         {
             if (currentState == state) return;
 
-            if (currentState != null)
-                currentState.OnExit();
+            currentState?.OnExit();
 
             currentState = state;
 
-            if (currentState != null)
-                currentState.OnEnter();
+            currentState?.OnEnter();
         }
     }
 }

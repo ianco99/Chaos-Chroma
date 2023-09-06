@@ -1,9 +1,9 @@
+using Code.Scripts.Input;
 using UnityEngine;
 
 public class MoveState : MonoBehaviour
 {
     [SerializeField] private float speed = 50f;
-    [SerializeField] private Rigidbody2D rb;
     
     private float movement;
 

@@ -22,8 +22,6 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        fsm = new FiniteStateMachine<EnemyStates>();
-
         patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState");
         fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -34,7 +32,6 @@ public class EnemyController : MonoBehaviour
         fsm.SetCurrentState(fsm.GetState(startingState));
 
         fsm.Init();
-
     }
 
     private void Update()

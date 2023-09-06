@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Patterns.FSM
 {
     public abstract class BaseState<T> : IState

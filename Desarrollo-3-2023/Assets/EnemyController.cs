@@ -29,8 +29,8 @@ public class EnemyController : MonoBehaviour
     {
         fsm = new FiniteStateMachine<EnemyStates>();
 
-        patrolState = new PatrolState<EnemyStates>(transform, settings, EnemyStates.Patrol, "PatrolState");
-        patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", speed, transform);
+        // patrolState = new PatrolState<EnemyStates>(transform, settings, EnemyStates.Patrol, "PatrolState");
+        patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", speed, transform, settings);
         fsm = new FiniteStateMachine<EnemyStates>();
 
         fsm.AddState(patrolState);

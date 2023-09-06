@@ -24,6 +24,7 @@ namespace Code.Scripts.Player
         [SerializeField] private Rigidbody2D rb;
                 
         private MovementState<PlayerStates> movementState;
+        private IdleState<PlayerStates> idleState;
         
         private FiniteStateMachine<PlayerStates> fsm;
         private bool moving;
@@ -31,9 +32,12 @@ namespace Code.Scripts.Player
         private void Awake()
         {
             movementState = new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, transform, rb);
+            idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
+            
             fsm = new FiniteStateMachine<PlayerStates>();
             
             fsm.AddState(movementState);
+            fsm.AddState(idleState);
             
             fsm.SetCurrentState(fsm.GetState(startState));
             
@@ -59,13 +63,16 @@ namespace Code.Scripts.Player
 
         private void CheckPlayerState()
         {
-            if (moving && fsm.GetCurrentState() != fsm.GetState(PlayerStates.Move))
+            if (moving)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
+            else
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
 
         private void CheckMoving(float input)
         {
             moving = input != 0;
+            movementState.dir = input;
         }
     }
 }

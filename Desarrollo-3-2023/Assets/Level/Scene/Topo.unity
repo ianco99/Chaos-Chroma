@@ -1309,7 +1309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: 0
   rb: {fileID: 1933711565}
-  speed: 5
+  settings: {fileID: 11400000, guid: 4c0ae0d5a229eaa4c8eb801f79170928, type: 2}
+  speed: 0
 --- !u!4 &1933711564
 Transform:
   m_ObjectHideFlags: 0
@@ -1556,7 +1557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455e599d05d110b4d9d951f48eccb752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startState: 1
+  startState: 0
   speed: 5
   rb: {fileID: 2099068501}
 --- !u!1 &2119944131

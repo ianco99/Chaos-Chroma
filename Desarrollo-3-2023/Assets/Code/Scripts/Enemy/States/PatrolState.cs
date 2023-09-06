@@ -5,17 +5,22 @@ namespace Code.Scripts.Enemy.States
 {
     public class PatrolState<T> : MovementState<T>
     {
-        public PatrolState(Rigidbody2D rb, T id, string name, float speed, Transform transform) : base(id, name, speed, transform, rb)
+        private EnemySettings settings;
+        private Transform patroller;
+        private Vector3 currentDirection;
+
+        public PatrolState(Rigidbody2D rb, T id, string name, float speed, Transform transform, EnemySettings settings) : base(id, name, speed,
+            transform, rb)
         {
+            patroller = transform;
+            this.settings = settings;
         }
-    private EnemySettings settings;
-    private Transform patroller;
-    private Vector3 currentDirection;
-    public PatrolState(Transform patroller, EnemySettings settings, T id, string name) : base(id, name)
-    {
-        this.patroller = patroller;
-        this.settings = settings;
-    }
+
+        // public PatrolState(Transform patroller, EnemySettings settings, T id, string name) : base(id, name)
+        // {
+        //     this.patroller = patroller;
+        //     this.settings = settings;
+        // }
 
         public override void OnEnter()
         {
@@ -25,15 +30,13 @@ namespace Code.Scripts.Enemy.States
 
         public override void OnUpdate()
         {
-            MoveInDirection(-1);
+            base.OnUpdate();
+            
+            currentDirection = settings.patrolPoints[0] - patroller.position;
+            var newDirection = Vector3.Scale(currentDirection.normalized, settings.patrolSpeed);
+            dir = newDirection.x;
+            // patroller.Translate(newDirection * Time.deltaTime);
+            //rb.AddForce(newForce * Time.deltaTime, ForceMode2D.Impulse);
         }
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-        currentDirection =  settings.patrolPoints[0] - patroller.position;
-        Vector3 newDirection = Vector3.Scale(currentDirection.normalized, settings.patrolSpeed);
-        Debug.LogError("Current direction: " + newDirection);
-        patroller.Translate(newDirection * Time.deltaTime);
-        //rb.AddForce(newForce * Time.deltaTime, ForceMode2D.Impulse);
     }
 }

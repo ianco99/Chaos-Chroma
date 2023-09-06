@@ -13,7 +13,8 @@ namespace Code.Scripts.States
         private readonly Rigidbody2D rb;
         private readonly Transform transform;
         private readonly float speed;
-        private float dir;
+
+        public float dir;
         
         public MovementState(T id, string name, float speed, Transform transform, Rigidbody2D rb) : base(id, name)
         {
@@ -26,15 +27,6 @@ namespace Code.Scripts.States
         {
             base.OnEnter();
             Debug.Log("Entered Move");
-            
-            InputManager.onMove += UpdateDir;
-        }
-
-        public override void OnExit()
-        {
-            base.OnExit();
-            
-            InputManager.onMove -= UpdateDir;
         }
 
         public override void OnUpdate()
@@ -51,15 +43,6 @@ namespace Code.Scripts.States
         protected void MoveInDirection(float direction)
         {
             transform.Translate(Vector3.right * (direction * speed * Time.deltaTime));
-        }
-
-        /// <summary>
-        /// Assign the input value to the direction
-        /// </summary>
-        /// <param name="direction"></param>
-        private void UpdateDir(float direction)
-        {
-            dir = direction;
         }
     }
 }

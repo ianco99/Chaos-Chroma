@@ -15,25 +15,21 @@ namespace Code.Scripts.Input
             var axis = input.Get<float>();
         
             onMove?.Invoke(axis);
-            print("Move: " + axis);
         }
 
         private void OnAttack()
         {
             onAttack?.Invoke();
-            print("Attack");
         }
 
         private void OnBlock()
         {
             onBlock?.Invoke();
-            print("Block");
         }
 
         private void OnJump()
         {
             onJump?.Invoke();
-            print("Jump");
         }
     }
 }

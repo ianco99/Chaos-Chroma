@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/BaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/BaseState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/AttackState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/AttackState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/87/f0daee7c/UnitySynchronizationContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/AttackState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -112,7 +115,7 @@
       <workItem from="1693953806263" duration="241000" />
       <workItem from="1693954060580" duration="75000" />
       <workItem from="1693954161898" duration="5274000" />
-      <workItem from="1694028615494" duration="4417000" />
+      <workItem from="1694028615494" duration="7202000" />
     </task>
     <servers />
   </component>
@@ -123,6 +126,25 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs</url>
+          <line>13</line>
+          <properties documentPath="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023\Assets\Code\Scripts\Attack\HitController.cs" initialLine="13" containingFunctionPresentation="Method 'OnEnable'">
+            <startOffsets>
+              <option value="335" />
+            </startOffsets>
+            <endOffsets>
+              <option value="364" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

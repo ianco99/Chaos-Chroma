@@ -30,8 +30,6 @@ namespace Code.Scripts.Player
         private AttackState<PlayerStates> attackState;
         
         private FiniteStateMachine<PlayerStates> fsm;
-        private bool moving;
-        private bool attacking;
 
         private void Awake()
         {
@@ -74,12 +72,32 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckPlayerState()
         {
-            if (moving)
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
-            else if (attacking && !moving)
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
-            else
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+            switch ( fsm.GetCurrentState().ID)
+            {
+                case PlayerStates.Idle:
+                    IdleTransitions();
+                    break;
+                    
+                case PlayerStates.Move:
+                    MoveTransitions();
+                    break;
+                
+                case PlayerStates.Jump:
+                    break;
+                
+                case PlayerStates.Attack:
+                    AttackTransitions();
+                    break;
+                
+                case PlayerStates.Block:
+                    break;
+                
+                case PlayerStates.Parry:
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -88,7 +106,9 @@ namespace Code.Scripts.Player
         /// <param name="input"></param>
         private void CheckMoving(float input)
         {
-            moving = input != 0;
+            if (input != 0)
+                movementState.Enter();
+            
             movementState.dir = input;
         }
 
@@ -97,7 +117,36 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckAttack()
         {
-            attacking = true;
+            attackState.Enter();
+        }
+        
+        /// <summary>
+        /// Idle state transitions manager
+        /// </summary>
+        private void IdleTransitions()
+        {
+            if (movementState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
+            if (attackState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
+        }
+
+        /// <summary>
+        /// Move state transitions manager
+        /// </summary>
+        private void MoveTransitions()
+        {
+            if (!movementState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+        }
+        
+        /// <summary>
+        /// Attack state transitions manager
+        /// </summary>
+        private void AttackTransitions()
+        {
+            if (!attackState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
     }
 }

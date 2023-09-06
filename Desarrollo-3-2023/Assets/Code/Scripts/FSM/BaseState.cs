@@ -4,19 +4,22 @@ namespace Patterns.FSM
     {
         public string Name { get; set; }
         public T ID { get; private set; }
-        public BaseState(T id)
+        
+        public bool Active { get; private set; }
+
+        protected BaseState(T id)
         {
             ID = id;
         }
 
-        public BaseState(T id, string name) : this(id)
+        protected BaseState(T id, string name) : this(id)
         {
             Name = name;
         }
 
         public virtual void OnEnter()
         {
-
+            
         }
 
         public virtual void OnUpdate()
@@ -32,6 +35,16 @@ namespace Patterns.FSM
         public virtual void OnExit()
         {
 
+        }
+
+        public void Enter()
+        {
+            Active = true;
+        }
+        
+        protected void Exit()
+        {
+            Active = false;
         }
     }
 }

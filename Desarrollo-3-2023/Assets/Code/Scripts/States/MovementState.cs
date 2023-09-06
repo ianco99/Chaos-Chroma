@@ -1,4 +1,3 @@
-using Code.Scripts.Input;
 using Patterns.FSM;
 using UnityEngine;
 
@@ -34,6 +33,9 @@ namespace Code.Scripts.States
             base.OnUpdate();
             
             MoveInDirection(dir);
+            
+            if (Mathf.Approximately(dir, 0))
+                Exit();
         }
 
         /// <summary>

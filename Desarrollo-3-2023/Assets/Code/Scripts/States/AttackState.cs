@@ -23,5 +23,13 @@ namespace Code.Scripts.States
             Debug.Log("Entered Attack");
             hit.SetActive(true);
         }
+
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            if (!hit.activeSelf)
+                Exit();
+        }
     }
 }

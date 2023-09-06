@@ -5,11 +5,13 @@ using Patterns.FSM;
 
 public class PatrolState<T> : BaseState<T>
 {
+    private EnemySettings settings;
     private Rigidbody2D rb;
-    public Vector2 currentVelocity;
-    public PatrolState(Rigidbody2D rb, T id, string name) : base(id, name)
+    private Vector3 currentDirection;
+    public PatrolState(Rigidbody2D rb, EnemySettings settings, T id, string name) : base(id, name)
     {
         this.rb = rb;
+        this.settings = settings;
     }
 
     public override void OnEnter()
@@ -20,8 +22,9 @@ public class PatrolState<T> : BaseState<T>
     public override void OnUpdate()
     {
         base.OnUpdate();
-
-        rb.AddForce(Vector2.right * 2);
-        currentVelocity = rb.velocity;
+        currentDirection = rb.transform.position - settings.patrolPoints[0];
+        Vector3 newForce = Vector3.Scale(currentDirection.normalized, settings.patrolSpeed);
+        Debug.LogError("Current direction: " + newForce);
+        rb.AddForce(newForce * Time.deltaTime, ForceMode2D.Impulse);
     }
 }

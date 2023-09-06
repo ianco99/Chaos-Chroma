@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: EnemySettings
   m_EditorClassIdentifier: 
   patrolPoints:
-  - {x: 11.84, y: 1.13, z: -7.1501412}
-  - {x: -13.44, y: 0.98, z: -7.1501412}
+  - {x: 6.31, y: -0.43, z: 0}
+  - {x: -5.94, y: -0.43, z: 0}
+  patrolSpeed: {x: 3, y: 3, z: 0}

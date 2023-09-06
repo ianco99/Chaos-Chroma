@@ -6,4 +6,5 @@ using UnityEngine;
 public class EnemySettings : ScriptableObject
 {
     public Vector3[] patrolPoints;
+    public Vector3 patrolSpeed;
 }

@@ -162,6 +162,7 @@ namespace Code.Scripts.Player
                 movementState.Enter();
             
             movementState.dir = input;
+            jumpStartState.dir = input;
             jumpEndState.dir = input;
         }
 

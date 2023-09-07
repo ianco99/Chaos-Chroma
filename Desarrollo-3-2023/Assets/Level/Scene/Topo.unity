@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDuration: 1
+  hitDuration: 0.5
 --- !u!1 &1899813676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,6 +1601,7 @@ GameObject:
   - component: {fileID: 1933711563}
   - component: {fileID: 1933711565}
   - component: {fileID: 1933711566}
+  - component: {fileID: 1933711567}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1711,6 +1712,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1933711567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933711562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d992111b98cb44e9dbce588d1bb76f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 100
+  parry: 0
 --- !u!1 &1981110840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,8 +1828,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.102087736}
-  m_Size: {x: 1.21, y: 2.66}
+  m_Offset: {x: 0, y: 0.0025962312}
+  m_Size: {x: 1.21, y: 2.4506326}
   m_Direction: 0
 --- !u!50 &2099068501
 Rigidbody2D:
@@ -1930,9 +1945,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.04}
+  m_Offset: {x: 0, y: -1.083105}
   serializedVersion: 2
-  m_Radius: 0.56
+  m_Radius: 0.51689506
 --- !u!1 &2119944131
 GameObject:
   m_ObjectHideFlags: 0

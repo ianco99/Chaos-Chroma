@@ -91,7 +91,6 @@ namespace Code.Scripts.Player
         {
             CheckPlayerState();
             CheckJumpEnd();
-            ShowParryAndBlock();
             
             fsm.Update();
         }
@@ -106,6 +105,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckPlayerState()
         {
+            blockCapsule.SetActive(false);
+            parryCapsule.SetActive(false);
+            
             switch ( fsm.GetCurrentState().ID)
             {
                 case PlayerStates.Idle:
@@ -125,10 +127,12 @@ namespace Code.Scripts.Player
                     break;
                 
                 case PlayerStates.Block:
+                    blockCapsule.SetActive(true);
                     BlockTransitions();
                     break;
                 
                 case PlayerStates.Parry:
+                    parryCapsule.SetActive(true);
                     ParryTransitions();
                     break;
 
@@ -139,15 +143,6 @@ namespace Code.Scripts.Player
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-        
-        /// <summary>
-        /// Show block and parry capsules in game
-        /// </summary>
-        private void ShowParryAndBlock()
-        {
-            blockCapsule.SetActive(blockState.Active);
-            parryCapsule.SetActive(parryState.Active);
         }
 
         #region State activations
@@ -171,7 +166,8 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckAttack()
         {
-            attackState.Enter();
+            if (fsm.GetCurrentState().ID == PlayerStates.Idle || fsm.GetCurrentState().ID == PlayerStates.Move)
+                attackState.Enter();
         }
         
         /// <summary>
@@ -179,6 +175,8 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckParry()
         {
+            if (fsm.GetCurrentState().ID != PlayerStates.Idle && fsm.GetCurrentState().ID != PlayerStates.Move) return;
+            
             parryState.Enter();
             blockState.Enter();
         }
@@ -230,6 +228,10 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
+            else if (attackState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
+            else if (parryState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
         }
         
         /// <summary>

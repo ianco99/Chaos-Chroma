@@ -40,4 +40,9 @@ public class EnemyController : MonoBehaviour
     {
         fsm.Update();
     }
+    
+    private void FixedUpdate()
+    {
+        fsm.FixedUpdate();
+    }
 }

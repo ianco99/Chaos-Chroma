@@ -15,7 +15,7 @@ namespace Patterns.FSM
         private Vector3 currentDirection;
         private int curPatrolPoint;
 
-        public PatrolState(Rigidbody2D rb, T id, string name, Transform transform, EnemySettings settings) : base(id, name, settings.patrolSpeed,
+        public PatrolState(Rigidbody2D rb, T id, string name, Transform transform, EnemySettings settings) : base(id, name, settings.patrolSpeed, settings.acceleration,
             transform, rb)
         {
             patroller = transform;

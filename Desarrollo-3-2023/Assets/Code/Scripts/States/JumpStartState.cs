@@ -7,7 +7,7 @@ namespace Patterns.FSM
     {
         private readonly float jumpForce;
         
-        public JumpStartState(T id, string name, float speed, Transform transform, Rigidbody2D rb, float jumpForce) : base(id, name, speed, transform, rb)
+        public JumpStartState(T id, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb, float jumpForce) : base(id, name, speed, acceleration, transform, rb)
         {
             this.jumpForce = jumpForce;
         }

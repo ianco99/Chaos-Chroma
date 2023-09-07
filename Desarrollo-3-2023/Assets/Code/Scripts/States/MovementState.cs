@@ -12,12 +12,14 @@ namespace Code.Scripts.States
         protected readonly Rigidbody2D rb;
         protected readonly Transform transform;
         private readonly float speed;
+        private readonly float accel;
 
         public float dir;
 
-        public MovementState(T id, string name, float speed, Transform transform, Rigidbody2D rb) : base(id, name)
+        public MovementState(T id, string name, float speed, float accel, Transform transform, Rigidbody2D rb) : base(id, name)
         {
             this.speed = speed;
+            this.accel = accel;
             this.transform = transform;
             this.rb = rb;
         }
@@ -32,19 +34,30 @@ namespace Code.Scripts.States
         {
             base.OnUpdate();
 
-            MoveInDirection(dir);
-
             if (Mathf.Approximately(dir, 0))
                 Exit();
+        }
+
+        public override void OnFixedUpdate()
+        {
+            base.OnFixedUpdate();
+            
+            MoveInDirection(dir);
+            ClampSpeed();
         }
 
         /// <summary>
         /// Moves current object in given direction
         /// </summary>
         /// <param name="direction"></param>
-        protected void MoveInDirection(float direction)
+        private void MoveInDirection(float direction)
         {
-            transform.Translate(Vector3.right * (direction * speed * Time.deltaTime));
+            rb.AddForce(Vector2.right * (direction * accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
+        }
+
+        private void ClampSpeed()
+        {
+            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed * Time.fixedDeltaTime, speed * Time.fixedDeltaTime), rb.velocity.y);
         }
 
         protected bool IsGrounded()

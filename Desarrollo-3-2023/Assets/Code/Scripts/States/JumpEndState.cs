@@ -8,7 +8,7 @@ namespace Patterns.FSM
     /// </summary>
     public class JumpEndState<T> : MovementState<T>
     {
-        public JumpEndState(T id, string name, float speed, Transform transform, Rigidbody2D rb) : base(id, name, speed, transform, rb)
+        public JumpEndState(T id, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb) : base(id, name, speed, acceleration, transform, rb)
         {
         }
 
@@ -22,6 +22,8 @@ namespace Patterns.FSM
         {
             if (IsGrounded())
                 Exit();
+            
+            base.OnUpdate();
         }
     }
 }

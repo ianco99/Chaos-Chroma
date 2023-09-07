@@ -27,6 +27,8 @@ namespace Patterns.FSM
         {
             if (rb.velocity.y <= 0)
                 Exit();
+            
+            base.OnUpdate();
         }
     }
 }

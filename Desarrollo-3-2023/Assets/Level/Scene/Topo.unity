@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 62038403}
   - component: {fileID: 62038404}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Parry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 311946433}
   - component: {fileID: 311946434}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369141497}
   - component: {fileID: 369141498}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Buildings back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -950,7 +950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1007706339}
   - component: {fileID: 1007706340}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1034,7 +1034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065892372}
   - component: {fileID: 1065892373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Buildings mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1118,7 +1118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384825636}
   - component: {fileID: 1384825637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Buildings front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1204,7 @@ GameObject:
   - component: {fileID: 1655439910}
   - component: {fileID: 1655439909}
   - component: {fileID: 1655439911}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1347,7 +1347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1899813677}
   - component: {fileID: 1899813678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Buildings back 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1431,7 +1431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900066031}
   - component: {fileID: 1900066032}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 2099068500}
   - component: {fileID: 2099068503}
   - component: {fileID: 2099068504}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1874,7 +1874,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startState: 0
-  speed: 5
+  speed: 500
+  acceleration: 50
+  jumpForce: 5
   rb: {fileID: 2099068501}
   hit: {fileID: 1655439907}
   damageable: {fileID: 2099068504}

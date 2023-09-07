@@ -4,7 +4,6 @@ namespace Patterns.FSM
     {
         public string Name { get; set; }
         public T ID { get; private set; }
-        
         public bool Active { get; private set; }
 
         protected BaseState(T id)

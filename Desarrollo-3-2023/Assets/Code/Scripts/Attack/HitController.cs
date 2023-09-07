@@ -4,10 +4,15 @@ using UnityEngine;
 
 namespace Code.Scripts.Attack
 {
+    /// <summary>
+    /// Controls the attack (what should be hit and how much damage)
+    /// </summary>
     public class HitController : MonoBehaviour
     {
         [SerializeField] private float damage = 10f;
         [SerializeField] private float hitDuration = 1f;
+        
+        private List<Damageable> hitObjects = new List<Damageable>();
         
         private void OnEnable()
         {
@@ -22,7 +27,8 @@ namespace Code.Scripts.Attack
             
             foreach (var hit in hits)
             {
-                // TODO: add hits
+                // if (hit.TryGetComponent()(out Damageable damageable) && )
+                    
             }
         }
 

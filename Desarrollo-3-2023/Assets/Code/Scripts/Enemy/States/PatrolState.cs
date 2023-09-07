@@ -1,26 +1,26 @@
 using Code.Scripts.States;
+using Code.SOs.Enemy;
 using UnityEngine;
 
-namespace Code.Scripts.Enemy.States
+namespace Patterns.FSM
 {
+    /// <summary>
+    /// Handler for movement state
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class PatrolState<T> : MovementState<T>
     {
-        private EnemySettings settings;
-        private Transform patroller;
+        private readonly EnemySettings settings;
+        private readonly Transform patroller;
         private Vector3 currentDirection;
+        private int curPatrolPoint;
 
-        public PatrolState(Rigidbody2D rb, T id, string name, float speed, Transform transform, EnemySettings settings) : base(id, name, speed,
+        public PatrolState(Rigidbody2D rb, T id, string name, Transform transform, EnemySettings settings) : base(id, name, settings.patrolSpeed,
             transform, rb)
         {
             patroller = transform;
             this.settings = settings;
         }
-
-        // public PatrolState(Transform patroller, EnemySettings settings, T id, string name) : base(id, name)
-        // {
-        //     this.patroller = patroller;
-        //     this.settings = settings;
-        // }
 
         public override void OnEnter()
         {
@@ -32,11 +32,21 @@ namespace Code.Scripts.Enemy.States
         {
             base.OnUpdate();
             
-            currentDirection = settings.patrolPoints[0] - patroller.position;
-            var newDirection = Vector3.Scale(currentDirection.normalized, settings.patrolSpeed);
+            CheckDirection();
+            
+            currentDirection = settings.patrolPoints[curPatrolPoint] - patroller.position;
+            var newDirection = currentDirection.normalized;
             dir = newDirection.x;
-            // patroller.Translate(newDirection * Time.deltaTime);
-            //rb.AddForce(newForce * Time.deltaTime, ForceMode2D.Impulse);
+        }
+
+        private void CheckDirection()
+        {
+            if (!(Mathf.Abs(patroller.position.x - settings.patrolPoints[curPatrolPoint].x) < 1f)) return;
+            
+            curPatrolPoint++;
+                
+            if (curPatrolPoint >= settings.patrolPoints.Length)
+                curPatrolPoint = 0;
         }
     }
 }

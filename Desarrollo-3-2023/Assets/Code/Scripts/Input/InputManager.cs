@@ -27,15 +27,9 @@ namespace Code.Scripts.Input
         private void OnBlock(InputValue input)
         {
             if (input.isPressed)
-            {
-                print("Block pressed");
                 onBlockPressed?.Invoke();
-            }
             else
-            {
-                print("Block released");
                 onBlockReleased?.Invoke();
-            }
         }
 
         private void OnJump()

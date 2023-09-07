@@ -25,6 +25,8 @@ namespace Code.Scripts.Player
         [SerializeField] private GameObject hit;
         [SerializeField] private Damageable damageable;
         [SerializeField] private float parryDuration = 1f;
+        [SerializeField] private GameObject parryCapsule;
+        [SerializeField] private GameObject blockCapsule;
         
         // States
         private MovementState<PlayerStates> movementState;
@@ -75,6 +77,7 @@ namespace Code.Scripts.Player
         private void Update()
         {
             CheckPlayerState();
+            ShowParryAndBlock();
             
             fsm.Update();
         }
@@ -113,6 +116,17 @@ namespace Code.Scripts.Player
                     throw new ArgumentOutOfRangeException();
             }
         }
+        
+        /// <summary>
+        /// Show block and parry capsules in game
+        /// </summary>
+        private void ShowParryAndBlock()
+        {
+            blockCapsule.SetActive(blockState.Active);
+            parryCapsule.SetActive(parryState.Active);
+        }
+
+        #region State activations
 
         /// <summary>
         /// Handle to move transition
@@ -150,6 +164,8 @@ namespace Code.Scripts.Player
         {
             blockState.Exit();
         }
+
+        #endregion
 
         #region Transitions
 

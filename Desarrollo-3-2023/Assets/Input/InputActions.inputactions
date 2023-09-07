@@ -27,7 +27,7 @@
                     "name": "Block",
                     "type": "Value",
                     "id": "387c7034-39d6-4eb7-acf1-430052b0dfd7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Code.Scripts.Input
@@ -7,13 +8,14 @@ namespace Code.Scripts.Input
     {
         public static event Action<float> onMove;
         public static event Action onAttack;
-        public static event Action onBlock;
+        public static event Action onBlockPressed;
+        public static event Action onBlockReleased;
         public static event Action onJump;
 
         private void OnMove(InputValue input)
         {
             var axis = input.Get<float>();
-        
+
             onMove?.Invoke(axis);
         }
 
@@ -22,9 +24,18 @@ namespace Code.Scripts.Input
             onAttack?.Invoke();
         }
 
-        private void OnBlock()
+        private void OnBlock(InputValue input)
         {
-            onBlock?.Invoke();
+            if (input.isPressed)
+            {
+                print("Block pressed");
+                onBlockPressed?.Invoke();
+            }
+            else
+            {
+                print("Block released");
+                onBlockReleased?.Invoke();
+            }
         }
 
         private void OnJump()

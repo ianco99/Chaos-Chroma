@@ -23,11 +23,15 @@ namespace Code.Scripts.Player
         [SerializeField] private float speed = 5f;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private GameObject hit;
+        [SerializeField] private Damageable damageable;
+        [SerializeField] private float parryDuration = 1f;
         
         // States
         private MovementState<PlayerStates> movementState;
         private IdleState<PlayerStates> idleState;
         private AttackState<PlayerStates> attackState;
+        private ParryState<PlayerStates> parryState;
+        private BlockState<PlayerStates> blockState;
         
         private FiniteStateMachine<PlayerStates> fsm;
 
@@ -36,12 +40,16 @@ namespace Code.Scripts.Player
             movementState = new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, transform, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackState = new AttackState<PlayerStates>(PlayerStates.Attack, "AttackState", hit);
+            parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
+            blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             
             fsm = new FiniteStateMachine<PlayerStates>();
             
             fsm.AddState(movementState);
             fsm.AddState(idleState);
             fsm.AddState(attackState);
+            fsm.AddState(parryState);
+            fsm.AddState(blockState);
             
             fsm.SetCurrentState(fsm.GetState(startState));
             
@@ -52,12 +60,16 @@ namespace Code.Scripts.Player
         {
             InputManager.onMove += CheckMoving;
             InputManager.onAttack += CheckAttack;
+            InputManager.onBlockPressed += CheckParry;
+            InputManager.onBlockReleased += CheckBlock;
         }
 
         private void OnDisable()
         {
             InputManager.onMove -= CheckMoving;
             InputManager.onAttack -= CheckAttack;
+            InputManager.onBlockPressed -= CheckParry;
+            InputManager.onBlockReleased -= CheckBlock;
         }
 
         private void Update()
@@ -90,9 +102,11 @@ namespace Code.Scripts.Player
                     break;
                 
                 case PlayerStates.Block:
+                    BlockTransitions();
                     break;
                 
                 case PlayerStates.Parry:
+                    ParryTransitions();
                     break;
                 
                 default:
@@ -121,14 +135,35 @@ namespace Code.Scripts.Player
         }
         
         /// <summary>
+        /// Handle to parry transition
+        /// </summary>
+        private void CheckParry()
+        {
+            parryState.Enter();
+            blockState.Enter();
+        }
+        
+        /// <summary>
+        /// Handle to block transition
+        /// </summary>
+        private void CheckBlock()
+        {
+            blockState.Exit();
+        }
+
+        #region Transitions
+
+        /// <summary>
         /// Idle state transitions manager
         /// </summary>
         private void IdleTransitions()
         {
             if (movementState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
-            if (attackState.Active)
+            else if (attackState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
+            else if (parryState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
         }
 
         /// <summary>
@@ -148,5 +183,25 @@ namespace Code.Scripts.Player
             if (!attackState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
+
+        /// <summary>
+        /// Parry state transitions manager
+        /// </summary>
+        private void ParryTransitions()
+        {
+            if (!parryState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Block));
+        }
+
+        /// <summary>
+        /// Block state transitions manager
+        /// </summary>
+        private void BlockTransitions()
+        {
+            if (!blockState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+        }
+        
+        #endregion
     }
 }

@@ -21,7 +21,7 @@ public class InputEventSystem : MonoBehaviourSingleton<InputEventSystem>
     {
         InputManager.onMove += MoveCharacters;
         InputManager.onAttack += AttackAttackers;
-        InputManager.onBlock += BlockBlockers;
+        InputManager.onBlockPressed += BlockBlockers;
         InputManager.onJump += JumpJumpers;
     }
 

@@ -41,7 +41,7 @@ namespace Patterns.FSM
             Active = true;
         }
         
-        protected void Exit()
+        public void Exit()
         {
             Active = false;
         }

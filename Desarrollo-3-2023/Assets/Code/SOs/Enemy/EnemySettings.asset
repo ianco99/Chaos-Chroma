@@ -15,4 +15,4 @@ MonoBehaviour:
   patrolPoints:
   - {x: 6.31, y: -0.43, z: 0}
   - {x: -5.94, y: -0.43, z: 0}
-  patrolSpeed: {x: 3, y: 6, z: 0}
+  patrolSpeed: 2

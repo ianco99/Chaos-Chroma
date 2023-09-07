@@ -39,9 +39,12 @@ namespace Patterns.FSM
             dir = newDirection.x;
         }
 
+        /// <summary>
+        /// Update direction if reached patrol point
+        /// </summary>
         private void CheckDirection()
         {
-            if (!(Mathf.Abs(patroller.position.x - settings.patrolPoints[curPatrolPoint].x) < 1f)) return;
+            if (!(Mathf.Abs(patroller.position.x - settings.patrolPoints[curPatrolPoint].x) < .5f)) return;
             
             curPatrolPoint++;
                 

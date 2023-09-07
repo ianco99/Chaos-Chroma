@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Patterns.FSM;
 using UnityEngine;
 
 namespace Code.Scripts.Attack
@@ -12,7 +13,7 @@ namespace Code.Scripts.Attack
         [SerializeField] private float damage = 10f;
         [SerializeField] private float hitDuration = 1f;
         
-        private List<Damageable> hitObjects = new List<Damageable>();
+        private readonly List<Damageable> hitObjects = new();
         
         private void OnEnable()
         {
@@ -27,8 +28,10 @@ namespace Code.Scripts.Attack
             
             foreach (var hit in hits)
             {
-                // if (hit.TryGetComponent()(out Damageable damageable) && )
-                    
+                if (!hit.TryGetComponent<Damageable>(out var damageable) || hitObjects.Contains(damageable)) continue;
+                
+                damageable.TakeDamage(damage);
+                hitObjects.Add(damageable);
             }
         }
 
@@ -39,6 +42,7 @@ namespace Code.Scripts.Attack
         private IEnumerator StopOnTime()
         {
             yield return new WaitForSeconds(hitDuration);
+            hitObjects.Clear();
             gameObject.SetActive(false);
         }
     }

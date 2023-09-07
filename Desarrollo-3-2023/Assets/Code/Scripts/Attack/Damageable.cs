@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-namespace Code.Scripts.Attack
+namespace Patterns.FSM
 {
     public class Damageable : MonoBehaviour
     {
         [SerializeField] private float life = 100f;
-        public event Action onTakeDamage;
+        public event Action OnTakeDamage;
 
         private void Update()
         {
@@ -20,6 +20,7 @@ namespace Code.Scripts.Attack
         /// <param name="damage">Amount of damage</param>
         public void TakeDamage(float damage)
         {
+            OnTakeDamage?.Invoke();
             life -= damage;
         }
 

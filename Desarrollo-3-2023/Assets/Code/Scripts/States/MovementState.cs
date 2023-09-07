@@ -9,19 +9,19 @@ namespace Code.Scripts.States
     /// <typeparam name="T"></typeparam>
     public class MovementState<T> : BaseState<T>
     {
-        private readonly Rigidbody2D rb;
-        private readonly Transform transform;
+        protected readonly Rigidbody2D rb;
+        protected readonly Transform transform;
         private readonly float speed;
 
         public float dir;
-        
+
         public MovementState(T id, string name, float speed, Transform transform, Rigidbody2D rb) : base(id, name)
         {
             this.speed = speed;
             this.transform = transform;
             this.rb = rb;
         }
-        
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -31,9 +31,9 @@ namespace Code.Scripts.States
         public override void OnUpdate()
         {
             base.OnUpdate();
-            
+
             MoveInDirection(dir);
-            
+
             if (Mathf.Approximately(dir, 0))
                 Exit();
         }
@@ -45,6 +45,14 @@ namespace Code.Scripts.States
         protected void MoveInDirection(float direction)
         {
             transform.Translate(Vector3.right * (direction * speed * Time.deltaTime));
+        }
+
+        protected bool IsGrounded()
+        {
+            if (!transform)
+                return false;
+
+            return Physics2D.Raycast(transform.position, Vector2.down, 1.1f * transform.localScale.y, ~(1 << 6 | 1 << 7));
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Patterns.FSM
 {
     public class JumpStartState<T> : MovementState<T>
     {
-        private float jumpForce;
+        private readonly float jumpForce;
         
         public JumpStartState(T id, string name, float speed, Transform transform, Rigidbody2D rb, float jumpForce) : base(id, name, speed, transform, rb)
         {
@@ -18,7 +18,7 @@ namespace Patterns.FSM
                 Exit();
             
             base.OnEnter();
-            Debug.LogError("Entered Jump Start");
+            Debug.Log("Entered Jump Start");
             
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }

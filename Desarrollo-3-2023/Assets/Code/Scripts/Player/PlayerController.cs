@@ -11,7 +11,8 @@ namespace Code.Scripts.Player
     {
         Idle,
         Move,
-        Jump,
+        JumpStart,
+        JumpEnd,
         Attack,
         Block,
         Parry,
@@ -21,6 +22,7 @@ namespace Code.Scripts.Player
     {
         [SerializeField] private PlayerStates startState = PlayerStates.Idle;
         [SerializeField] private float speed = 5f;
+        [SerializeField] private float jumpForce = 5f;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private GameObject hit;
         [SerializeField] private Damageable damageable;
@@ -34,16 +36,22 @@ namespace Code.Scripts.Player
         private AttackState<PlayerStates> attackState;
         private ParryState<PlayerStates> parryState;
         private BlockState<PlayerStates> blockState;
+        private JumpStartState<PlayerStates> jumpStartState;
+        private JumpEndState<PlayerStates> jumpEndState;
         
         private FiniteStateMachine<PlayerStates> fsm;
 
         private void Awake()
         {
-            movementState = new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, transform, rb);
+            var trans = transform;
+            
+            movementState = new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, trans, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackState = new AttackState<PlayerStates>(PlayerStates.Attack, "AttackState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
+            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, "JumpStartState", speed, trans, rb, jumpForce);
+            jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, trans, rb);
             
             fsm = new FiniteStateMachine<PlayerStates>();
             
@@ -52,6 +60,8 @@ namespace Code.Scripts.Player
             fsm.AddState(attackState);
             fsm.AddState(parryState);
             fsm.AddState(blockState);
+            fsm.AddState(jumpStartState);
+            fsm.AddState(jumpEndState);
             
             fsm.SetCurrentState(fsm.GetState(startState));
             
@@ -64,6 +74,7 @@ namespace Code.Scripts.Player
             InputManager.onAttack += CheckAttack;
             InputManager.onBlockPressed += CheckParry;
             InputManager.onBlockReleased += CheckBlock;
+            InputManager.onJump += CheckJumpStart;
         }
 
         private void OnDisable()
@@ -72,11 +83,13 @@ namespace Code.Scripts.Player
             InputManager.onAttack -= CheckAttack;
             InputManager.onBlockPressed -= CheckParry;
             InputManager.onBlockReleased -= CheckBlock;
+            InputManager.onJump -= CheckJumpStart;
         }
 
         private void Update()
         {
             CheckPlayerState();
+            CheckJumpEnd();
             ShowParryAndBlock();
             
             fsm.Update();
@@ -97,7 +110,8 @@ namespace Code.Scripts.Player
                     MoveTransitions();
                     break;
                 
-                case PlayerStates.Jump:
+                case PlayerStates.JumpStart:
+                    JumpStartTransitions();
                     break;
                 
                 case PlayerStates.Attack:
@@ -110,6 +124,10 @@ namespace Code.Scripts.Player
                 
                 case PlayerStates.Parry:
                     ParryTransitions();
+                    break;
+
+                case PlayerStates.JumpEnd:
+                    JumpEndTransitions();
                     break;
                 
                 default:
@@ -138,6 +156,7 @@ namespace Code.Scripts.Player
                 movementState.Enter();
             
             movementState.dir = input;
+            jumpEndState.dir = input;
         }
 
         /// <summary>
@@ -164,6 +183,17 @@ namespace Code.Scripts.Player
         {
             blockState.Exit();
         }
+        
+        private void CheckJumpStart()
+        {
+            jumpStartState.Enter();
+        }
+        
+        private void CheckJumpEnd()
+        {
+            if (rb.velocity.y < 0)
+                jumpEndState.Enter();
+        }
 
         #endregion
 
@@ -180,6 +210,8 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
             else if (parryState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
+            else if (jumpStartState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
         }
 
         /// <summary>
@@ -189,6 +221,8 @@ namespace Code.Scripts.Player
         {
             if (!movementState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+            else if (jumpStartState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
         }
         
         /// <summary>
@@ -215,6 +249,24 @@ namespace Code.Scripts.Player
         private void BlockTransitions()
         {
             if (!blockState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+        }
+        
+        /// <summary>
+        /// Jump start state transitions manager
+        /// </summary>
+        private void JumpStartTransitions()
+        {
+            if (!jumpStartState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
+        }
+        
+        /// <summary>
+        /// Jump end state transitions manager
+        /// </summary>
+        private void JumpEndTransitions()
+        {
+            if (!jumpEndState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
         

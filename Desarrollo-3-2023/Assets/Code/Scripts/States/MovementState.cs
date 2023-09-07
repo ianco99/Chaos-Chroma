@@ -52,7 +52,13 @@ namespace Code.Scripts.States
             if (!transform)
                 return false;
 
-            return Physics2D.Raycast(transform.position, Vector2.down, 1.1f * transform.localScale.y, ~(1 << 6 | 1 << 7));
+            var pos = transform.position;
+            var scale = transform.localScale;
+            var hit = Physics2D.Raycast(pos, Vector2.down, 2f * scale.y, ~(1 << 6 | 1 << 7 | 1 << 8));
+            
+            Debug.DrawRay(pos, Vector2.down * (1.1f * scale.y));
+            
+            return hit.collider;
         }
     }
 }

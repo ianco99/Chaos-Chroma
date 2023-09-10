@@ -41,7 +41,7 @@ namespace Code.Scripts.States
         public override void OnFixedUpdate()
         {
             base.OnFixedUpdate();
-            
+
             MoveInDirection(dir);
             ClampSpeed();
         }
@@ -52,6 +52,8 @@ namespace Code.Scripts.States
         /// <param name="direction"></param>
         private void MoveInDirection(float direction)
         {
+            Debug.LogError("Direction: " + direction);
+            Debug.LogError("Accel: " + accel);
             rb.AddForce(Vector2.right * (direction * accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
 

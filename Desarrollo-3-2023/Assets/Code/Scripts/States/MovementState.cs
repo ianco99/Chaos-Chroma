@@ -27,7 +27,6 @@ namespace Code.Scripts.States
         public override void OnEnter()
         {
             base.OnEnter();
-            Debug.Log("Entered Move");
         }
 
         public override void OnUpdate()
@@ -52,8 +51,6 @@ namespace Code.Scripts.States
         /// <param name="direction"></param>
         private void MoveInDirection(float direction)
         {
-            Debug.LogError("Direction: " + direction);
-            Debug.LogError("Accel: " + accel);
             rb.AddForce(Vector2.right * (direction * accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
 

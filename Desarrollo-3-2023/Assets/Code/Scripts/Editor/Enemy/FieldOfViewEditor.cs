@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEditor;
 
-namespace Code.FieldOfView
+namespace Code.FOV
 {
     [CustomEditor(typeof(FieldOfView))]
     public class FieldOfViewEditor : Editor
@@ -20,6 +20,12 @@ namespace Code.FieldOfView
 
             Handles.DrawLine(fov.transform.position, fov.transform.position + rotatedAngleA * fov.viewRadius);
             Handles.DrawLine(fov.transform.position, fov.transform.position + rotatedAngleB * fov.viewRadius);
+
+            Handles.color = Color.red;
+            foreach (Transform visibleTarget in fov.visibleTargets)
+            {
+                Handles.DrawLine(fov.transform.position, visibleTarget.position);
+            }
         }
     }
 }

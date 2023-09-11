@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Patterns.FSM;
+using Code.FOV;
 
 namespace Code.SOs.Enemy
 {
@@ -20,6 +21,7 @@ namespace Code.SOs.Enemy
         [SerializeField] private EnemyStates startingState;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private EnemySettings settings;
+        [SerializeField] private FieldOfView fov;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
@@ -36,6 +38,8 @@ namespace Code.SOs.Enemy
             fsm.SetCurrentState(fsm.GetState(startingState));
 
             fsm.Init();
+
+            fov.ToggleFindingTargets(true);
         }
 
         private void Update()

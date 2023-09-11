@@ -9,5 +9,9 @@ namespace Code.SOs.Enemy
         public Vector3[] patrolPoints;
         public float patrolSpeed;
         public float acceleration;
+
+        public float viewRadius;
+        public float viewAngle;
+
     }
 }

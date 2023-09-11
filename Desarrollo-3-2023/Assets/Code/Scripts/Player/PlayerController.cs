@@ -18,18 +18,18 @@ namespace Code.Scripts.Player
         Parry,
     }
 
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : Character
     {
+        [Header("Player:")]
         [SerializeField] private PlayerStates startState = PlayerStates.Idle;
         [SerializeField] private float speed = 5f;
         [SerializeField] private float acceleration = 5f;
         [SerializeField] private float jumpForce = 5f;
-        [SerializeField] private Rigidbody2D rb;
-        [SerializeField] private GameObject hit;
-        [SerializeField] private Damageable damageable;
         [SerializeField] private float parryDuration = 1f;
+        [SerializeField] private GameObject hit;
         [SerializeField] private GameObject parryCapsule;
         [SerializeField] private GameObject blockCapsule;
+        [SerializeField] private Damageable damageable;
         
         // States
         private MovementState<PlayerStates> movementState;

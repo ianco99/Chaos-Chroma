@@ -9,8 +9,12 @@ namespace Code.FieldOfView
         public float viewRadius;
         [Range(0, 360)]
         public float viewAngle;
-        public Vector3 DirFromAngle(float angleInDegrees)
+        public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
         {
+            if(!angleIsGlobal)
+            {
+                angleInDegrees += transform.eulerAngles.y;
+            }
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0.0f, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
         }
     }

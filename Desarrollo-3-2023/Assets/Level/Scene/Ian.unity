@@ -546,6 +546,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2620014508958615141, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
+      propertyPath: viewAngle
+      value: 94
+      objectReference: {fileID: 0}
     - target: {fileID: 4819109336555100032, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -593,27 +597,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6895154352041568532, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5584680497877098756}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
---- !u!1 &5584680497877098755 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6895154352041568532, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-  m_PrefabInstance: {fileID: 5584680497877098754}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5584680497877098756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5584680497877098755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5381754add9b77148bf88631f33757d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 2.99
-  viewAngle: 127

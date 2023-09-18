@@ -22,6 +22,7 @@ namespace Code.SOs.Enemy
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
+        [SerializeField] private SpriteMask fovMask;
         [SerializeField] private float suspectMeter = 0.0f;
         [SerializeField] private float suspectUnit = 0.5f;
 
@@ -49,6 +50,7 @@ namespace Code.SOs.Enemy
             fsm.Update();
 
             CheckFieldOfView();
+            CheckTransitions();
         }
 
         private void FixedUpdate()
@@ -61,7 +63,20 @@ namespace Code.SOs.Enemy
             if(fov.visibleTargets.Count > 0)
             {
                 suspectMeter += suspectUnit * Mathf.Clamp(fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position, transform.position), 0, fov.viewRadius) * Time.deltaTime;
+
+                suspectMeter = Mathf.Clamp(suspectMeter, 0.0f, 100.0f);
+
+                float normalizedSuspectMeter = (suspectMeter - (0)) / ((100) - (0));
+
+                fovMask.transform.localPosition = new Vector3(0.0f, Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
             }
+
+            
+        }
+
+        private void CheckTransitions()
+        {
+
         }
     }
 }

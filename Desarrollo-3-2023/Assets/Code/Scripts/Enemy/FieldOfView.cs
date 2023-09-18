@@ -47,7 +47,6 @@ namespace Code.FOV
         }
         private void FindVisibleTargets()
         {
-            Debug.Log("Started finding visible targets");
             visibleTargets.Clear();
             Collider2D[] targetsInViewRadius;
 
@@ -58,7 +57,6 @@ namespace Code.FOV
                 Transform target = targetsInViewRadius[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
 
-                Debug.Log("Check dir to target");
                 if (Vector3.Angle(transform.right, dirToTarget) < viewAngle / 2.0f)
                 {
                     float distToTarget = Vector3.Distance(transform.position, target.position);

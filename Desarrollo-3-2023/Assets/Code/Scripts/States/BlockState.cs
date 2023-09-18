@@ -18,8 +18,6 @@ namespace Patterns.FSM
         {
             base.OnEnter();
             
-            Debug.Log("Entered Block");
-            
             blocker.StartBlock();
         }
 

@@ -19,8 +19,7 @@ namespace Code.Scripts.States
         public override void OnEnter()
         {
             base.OnEnter();
-        
-            Debug.Log("Entered Attack");
+            
             hit.SetActive(true);
         }
 

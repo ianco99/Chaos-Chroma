@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 836443845740120934}
   - component: {fileID: 2334605050899191207}
   - component: {fileID: 6145023305814156655}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 968319048612638191}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9121585280035950656
 SpriteRenderer:
@@ -142,7 +142,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2603062281788332554}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -175,6 +175,7 @@ MonoBehaviour:
   startingState: 0
   rb: {fileID: 2334605050899191207}
   settings: {fileID: 11400000, guid: 4c0ae0d5a229eaa4c8eb801f79170928, type: 2}
+  fov: {fileID: 2620014508958615141}
 --- !u!1 &6895154352041568532
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968319048612638191}
   - component: {fileID: 2620014508958615141}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: FieldOfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,4 +221,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 2.99
-  viewAngle: 127
+  viewAngle: 94
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 16
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  visibleTargets: []
+  searching: 0

@@ -1,4 +1,4 @@
-using System;
+        using System;
 using UnityEngine;
 using Patterns.FSM;
 using Code.FOV;
@@ -22,6 +22,8 @@ namespace Code.SOs.Enemy
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
+        [SerializeField] private float suspectMeter = 0.0f;
+        [SerializeField] private float suspectUnit = 0.5f;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
@@ -45,6 +47,8 @@ namespace Code.SOs.Enemy
         private void Update()
         {
             fsm.Update();
+
+            CheckFieldOfView();
         }
 
         private void FixedUpdate()
@@ -54,7 +58,10 @@ namespace Code.SOs.Enemy
 
         private void CheckFieldOfView()
         {
-            Vector3 startDirection = transform.right;
+            if(fov.visibleTargets.Count > 0)
+            {
+                suspectMeter += suspectUnit * Mathf.Clamp(fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position, transform.position), 0, fov.viewRadius) * Time.deltaTime;
+            }
         }
     }
 }

@@ -64,14 +64,11 @@ namespace Code.SOs.Enemy
             {
                 suspectMeter += suspectUnit * Mathf.Clamp(fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position, transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
-                suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
+                suspectMeter = Mathf.Clamp(suspectMeter, 0.0f, 100.0f);
 
-                float normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) / ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
+                float normalizedSuspectMeter = (suspectMeter - (0)) / ((100) - (0));
 
-                float totalUnits = (0.078f - (-0.798f));
-                float yValue = totalUnits * normalizedSuspectMeter; //Max * 0-1 value
-
-                fovMask.transform.localPosition = new Vector3(0.0f, Mathf.Lerp(-0.798f, 0.078f, yValue), 0.0f);
+                fovMask.transform.localPosition = new Vector3(0.0f, Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
             }
 
             

@@ -64,7 +64,7 @@ namespace Code.SOs.Enemy
 
         private void CheckFieldOfView()
         {
-            if(fov.visibleTargets.Count > 0)
+            if (fov.visibleTargets.Count > 0)
             {
                 suspectMeter += suspectUnit * Mathf.Clamp(fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position, transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
@@ -74,23 +74,29 @@ namespace Code.SOs.Enemy
 
                 suspectMeterMask.transform.localPosition = new Vector3(0.0f, Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
             }
-
-            if(suspectMeter >= settings.alertValue && fsm.GetCurrentState() != alertState)
-            {
-                alertState.SetTarget(transform);
-                fsm.SetCurrentState(alertState);
-                suspectMeterSprite.color = Color.yellow;
-            }
-            else if(suspectMeter >= settings.suspectMeterMaximum)
-            {
-                suspectMeterSprite.color = Color.red;
-            }
-
         }
 
         private void CheckTransitions()
         {
+            if (fov.visibleTargets.Count > 0)
+            {
+                Transform viewedtarget = fov.visibleTargets[0];
+                if (suspectMeter >= settings.alertValue && fsm.GetCurrentState() != alertState)
+                {
+                    alertState.SetTarget(viewedtarget);
+                    fsm.SetCurrentState(alertState);
 
+                    suspectMeterSprite.color = Color.yellow;
+                }
+                else if (suspectMeter >= settings.suspectMeterMaximum)
+                {
+                    suspectMeterSprite.color = Color.red;
+                }
+            }
+            else
+            {
+
+            }
         }
     }
 }

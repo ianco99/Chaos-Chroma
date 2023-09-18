@@ -676,14 +676,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 2620014508958615141, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: viewAngle
-      value: 59
-      objectReference: {fileID: 0}
-    - target: {fileID: 2620014508958615141, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: viewRadius
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 4819109336555100032, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -727,22 +719,6 @@ PrefabInstance:
     - target: {fileID: 4819109336555100032, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145023305814156655, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: suspectUnit
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121585280035950656, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121585280035950656, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121585280035950656, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

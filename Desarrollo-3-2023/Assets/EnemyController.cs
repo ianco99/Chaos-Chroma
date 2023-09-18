@@ -10,6 +10,7 @@ namespace Code.SOs.Enemy
     public enum EnemyStates
     {
         Patrol,
+        Alert,
         Attack,
         Block,
         Parry,
@@ -22,18 +23,21 @@ namespace Code.SOs.Enemy
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
-        [SerializeField] private SpriteMask fovMask;
+        [SerializeField] private SpriteMask suspectMeterMask;
+        [SerializeField] private SpriteRenderer suspectMeterSprite;
         [SerializeField] private float suspectMeter = 0.0f;
         [SerializeField] private float suspectUnit = 0.5f;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
+        private PatrolState<EnemyStates> alertState;
 
         private void Awake()
         {
             fsm = new FiniteStateMachine<EnemyStates>();
 
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", transform, settings);
+            alertState = new PatrolState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", transform, settings);
             fsm = new FiniteStateMachine<EnemyStates>();
 
             fsm.AddState(patrolState);
@@ -68,9 +72,14 @@ namespace Code.SOs.Enemy
 
                 float normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) / ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
 
-                fovMask.transform.localPosition = new Vector3(0.0f, Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
+                suspectMeterMask.transform.localPosition = new Vector3(0.0f, Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
             }
 
+            if(suspectMeter >= settings.suspectMeterMaximum)
+            {
+                fsm.SetCurrentState(alertState);
+                suspectMeterSprite.color = Color.yellow;
+            }
             
         }
 

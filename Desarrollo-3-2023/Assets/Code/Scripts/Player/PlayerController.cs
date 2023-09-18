@@ -30,7 +30,7 @@ namespace Code.Scripts.Player
         [SerializeField] private GameObject parryCapsule;
         [SerializeField] private GameObject blockCapsule;
         [SerializeField] private Damageable damageable;
-        
+
         // States
         private MovementState<PlayerStates> movementState;
         private IdleState<PlayerStates> idleState;
@@ -39,13 +39,13 @@ namespace Code.Scripts.Player
         private BlockState<PlayerStates> blockState;
         private JumpStartState<PlayerStates> jumpStartState;
         private JumpEndState<PlayerStates> jumpEndState;
-        
+
         private FiniteStateMachine<PlayerStates> fsm;
 
         private void Awake()
         {
             var trans = transform;
-            
+
             movementState = new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, acceleration, trans, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackState = new AttackState<PlayerStates>(PlayerStates.Attack, "AttackState", hit);
@@ -53,9 +53,9 @@ namespace Code.Scripts.Player
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, "JumpStartState", speed, acceleration, trans, rb, jumpForce);
             jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb);
-            
+
             fsm = new FiniteStateMachine<PlayerStates>();
-            
+
             fsm.AddState(movementState);
             fsm.AddState(idleState);
             fsm.AddState(attackState);
@@ -63,9 +63,9 @@ namespace Code.Scripts.Player
             fsm.AddState(blockState);
             fsm.AddState(jumpStartState);
             fsm.AddState(jumpEndState);
-            
+
             fsm.SetCurrentState(fsm.GetState(startState));
-            
+
             fsm.Init();
         }
 
@@ -91,10 +91,11 @@ namespace Code.Scripts.Player
         {
             CheckPlayerState();
             CheckJumpEnd();
-            
+            CheckRotation();
+
             fsm.Update();
         }
-        
+
         private void FixedUpdate()
         {
             fsm.FixedUpdate();
@@ -107,30 +108,30 @@ namespace Code.Scripts.Player
         {
             blockCapsule.SetActive(false);
             parryCapsule.SetActive(false);
-            
-            switch ( fsm.GetCurrentState().ID)
+
+            switch (fsm.GetCurrentState().ID)
             {
                 case PlayerStates.Idle:
                     IdleTransitions();
                     break;
-                    
+
                 case PlayerStates.Move:
                     MoveTransitions();
                     break;
-                
+
                 case PlayerStates.JumpStart:
                     JumpStartTransitions();
                     break;
-                
+
                 case PlayerStates.Attack:
                     AttackTransitions();
                     break;
-                
+
                 case PlayerStates.Block:
                     blockCapsule.SetActive(true);
                     BlockTransitions();
                     break;
-                
+
                 case PlayerStates.Parry:
                     parryCapsule.SetActive(true);
                     ParryTransitions();
@@ -139,9 +140,32 @@ namespace Code.Scripts.Player
                 case PlayerStates.JumpEnd:
                     JumpEndTransitions();
                     break;
-                
+
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        /// Control player facing direction
+        /// </summary>
+        private void CheckRotation()
+        {
+            if (movementState.dir > 0)
+            {
+                if (!facingRight)
+                {
+                    facingRight = true;
+                    Flip();
+                }
+            }
+            else if (movementState.dir < 0)
+            {
+                if (facingRight)
+                {
+                    facingRight = false;
+                    Flip();
+                }
             }
         }
 
@@ -155,7 +179,7 @@ namespace Code.Scripts.Player
         {
             if (input != 0)
                 movementState.Enter();
-            
+
             movementState.dir = input;
             jumpStartState.dir = input;
             jumpEndState.dir = input;
@@ -169,18 +193,18 @@ namespace Code.Scripts.Player
             if (fsm.GetCurrentState().ID == PlayerStates.Idle || fsm.GetCurrentState().ID == PlayerStates.Move)
                 attackState.Enter();
         }
-        
+
         /// <summary>
         /// Handle to parry transition
         /// </summary>
         private void CheckParry()
         {
             if (fsm.GetCurrentState().ID != PlayerStates.Idle && fsm.GetCurrentState().ID != PlayerStates.Move) return;
-            
+
             parryState.Enter();
             blockState.Enter();
         }
-        
+
         /// <summary>
         /// Handle to block transition
         /// </summary>
@@ -188,12 +212,18 @@ namespace Code.Scripts.Player
         {
             blockState.Exit();
         }
-        
+
+        /// <summary>
+        /// Handle to jump start transition
+        /// </summary>
         private void CheckJumpStart()
         {
             jumpStartState.Enter();
         }
-        
+
+        /// <summary>
+        /// Handle to jump end transition
+        /// </summary>
         private void CheckJumpEnd()
         {
             if (rb.velocity.y < 0)
@@ -233,7 +263,7 @@ namespace Code.Scripts.Player
             else if (parryState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
         }
-        
+
         /// <summary>
         /// Attack state transitions manager
         /// </summary>
@@ -260,7 +290,7 @@ namespace Code.Scripts.Player
             if (!blockState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
-        
+
         /// <summary>
         /// Jump start state transitions manager
         /// </summary>
@@ -269,7 +299,7 @@ namespace Code.Scripts.Player
             if (!jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
         }
-        
+
         /// <summary>
         /// Jump end state transitions manager
         /// </summary>
@@ -278,7 +308,7 @@ namespace Code.Scripts.Player
             if (!jumpEndState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
-        
+
         #endregion
     }
 }

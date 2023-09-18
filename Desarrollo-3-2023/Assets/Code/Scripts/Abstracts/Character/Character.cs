@@ -17,16 +17,16 @@ public class Character : MonoBehaviour
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] private List<Flippable> flippables;
 
-    protected bool facingRight;
+    protected bool facingRight = true;
 
     protected void Flip()
     {
         foreach (var flipped in flippables)
         {
-            Vector2 pos = flipped.trans.position;
+            Vector2 pos = flipped.trans.localPosition;
 
             pos.x *= -1;
-            flipped.trans.position = pos;
+            flipped.trans.localPosition = pos;
             flipped.sprite.flipX = !flipped.sprite.flipX;
         }
 

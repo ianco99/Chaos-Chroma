@@ -15,8 +15,11 @@ namespace Patterns.FSM
         public override void OnEnter()
         {
             if (!IsGrounded())
+            {
                 Exit();
-            
+                return;
+            }
+
             base.OnEnter();
             Debug.Log("Entered Jump Start");
             

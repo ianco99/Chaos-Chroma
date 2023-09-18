@@ -21,7 +21,6 @@ namespace Patterns.FSM
             }
 
             base.OnEnter();
-            Debug.Log("Entered Jump Start");
             
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }

@@ -17,8 +17,6 @@ namespace Patterns.FSM
         {
             base.OnEnter();
             
-            Debug.Log("Entered Parry");
-            
             parrier.StartParry(parryDuration);
         }
 

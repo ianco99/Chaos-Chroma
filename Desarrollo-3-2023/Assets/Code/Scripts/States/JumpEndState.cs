@@ -15,7 +15,6 @@ namespace Patterns.FSM
         public override void OnEnter()
         {
             base.OnEnter();
-            Debug.Log("Entered Jump End");
         }
 
         public override void OnUpdate()

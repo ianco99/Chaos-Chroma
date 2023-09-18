@@ -29,11 +29,6 @@ public class ParallaxLayer : MonoBehaviour
 
         for (var i = 0; i < images.Length; i++)
             PlaceByIndex(i, positions[i]);
-
-        foreach (var position in positions)
-        {
-            Debug.Log(position);
-        }
     }
 
     private void PlaceByIndex(int imageIndex, int index)

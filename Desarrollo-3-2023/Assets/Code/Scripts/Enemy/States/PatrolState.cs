@@ -25,7 +25,6 @@ namespace Patterns.FSM
         public override void OnEnter()
         {
             base.OnEnter();
-            Debug.Log("Entered Patrol");
         }
 
         public override void OnUpdate()

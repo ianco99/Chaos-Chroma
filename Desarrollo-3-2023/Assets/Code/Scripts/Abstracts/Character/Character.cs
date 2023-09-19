@@ -15,9 +15,9 @@ public class Character : MonoBehaviour
     [Header("Character:")]
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected SpriteRenderer sprite;
+    [SerializeField] protected bool facingRight = true;
     [SerializeField] private List<Flippable> flippables;
 
-    protected bool facingRight = true;
 
     protected void Flip()
     {

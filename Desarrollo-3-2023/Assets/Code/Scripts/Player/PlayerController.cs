@@ -151,20 +151,27 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckRotation()
         {
-            if (movementState.dir > 0)
+            switch (movementState.dir)
             {
-                if (!facingRight)
+                case > 0:
                 {
-                    facingRight = true;
-                    Flip();
+                    if (!facingRight)
+                    {
+                        facingRight = true;
+                        Flip();
+                    }
+
+                    break;
                 }
-            }
-            else if (movementState.dir < 0)
-            {
-                if (facingRight)
+                case < 0:
                 {
-                    facingRight = false;
-                    Flip();
+                    if (facingRight)
+                    {
+                        facingRight = false;
+                        Flip();
+                    }
+
+                    break;
                 }
             }
         }

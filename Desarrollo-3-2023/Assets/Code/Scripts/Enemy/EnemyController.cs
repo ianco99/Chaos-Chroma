@@ -1,11 +1,11 @@
-        using System;
-using UnityEngine;
-using Patterns.FSM;
+using System;
 using Code.FOV;
+using Code.SOs.Enemy;
+using Patterns.FSM;
+using UnityEngine;
 
-namespace Code.SOs.Enemy
+namespace Code.Scripts.Enemy
 {
-
     [Serializable]
     public enum EnemyStates
     {
@@ -17,10 +17,9 @@ namespace Code.SOs.Enemy
         Fall
     }
 
-    public class EnemyController : MonoBehaviour
+    public class EnemyController : Character
     {
         [SerializeField] private EnemyStates startingState;
-        [SerializeField] private Rigidbody2D rb;
         [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteMask suspectMeterMask;
@@ -53,6 +52,7 @@ namespace Code.SOs.Enemy
         {
             fsm.Update();
 
+            CheckRotation();
             CheckFieldOfView();
             CheckTransitions();
         }
@@ -66,13 +66,18 @@ namespace Code.SOs.Enemy
         {
             if (fov.visibleTargets.Count > 0)
             {
-                suspectMeter += suspectUnit * Mathf.Clamp(fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position, transform.position), 0, fov.viewRadius) * Time.deltaTime;
+                suspectMeter += suspectUnit *
+                                Mathf.Clamp(
+                                    fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
+                                        transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
                 suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
 
-                float normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) / ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
+                float normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) /
+                                               ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
 
-                suspectMeterMask.transform.localPosition = new Vector3(0.0f, Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
+                suspectMeterMask.transform.localPosition = new Vector3(0.0f,
+                    Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
             }
         }
 
@@ -95,7 +100,32 @@ namespace Code.SOs.Enemy
             }
             else
             {
+                fsm.SetCurrentState(patrolState);
+            }
+        }
 
+        private void CheckRotation()
+        {
+            switch (patrolState.dir)
+            {
+                case > 0:
+                {
+                    if (!facingRight)
+                    {
+                        facingRight = true;
+                        Flip();
+                    }
+                    break;
+                }
+                case < 0:
+                {
+                    if (facingRight)
+                    {
+                        facingRight = false;
+                        Flip();
+                    }
+                    break;
+                }
             }
         }
     }

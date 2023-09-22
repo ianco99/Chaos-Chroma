@@ -24,11 +24,6 @@ namespace Code.Scripts.States
             this.rb = rb;
         }
 
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
-
         public override void OnUpdate()
         {
             base.OnUpdate();

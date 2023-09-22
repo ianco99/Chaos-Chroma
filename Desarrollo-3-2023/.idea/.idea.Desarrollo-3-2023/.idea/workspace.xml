@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemyController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EnemyController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/personaje.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/personaje.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +75,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="F:\Chino - Copy\2022.2.9f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Da Archive\Unity\2022.2.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -80,7 +83,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="F:\Chino - Copy\2022.2.9f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Da Archive\Unity\2022.2.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -128,6 +131,7 @@
       <workItem from="1695074101085" duration="5579000" />
       <workItem from="1695079746526" duration="54000" />
       <workItem from="1695147357102" duration="5375000" />
+      <workItem from="1695391130745" duration="2413000" />
     </task>
     <servers />
   </component>

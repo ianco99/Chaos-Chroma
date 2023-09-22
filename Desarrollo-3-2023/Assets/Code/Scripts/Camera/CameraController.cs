@@ -8,7 +8,7 @@ namespace Code.Scripts.Camera
         [SerializeField] private Vector3 offset = Vector3.zero;
         [SerializeField] private float speed = 10f;
 
-        private void Update()
+        private void LateUpdate()
         {
             if (!target) return;
             

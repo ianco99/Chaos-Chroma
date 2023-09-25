@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       #Checkout
-      - name: Checkout repository
+      - name: CheckoutRepository
        uses: actions/checkout@v3
        with:
          lfs: true

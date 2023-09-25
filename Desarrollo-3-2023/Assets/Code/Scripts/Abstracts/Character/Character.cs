@@ -5,10 +5,20 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [Serializable]
+    enum TransformFlip
+    {
+        None,
+        X,
+        Y,
+        Z
+    }
+    
+    [Serializable]
     struct Flippable
     {
         public Transform trans;
         public SpriteRenderer sprite;
+        public TransformFlip transformFlip;
     }
     
     [Header("Character:")]
@@ -28,10 +38,30 @@ public class Character : MonoBehaviour
             
             if (flipped.sprite)
                 flipped.sprite.flipX = !flipped.sprite.flipX;
-
-            facingRight = !facingRight;
+            
+            switch (flipped.transformFlip)
+            {
+                case TransformFlip.None:
+                    break;
+                
+                case TransformFlip.X:
+                    flipped.trans.Rotate(transform.right, 180);
+                    break;
+                
+                case TransformFlip.Y:
+                    flipped.trans.Rotate(transform.up, 180);
+                    break;
+                
+                case TransformFlip.Z:
+                    flipped.trans.Rotate(transform.forward, 180);
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
+        facingRight = !facingRight;
         sprite.flipX = !sprite.flipX;
     }
 }

@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +124,7 @@
       <workItem from="1695079746526" duration="54000" />
       <workItem from="1695147357102" duration="5375000" />
       <workItem from="1695391130745" duration="2413000" />
-      <workItem from="1695596778741" duration="4859000" />
+      <workItem from="1695596778741" duration="5678000" />
     </task>
     <servers />
   </component>

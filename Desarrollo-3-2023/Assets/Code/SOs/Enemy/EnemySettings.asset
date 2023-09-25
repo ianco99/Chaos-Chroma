@@ -16,4 +16,10 @@ MonoBehaviour:
   - {x: 6.31, y: -0.43, z: 0}
   - {x: -5.94, y: -0.43, z: 0}
   patrolSpeed: 100
+  alertSpeed: 50
   acceleration: 50
+  viewRadius: 6.06
+  viewAngle: 60
+  suspectMeterMinimum: 0
+  alertValue: 40
+  suspectMeterMaximum: 100

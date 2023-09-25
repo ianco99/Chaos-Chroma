@@ -1,5 +1,6 @@
 using System;
 using Code.FOV;
+using Code.Scripts.States;
 using Code.SOs.Enemy;
 using Patterns.FSM;
 using UnityEngine;
@@ -24,22 +25,30 @@ namespace Code.Scripts.Enemy
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteMask suspectMeterMask;
         [SerializeField] private SpriteRenderer suspectMeterSprite;
-        [SerializeField] private float suspectMeter = 0.0f;
+        [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
+        [SerializeField] private float hitDistance = 5f;
+        [SerializeField] private GameObject hit;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
         private AlertState<EnemyStates> alertState;
+        private AttackState<EnemyStates> attackState;
 
         private void Awake()
         {
             fsm = new FiniteStateMachine<EnemyStates>();
 
-            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", transform, settings);
-            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", transform, settings);
+            var trans = transform;
+            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", trans, settings);
+            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
+            attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);
+
             fsm = new FiniteStateMachine<EnemyStates>();
 
             fsm.AddState(patrolState);
+            fsm.AddState(alertState);
+            fsm.AddState(attackState);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -64,38 +73,46 @@ namespace Code.Scripts.Enemy
 
         private void CheckFieldOfView()
         {
-            if (fov.visibleTargets.Count > 0)
-            {
-                suspectMeter += suspectUnit *
-                                Mathf.Clamp(
-                                    fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
-                                        transform.position), 0, fov.viewRadius) * Time.deltaTime;
+            if (fov.visibleTargets.Count <= 0) return;
 
-                suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
+            suspectMeter += suspectUnit *
+                            Mathf.Clamp(
+                                fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
+                                    transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
-                float normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) /
-                                               ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
+            suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
 
-                suspectMeterMask.transform.localPosition = new Vector3(0.0f,
-                    Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
-            }
+            var normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) /
+                                         ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
+
+            suspectMeterMask.transform.localPosition = new Vector3(0.0f,
+                Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
         }
 
         private void CheckTransitions()
         {
+            if (fsm.GetCurrentState() == attackState && !attackState.Active)
+                fsm.SetCurrentState(patrolState);
+
             if (fov.visibleTargets.Count > 0)
             {
-                Transform viewedtarget = fov.visibleTargets[0];
-                if (suspectMeter >= settings.alertValue && fsm.GetCurrentState() != alertState)
+                var viewedTarget = fov.visibleTargets[0];
+                if (suspectMeter >= settings.alertValue && fsm.GetCurrentState() != alertState &&
+                    fsm.GetCurrentState() != attackState)
                 {
-                    alertState.SetTarget(viewedtarget);
+                    alertState.SetTarget(viewedTarget);
                     fsm.SetCurrentState(alertState);
 
                     suspectMeterSprite.color = Color.yellow;
                 }
-                else if (suspectMeter >= settings.suspectMeterMaximum)
+                else if (suspectMeter >= settings.suspectMeterMaximum && fsm.GetCurrentState() == alertState)
                 {
                     suspectMeterSprite.color = Color.red;
+
+                    if (!(Vector3.Distance(viewedTarget.position, transform.position) < hitDistance)) return;
+
+                    attackState.Enter();
+                    fsm.SetCurrentState(attackState);
                 }
             }
             else
@@ -106,26 +123,32 @@ namespace Code.Scripts.Enemy
 
         private void CheckRotation()
         {
-            switch (patrolState.dir)
+            if (fsm.GetCurrentState() == patrolState)
             {
-                case > 0:
+                switch (patrolState.dir)
                 {
-                    if (!facingRight)
+                    case > 0:
                     {
-                        facingRight = true;
-                        Flip();
+                        if (!facingRight)
+                            Flip();
+                        break;
                     }
-                    break;
-                }
-                case < 0:
-                {
-                    if (facingRight)
+                    case < 0:
                     {
-                        facingRight = false;
-                        Flip();
+                        if (facingRight)
+                            Flip();
+                        break;
                     }
-                    break;
                 }
+            }
+            else if (fsm.GetCurrentState() == attackState)
+            {
+                var targetPos = fov.visibleTargets[0].transform.position;
+
+                if (targetPos.x > transform.position.x && !facingRight)
+                    Flip();
+                else if (targetPos.x < transform.position.x && facingRight)
+                    Flip();
             }
         }
     }

@@ -10,15 +10,13 @@ public class Character : MonoBehaviour
         public Transform trans;
         public SpriteRenderer sprite;
     }
-
-
+    
     [Header("Character:")]
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] protected bool facingRight = true;
     [SerializeField] private List<Flippable> flippables;
-
-
+    
     protected void Flip()
     {
         foreach (var flipped in flippables)
@@ -27,7 +25,11 @@ public class Character : MonoBehaviour
 
             pos.x *= -1;
             flipped.trans.localPosition = pos;
-            flipped.sprite.flipX = !flipped.sprite.flipX;
+            
+            if (flipped.sprite)
+                flipped.sprite.flipX = !flipped.sprite.flipX;
+
+            facingRight = !facingRight;
         }
 
         sprite.flipX = !sprite.flipX;

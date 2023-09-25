@@ -7,7 +7,7 @@ jobs:
     name: BuildForUnity
     runs-on: ubuntu-latest
     steps:
-      #Checkout
+      # Checkout
       - name: CheckoutRepository
        uses: actions/checkout@v3
        with:
@@ -21,13 +21,13 @@ jobs:
         restore-keys:
           Library-
 
-      #Test
+      # Test
       # name: Run tests
       # uses: game-ci/unity-test-runner@v3
       # env:
       #   UNITY_LICESE: 
 
-      #Build
+      # Build
       - name: Build project
       uses: game-ci /unity-builder@v3
       env:
@@ -37,7 +37,7 @@ jobs:
       with:
         targetPlatform: StandaloneWindows
 
-      #Upload to github
+      # Upload to github
         - uses: actions/upload-artifact@v3
         with:
           name: Build

@@ -26,7 +26,7 @@ jobs:
         uses: game-ci/unity-test-runner@v3
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          projectPath: ../Desarrollo-3-2023
+          projectPath: Desarrollo-3-2023
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v3

@@ -314,7 +314,7 @@ MonoBehaviour:
   damage: 10
   hitDelay: 0.2
   hitDuration: 0.5
-  sprite: {fileID: 0}
+  sprite: {fileID: 5307910383963384102}
 --- !u!1 &6399263026032754680
 GameObject:
   m_ObjectHideFlags: 0

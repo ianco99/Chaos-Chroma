@@ -7,7 +7,6 @@ jobs:
     name: BuildForUnity
     runs-on: ubuntu-latest
     steps:
-      # Checkout
       - name: CheckoutRepository
        uses: actions/checkout@v3
        with:

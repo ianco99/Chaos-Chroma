@@ -51,7 +51,7 @@ namespace Code.Scripts.Player
             attackState = new AttackState<PlayerStates>(PlayerStates.Attack, "AttackState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
-            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, "JumpStartState", speed,
+            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this,"JumpStartState", speed,
                 acceleration, trans, rb, jumpForce);
             jumpEndState =
                 new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb);

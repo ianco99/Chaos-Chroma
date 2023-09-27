@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: EnemySettings
   m_EditorClassIdentifier: 
   patrolPoints:
-  - {x: 6.31, y: -0.43, z: 0}
-  - {x: -5.94, y: -0.43, z: 0}
+  - {x: -2.05, y: 1.001, z: -0.023706201}
+  - {x: -1.14, y: 1.078, z: -0.023706201}
   patrolSpeed: 100
+  alertSpeed: 50
   acceleration: 50
+  viewRadius: 6.06
+  viewAngle: 60
+  suspectMeterMinimum: 0
+  alertValue: 40
+  suspectMeterMaximum: 100

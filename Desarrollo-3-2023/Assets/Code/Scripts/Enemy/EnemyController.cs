@@ -143,12 +143,16 @@ namespace Code.Scripts.Enemy
             }
             else if (fsm.GetCurrentState() == attackState)
             {
-                var targetPos = fov.visibleTargets[0].transform.position;
+                if(fov.visibleTargets.Count > 0)
+                {
+                    var targetPos = fov.visibleTargets[0].transform.position;
 
-                if (targetPos.x > transform.position.x && !facingRight)
-                    Flip();
-                else if (targetPos.x < transform.position.x && facingRight)
-                    Flip();
+                    if (targetPos.x > transform.position.x && !facingRight)
+                        Flip();
+                    else if (targetPos.x < transform.position.x && facingRight)
+                        Flip();
+                }
+
             }
         }
     }

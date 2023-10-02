@@ -160,5 +160,12 @@ namespace Code.Scripts.Enemy
 
             }
         }
+
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            //Gizmos.DrawRay(groundCheckPoint.position, groundCheckPoint.right * patrolState.dir);
+        }
     }
 }

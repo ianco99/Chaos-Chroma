@@ -1,5 +1,6 @@
 using Code.Scripts.States;
 using Code.SOs.Enemy;
+using System;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -12,30 +13,30 @@ namespace Patterns.FSM
     {
         private readonly EnemySettings settings;
         private readonly Transform patroller;
-        private Vector3 currentDirection;
+        private Transform groundCheckPoint;
         private int curPatrolPoint;
 
-        public PatrolState(Rigidbody2D rb, T id, string name, Transform transform, EnemySettings settings) : base(id, name, settings.patrolSpeed, settings.acceleration,
+        public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Transform transform, EnemySettings settings) : base(id, name, settings.patrolSpeed, settings.acceleration,
             transform, rb)
         {
             patroller = transform;
             this.settings = settings;
+            this.groundCheckPoint = groundCheckPoint;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+            dir = -1f;
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
             
-            CheckDirection();
-            
-            currentDirection = settings.patrolPoints[curPatrolPoint] - patroller.position;
-            var newDirection = currentDirection.normalized;
-            dir = newDirection.x;
+            //CheckDirection();
+            CheckGround();
+             
         }
 
         /// <summary>
@@ -49,6 +50,25 @@ namespace Patterns.FSM
                 
             if (curPatrolPoint >= settings.patrolPoints.Length)
                 curPatrolPoint = 0;
+        }
+
+        private void CheckGround()
+        {
+            if(!Physics2D.Raycast(groundCheckPoint.position, Vector2.down, 0.5f))
+            {
+                Debug.Log(groundCheckPoint.localPosition);
+                FlipDirection();
+            }
+        }
+
+        public void SetDirection(float newDirection)
+        {
+            dir = newDirection;
+        }
+
+        public void FlipDirection()
+        {
+            dir = -dir;
         }
     }
 }

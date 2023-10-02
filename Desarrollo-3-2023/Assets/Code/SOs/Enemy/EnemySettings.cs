@@ -7,9 +7,14 @@ namespace Code.SOs.Enemy
     public class EnemySettings : ScriptableObject
     {
         public Vector3[] patrolPoints;
-        public float patrolSpeed;
         public float alertSpeed;
         public float acceleration;
+
+        [Header("Patrol")]
+        public float groundCheckDistance;
+        public float wallCheckDistance;
+        public float patrolSpeed;
+
 
         [Header("Field of View")]
         public float viewRadius;

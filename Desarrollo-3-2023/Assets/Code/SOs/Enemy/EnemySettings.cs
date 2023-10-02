@@ -14,7 +14,7 @@ namespace Code.SOs.Enemy
         public float groundCheckDistance;
         public float wallCheckDistance;
         public float patrolSpeed;
-
+        //TODO: patrol settings with IPatrolSettings 
 
         [Header("Field of View")]
         public float viewRadius;

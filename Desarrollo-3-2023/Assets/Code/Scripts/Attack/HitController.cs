@@ -29,11 +29,11 @@ namespace Code.Scripts.Attack
         {
             if (!started) return;
 
-            var trans = transform;
+            Transform trans = transform;
 
-            var hits = Physics2D.OverlapBoxAll(trans.position, trans.localScale, trans.rotation.z);
+            Collider2D[] hits = Physics2D.OverlapBoxAll(trans.position, trans.localScale, trans.rotation.z);
 
-            foreach (var hit in hits)
+            foreach (Collider2D hit in hits)
             {
                 if (!hit.TryGetComponent<Damageable>(out var damageable) || hitObjects.Contains(damageable)) continue;
 
@@ -51,8 +51,8 @@ namespace Code.Scripts.Attack
             yield return new WaitForSeconds(hitDelay);
             
             StartCoroutine(StopOnTime());
-            started = true;
             sprite.enabled = true;
+            started = true;
         }
 
         /// <summary>

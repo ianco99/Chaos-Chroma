@@ -569,6 +569,9 @@ MonoBehaviour:
   - trans: {fileID: 3267044727100687320}
     sprite: {fileID: 0}
     transformFlip: 0
+  - trans: {fileID: 5859794102443244788}
+    sprite: {fileID: 0}
+    transformFlip: 0
   startState: 0
   speed: 100
   acceleration: 2000

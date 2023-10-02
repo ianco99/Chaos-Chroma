@@ -39,7 +39,7 @@ namespace Code.Scripts.Enemy
         {
             fsm = new FiniteStateMachine<EnemyStates>();
 
-            var trans = transform;
+            Transform trans = transform;
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", trans, settings);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
             attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);

@@ -30,8 +30,6 @@ namespace Code.Scripts.States
 
             if (Mathf.Approximately(dir, 0))
                 Exit();
-
-            IsGrounded();
         }
 
         public override void OnFixedUpdate()

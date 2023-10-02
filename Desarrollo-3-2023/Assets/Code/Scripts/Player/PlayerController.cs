@@ -43,7 +43,7 @@ namespace Code.Scripts.Player
 
         private void Awake()
         {
-            var trans = transform;
+            Transform trans = transform;
 
             movementState =
                 new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, acceleration, trans, rb);

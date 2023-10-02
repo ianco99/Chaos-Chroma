@@ -16,8 +16,8 @@ jobs:
       # Cache
       - uses: actions/cache@v3
         with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', './ProjectSettings/**') }}
+          path: ./Desarrollo-3-2023/Library
+          key: Library-${{ hashFiles('./Desarrollo-3-2023/Assets/**', './Desarrollo-3-2023/Packages/**', './Desarrollo-3-2023/ProjectSettings/**') }}
           restore-keys: |
             Library-
 
@@ -26,7 +26,7 @@ jobs:
         uses: game-ci/unity-test-runner@v3
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          projectPath: Desarrollo-3-2023
+          projectPath: ./Desarrollo-3-2023
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v3

@@ -29,6 +29,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float hitDistance = 5f;
         [SerializeField] private GameObject hit;
+        [SerializeField] private Transform groundCheckPoint;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
@@ -40,7 +41,7 @@ namespace Code.Scripts.Enemy
             fsm = new FiniteStateMachine<EnemyStates>();
 
             Transform trans = transform;
-            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", trans, settings);
+            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
             attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);
 
@@ -128,22 +129,26 @@ namespace Code.Scripts.Enemy
                 switch (patrolState.dir)
                 {
                     case > 0:
-                    {
-                        if (!facingRight)
-                            Flip();
-                        break;
-                    }
+                        {
+                            if (!facingRight)
+                            {
+                                Flip();
+                            }
+                            break;
+                        }
                     case < 0:
-                    {
-                        if (facingRight)
-                            Flip();
-                        break;
-                    }
+                        {
+                            if (facingRight)
+                            {
+                                Flip();
+                            }
+                            break;
+                        }
                 }
             }
             else if (fsm.GetCurrentState() == attackState)
             {
-                if(fov.visibleTargets.Count > 0)
+                if (fov.visibleTargets.Count > 0)
                 {
                     var targetPos = fov.visibleTargets[0].transform.position;
 
@@ -154,6 +159,13 @@ namespace Code.Scripts.Enemy
                 }
 
             }
+        }
+
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            //Gizmos.DrawRay(groundCheckPoint.position, groundCheckPoint.right * patrolState.dir);
         }
     }
 }

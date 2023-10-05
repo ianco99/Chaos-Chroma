@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Patterns.FSM;
@@ -15,7 +16,8 @@ namespace Code.Scripts.Attack
         [SerializeField] private float hitDuration = 1f;
         [SerializeField] private SpriteRenderer sprite;
         [SerializeField] private Transform attacker;
-                
+        public event Action OnParried;
+        
         private readonly List<Damageable> hitObjects = new();
         private bool started;
 
@@ -36,9 +38,11 @@ namespace Code.Scripts.Attack
 
             foreach (Collider2D hit in hits)
             {
-                if (!hit.TryGetComponent<Damageable>(out var damageable) || hitObjects.Contains(damageable)) continue;
+                if (!hit.TryGetComponent(out Damageable damageable) || hitObjects.Contains(damageable)) continue;
 
-                damageable.TakeDamage(damage, attacker.transform.position);
+                if (!damageable.TakeDamage(damage, attacker.transform.position))
+                    OnParried?.Invoke();
+                    
                 hitObjects.Add(damageable);
             }
         }

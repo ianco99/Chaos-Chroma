@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Scripts.Attack
 {
@@ -8,20 +10,50 @@ namespace Code.Scripts.Attack
     /// </summary>
     public class HitsManager : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> hits;
-        private int index;
+        [SerializeField] private List<GameObject> hitObjects;
         
+        private readonly List<HitController> hits = new();
+        private int index;
+
+        public event Action OnParried;
+
+        private void Awake()
+        {
+            foreach (GameObject hitObject in hitObjects)
+            {
+                if (hitObject.TryGetComponent(out HitController hit))
+                {
+                    hits.Add(hit);
+                    hitObject.SetActive(false);
+                }
+            }
+        }
+
         private void OnEnable()
         {
             index = Random.Range(0, hits.Count);
-            
-            hits[index].SetActive(true);
+
+            hits[index].gameObject.SetActive(true);
+
+            foreach (HitController hit in hits)
+                hit.OnParried += OnParriedHandler;
         }
-        
+
+        private void OnDisable()
+        {
+            foreach (HitController hit in hits)
+                hit.OnParried -= OnParriedHandler;
+        }
+
         private void Update()
         {
-            if (!hits[index].activeSelf)
+            if (!hits[index].gameObject.activeSelf)
                 gameObject.SetActive(false);
+        }
+
+        private void OnParriedHandler()
+        {
+            OnParried?.Invoke();
         }
     }
 }

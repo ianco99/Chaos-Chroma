@@ -1,5 +1,6 @@
 using System;
 using Code.FOV;
+using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
 using Patterns.FSM;
@@ -23,7 +24,7 @@ namespace Code.Scripts.Enemy
     {
         [SerializeField] private EnemyStates startingState;
 
-        [SerializeField] private GameObject hit;
+        [SerializeField] private HitsManager hitsManager;
         [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteMask suspectMeterMask;
@@ -52,6 +53,16 @@ namespace Code.Scripts.Enemy
             fov.ToggleFindingTargets(true);
         }
 
+        private void OnEnable()
+        {
+            hitsManager.OnParried += OnParriedHandler;
+        }
+
+        private void OnDisable()
+        {
+            hitsManager.OnParried -= OnParriedHandler;
+        }
+
         private void InitFSM()
         {
             fsm = new FiniteStateMachine<EnemyStates>();
@@ -59,7 +70,7 @@ namespace Code.Scripts.Enemy
             Transform trans = transform;
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
-            attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);
+            attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Patrol, 2.0f, 4.0f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
@@ -200,6 +211,12 @@ namespace Code.Scripts.Enemy
         private void OnTimerEndedHandler(EnemyStates nextId)
         {
             fsm.SetCurrentState(fsm.GetState(nextId));
+        }
+        
+        private void OnParriedHandler()
+        {
+            fsm.SetCurrentState(damagedState);
+            damagedState.SetDirection(facingRight ? -transform.right : transform.right);
         }
 
         private void OnDrawGizmos()

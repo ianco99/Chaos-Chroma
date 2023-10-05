@@ -78,9 +78,6 @@ namespace Code.Scripts.Player
             fsm.SetCurrentState(fsm.GetState(startState));
 
             fsm.Init();
-
-            damageable.OnTakeDamage += OnDamagedHandler;
-            damageable.OnBlock += OnDamagedHandler;
         }
 
         private void OnEnable()
@@ -90,6 +87,9 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed += CheckParry;
             InputManager.onBlockReleased += CheckBlock;
             InputManager.onJump += CheckJumpStart;
+            
+            damageable.OnTakeDamage += KnockBack;
+            damageable.OnBlock += KnockBack;
         }
 
         private void OnDisable()
@@ -99,6 +99,9 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed -= CheckParry;
             InputManager.onBlockReleased -= CheckBlock;
             InputManager.onJump -= CheckJumpStart;
+            
+            damageable.OnTakeDamage -= KnockBack;
+            damageable.OnBlock -= KnockBack;
         }
 
         private void Update()
@@ -257,9 +260,9 @@ namespace Code.Scripts.Player
         }
 
         /// <summary>
-        /// Handle to damage transition
+        /// Handle to damaged transition
         /// </summary>
-        private void OnDamagedHandler(Vector2 pos)
+        private void KnockBack(Vector2 pos)
         {
             if (transform.position.x > pos.x && facingRight)
                 Flip();

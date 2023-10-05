@@ -12,7 +12,6 @@ namespace Patterns.FSM
         private bool block;
         
         public event Action<Vector2> OnTakeDamage;
-        public event Action OnParry;
         public event Action<Vector2> OnBlock;
 
         private void Update()
@@ -26,22 +25,21 @@ namespace Patterns.FSM
         /// </summary>
         /// <param name="damage">Amount of damage</param>
         /// <param name="attackOrigin">Position where the attack comes from</param>
-        public void TakeDamage(float damage, Vector2 attackOrigin)
+        public bool TakeDamage(float damage, Vector2 attackOrigin)
         {
             if (parry)
-            {
-                OnParry?.Invoke();
-                return;
-            }
+                return false;
 
             if (block)
             {
                 OnBlock?.Invoke(attackOrigin);
-                return;
+                return true;
             }
             
             OnTakeDamage?.Invoke(attackOrigin);
             life -= damage;
+
+            return true;
         }
 
         /// <summary>

@@ -32,8 +32,10 @@ namespace Patterns.FSM
 
             currentTimer += Time.deltaTime;
 
-            if (currentTimer > maxTimer)
-                onTimerEnded.Invoke(nextStateID);
+            if (!(currentTimer > maxTimer)) return;
+            
+            Exit();
+            onTimerEnded?.Invoke(nextStateID);
         }
     }
 }

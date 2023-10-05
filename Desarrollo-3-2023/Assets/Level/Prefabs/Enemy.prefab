@@ -646,3 +646,4 @@ MonoBehaviour:
   hitDelay: 0.2
   hitDuration: 0.5
   sprite: {fileID: 5710982413378953928}
+  attacker: {fileID: 4819109336555100032}

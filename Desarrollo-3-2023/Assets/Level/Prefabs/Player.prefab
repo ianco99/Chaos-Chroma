@@ -364,6 +364,7 @@ MonoBehaviour:
   hitDelay: 0.2
   hitDuration: 0.5
   sprite: {fileID: 5307910383963384102}
+  attacker: {fileID: 741303295280261315}
 --- !u!1 &6399263026032754680
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +578,7 @@ MonoBehaviour:
   acceleration: 2000
   jumpForce: 250
   parryDuration: 0.5
+  throwBackForce: 200
   hit: {fileID: 1395205784924420985}
   parryCapsule: {fileID: 6399263026032754680}
   blockCapsule: {fileID: 1102174282694968004}
@@ -777,3 +779,4 @@ MonoBehaviour:
   hitDelay: 0.2
   hitDuration: 0.5
   sprite: {fileID: 5291514602009544721}
+  attacker: {fileID: 741303295280261315}

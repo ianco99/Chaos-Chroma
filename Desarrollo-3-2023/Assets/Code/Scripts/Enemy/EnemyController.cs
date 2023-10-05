@@ -180,25 +180,21 @@ namespace Code.Scripts.Enemy
             }
         }
 
-        private void OnTakeDamageHandler()
+        private void OnTakeDamageHandler(Vector2 origin)
         {
-            Vector2 pushDirection;
+            if (origin.x > transform.position.x && !facingRight)
+                Flip();
+            else if (origin.x < transform.position.x && facingRight)
+                Flip();
 
-            if (facingRight)
-                pushDirection = Vector2.left;
-            else
-                pushDirection = Vector2.right;
+            Vector2 pushDirection = facingRight ? Vector2.left : Vector2.right;
 
             damagedState.SetDirection(pushDirection);
 
             if (fsm.GetCurrentState() != damagedState)
-            {
                 fsm.SetCurrentState(damagedState);
-            }
             else
-            {
                 damagedState.ResetState();
-            }
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

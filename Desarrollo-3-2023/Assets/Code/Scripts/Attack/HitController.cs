@@ -14,7 +14,8 @@ namespace Code.Scripts.Attack
         [SerializeField] private float hitDelay = .2f;
         [SerializeField] private float hitDuration = 1f;
         [SerializeField] private SpriteRenderer sprite;
-        
+        [SerializeField] private Transform attacker;
+                
         private readonly List<Damageable> hitObjects = new();
         private bool started;
 
@@ -37,7 +38,7 @@ namespace Code.Scripts.Attack
             {
                 if (!hit.TryGetComponent<Damageable>(out var damageable) || hitObjects.Contains(damageable)) continue;
 
-                damageable.TakeDamage(damage);
+                damageable.TakeDamage(damage, attacker.transform.position);
                 hitObjects.Add(damageable);
             }
         }

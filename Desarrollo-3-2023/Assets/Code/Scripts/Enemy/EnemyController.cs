@@ -60,13 +60,14 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
             attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Attack, 2.0f, 4.0f, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Patrol, 2.0f, 4.0f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
             fsm.AddState(attackState);
+            fsm.AddState(damagedState);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -190,7 +191,7 @@ namespace Code.Scripts.Enemy
 
             damagedState.SetDirection(pushDirection);
 
-            if (fsm.GetCurrentState() == damagedState)
+            if (fsm.GetCurrentState() != damagedState)
             {
                 fsm.SetCurrentState(damagedState);
             }
@@ -198,7 +199,6 @@ namespace Code.Scripts.Enemy
             {
                 damagedState.ResetState();
             }
-          
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

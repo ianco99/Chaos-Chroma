@@ -34,7 +34,6 @@ namespace Patterns.FSM
         {
             base.OnUpdate();
             
-            //CheckDirection();
             CheckGround();
             CheckWall();
              

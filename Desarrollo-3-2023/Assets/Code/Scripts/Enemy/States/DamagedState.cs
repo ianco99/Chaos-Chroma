@@ -23,7 +23,7 @@ namespace Patterns.FSM
         public override void OnEnter()
         {
             base.OnEnter();
-            rb.AddForce(pushDirection * force, ForceMode2D.Force);
+            ResetState();
         }
 
         public override void OnUpdate()

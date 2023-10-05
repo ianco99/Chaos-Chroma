@@ -80,6 +80,7 @@ namespace Code.Scripts.Player
             fsm.Init();
 
             damageable.OnTakeDamage += OnDamagedHandler;
+            damageable.OnBlock += OnDamagedHandler;
         }
 
         private void OnEnable()
@@ -331,7 +332,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void BlockTransitions()
         {
-            if (!blockState.Active)
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (!blockState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
 
@@ -362,7 +365,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void DamagedTransitions()
         {
-            if (!damagedState.Active)
+            if (!damagedState.Active && blockState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Block));
+            else if (!damagedState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
 

@@ -13,7 +13,7 @@ namespace Patterns.FSM
         
         public event Action<Vector2> OnTakeDamage;
         public event Action OnParry;
-        public event Action OnBlock;
+        public event Action<Vector2> OnBlock;
 
         private void Update()
         {
@@ -36,7 +36,7 @@ namespace Patterns.FSM
 
             if (block)
             {
-                OnBlock?.Invoke();
+                OnBlock?.Invoke(attackOrigin);
                 return;
             }
             

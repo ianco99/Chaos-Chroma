@@ -106,7 +106,7 @@ MonoBehaviour:
   damageable: {fileID: 3832601685886080571}
   suspectMeter: 0
   suspectUnit: 30
-  hitDistance: 1
+  hitDistance: 0.5
 --- !u!114 &3832601685886080571
 MonoBehaviour:
   m_ObjectHideFlags: 0

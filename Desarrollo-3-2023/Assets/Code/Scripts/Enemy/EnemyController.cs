@@ -116,7 +116,7 @@ namespace Code.Scripts.Enemy
 
             if (fov.visibleTargets.Count > 0)
             {
-                var viewedTarget = fov.visibleTargets[0];
+                Transform viewedTarget = fov.visibleTargets[0];
                 if (suspectMeter >= settings.alertValue && fsm.GetCurrentState() != alertState &&
                     fsm.GetCurrentState() != attackState)
                 {

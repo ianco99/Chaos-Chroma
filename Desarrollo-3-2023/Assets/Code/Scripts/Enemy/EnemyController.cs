@@ -44,8 +44,10 @@ namespace Code.Scripts.Enemy
 
         private void Awake()
         {
-            damageable.OnTakeDamage += OnTakeDamageHandler;
             InitFSM();
+
+            damageable.OnTakeDamage += OnTakeDamageHandler;
+            damagedState.onTimerEnded += OnTimerEndedHandler;
 
             fov.ToggleFindingTargets(true);
         }
@@ -58,7 +60,7 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
             attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", trans, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Attack, 2.0f, 4.0f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -179,9 +181,30 @@ namespace Code.Scripts.Enemy
 
         private void OnTakeDamageHandler()
         {
-            fsm.SetCurrentState(damagedState);
+            Vector2 pushDirection;
+
+            if (facingRight)
+                pushDirection = Vector2.left;
+            else
+                pushDirection = Vector2.right;
+
+            damagedState.SetDirection(pushDirection);
+
+            if (fsm.GetCurrentState() == damagedState)
+            {
+                fsm.SetCurrentState(damagedState);
+            }
+            else
+            {
+                damagedState.ResetState();
+            }
+          
         }
 
+        private void OnTimerEndedHandler(EnemyStates nextId)
+        {
+            fsm.SetCurrentState(fsm.GetState(nextId));
+        }
 
         private void OnDrawGizmos()
         {

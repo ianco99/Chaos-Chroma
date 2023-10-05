@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Patterns.FSM;
@@ -14,6 +15,8 @@ namespace Code.Scripts.Attack
         [SerializeField] private float hitDelay = .2f;
         [SerializeField] private float hitDuration = 1f;
         [SerializeField] private SpriteRenderer sprite;
+        [SerializeField] private Transform attacker;
+        public event Action OnParried;
         
         private readonly List<Damageable> hitObjects = new();
         private bool started;
@@ -29,15 +32,17 @@ namespace Code.Scripts.Attack
         {
             if (!started) return;
 
-            var trans = transform;
+            Transform trans = transform;
 
-            var hits = Physics2D.OverlapBoxAll(trans.position, trans.localScale, trans.rotation.z);
+            Collider2D[] hits = Physics2D.OverlapBoxAll(trans.position, trans.localScale, trans.rotation.z);
 
-            foreach (var hit in hits)
+            foreach (Collider2D hit in hits)
             {
-                if (!hit.TryGetComponent<Damageable>(out var damageable) || hitObjects.Contains(damageable)) continue;
+                if (!hit.TryGetComponent(out Damageable damageable) || hitObjects.Contains(damageable)) continue;
 
-                damageable.TakeDamage(damage);
+                if (!damageable.TakeDamage(damage, attacker.transform.position))
+                    OnParried?.Invoke();
+                    
                 hitObjects.Add(damageable);
             }
         }
@@ -51,8 +56,8 @@ namespace Code.Scripts.Attack
             yield return new WaitForSeconds(hitDelay);
             
             StartCoroutine(StopOnTime());
-            started = true;
             sprite.enabled = true;
+            started = true;
         }
 
         /// <summary>

@@ -19,7 +19,6 @@ namespace Code.Scripts.States
         public override void OnEnter()
         {
             base.OnEnter();
-            
             hit.SetActive(true);
         }
 

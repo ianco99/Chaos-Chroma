@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected bool facingRight = true;
     [SerializeField] private List<Flippable> flippables;
     
-    protected void Flip()
+    protected virtual void Flip()
     {
         foreach (var flipped in flippables)
         {

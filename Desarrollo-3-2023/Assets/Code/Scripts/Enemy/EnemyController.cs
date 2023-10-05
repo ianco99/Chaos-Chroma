@@ -1,5 +1,6 @@
 using System;
 using Code.FOV;
+using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
 using Patterns.FSM;
@@ -15,46 +16,73 @@ namespace Code.Scripts.Enemy
         Attack,
         Block,
         Parry,
+        Damaged,
         Fall
     }
 
     public class EnemyController : Character
     {
         [SerializeField] private EnemyStates startingState;
+
+        [SerializeField] private HitsManager hitsManager;
         [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteMask suspectMeterMask;
         [SerializeField] private SpriteRenderer suspectMeterSprite;
+        [SerializeField] private Transform groundCheckPoint;
+        [SerializeField] private Damageable damageable;
+
         [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float hitDistance = 5f;
-        [SerializeField] private GameObject hit;
+
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
         private AlertState<EnemyStates> alertState;
         private AttackState<EnemyStates> attackState;
+        private DamagedState<EnemyStates> damagedState;
 
         private void Awake()
         {
+            InitFSM();
+
+            damageable.OnTakeDamage += OnTakeDamageHandler;
+            damagedState.onTimerEnded += OnTimerEndedHandler;
+
+            fov.ToggleFindingTargets(true);
+        }
+
+        private void OnEnable()
+        {
+            hitsManager.OnParried += OnParriedHandler;
+        }
+
+        private void OnDisable()
+        {
+            hitsManager.OnParried -= OnParriedHandler;
+        }
+
+        private void InitFSM()
+        {
             fsm = new FiniteStateMachine<EnemyStates>();
 
-            var trans = transform;
-            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", trans, settings);
+            Transform trans = transform;
+            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
-            attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);
+            attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Patrol, 2.0f, 4.0f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
             fsm.AddState(attackState);
+            fsm.AddState(damagedState);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
             fsm.Init();
-
-            fov.ToggleFindingTargets(true);
         }
 
         private void Update()
@@ -91,12 +119,15 @@ namespace Code.Scripts.Enemy
 
         private void CheckTransitions()
         {
+            if (fsm.GetCurrentState() == damagedState)
+                return;
+
             if (fsm.GetCurrentState() == attackState && !attackState.Active)
                 fsm.SetCurrentState(patrolState);
 
             if (fov.visibleTargets.Count > 0)
             {
-                var viewedTarget = fov.visibleTargets[0];
+                Transform viewedTarget = fov.visibleTargets[0];
                 if (suspectMeter >= settings.alertValue && fsm.GetCurrentState() != alertState &&
                     fsm.GetCurrentState() != attackState)
                 {
@@ -128,22 +159,26 @@ namespace Code.Scripts.Enemy
                 switch (patrolState.dir)
                 {
                     case > 0:
-                    {
-                        if (!facingRight)
-                            Flip();
-                        break;
-                    }
+                        {
+                            if (!facingRight)
+                            {
+                                Flip();
+                            }
+                            break;
+                        }
                     case < 0:
-                    {
-                        if (facingRight)
-                            Flip();
-                        break;
-                    }
+                        {
+                            if (facingRight)
+                            {
+                                Flip();
+                            }
+                            break;
+                        }
                 }
             }
             else if (fsm.GetCurrentState() == attackState)
             {
-                if(fov.visibleTargets.Count > 0)
+                if (fov.visibleTargets.Count > 0)
                 {
                     var targetPos = fov.visibleTargets[0].transform.position;
 
@@ -154,6 +189,40 @@ namespace Code.Scripts.Enemy
                 }
 
             }
+        }
+
+        private void OnTakeDamageHandler(Vector2 origin)
+        {
+            if (origin.x > transform.position.x && !facingRight)
+                Flip();
+            else if (origin.x < transform.position.x && facingRight)
+                Flip();
+
+            Vector2 pushDirection = facingRight ? Vector2.left : Vector2.right;
+
+            damagedState.SetDirection(pushDirection);
+
+            if (fsm.GetCurrentState() != damagedState)
+                fsm.SetCurrentState(damagedState);
+            else
+                damagedState.ResetState();
+        }
+
+        private void OnTimerEndedHandler(EnemyStates nextId)
+        {
+            fsm.SetCurrentState(fsm.GetState(nextId));
+        }
+        
+        private void OnParriedHandler()
+        {
+            fsm.SetCurrentState(damagedState);
+            damagedState.SetDirection(facingRight ? -transform.right : transform.right);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            //Gizmos.DrawRay(groundCheckPoint.position, groundCheckPoint.right * patrolState.dir);
         }
     }
 }

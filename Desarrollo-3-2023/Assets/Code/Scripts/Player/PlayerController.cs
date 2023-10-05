@@ -16,8 +16,12 @@ namespace Code.Scripts.Player
         Attack,
         Block,
         Parry,
+        Damaged
     }
 
+    /// <summary>
+    /// Manage all player actions
+    /// </summary>
     public class PlayerController : Character
     {
         [Header("Player:")] [SerializeField] private PlayerStates startState = PlayerStates.Idle;
@@ -25,6 +29,7 @@ namespace Code.Scripts.Player
         [SerializeField] private float acceleration = 5f;
         [SerializeField] private float jumpForce = 5f;
         [SerializeField] private float parryDuration = 1f;
+        [SerializeField] private float throwBackForce = 5f;
         [SerializeField] private GameObject hit;
         [SerializeField] private GameObject parryCapsule;
         [SerializeField] private GameObject blockCapsule;
@@ -38,12 +43,13 @@ namespace Code.Scripts.Player
         private BlockState<PlayerStates> blockState;
         private JumpStartState<PlayerStates> jumpStartState;
         private JumpEndState<PlayerStates> jumpEndState;
+        private DamagedState<PlayerStates> damagedState;
 
         private FiniteStateMachine<PlayerStates> fsm;
 
         private void Awake()
         {
-            var trans = transform;
+            Transform trans = transform;
 
             movementState =
                 new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, acceleration, trans, rb);
@@ -51,10 +57,12 @@ namespace Code.Scripts.Player
             attackState = new AttackState<PlayerStates>(PlayerStates.Attack, "AttackState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
-            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this,"JumpStartState", speed,
+            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", speed,
                 acceleration, trans, rb, jumpForce);
             jumpEndState =
                 new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb);
+            damagedState =
+                new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f, throwBackForce, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();
 
@@ -65,6 +73,7 @@ namespace Code.Scripts.Player
             fsm.AddState(blockState);
             fsm.AddState(jumpStartState);
             fsm.AddState(jumpEndState);
+            fsm.AddState(damagedState);
 
             fsm.SetCurrentState(fsm.GetState(startState));
 
@@ -78,6 +87,9 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed += CheckParry;
             InputManager.onBlockReleased += CheckBlock;
             InputManager.onJump += CheckJumpStart;
+            
+            damageable.OnTakeDamage += KnockBack;
+            damageable.OnBlock += KnockBack;
         }
 
         private void OnDisable()
@@ -87,6 +99,9 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed -= CheckParry;
             InputManager.onBlockReleased -= CheckBlock;
             InputManager.onJump -= CheckJumpStart;
+            
+            damageable.OnTakeDamage -= KnockBack;
+            damageable.OnBlock -= KnockBack;
         }
 
         private void Update()
@@ -143,9 +158,20 @@ namespace Code.Scripts.Player
                     JumpEndTransitions();
                     break;
 
+                case PlayerStates.Damaged:
+                    DamagedTransitions();
+                    break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        protected override void Flip()
+        {
+            base.Flip();
+            
+            damagedState.SetDirection(facingRight ? -transform.right : transform.right);
         }
 
         /// <summary>
@@ -233,6 +259,19 @@ namespace Code.Scripts.Player
                 jumpEndState.Enter();
         }
 
+        /// <summary>
+        /// Handle to damaged transition
+        /// </summary>
+        private void KnockBack(Vector2 pos)
+        {
+            if (transform.position.x > pos.x && facingRight)
+                Flip();
+            else if (transform.position.x < pos.x && !facingRight)
+                Flip();
+            
+            damagedState.Enter();
+        }
+
         #endregion
 
         #region Transitions
@@ -242,7 +281,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void IdleTransitions()
         {
-            if (movementState.Active)
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (movementState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
             else if (attackState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
@@ -257,7 +298,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void MoveTransitions()
         {
-            if (!movementState.Active)
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (!movementState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
@@ -272,7 +315,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void AttackTransitions()
         {
-            if (!attackState.Active)
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (!attackState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
 
@@ -290,7 +335,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void BlockTransitions()
         {
-            if (!blockState.Active)
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (!blockState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
 
@@ -299,7 +346,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void JumpStartTransitions()
         {
-            if (!jumpStartState.Active)
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (!jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
         }
 
@@ -308,7 +357,20 @@ namespace Code.Scripts.Player
         /// </summary>
         private void JumpEndTransitions()
         {
-            if (!jumpEndState.Active)
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (!jumpEndState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+        }
+
+        /// <summary>
+        /// Damaged state transitions manager
+        /// </summary>
+        private void DamagedTransitions()
+        {
+            if (!damagedState.Active && blockState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Block));
+            else if (!damagedState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Patterns.FSM
 {
     /// <summary>
-    /// Handler for movement state
+    /// Handler for state
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class PatrolState<T> : MovementState<T>

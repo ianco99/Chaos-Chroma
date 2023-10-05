@@ -15,28 +15,42 @@ namespace Code.Scripts.Enemy
         Attack,
         Block,
         Parry,
+        Damaged,
         Fall
     }
 
     public class EnemyController : Character
     {
         [SerializeField] private EnemyStates startingState;
+
+        [SerializeField] private GameObject hit;
         [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteMask suspectMeterMask;
         [SerializeField] private SpriteRenderer suspectMeterSprite;
+        [SerializeField] private Transform groundCheckPoint;
+        [SerializeField] private Damageable damageable;
+
         [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float hitDistance = 5f;
-        [SerializeField] private GameObject hit;
-        [SerializeField] private Transform groundCheckPoint;
+
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
         private AlertState<EnemyStates> alertState;
         private AttackState<EnemyStates> attackState;
+        private DamagedState<EnemyStates> damagedState;
 
         private void Awake()
+        {
+            damageable.OnTakeDamage += OnTakeDamageHandler;
+            InitFSM();
+
+            fov.ToggleFindingTargets(true);
+        }
+
+        private void InitFSM()
         {
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -44,6 +58,7 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
             attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hit);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", trans, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -54,8 +69,6 @@ namespace Code.Scripts.Enemy
             fsm.SetCurrentState(fsm.GetState(startingState));
 
             fsm.Init();
-
-            fov.ToggleFindingTargets(true);
         }
 
         private void Update()
@@ -92,6 +105,9 @@ namespace Code.Scripts.Enemy
 
         private void CheckTransitions()
         {
+            if (fsm.GetCurrentState() == damagedState)
+                return;
+
             if (fsm.GetCurrentState() == attackState && !attackState.Active)
                 fsm.SetCurrentState(patrolState);
 
@@ -159,6 +175,11 @@ namespace Code.Scripts.Enemy
                 }
 
             }
+        }
+
+        private void OnTakeDamageHandler()
+        {
+            fsm.SetCurrentState(damagedState);
         }
 
 

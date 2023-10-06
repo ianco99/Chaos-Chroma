@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Code.Scripts.Abstracts;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -49,6 +50,8 @@ namespace Patterns.FSM
         {
             if (!gameObject.CompareTag("Player"))
                 Destroy(gameObject);
+            else
+                GameManager.Lose();
         }
 
         /// <summary>

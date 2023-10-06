@@ -12,13 +12,13 @@ namespace Code.Scripts.Abstracts
 
         public static bool Won => Instance.won;
 
-        public void Win()
+        public static void Win()
         {
             Instance.won = true;
             SceneManager.LoadScene("WinLoseScreen");
         }
 
-        public void Lose()
+        public static void Lose()
         {
             Instance.won = false;
             SceneManager.LoadScene("WinLoseScreen");

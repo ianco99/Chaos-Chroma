@@ -19,7 +19,7 @@ namespace Code.Scripts.Parallax
             positions = new int[images.Length];
             sprites = new SpriteRenderer[images.Length];
 
-            for (var i = 0; i < images.Length; i++)
+            for (int i = 0; i < images.Length; i++)
             {
                 sprites[i] = images[i].GetComponent<SpriteRenderer>();
                 positions[i] = i;
@@ -32,7 +32,7 @@ namespace Code.Scripts.Parallax
         {
             UpdateClosestPositions();
 
-            for (var i = 0; i < images.Length; i++)
+            for (int i = 0; i < images.Length; i++)
                 PlaceByIndex(i, positions[i]);
         }
 
@@ -43,7 +43,7 @@ namespace Code.Scripts.Parallax
         /// <param name="index">Number of the position</param>
         private void PlaceByIndex(int imageIndex, int index)
         {
-            var pos = images[imageIndex].transform.position;
+            Vector3 pos = images[imageIndex].transform.position;
             pos.x = size * index;
             images[imageIndex].transform.position = pos;
         }
@@ -55,7 +55,7 @@ namespace Code.Scripts.Parallax
         {
             positions[images.Length / 2] = GetClosestIndex();
 
-            for (var i = 1; i <= images.Length / 2; i++)
+            for (int i = 1; i <= images.Length / 2; i++)
             {
                 positions[images.Length / 2 - i] = GetClosestIndex() - i;
 
@@ -70,7 +70,7 @@ namespace Code.Scripts.Parallax
         /// <returns></returns>
         private int GetClosestIndex()
         {
-            var pos = Mathf.RoundToInt(character.position.x / size);
+            int pos = Mathf.RoundToInt(character.position.x / size);
 
             if (Vector2.Distance(new Vector2(pos * size, 0), character.position) >
                 Vector2.Distance(new Vector2((pos + 1) * size, 0), character.position))

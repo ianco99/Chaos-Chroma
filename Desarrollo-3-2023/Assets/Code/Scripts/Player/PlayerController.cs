@@ -1,4 +1,5 @@
 using System;
+using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Input;
 using Code.Scripts.States;
 using Patterns.FSM;
@@ -34,6 +35,9 @@ namespace Code.Scripts.Player
         [SerializeField] private GameObject parryCapsule;
         [SerializeField] private GameObject blockCapsule;
         [SerializeField] private Damageable damageable;
+        
+        [Header("Animation")] [SerializeField]
+        private Animator animator;
 
         // States
         private MovementState<PlayerStates> movementState;
@@ -109,6 +113,7 @@ namespace Code.Scripts.Player
             CheckPlayerState();
             CheckJumpEnd();
             CheckRotation();
+            UpdateAnimationState();
 
             fsm.Update();
         }
@@ -196,6 +201,14 @@ namespace Code.Scripts.Player
                     break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets the parameter for the animator states
+        /// </summary>
+        private void UpdateAnimationState()
+        {
+            animator.SetInteger("CharacterState", (int)fsm.GetCurrentState().ID);
         }
 
         #region State activations

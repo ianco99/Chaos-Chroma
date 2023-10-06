@@ -1,5 +1,6 @@
 using System;
 using Code.FOV;
+using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;

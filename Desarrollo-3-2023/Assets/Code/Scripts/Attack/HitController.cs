@@ -16,20 +16,38 @@ namespace Code.Scripts.Attack
         [SerializeField] private float hitDuration = 1f;
         [SerializeField] private SpriteRenderer sprite;
         [SerializeField] private Transform attacker;
+        [SerializeField] private SpriteRenderer characterOutline;
+        
         public event Action OnParried;
         
         private readonly List<Damageable> hitObjects = new();
         private bool started;
+        private float colorChangeSpeed;
 
         private void OnEnable()
         {
             sprite.enabled = false;
+            started = false;
+
+            if (characterOutline)
+                characterOutline.color = Color.white;
+            
+            colorChangeSpeed = 1f / hitDelay;
             
             StartCoroutine(BeginAttackOnTime());
         }
 
+        private void OnDisable()
+        {
+            if (characterOutline)
+                characterOutline.color = Color.clear;
+        }
+
         private void Update()
         {
+            if (characterOutline)
+                UpdateCharacterOutlineColor();
+                
             if (!started) return;
 
             Transform trans = transform;
@@ -69,6 +87,16 @@ namespace Code.Scripts.Attack
             yield return new WaitForSeconds(hitDuration);
             hitObjects.Clear();
             gameObject.SetActive(false);
+        }
+
+        private void UpdateCharacterOutlineColor()
+        {
+            Color color = characterOutline.color;
+            
+            color.g -= colorChangeSpeed * Time.deltaTime;
+            color.b -= colorChangeSpeed * Time.deltaTime;
+            
+            characterOutline.color = color;
         }
     }
 }

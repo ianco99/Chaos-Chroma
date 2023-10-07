@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Parallax/ParallaxLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Parallax/ParallaxLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
     </list>
@@ -26,12 +23,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/43/b47665de/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/87/f0daee7c/UnitySynchronizationContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d18341e808be4529a1a4512a7e51ab3d940a00/05/51685a67/Editor.cs" root0="SKIP_HIGHLIGHTING" />
@@ -44,11 +35,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Events/WinTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Menus/WinLoseScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/AttackState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/BlockState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/ParryState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Desarrollo-3-2023/Desarrollo-3-2023/Assets/Level/Prefabs/Enemy.prefab" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -60,28 +53,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.CodyProjectSettingsMigration": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature-idle-character",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.sourcegraph.cody.config.ui.AccountConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master-merge&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.sourcegraph.cody.config.ui.AccountConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../Downloads/ChaosChroma0.6.0\ChaosChroma.exe" />
@@ -117,10 +110,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="14112">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9948">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="14112" />
+      <option name="pid" value="9948" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -157,6 +150,7 @@
       <workItem from="1696516446406" duration="9715000" />
       <workItem from="1696594920821" duration="5383000" />
       <workItem from="1696607036462" duration="2708000" />
+      <workItem from="1696710339413" duration="2434000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -206,25 +200,6 @@
     <MESSAGE value="Added win and lose screens" />
     <MESSAGE value="Implemented win/lose conditions" />
     <option name="LAST_COMMIT_MESSAGE" value="Implemented win/lose conditions" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs</url>
-          <line>40</line>
-          <properties documentPath="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023\Assets\Code\Scripts\States\JumpStartState.cs" initialLine="40" containingFunctionPresentation="Method 'OnFixedUpdate'">
-            <startOffsets>
-              <option value="1190" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1197" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

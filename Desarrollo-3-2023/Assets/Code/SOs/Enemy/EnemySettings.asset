@@ -18,7 +18,7 @@ MonoBehaviour:
   alertSpeed: 50
   acceleration: 50
   groundCheckDistance: 0.7
-  wallCheckDistance: 0.2
+  wallCheckDistance: 0.4
   patrolSpeed: 100
   viewRadius: 6.06
   viewAngle: 60

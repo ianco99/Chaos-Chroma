@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 891855081666075708}
   - component: {fileID: 2951084893045381261}
   - component: {fileID: 8451790372104093297}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FallTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5905159626228803583}
   - component: {fileID: 1894111239247478050}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1466966317569430842}
   - component: {fileID: 5862564249582338156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 1262183885591822541}
   - component: {fileID: 1235485113470117894}
   - component: {fileID: 6470480092553295101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WinTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2846781400573897247}
   - component: {fileID: 1014798266795060290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6394508178444061888}
   - component: {fileID: 3353234324105989818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,8 +1272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 872490602675954437}
   - component: {fileID: 3266371388536517193}
-  - component: {fileID: 4155759013155599586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1347,51 +1346,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4155759013155599586
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3550300072834082133}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.45465016}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.09069967}
-  m_EdgeRadius: 0
 --- !u!1 &3580923963511875389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8249952519459513696}
   - component: {fileID: 3504576539695037459}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +1962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8644474311545951625}
   - component: {fileID: 4099886179951053832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2482,7 +2436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340997853055865060}
   - component: {fileID: 4054263815118607487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2826,7 +2780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9193939411669726544}
   - component: {fileID: 943943887660100934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

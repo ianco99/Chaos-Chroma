@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5642225809729489302}
   - component: {fileID: 5337670163287471089}
   - component: {fileID: 7792505048536148725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Prop_StreetSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}

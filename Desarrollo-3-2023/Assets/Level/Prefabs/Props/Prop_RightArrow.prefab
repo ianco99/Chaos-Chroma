@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1463242402244310054}
   - component: {fileID: 4369387677032741749}
   - component: {fileID: 1610833812854542654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Prop_RightArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

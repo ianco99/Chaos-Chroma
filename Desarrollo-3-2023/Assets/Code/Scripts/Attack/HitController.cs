@@ -73,9 +73,9 @@ namespace Code.Scripts.Attack
         {
             yield return new WaitForSeconds(hitDelay);
             
-            StartCoroutine(StopOnTime());
             sprite.enabled = true;
             started = true;
+            StartCoroutine(StopOnTime());
         }
 
         /// <summary>

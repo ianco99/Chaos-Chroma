@@ -57,7 +57,7 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if(!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance))
+            if(!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Default")))
             {
                 Debug.Log("Ground not found");
                 FlipDirection();
@@ -69,7 +69,7 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if (Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, 0))
+            if (Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Default")))
             {
                 Debug.Log("Wall found");
                 FlipDirection();

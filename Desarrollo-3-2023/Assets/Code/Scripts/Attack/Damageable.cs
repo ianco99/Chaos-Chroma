@@ -2,18 +2,26 @@ using System;
 using System.Collections;
 using Code.Scripts.Abstracts;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Patterns.FSM
 {
     public class Damageable : MonoBehaviour
     {
-        [SerializeField] private float life = 100f;
+        [SerializeField] private float startLife = 100f;
+        [SerializeField] private Slider lifeBar;
         
         public bool parry;
+        private float life;
         private bool block;
         
         public event Action<Vector2> OnTakeDamage;
         public event Action<Vector2> OnBlock;
+
+        private void Awake()
+        {
+            life = startLife;
+        }
 
         private void Update()
         {
@@ -39,6 +47,9 @@ namespace Patterns.FSM
             
             OnTakeDamage?.Invoke(attackOrigin);
             life -= damage;
+            
+            if (lifeBar)
+                lifeBar.value = life / startLife;
 
             return true;
         }

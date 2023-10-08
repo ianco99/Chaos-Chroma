@@ -102,12 +102,17 @@ namespace Code.Scripts.Enemy
 
         private void CheckFieldOfView()
         {
-            if (fov.visibleTargets.Count <= 0) return;
-
-            suspectMeter += suspectUnit *
+            if (fov.visibleTargets.Count <= 0)
+            {
+                suspectMeter -= suspectUnit * Time.deltaTime;
+            }
+            else
+            {
+                suspectMeter += suspectUnit *
                             Mathf.Clamp(
                                 fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
                                     transform.position), 0, fov.viewRadius) * Time.deltaTime;
+            }
 
             suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
 
@@ -213,7 +218,7 @@ namespace Code.Scripts.Enemy
         {
             fsm.SetCurrentState(fsm.GetState(nextId));
         }
-        
+
         private void OnParriedHandler()
         {
             fsm.SetCurrentState(damagedState);

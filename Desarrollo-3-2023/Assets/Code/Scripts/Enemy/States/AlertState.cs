@@ -10,15 +10,15 @@ namespace Patterns.FSM
     /// <typeparam name="T"></typeparam>
     public class AlertState<T> : MovementState<T>
     {
-        private readonly EnemySettings settings;
+        private readonly AlertSettings settings;
         private readonly Transform patroller;
         private Transform alertTarget;
         private Vector3 currentDirection;
 
-        public AlertState(Rigidbody2D rb, T id, string name, Transform transform, EnemySettings settings) : base(id, name, settings.alertSpeed, settings.acceleration,
+        public AlertState(Rigidbody2D rb, T id, string name, Transform transform, AlertSettings settings) : base(id, name, settings.alertSpeed, settings.alertAcceleration,
             transform, rb)
         {
-            patroller = transform;
+            this.patroller = transform;
             this.settings = settings;
         }
 

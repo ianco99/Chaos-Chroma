@@ -17,5 +17,5 @@ MonoBehaviour:
   viewRadius: 6.06
   viewAngle: 60
   suspectMeterMinimum: 0
-  alertValue: 40
+  alertValue: 20
   suspectMeterMaximum: 100

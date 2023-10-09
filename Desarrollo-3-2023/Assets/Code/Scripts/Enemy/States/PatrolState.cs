@@ -24,7 +24,6 @@ namespace Patterns.FSM
         public override void OnEnter()
         {
             base.OnEnter();
-            dir = -1f;
         }
 
         public override void OnUpdate()

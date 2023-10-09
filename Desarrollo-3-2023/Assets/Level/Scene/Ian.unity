@@ -802,10 +802,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 836443845740120934, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 16b07130e0c2b1741b4b968a4138ccd6, type: 2}
+    - target: {fileID: 136431839277690714, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136431839277690714, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2603062281788332554, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -852,10 +856,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4819109336555100032, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145023305814156655, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
-      propertyPath: facingRight
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

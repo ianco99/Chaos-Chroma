@@ -35,6 +35,9 @@ namespace Code.Scripts.Player
         [SerializeField] private GameObject parryCapsule;
         [SerializeField] private GameObject blockCapsule;
         [SerializeField] private Damageable damageable;
+        [SerializeField] private Collider2D feet;
+        [SerializeField] private PhysicsMaterial2D feetMat;
+        [SerializeField] private PhysicsMaterial2D bodyMat;
         
         [Header("Animation")] [SerializeField]
         private Animator animator;
@@ -50,6 +53,7 @@ namespace Code.Scripts.Player
         private DamagedState<PlayerStates> damagedState;
 
         private FiniteStateMachine<PlayerStates> fsm;
+        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
         private void Awake()
         {
@@ -114,6 +118,7 @@ namespace Code.Scripts.Player
             CheckJumpEnd();
             CheckRotation();
             UpdateAnimationState();
+            UpdateMaterial();
 
             fsm.Update();
         }
@@ -208,7 +213,12 @@ namespace Code.Scripts.Player
         /// </summary>
         private void UpdateAnimationState()
         {
-            animator.SetInteger("CharacterState", (int)fsm.GetCurrentState().ID);
+            animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
+        }
+
+        private void UpdateMaterial()
+        {
+            feet.sharedMaterial = movementState.IsGrounded() ? feetMat : bodyMat;
         }
 
         #region State activations

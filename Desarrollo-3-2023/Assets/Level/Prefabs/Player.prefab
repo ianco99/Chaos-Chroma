@@ -740,6 +740,9 @@ MonoBehaviour:
   parryCapsule: {fileID: 6399263026032754680}
   blockCapsule: {fileID: 1102174282694968004}
   damageable: {fileID: 2205056402196420099}
+  feet: {fileID: 2049524397439752245}
+  feetMat: {fileID: 6200000, guid: 1b9ba9afeda3fe44580854d088b877c3, type: 2}
+  bodyMat: {fileID: 6200000, guid: 16b07130e0c2b1741b4b968a4138ccd6, type: 2}
   animator: {fileID: 4310963439013856538}
 --- !u!114 &2205056402196420099
 MonoBehaviour:

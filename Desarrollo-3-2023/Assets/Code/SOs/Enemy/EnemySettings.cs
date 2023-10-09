@@ -6,11 +6,12 @@ namespace Code.SOs.Enemy
 
     public class EnemySettings : ScriptableObject
     {
-        public float alertSpeed;
-        public float acceleration;
 
         [Header("Patrol")]
         public PatrolSettings patrolSettings;
+
+        [Header("Alert")]
+        public AlertSettings alertSettings;
 
         [Header("Field of View")]
         public float viewRadius;

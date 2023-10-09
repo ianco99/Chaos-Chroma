@@ -17,6 +17,7 @@ MonoBehaviour:
   - {x: -1.14, y: 1.078, z: -0.023706201}
   alertSpeed: 50
   acceleration: 50
+  patrolSettings: {fileID: 11400000, guid: 3ba78d0446e325a49a9852ed7ec5cb39, type: 2}
   groundCheckDistance: 0.7
   wallCheckDistance: 0.4
   patrolSpeed: 100

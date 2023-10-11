@@ -186,7 +186,7 @@ namespace Code.Scripts.Enemy
         {
             if (fsm.GetCurrentState() == patrolState)
             {
-                switch (patrolState.dir)
+                switch (patrolState.dir.x)
                 {
                     case > 0:
                         {
@@ -208,18 +208,25 @@ namespace Code.Scripts.Enemy
             }
             else if (fsm.GetCurrentState() == alertState)
             {
-                if (alertState.dir > 0)
+                switch (alertState.dir.x)
                 {
-                    if (!facingRight)
+                    case > 0:
                     {
-                        Flip();
+                        if (!facingRight)
+                        {
+                            Flip();
+                        }
+
+                        break;
                     }
-                }
-                else if (alertState.dir < 0)
-                {
-                    if (facingRight)
+                    case < 0:
                     {
-                        Flip();
+                        if (facingRight)
+                        {
+                            Flip();
+                        }
+
+                        break;
                     }
                 }
             }

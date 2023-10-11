@@ -17,7 +17,8 @@ namespace Code.Scripts.Player
         Attack,
         Block,
         Parry,
-        Damaged
+        Damaged,
+        GodMode
     }
 
     /// <summary>
@@ -50,6 +51,7 @@ namespace Code.Scripts.Player
         private JumpStartState<PlayerStates> jumpStartState;
         private JumpEndState<PlayerStates> jumpEndState;
         private DamagedState<PlayerStates> damagedState;
+        private GodState<PlayerStates> godState;
 
         private FiniteStateMachine<PlayerStates> fsm;
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
@@ -95,6 +97,7 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed += CheckParry;
             InputManager.onBlockReleased += CheckBlock;
             InputManager.onJump += CheckJumpStart;
+            InputManager.onGodMode += CheckGodMode;
 
             damageable.OnTakeDamage += KnockBack;
             damageable.OnBlock += KnockBack;
@@ -107,6 +110,7 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed -= CheckParry;
             InputManager.onBlockReleased -= CheckBlock;
             InputManager.onJump -= CheckJumpStart;
+            InputManager.onGodMode -= CheckGodMode;
 
             damageable.OnTakeDamage -= KnockBack;
             damageable.OnBlock -= KnockBack;
@@ -192,7 +196,7 @@ namespace Code.Scripts.Player
             if (fsm.GetCurrentState().ID == PlayerStates.Attack)
                 return;
 
-            switch (movementState.dir)
+            switch (movementState.dir.x)
             {
                 case > 0:
                 {
@@ -230,9 +234,9 @@ namespace Code.Scripts.Player
         /// Handle to move transition
         /// </summary>
         /// <param name="input"></param>
-        private void CheckMoving(float input)
+        private void CheckMoving(Vector2 input)
         {
-            if (input != 0)
+            if (input.x != 0 || input.y != 0)
                 movementState.Enter();
 
             movementState.dir = input;
@@ -283,6 +287,14 @@ namespace Code.Scripts.Player
         {
             if (rb.velocity.y < 0)
                 jumpEndState.Enter();
+        }
+
+        /// <summary>
+        /// Handle to god mode transition
+        /// </summary>
+        private void CheckGodMode()
+        {
+            godState.Toggle();
         }
 
         /// <summary>

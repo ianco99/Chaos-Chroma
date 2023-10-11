@@ -21,11 +21,6 @@ namespace Patterns.FSM
             this.groundCheckPoint = groundCheckPoint;
         }
 
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
-
         public override void OnUpdate()
         {
             base.OnUpdate();
@@ -59,7 +54,7 @@ namespace Patterns.FSM
 
         public void SetDirection(float newDirection)
         {
-            dir = newDirection;
+            dir.x = newDirection;
         }
 
         public void FlipDirection()

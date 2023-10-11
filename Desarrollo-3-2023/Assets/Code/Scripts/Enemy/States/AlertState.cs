@@ -1,5 +1,4 @@
 using Code.Scripts.States;
-using Code.SOs.Enemy;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -18,13 +17,8 @@ namespace Patterns.FSM
         public AlertState(Rigidbody2D rb, T id, string name, Transform transform, AlertSettings settings) : base(id, name, settings.alertSpeed, settings.alertAcceleration,
             transform, rb)
         {
-            this.patroller = transform;
+            patroller = transform;
             this.settings = settings;
-        }
-
-        public override void OnEnter()
-        {
-            base.OnEnter();
         }
 
         public override void OnUpdate()
@@ -32,8 +26,8 @@ namespace Patterns.FSM
             base.OnUpdate();
 
             currentDirection = alertTarget.position - patroller.position;
-            var newDirection = currentDirection.normalized;
-            dir = newDirection.x;
+            Vector3 newDirection = currentDirection.normalized;
+            dir.x = newDirection.x;
         }
 
         public void SetTarget(Transform target)

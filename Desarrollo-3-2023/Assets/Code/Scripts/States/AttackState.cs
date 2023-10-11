@@ -1,3 +1,4 @@
+using Code.Scripts.Attack;
 using Patterns.FSM;
 using UnityEngine;
 
@@ -28,6 +29,18 @@ namespace Code.Scripts.States
 
             if (!hit.activeSelf)
                 Exit();
+        }
+
+        /// <summary>
+        /// Interrupt attack state
+        /// </summary>
+        public void Stop()
+        {
+            if (hit.TryGetComponent(out HitsManager hitManager))
+                hitManager.Stop();
+
+            hit.SetActive(false);
+            Exit();
         }
     }
 }

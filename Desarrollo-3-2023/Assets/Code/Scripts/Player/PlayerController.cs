@@ -38,9 +38,8 @@ namespace Code.Scripts.Player
         [SerializeField] private Collider2D feet;
         [SerializeField] private PhysicsMaterial2D feetMat;
         [SerializeField] private PhysicsMaterial2D bodyMat;
-        
-        [Header("Animation")] [SerializeField]
-        private Animator animator;
+
+        [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
         private MovementState<PlayerStates> movementState;
@@ -70,7 +69,8 @@ namespace Code.Scripts.Player
             jumpEndState =
                 new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb);
             damagedState =
-                new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f, throwBackForce, rb);
+                new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f,
+                    throwBackForce, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();
 
@@ -95,7 +95,7 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed += CheckParry;
             InputManager.onBlockReleased += CheckBlock;
             InputManager.onJump += CheckJumpStart;
-            
+
             damageable.OnTakeDamage += KnockBack;
             damageable.OnBlock += KnockBack;
         }
@@ -107,7 +107,7 @@ namespace Code.Scripts.Player
             InputManager.onBlockPressed -= CheckParry;
             InputManager.onBlockReleased -= CheckBlock;
             InputManager.onJump -= CheckJumpStart;
-            
+
             damageable.OnTakeDamage -= KnockBack;
             damageable.OnBlock -= KnockBack;
         }
@@ -180,7 +180,7 @@ namespace Code.Scripts.Player
         protected override void Flip()
         {
             base.Flip();
-            
+
             damagedState.SetDirection(facingRight ? -transform.right : transform.right);
         }
 
@@ -291,7 +291,7 @@ namespace Code.Scripts.Player
                 Flip();
             else if (transform.position.x < pos.x && !facingRight)
                 Flip();
-            
+
             damagedState.Enter();
         }
 
@@ -339,9 +339,14 @@ namespace Code.Scripts.Player
         private void AttackTransitions()
         {
             if (damagedState.Active)
+            {
+                attackState.Stop();
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            }
             else if (!attackState.Active)
+            {
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+            }
         }
 
         /// <summary>

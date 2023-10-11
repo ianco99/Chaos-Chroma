@@ -21,11 +21,10 @@ namespace Code.Scripts.Attack
         {
             foreach (GameObject hitObject in hitObjects)
             {
-                if (hitObject.TryGetComponent(out HitController hit))
-                {
-                    hits.Add(hit);
-                    hitObject.SetActive(false);
-                }
+                if (!hitObject.TryGetComponent(out HitController hit)) continue;
+                
+                hits.Add(hit);
+                hitObject.SetActive(false);
             }
         }
 
@@ -35,14 +34,12 @@ namespace Code.Scripts.Attack
 
             hits[index].gameObject.SetActive(true);
 
-            foreach (HitController hit in hits)
-                hit.OnParried += OnParriedHandler;
+            hits[index].OnParried += OnParriedHandler;
         }
 
         private void OnDisable()
         {
-            foreach (HitController hit in hits)
-                hit.OnParried -= OnParriedHandler;
+            hits[index].OnParried -= OnParriedHandler;
         }
 
         private void Update()
@@ -51,9 +48,21 @@ namespace Code.Scripts.Attack
                 gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Callback for parry
+        /// </summary>
         private void OnParriedHandler()
         {
             OnParried?.Invoke();
+        }
+
+        /// <summary>
+        /// Interrupt current attack
+        /// </summary>
+        public void Stop()
+        {
+            hits[index].Stop();
+            gameObject.SetActive(false);
         }
     }
 }

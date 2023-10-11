@@ -26,7 +26,9 @@ namespace Code.Scripts.Attack
 
         private void OnEnable()
         {
-            sprite.enabled = false;
+            if (sprite)
+                sprite.enabled = false;
+            
             started = false;
 
             if (characterOutline)
@@ -73,7 +75,9 @@ namespace Code.Scripts.Attack
         {
             yield return new WaitForSeconds(hitDelay);
             
-            sprite.enabled = true;
+            if (sprite)
+                sprite.enabled = true;
+            
             started = true;
             StartCoroutine(StopOnTime());
         }
@@ -89,6 +93,18 @@ namespace Code.Scripts.Attack
             gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Interrupt the attack
+        /// </summary>
+        public void Stop()
+        {
+            hitObjects.Clear();
+            gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// Sets the color of the character outline to the current state of the attack
+        /// </summary>
         private void UpdateCharacterOutlineColor()
         {
             Color color = characterOutline.color;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 27b7a59f3625d5c49a3fa40912e19a6a
+guid: 9f7c98f5edd598b4e957d2a4c6779806
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,12 +45,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -103,23 +103,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lachi Idle-Sheet_0
+      name: Lachi Attack Ready-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c833ee0b6d3653d4b9ce1c07a601eeb8
-      internalID: -233542417
+      spriteID: 2436a9d669300544cbf90a92d2c11017
+      internalID: -1159899059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lachi Idle-Sheet_1
+      name: Lachi Attack Ready-Sheet_1
       rect:
         serializedVersion: 2
         x: 96
@@ -154,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e445e1def6d44141a0c9e4a6e9be98c
-      internalID: 1652911568
+      spriteID: 2f7e4f34e04a1e14c9491df55b8c6952
+      internalID: 2008618621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lachi Idle-Sheet_2
+      name: Lachi Attack Ready-Sheet_2
       rect:
         serializedVersion: 2
         x: 192
@@ -175,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb62064f5fdceb7478616ee7e9288980
-      internalID: -57411489
+      spriteID: 042365029b1ab1442b5ed3cc437d05e0
+      internalID: -1729872353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lachi Idle-Sheet_3
+      name: Lachi Attack Ready-Sheet_3
       rect:
         serializedVersion: 2
         x: 288
@@ -196,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d386487534db924897a86a806821391
-      internalID: -1210415194
+      spriteID: 961f26dfebbea4443bd33f6519e5e861
+      internalID: -1633506243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lachi Idle-Sheet_4
+      name: Lachi Attack Ready-Sheet_4
       rect:
         serializedVersion: 2
         x: 384
@@ -217,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f390204a022da0d43b67d3b1a931f6e6
-      internalID: 1671448046
+      spriteID: 1c9f47ef26921a24a9ae4f4b57d9c3d9
+      internalID: 1738017744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lachi Idle-Sheet_5
+      name: Lachi Attack Ready-Sheet_5
       rect:
         serializedVersion: 2
         x: 480
@@ -238,8 +226,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cc20e8650236094584746241d3a7bed
-      internalID: 301317007
+      spriteID: 221d9dd7574bec443a6294ea0491604b
+      internalID: -412191392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lachi Attack Ready-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908097d5736d5fd4eb6fad9d9e4d8b01
+      internalID: -1215330051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lachi Attack Ready-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb0de253a2444c447a79efb730f19977
+      internalID: 2073397686
       vertices: []
       indices: 
       edges: []
@@ -255,12 +285,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lachi Idle-Sheet_0: -233542417
-      Lachi Idle-Sheet_1: 1652911568
-      Lachi Idle-Sheet_2: -57411489
-      Lachi Idle-Sheet_3: -1210415194
-      Lachi Idle-Sheet_4: 1671448046
-      Lachi Idle-Sheet_5: 301317007
+      Lachi Attack Ready-Sheet_0: -1159899059
+      Lachi Attack Ready-Sheet_1: 2008618621
+      Lachi Attack Ready-Sheet_2: -1729872353
+      Lachi Attack Ready-Sheet_3: -1633506243
+      Lachi Attack Ready-Sheet_4: 1738017744
+      Lachi Attack Ready-Sheet_5: -412191392
+      Lachi Attack Ready-Sheet_6: -1215330051
+      Lachi Attack Ready-Sheet_7: 2073397686
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

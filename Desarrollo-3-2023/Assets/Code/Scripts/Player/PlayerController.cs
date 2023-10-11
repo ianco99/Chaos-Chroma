@@ -73,6 +73,7 @@ namespace Code.Scripts.Player
             damagedState =
                 new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f,
                     throwBackForce, rb);
+            godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", 5f, acceleration, trans, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();
 
@@ -84,6 +85,7 @@ namespace Code.Scripts.Player
             fsm.AddState(jumpStartState);
             fsm.AddState(jumpEndState);
             fsm.AddState(damagedState);
+            fsm.AddState(godState);
 
             fsm.SetCurrentState(fsm.GetState(startState));
 
@@ -176,6 +178,10 @@ namespace Code.Scripts.Player
                     DamagedTransitions();
                     break;
 
+                case PlayerStates.GodMode:
+                    GodStateTransitions();
+                    break;
+                
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -223,6 +229,9 @@ namespace Code.Scripts.Player
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
         }
 
+        /// <summary>
+        /// Changes the physics material when on air
+        /// </summary>
         private void UpdateMaterial()
         {
             feet.sharedMaterial = movementState.IsGrounded() ? feetMat : bodyMat;
@@ -242,6 +251,7 @@ namespace Code.Scripts.Player
             movementState.dir = input;
             jumpStartState.dir = input;
             jumpEndState.dir = input;
+            godState.dir = input;
         }
 
         /// <summary>
@@ -321,6 +331,8 @@ namespace Code.Scripts.Player
         {
             if (damagedState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (godState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             else if (movementState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
             else if (attackState.Active)
@@ -338,6 +350,8 @@ namespace Code.Scripts.Player
         {
             if (damagedState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (godState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             else if (!movementState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (jumpStartState.Active)
@@ -357,6 +371,10 @@ namespace Code.Scripts.Player
             {
                 attackState.Stop();
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            }
+            else if (godState.Active)
+            {
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             }
             else if (!attackState.Active)
             {
@@ -380,6 +398,8 @@ namespace Code.Scripts.Player
         {
             if (damagedState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (godState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             else if (!blockState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
@@ -391,6 +411,8 @@ namespace Code.Scripts.Player
         {
             if (damagedState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (godState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             else if (!jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
         }
@@ -402,6 +424,8 @@ namespace Code.Scripts.Player
         {
             if (damagedState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (godState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             else if (!jumpEndState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
@@ -414,6 +438,15 @@ namespace Code.Scripts.Player
             if (!damagedState.Active && blockState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Block));
             else if (!damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
+        }
+
+        /// <summary>
+        /// God mode state transitions manager
+        /// </summary>
+        private void GodStateTransitions()
+        {
+            if (!godState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
         }
 

@@ -7,7 +7,6 @@ namespace Patterns.FSM
     {
         public GodState(T id, string name, float speed, float accel, Transform transform, Rigidbody2D rb) : base(id, name, speed, accel, transform, rb)
         {
-            speed = 5f;
         }
 
         public override void OnEnter()

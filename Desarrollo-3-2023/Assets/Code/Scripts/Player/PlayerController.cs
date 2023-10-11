@@ -189,6 +189,9 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckRotation()
         {
+            if (fsm.GetCurrentState().ID == PlayerStates.Attack)
+                return;
+
             switch (movementState.dir)
             {
                 case > 0:

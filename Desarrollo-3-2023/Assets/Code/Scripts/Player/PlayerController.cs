@@ -33,6 +33,7 @@ namespace Code.Scripts.Player
         [SerializeField] private float jumpForce = 5f;
         [SerializeField] private float parryDuration = 1f;
         [SerializeField] private float throwBackForce = 5f;
+        [SerializeField] private float minimumAttackHold = .5f;
         [SerializeField] private GameObject hit;
         [SerializeField] private GameObject parryCapsule;
         [SerializeField] private GameObject blockCapsule;
@@ -65,7 +66,8 @@ namespace Code.Scripts.Player
             movementState =
                 new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, acceleration, trans, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
-            attackStartState = new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState");
+            attackStartState =
+                new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", minimumAttackHold);
             attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
@@ -280,7 +282,7 @@ namespace Code.Scripts.Player
         {
             if (fsm.GetCurrentState().ID == PlayerStates.AttackStart)
                 attackStartState.Release();
-            
+
             if (fsm.GetCurrentState().ID == PlayerStates.AttackStart)
                 attackEndState.Enter();
         }
@@ -390,7 +392,10 @@ namespace Code.Scripts.Player
         private void AttackStartTransitions()
         {
             if (damagedState.Active)
+            {
+                attackStartState.Exit();
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            }
             else if (!attackStartState.Active && attackEndState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.AttackEnd));
         }

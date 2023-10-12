@@ -14,7 +14,8 @@ namespace Code.Scripts.Player
         Move,
         JumpStart,
         JumpEnd,
-        Attack,
+        AttackStart,
+        AttackEnd,
         Block,
         Parry,
         Damaged,
@@ -46,6 +47,7 @@ namespace Code.Scripts.Player
         private MovementState<PlayerStates> movementState;
         private IdleState<PlayerStates> idleState;
         private AttackEndState<PlayerStates> attackEndState;
+        private AttackStartState<PlayerStates> attackStartState;
         private ParryState<PlayerStates> parryState;
         private BlockState<PlayerStates> blockState;
         private JumpStartState<PlayerStates> jumpStartState;
@@ -63,7 +65,8 @@ namespace Code.Scripts.Player
             movementState =
                 new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, acceleration, trans, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
-            attackEndState = new AttackEndState<PlayerStates>(PlayerStates.Attack, "AttackState", hit);
+            attackStartState = new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState");
+            attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", speed,
@@ -79,6 +82,7 @@ namespace Code.Scripts.Player
 
             fsm.AddState(movementState);
             fsm.AddState(idleState);
+            fsm.AddState(attackStartState);
             fsm.AddState(attackEndState);
             fsm.AddState(parryState);
             fsm.AddState(blockState);
@@ -96,6 +100,7 @@ namespace Code.Scripts.Player
         {
             InputManager.onMove += CheckMoving;
             InputManager.onAttackPressed += CheckAttackPressed;
+            InputManager.onAttackReleased += CheckAttackReleased;
             InputManager.onBlockPressed += CheckParry;
             InputManager.onBlockReleased += CheckBlock;
             InputManager.onJump += CheckJumpStart;
@@ -109,6 +114,7 @@ namespace Code.Scripts.Player
         {
             InputManager.onMove -= CheckMoving;
             InputManager.onAttackPressed -= CheckAttackPressed;
+            InputManager.onAttackReleased -= CheckAttackReleased;
             InputManager.onBlockPressed -= CheckParry;
             InputManager.onBlockReleased -= CheckBlock;
             InputManager.onJump -= CheckJumpStart;
@@ -156,8 +162,12 @@ namespace Code.Scripts.Player
                     JumpStartTransitions();
                     break;
 
-                case PlayerStates.Attack:
-                    AttackTransitions();
+                case PlayerStates.AttackStart:
+                    AttackStartTransitions();
+                    break;
+
+                case PlayerStates.AttackEnd:
+                    AttackEndTransitions();
                     break;
 
                 case PlayerStates.Block:
@@ -181,7 +191,7 @@ namespace Code.Scripts.Player
                 case PlayerStates.GodMode:
                     GodStateTransitions();
                     break;
-                
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -199,7 +209,7 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckRotation()
         {
-            if (fsm.GetCurrentState().ID == PlayerStates.Attack)
+            if (fsm.GetCurrentState().ID == PlayerStates.AttackStart)
                 return;
 
             switch (movementState.dir.x)
@@ -255,11 +265,23 @@ namespace Code.Scripts.Player
         }
 
         /// <summary>
-        /// Handle to attack transition
+        /// Handle to attack start transition
         /// </summary>
         private void CheckAttackPressed()
         {
             if (fsm.GetCurrentState().ID == PlayerStates.Idle || fsm.GetCurrentState().ID == PlayerStates.Move)
+                attackStartState.Enter();
+        }
+
+        /// <summary>
+        /// Handle to attack end transition
+        /// </summary>
+        private void CheckAttackReleased()
+        {
+            if (fsm.GetCurrentState().ID == PlayerStates.AttackStart)
+                attackStartState.Release();
+            
+            if (fsm.GetCurrentState().ID == PlayerStates.AttackStart)
                 attackEndState.Enter();
         }
 
@@ -335,8 +357,8 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             else if (movementState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Move));
-            else if (attackEndState.Active)
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
+            else if (attackStartState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.AttackStart));
             else if (parryState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
             else if (jumpStartState.Active)
@@ -356,25 +378,32 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
-            else if (attackEndState.Active)
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.Attack));
+            else if (attackStartState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.AttackStart));
             else if (parryState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
         }
 
         /// <summary>
-        /// Attack state transitions manager
+        /// Attack start state transitions manager
         /// </summary>
-        private void AttackTransitions()
+        private void AttackStartTransitions()
+        {
+            if (damagedState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
+            else if (!attackStartState.Active && attackEndState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.AttackEnd));
+        }
+
+        /// <summary>
+        /// Attack end state transitions manager
+        /// </summary>
+        private void AttackEndTransitions()
         {
             if (damagedState.Active)
             {
                 attackEndState.Stop();
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
-            }
-            else if (godState.Active)
-            {
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
             }
             else if (!attackEndState.Active)
             {

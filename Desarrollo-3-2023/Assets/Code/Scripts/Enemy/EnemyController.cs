@@ -43,7 +43,7 @@ namespace Code.Scripts.Enemy
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
         private AlertState<EnemyStates> alertState;
-        private AttackState<EnemyStates> attackState;
+        private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
 
         private void Awake()
@@ -74,14 +74,14 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings.patrolSettings);
             patrolState.SetDirection(1.0f);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings.alertSettings);
-            attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
+            attackEndState = new AttackEndState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 2.0f, 4.0f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
-            fsm.AddState(attackState);
+            fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
@@ -153,7 +153,7 @@ namespace Code.Scripts.Enemy
             if (fsm.GetCurrentState() == damagedState)
                 return;
 
-            if (fsm.GetCurrentState() == attackState && !attackState.Active)
+            if (fsm.GetCurrentState() == attackEndState && !attackEndState.Active)
                 fsm.SetCurrentState(alertState);
 
             if (fov.visibleTargets.Count > 0)
@@ -165,8 +165,8 @@ namespace Code.Scripts.Enemy
                     turnedAggro = true;
                     if (!(Vector3.Distance(viewedTarget.position, transform.position) < hitDistance)) return;
 
-                    attackState.Enter();
-                    fsm.SetCurrentState(attackState);
+                    attackEndState.Enter();
+                    fsm.SetCurrentState(attackEndState);
                 }
                 else if (suspectMeter >= settings.alertValue)
                 {
@@ -230,7 +230,7 @@ namespace Code.Scripts.Enemy
                     }
                 }
             }
-            else if (fsm.GetCurrentState() == attackState)
+            else if (fsm.GetCurrentState() == attackEndState)
             {
                 if (fov.visibleTargets.Count > 0)
                 {

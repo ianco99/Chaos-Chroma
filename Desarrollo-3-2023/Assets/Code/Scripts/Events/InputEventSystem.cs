@@ -20,7 +20,7 @@ namespace Code.Scripts.Events
         private void Start()
         {
             InputManager.onMove += MoveCharacters;
-            InputManager.onAttack += AttackAttackers;
+            InputManager.onAttackPressed += AttackPressedAttackers;
             InputManager.onBlockPressed += BlockBlockers;
             InputManager.onJump += JumpJumpers;
         }
@@ -30,7 +30,7 @@ namespace Code.Scripts.Events
             onMoveChannel.RaiseEvent(axis);
         }
 
-        private void AttackAttackers()
+        private void AttackPressedAttackers()
         {
             onAttackChannel.RaiseEvent();
         }

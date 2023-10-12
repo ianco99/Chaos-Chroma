@@ -8,11 +8,11 @@ namespace Code.Scripts.States
     /// Handler for attack state
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AttackState<T> : BaseState<T>
+    public class AttackEndState<T> : BaseState<T>
     {
         private readonly GameObject hit;
 
-        public AttackState(T id, string name, GameObject hit) : base(id, name)
+        public AttackEndState(T id, string name, GameObject hit) : base(id, name)
         {
             this.hit = hit;
         }

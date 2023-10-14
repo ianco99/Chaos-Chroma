@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrintTrace: 0
-  onMoveChannel: {fileID: 11400000, guid: 209bd0bfd097a704aa911f92960bf16d, type: 2}
+  onMoveChannel: {fileID: 0}
   onAttackChannel: {fileID: 11400000, guid: df70728ed15485349951f07efb6fab18, type: 2}
   onBlockChannel: {fileID: 11400000, guid: 64ced9b29fb237e43ae36f5ac83ec087, type: 2}
   onJumpChannel: {fileID: 11400000, guid: 5bd5763b8d7ab3146839296b932e21c0, type: 2}
@@ -463,6 +463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 228323561625010619, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1823283447}
     - target: {fileID: 640041323111570734, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
       propertyPath: m_Color.b
       value: 1

@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrintTrace: 0
-  onMoveChannel: {fileID: 0}
+  onMoveChannel: {fileID: 11400000, guid: f8b1300a8ff185f489d9190c6270c1f9, type: 2}
   onAttackChannel: {fileID: 11400000, guid: df70728ed15485349951f07efb6fab18, type: 2}
   onBlockChannel: {fileID: 11400000, guid: 64ced9b29fb237e43ae36f5ac83ec087, type: 2}
   onJumpChannel: {fileID: 11400000, guid: 5bd5763b8d7ab3146839296b932e21c0, type: 2}
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 517285585}
 --- !u!4 &2101155455
 Transform:
   m_ObjectHideFlags: 0

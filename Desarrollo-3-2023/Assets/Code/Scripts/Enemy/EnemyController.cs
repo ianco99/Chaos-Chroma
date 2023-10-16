@@ -166,8 +166,6 @@ namespace Code.Scripts.Enemy
             if (fsm.GetCurrentState() == damagedState)
                 return;
 
-            if (fsm.GetCurrentState() == attackEndState && !attackEndState.Active)
-                fsm.SetCurrentState(alertState);
 
             if (fov.visibleTargets.Count > 0)
             {

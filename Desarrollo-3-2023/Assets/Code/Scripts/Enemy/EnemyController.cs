@@ -37,6 +37,8 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float hitDistance = 5f;
 
+        [Header("Animation")] [SerializeField] private Animator animator;
+
         private Transform detectedPlayer;
         private bool turnedAggro;
 
@@ -45,6 +47,8 @@ namespace Code.Scripts.Enemy
         private AlertState<EnemyStates> alertState;
         private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
+
+        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
         private void Awake()
         {
@@ -96,6 +100,7 @@ namespace Code.Scripts.Enemy
             CheckRotation();
             CheckFieldOfView();
             CheckTransitions();
+            UpdateAnimationState();
         }
 
         private void FixedUpdate()
@@ -103,6 +108,14 @@ namespace Code.Scripts.Enemy
             fsm.FixedUpdate();
         }
 
+
+        /// <summary>
+        /// Sets the parameter for the animator states
+        /// </summary>
+        private void UpdateAnimationState()
+        {
+            animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
+        }
         private void CheckFieldOfView()
         {
 

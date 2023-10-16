@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3832601685886080571}
   - component: {fileID: 836443845740120934}
   - component: {fileID: 2334605050899191207}
+  - component: {fileID: 2065283345791218431}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -112,6 +113,7 @@ MonoBehaviour:
   suspectMeter: 0
   suspectUnit: 30
   hitDistance: 0.5
+  animator: {fileID: 2065283345791218431}
 --- !u!114 &3832601685886080571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +201,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &2065283345791218431
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603062281788332554}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f296cc62a925ae245929cdfb33975ec5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4103332842607383826
 GameObject:
   m_ObjectHideFlags: 0

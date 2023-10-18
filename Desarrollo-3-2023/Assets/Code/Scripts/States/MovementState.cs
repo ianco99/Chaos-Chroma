@@ -11,7 +11,7 @@ namespace Code.Scripts.States
     {
         protected readonly Rigidbody2D rb;
         protected readonly Transform transform;
-        protected readonly float speed;
+        protected float speed;
         private readonly float accel;
 
         public Vector2 dir;

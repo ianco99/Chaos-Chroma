@@ -7,4 +7,8 @@ public class AlertSettings : ScriptableObject, IAlertSettings
 {
     public float alertSpeed;
     public float alertAcceleration;
+
+    [Header("GroundCheck")]
+    public float groundCheckDistance;
+    public LayerMask groundLayer;
 }

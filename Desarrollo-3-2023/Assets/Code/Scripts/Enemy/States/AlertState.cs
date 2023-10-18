@@ -25,7 +25,13 @@ namespace Patterns.FSM
         {
             base.OnUpdate();
 
-            currentDirection = alertTarget.position - patroller.position;
+            if (alertTarget)
+                currentDirection = alertTarget.position - patroller.position;
+            else
+            {
+                currentDirection = patroller.right;
+            }
+
             Vector3 newDirection = currentDirection.normalized;
             dir.x = newDirection.x;
         }

@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1823283447}
-  offset: {x: 0, y: 0.65, z: -3}
+  offset: {x: 0, y: 0.38, z: -3.65}
   speed: 5
 --- !u!1 &697184535
 GameObject:
@@ -731,6 +731,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5071082586625091123, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071082586625091123, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5329514024991152807, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -813,6 +821,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6042286295248359218, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174316860838750867, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174316860838750867, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6225914892875646406, guid: a6c35481159741b46a571dc42ff478c1, type: 3}

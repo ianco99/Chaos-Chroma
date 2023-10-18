@@ -543,6 +543,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1666707581193426178, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666707581193426178, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666707581193426178, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1850428015686203772, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -921,6 +933,14 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 03b5cefa6c2d0734582ee2e0cc40ad08, type: 3}
     - target: {fileID: 6737043012095126122, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
       propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911661760557145144, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960411188877013685, guid: a6c35481159741b46a571dc42ff478c1, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7102730849293094323, guid: a6c35481159741b46a571dc42ff478c1, type: 3}

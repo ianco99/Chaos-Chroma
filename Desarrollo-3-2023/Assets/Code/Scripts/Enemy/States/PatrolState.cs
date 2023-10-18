@@ -46,7 +46,7 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if (Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Default")))
+            if (Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Default", "Enemy")))
             {
                 FlipDirection();
             }

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolSpeed: 50
   patrolAcceleration: 50
-  groundCheckDistance: 0.7
+  groundCheckDistance: 0.4
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
   wallLayer:
     serializedVersion: 2
     m_Bits: 1
-  wallCheckDistance: 0.4
+  wallCheckDistance: 0.13

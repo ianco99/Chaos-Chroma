@@ -79,7 +79,7 @@ namespace Code.Scripts.Enemy
             patrolState.SetDirection(1.0f);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings.alertSettings, groundCheckPoint);
             attackEndState = new AttackEndState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 2.0f, 4.0f, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 1.0f, 4.0f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 

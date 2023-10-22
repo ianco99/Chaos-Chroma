@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.5
+  hitDelay: 0.23
   hitDuration: 0.5
   sprite: {fileID: 2310672035426557210}
   attacker: {fileID: 4819109336555100032}
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.5
+  hitDelay: 0.23
   hitDuration: 0.5
   sprite: {fileID: 5710982413378953928}
   attacker: {fileID: 4819109336555100032}
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.5
+  hitDelay: 0.23
   hitDuration: 0.5
   sprite: {fileID: 5293959919000455892}
   attacker: {fileID: 4819109336555100032}
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.5
+  hitDelay: 0.23
   hitDuration: 0.5
   sprite: {fileID: 4403108743264054329}
   attacker: {fileID: 4819109336555100032}

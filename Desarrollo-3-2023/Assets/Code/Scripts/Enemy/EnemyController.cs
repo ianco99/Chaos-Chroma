@@ -116,6 +116,7 @@ namespace Code.Scripts.Enemy
         {
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
         }
+        
         private void CheckFieldOfView()
         {
 
@@ -271,6 +272,8 @@ namespace Code.Scripts.Enemy
                 fsm.SetCurrentState(damagedState);
             else
                 damagedState.ResetState();
+            
+            attackEndState.Stop();
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

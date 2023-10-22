@@ -61,7 +61,9 @@ namespace Code.Scripts.Attack
         /// </summary>
         public void Stop()
         {
-            hits[index].Stop();
+            if (hits[index].enabled)
+                hits[index].Stop();
+            
             gameObject.SetActive(false);
         }
     }

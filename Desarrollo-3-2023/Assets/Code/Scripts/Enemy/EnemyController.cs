@@ -259,6 +259,9 @@ namespace Code.Scripts.Enemy
 
         private void OnTakeDamageHandler(Vector2 origin)
         {
+            if (fsm.GetCurrentState().ID == EnemyStates.Attack)
+                attackEndState.Stop();
+            
             if (origin.x > transform.position.x && !facingRight)
                 Flip();
             else if (origin.x < transform.position.x && facingRight)
@@ -272,8 +275,6 @@ namespace Code.Scripts.Enemy
                 fsm.SetCurrentState(damagedState);
             else
                 damagedState.ResetState();
-            
-            attackEndState.Stop();
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

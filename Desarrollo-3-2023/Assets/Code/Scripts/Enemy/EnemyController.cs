@@ -75,9 +75,9 @@ namespace Code.Scripts.Enemy
             fsm = new FiniteStateMachine<EnemyStates>();
 
             Transform trans = transform;
-            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings.patrolSettings);
+            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, this, trans, settings.patrolSettings);
             patrolState.SetDirection(1.0f);
-            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings.alertSettings, groundCheckPoint);
+            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans, settings.alertSettings, groundCheckPoint);
             attackEndState = new AttackEndState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 2.0f, 4.0f, rb);
 
@@ -87,6 +87,12 @@ namespace Code.Scripts.Enemy
             fsm.AddState(alertState);
             fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
+
+            fsm.AddTransition(patrolState, alertState, ()=> suspectMeter > settings.alertValue);
+            fsm.AddTransition(alertState, attackEndState, () => suspectMeter >= settings.suspectMeterMaximum && detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) < settings.alertSettings.alertAttackDistance);
+            fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
+            fsm.AddTransition(attackEndState, alertState, () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
+            //fsm.AddTransition(attackEndState, patrolState, () => !attackEndState.Active && detectedPlayer == null);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -99,7 +105,6 @@ namespace Code.Scripts.Enemy
 
             CheckRotation();
             CheckFieldOfView();
-            CheckTransitions();
             UpdateAnimationState();
         }
 
@@ -125,17 +130,14 @@ namespace Code.Scripts.Enemy
             }
             else
             {
+                detectedPlayer = fov.visibleTargets[0];
+
                 suspectMeter += suspectUnit *
                             Mathf.Clamp(
                                 fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
                                     transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
-                if (suspectMeter >= settings.alertValue)
-                {
-                    if (detectedPlayer == null)
-                        detectedPlayer = fov.visibleTargets[0];
-                }
-                else
+                if (suspectMeter < settings.alertValue)
                 {
                     detectedPlayer = null;
                     suspectMeterSprite.color = Color.white;
@@ -159,38 +161,6 @@ namespace Code.Scripts.Enemy
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
-        }
-
-        private void CheckTransitions()
-        {
-            if (fsm.GetCurrentState() == damagedState)
-                return;
-
-
-            if (fov.visibleTargets.Count > 0)
-            {
-                Transform viewedTarget = fov.visibleTargets[0];
-                if (suspectMeter >= settings.suspectMeterMaximum)
-                {
-                    suspectMeterSprite.color = Color.red;
-                    turnedAggro = true;
-                    if (!(Vector3.Distance(viewedTarget.position, transform.position) < hitDistance)) return;
-
-                    attackEndState.Enter();
-                    fsm.SetCurrentState(attackEndState);
-                }
-                else if (suspectMeter >= settings.alertValue)
-                {
-                    alertState.SetTarget(viewedTarget);
-                    fsm.SetCurrentState(alertState);
-
-                    suspectMeterSprite.color = Color.yellow;
-                }
-            }
-            else if (detectedPlayer == null && !turnedAggro)
-            {
-                fsm.SetCurrentState(patrolState);
-            }
         }
 
         private void CheckRotation()
@@ -282,12 +252,6 @@ namespace Code.Scripts.Enemy
         {
             fsm.SetCurrentState(damagedState);
             damagedState.SetDirection(facingRight ? -transform.right : transform.right);
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            //Gizmos.DrawRay(groundCheckPoint.position, groundCheckPoint.right * patrolState.dir);
         }
     }
 }

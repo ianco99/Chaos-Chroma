@@ -1,3 +1,4 @@
+using Code.Scripts.Abstracts.Character;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
 using System;
@@ -13,12 +14,14 @@ namespace Patterns.FSM
     {
         private readonly PatrolSettings settings;
         private Transform groundCheckPoint;
+        private Character patroller;
 
-        public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Transform transform, PatrolSettings settings) : base(id, name, settings.patrolSpeed, settings.patrolAcceleration,
+        public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, name, settings.patrolSpeed, settings.patrolAcceleration,
             transform, rb)
         {
             this.settings = settings;
             this.groundCheckPoint = groundCheckPoint;
+            this.patroller = patroller;
         }
 
         public override void OnUpdate()
@@ -46,8 +49,11 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if (Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Default", "Enemy")))
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Default", "Enemy"));
+
+            if (hit && hit.transform.name != patroller.name)
             {
+                Debug.LogError(hit.transform.name);
                 FlipDirection();
             }
         }

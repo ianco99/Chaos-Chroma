@@ -17,7 +17,7 @@ namespace Code.Scripts.Abstracts.Character
             Y,
             Z
         }
-    
+
         [Serializable]
         private struct Flippable
         {
@@ -25,13 +25,13 @@ namespace Code.Scripts.Abstracts.Character
             public SpriteRenderer sprite;
             public TransformFlip transformFlip;
         }
-    
+
         [Header("Character:")]
         [SerializeField] protected Rigidbody2D rb;
         [SerializeField] protected SpriteRenderer sprite;
         [SerializeField] protected bool facingRight = true;
         [SerializeField] private List<Flippable> flippables;
-    
+
         /// <summary>
         /// Turn character around
         /// </summary>
@@ -44,27 +44,27 @@ namespace Code.Scripts.Abstracts.Character
 
                 pos.x *= -1;
                 flipped.trans.localPosition = pos;
-            
+
                 if (flipped.sprite)
                     flipped.sprite.flipX = !flipped.sprite.flipX;
-            
+
                 switch (flipped.transformFlip)
                 {
                     case TransformFlip.None:
                         break;
-                
+
                     case TransformFlip.X:
                         flipped.trans.Rotate(transform.right, 180);
                         break;
-                
+
                     case TransformFlip.Y:
                         flipped.trans.Rotate(transform.up, 180);
                         break;
-                
+
                     case TransformFlip.Z:
                         flipped.trans.Rotate(transform.forward, 180);
                         break;
-                
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -73,5 +73,6 @@ namespace Code.Scripts.Abstracts.Character
             facingRight = !facingRight;
             sprite.flipX = !sprite.flipX;
         }
-    }
+        public bool IsFacingRight() => facingRight;
+    }    
 }

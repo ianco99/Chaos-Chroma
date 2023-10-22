@@ -79,7 +79,7 @@ namespace Code.Scripts.Enemy
             patrolState.SetDirection(1.0f);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans, settings.alertSettings, groundCheckPoint);
             attackEndState = new AttackEndState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 2.0f, 4.0f, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 1.0f, 4.0f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -121,6 +121,7 @@ namespace Code.Scripts.Enemy
         {
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
         }
+        
         private void CheckFieldOfView()
         {
 
@@ -229,6 +230,9 @@ namespace Code.Scripts.Enemy
 
         private void OnTakeDamageHandler(Vector2 origin)
         {
+            if (fsm.GetCurrentState().ID == EnemyStates.Attack)
+                attackEndState.Stop();
+            
             if (origin.x > transform.position.x && !facingRight)
                 Flip();
             else if (origin.x < transform.position.x && facingRight)

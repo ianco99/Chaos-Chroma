@@ -216,14 +216,14 @@ namespace Code.Scripts.Player
 
             switch (movementState.dir.x)
             {
-                case > 0:
+                case > 0.2f:
                 {
                     if (!facingRight)
                         Flip();
 
                     break;
                 }
-                case < 0:
+                case < -0.2f:
                 {
                     if (facingRight)
                         Flip();

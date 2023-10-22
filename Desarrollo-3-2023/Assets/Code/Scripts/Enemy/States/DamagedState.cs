@@ -39,7 +39,7 @@ namespace Patterns.FSM
 
         public void ResetState()
         {
-            base.currentTimer = 0;
+            currentTimer = 0;
             rb.AddForce(pushDirection * force, ForceMode2D.Impulse);
         }
     }

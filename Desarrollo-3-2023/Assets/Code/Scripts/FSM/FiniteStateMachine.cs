@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Patterns.FSM
@@ -6,6 +7,12 @@ namespace Patterns.FSM
     {
         private Dictionary<T, BaseState<T>> states = new();
         private BaseState<T> currentState;
+
+        private Dictionary<Type, List<Transition<T>>> _transitions = new Dictionary<Type, List<Transition<T>>>();
+        private List<Transition<T>> currentTransitions = new List<Transition<T>>();
+
+        private static List<Transition<T>> EmptyTransitions = new List<Transition<T>>(0);
+
         private bool initialized;
 
         public void Init()
@@ -16,7 +23,12 @@ namespace Patterns.FSM
 
         public void Update()
         {
-            if(initialized)
+            var transition = GetTransition();
+
+            if (transition != null)
+                SetCurrentState(transition.To);
+
+            if (initialized)
             {
                 currentState.OnUpdate();
             }
@@ -83,7 +95,31 @@ namespace Patterns.FSM
 
             currentState = state;
 
+            _transitions.TryGetValue(currentState.GetType(), out currentTransitions);
+            if (currentTransitions == null)
+                currentTransitions = EmptyTransitions;
+
             currentState?.OnEnter();
+        }
+
+        public void AddTransition(BaseState<T> from, BaseState<T> to, Func<bool> condition)
+        {
+            if (_transitions.TryGetValue(from.GetType(), out var transitions) == false)
+            {
+                transitions = new List<Transition<T>>();
+                _transitions[from.GetType()] = transitions;
+            }
+
+            transitions.Add(new Transition<T>(to, condition));
+        }
+
+        private Transition<T> GetTransition()
+        {
+            foreach (var transition in currentTransitions)
+                if (transition.Condition())
+                    return transition;
+
+            return null;
         }
     }
 }

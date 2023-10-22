@@ -27,14 +27,22 @@ namespace Patterns.FSM
         {
             base.OnEnter();
 
-            if (patroller.IsFacingRight())
+            if (alertTarget)
             {
-                dir = patroller.transform.right;
+                dir = (alertTarget.transform.position - patroller.transform.position).normalized;
             }
             else
             {
-                dir = -patroller.transform.right;
+                if (patroller.IsFacingRight())
+                {
+                    dir = patroller.transform.right.normalized;
+                }
+                else
+                {
+                    dir = -patroller.transform.right.normalized;
+                }
             }
+
         }
 
         public override void OnUpdate()
@@ -57,19 +65,33 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Default")))
+            if(alertTarget)
             {
-                base.speed = 0;
+                if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Default")))
+                {
+                    base.speed = 0;
+                }
+                else
+                {
+                    base.speed = settings.alertSpeed;
+                }
             }
             else
             {
-                base.speed = settings.alertSpeed;
+                if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Default")))
+                    FlipDirection();
             }
+
         }
 
         public void SetTarget(Transform target)
         {
             alertTarget = target;
+        }
+
+        public void FlipDirection()
+        {
+            dir = -dir;
         }
     }
 }

@@ -131,6 +131,7 @@ namespace Code.Scripts.Enemy
             else
             {
                 detectedPlayer = fov.visibleTargets[0];
+                alertState.SetTarget(detectedPlayer);
 
                 suspectMeter += suspectUnit *
                             Mathf.Clamp(

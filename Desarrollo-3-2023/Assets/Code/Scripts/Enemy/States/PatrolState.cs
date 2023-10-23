@@ -53,7 +53,6 @@ namespace Patterns.FSM
 
             if (hit && hit.transform.name != patroller.name)
             {
-                Debug.LogError(hit.transform.name);
                 FlipDirection();
             }
         }

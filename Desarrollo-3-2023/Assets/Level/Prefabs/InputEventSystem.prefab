@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrintTrace: 0
-  onMoveChannel: {fileID: 11400000, guid: 209bd0bfd097a704aa911f92960bf16d, type: 2}
+  onMoveChannel: {fileID: 11400000, guid: f8b1300a8ff185f489d9190c6270c1f9, type: 2}
   onAttackChannel: {fileID: 11400000, guid: df70728ed15485349951f07efb6fab18, type: 2}
   onBlockChannel: {fileID: 11400000, guid: 64ced9b29fb237e43ae36f5ac83ec087, type: 2}
   onJumpChannel: {fileID: 11400000, guid: 5bd5763b8d7ab3146839296b932e21c0, type: 2}

@@ -58,7 +58,7 @@ namespace Code.Scripts.Attack
 
             foreach (Collider2D hit in hits)
             {
-                if (!hit.TryGetComponent(out Damageable damageable) || hitObjects.Contains(damageable)) continue;
+                if (!hit.TryGetComponent(out Damageable damageable) || hitObjects.Contains(damageable) || hit.transform == attacker) continue;
 
                 if (!damageable.TakeDamage(damage, attacker.transform.position))
                     OnParried?.Invoke();

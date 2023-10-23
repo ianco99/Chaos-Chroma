@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0
+  hitDelay: 0.2
   hitDuration: 0.2
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0
+  hitDelay: 0.2
   hitDuration: 0.2
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0
+  hitDelay: 0.2
   hitDuration: 0.2
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0
+  hitDelay: 0.2
   hitDuration: 0.2
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}

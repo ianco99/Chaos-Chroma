@@ -113,6 +113,7 @@ MonoBehaviour:
   suspectMeter: 0
   suspectUnit: 30
   hitDistance: 0.5
+  attackDelay: 0.2
   animator: {fileID: 2065283345791218431}
 --- !u!114 &3832601685886080571
 MonoBehaviour:

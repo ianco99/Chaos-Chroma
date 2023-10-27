@@ -83,7 +83,7 @@ namespace Code.Scripts.Enemy
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans, settings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", attackDelay);
             attackEndState = new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 1.0f, 4.0f, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 1.0f, 2.4f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 

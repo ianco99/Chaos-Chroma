@@ -118,7 +118,6 @@ namespace Code.Scripts.Enemy
             fsm.FixedUpdate();
         }
 
-
         /// <summary>
         /// Sets the parameter for the animator states
         /// </summary>
@@ -243,9 +242,7 @@ namespace Code.Scripts.Enemy
             else if (origin.x < transform.position.x && facingRight)
                 Flip();
 
-            Vector2 pushDirection = facingRight ? Vector2.left : Vector2.right;
-
-            damagedState.SetDirection(pushDirection);
+            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
 
             if (fsm.GetCurrentState() != damagedState)
                 fsm.SetCurrentState(damagedState);
@@ -260,8 +257,8 @@ namespace Code.Scripts.Enemy
 
         private void OnParriedHandler()
         {
+            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
             fsm.SetCurrentState(damagedState);
-            damagedState.SetDirection(facingRight ? -transform.right : transform.right);
         }
     }
 }

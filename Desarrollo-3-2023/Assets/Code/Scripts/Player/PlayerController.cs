@@ -341,6 +341,7 @@ namespace Code.Scripts.Player
             else if (transform.position.x < pos.x && !facingRight)
                 Flip();
 
+            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
             damagedState.Enter();
         }
 

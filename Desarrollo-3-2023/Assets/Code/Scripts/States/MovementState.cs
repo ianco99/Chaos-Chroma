@@ -68,9 +68,11 @@ namespace Code.Scripts.States
             if (!transform)
                 return false;
 
-            Vector3 pos = transform.position;
+            Vector3 pos = transform.position + Vector3.down * .31f;
             Vector3 scale = transform.localScale;
-            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, .35f * scale.y, ~(1 << 6 | 1 << 7 | 1 << 8));
+            RaycastHit2D hit = Physics2D.Raycast(pos , Vector2.down, .02f * scale.y, ~(1 << 6 | 1 << 7 | 1 << 8 | 1 << 9));
+            
+            Debug.DrawLine(pos, pos + Vector3.down * .02f, Color.red);
             
             return hit.collider;
         }

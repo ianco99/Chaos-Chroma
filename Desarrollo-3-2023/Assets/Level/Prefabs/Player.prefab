@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.2
-  hitDuration: 0.2
+  hitDelay: 0
+  hitDuration: 0.5
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}
   characterOutline: {fileID: 8685973854917079561}
@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.2
-  hitDuration: 0.2
+  hitDelay: 0
+  hitDuration: 0.5
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}
   characterOutline: {fileID: 8685973854917079561}
@@ -630,7 +630,7 @@ MonoBehaviour:
   jumpForce: 250
   parryDuration: 0.5
   throwBackForce: 120
-  minimumAttackHold: 0.1
+  minimumAttackHold: 0.2
   hit: {fileID: 1395205784924420985}
   parryCapsule: {fileID: 6399263026032754680}
   blockCapsule: {fileID: 1102174282694968004}
@@ -801,8 +801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.2
-  hitDuration: 0.2
+  hitDelay: 0
+  hitDuration: 0.5
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}
   characterOutline: {fileID: 8685973854917079561}
@@ -981,8 +981,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.2
-  hitDuration: 0.2
+  hitDelay: 0
+  hitDuration: 0.5
   sprite: {fileID: 0}
   attacker: {fileID: 741303295280261315}
   characterOutline: {fileID: 8685973854917079561}

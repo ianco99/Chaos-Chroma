@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959eeab192a3aba45876b616635c6e76, type: 3}
   m_Name: EnemySettings
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {x: -2.05, y: 1.001, z: -0.023706201}
-  - {x: -1.14, y: 1.078, z: -0.023706201}
-  alertSpeed: 50
-  acceleration: 50
-  groundCheckDistance: 0.7
-  wallCheckDistance: 0.2
-  patrolSpeed: 100
+  patrolSettings: {fileID: 11400000, guid: 3ba78d0446e325a49a9852ed7ec5cb39, type: 2}
+  alertSettings: {fileID: 11400000, guid: 4fdcc6853bce2cf4aba6362c79a97b49, type: 2}
   viewRadius: 6.06
   viewAngle: 60
   suspectMeterMinimum: 0
-  alertValue: 40
+  alertValue: 20
   suspectMeterMaximum: 100

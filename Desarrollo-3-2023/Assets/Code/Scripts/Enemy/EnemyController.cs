@@ -1,5 +1,6 @@
 using System;
 using Code.FOV;
+using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
@@ -13,7 +14,8 @@ namespace Code.Scripts.Enemy
     {
         Patrol,
         Alert,
-        Attack,
+        AttackStart = 4,
+        AttackEnd = 5,
         Block,
         Parry,
         Damaged,
@@ -35,13 +37,21 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float hitDistance = 5f;
+        [SerializeField] private float attackDelay = 0.2f;
 
+        [Header("Animation")] [SerializeField] private Animator animator;
+
+        private Transform detectedPlayer;
+        private bool turnedAggro;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
         private AlertState<EnemyStates> alertState;
-        private AttackState<EnemyStates> attackState;
+        private AttackStartState<EnemyStates> attackStartState;
+        private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
+
+        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
         private void Awake()
         {
@@ -68,17 +78,26 @@ namespace Code.Scripts.Enemy
             fsm = new FiniteStateMachine<EnemyStates>();
 
             Transform trans = transform;
-            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, trans, settings);
-            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", trans, settings);
-            attackState = new AttackState<EnemyStates>(EnemyStates.Attack, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Patrol, 2.0f, 4.0f, rb);
+            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, this, trans, settings.patrolSettings);
+            patrolState.SetDirection(1.0f);
+            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans, settings.alertSettings, groundCheckPoint);
+            attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", attackDelay);
+            attackEndState = new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 1.0f, 2.4f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
-            fsm.AddState(attackState);
+            fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
+
+            fsm.AddTransition(patrolState, alertState, ()=> suspectMeter > settings.alertValue);
+            fsm.AddTransition(alertState, attackStartState, () => suspectMeter >= settings.suspectMeterMaximum && detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) < settings.alertSettings.alertAttackDistance);
+            fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
+            fsm.AddTransition(attackStartState, attackEndState, () => !attackStartState.Active && suspectMeter >= settings.suspectMeterMaximum && detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) < settings.alertSettings.alertAttackDistance);
+            fsm.AddTransition(attackEndState, alertState, () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
+            //fsm.AddTransition(attackEndState, patrolState, () => !attackEndState.Active && detectedPlayer == null);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -91,7 +110,7 @@ namespace Code.Scripts.Enemy
 
             CheckRotation();
             CheckFieldOfView();
-            CheckTransitions();
+            UpdateAnimationState();
         }
 
         private void FixedUpdate()
@@ -99,16 +118,49 @@ namespace Code.Scripts.Enemy
             fsm.FixedUpdate();
         }
 
+        /// <summary>
+        /// Sets the parameter for the animator states
+        /// </summary>
+        private void UpdateAnimationState()
+        {
+            animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
+        }
+        
         private void CheckFieldOfView()
         {
-            if (fov.visibleTargets.Count <= 0) return;
 
-            suspectMeter += suspectUnit *
+            if (fov.visibleTargets.Count <= 0)
+            {
+                suspectMeter -= suspectUnit * Time.deltaTime;
+            }
+            else
+            {
+                detectedPlayer = fov.visibleTargets[0];
+                alertState.SetTarget(detectedPlayer);
+
+                suspectMeter += suspectUnit *
                             Mathf.Clamp(
                                 fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
                                     transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
+                if (suspectMeter < settings.alertValue)
+                {
+                    detectedPlayer = null;
+                    suspectMeterSprite.color = Color.white;
+                }
+            }
+
+            if (suspectMeter >= settings.alertValue)
+            {
+                suspectMeterSprite.color = Color.yellow;
+            }
+            else if(suspectMeter < settings.suspectMeterMaximum)
+            {
+                suspectMeterSprite.color = Color.white;
+            }
+
             suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
+
 
             var normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) /
                                          ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
@@ -117,46 +169,11 @@ namespace Code.Scripts.Enemy
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
         }
 
-        private void CheckTransitions()
-        {
-            if (fsm.GetCurrentState() == damagedState)
-                return;
-
-            if (fsm.GetCurrentState() == attackState && !attackState.Active)
-                fsm.SetCurrentState(patrolState);
-
-            if (fov.visibleTargets.Count > 0)
-            {
-                Transform viewedTarget = fov.visibleTargets[0];
-                if (suspectMeter >= settings.alertValue && fsm.GetCurrentState() != alertState &&
-                    fsm.GetCurrentState() != attackState)
-                {
-                    alertState.SetTarget(viewedTarget);
-                    fsm.SetCurrentState(alertState);
-
-                    suspectMeterSprite.color = Color.yellow;
-                }
-                else if (suspectMeter >= settings.suspectMeterMaximum && fsm.GetCurrentState() == alertState)
-                {
-                    suspectMeterSprite.color = Color.red;
-
-                    if (!(Vector3.Distance(viewedTarget.position, transform.position) < hitDistance)) return;
-
-                    attackState.Enter();
-                    fsm.SetCurrentState(attackState);
-                }
-            }
-            else
-            {
-                fsm.SetCurrentState(patrolState);
-            }
-        }
-
         private void CheckRotation()
         {
             if (fsm.GetCurrentState() == patrolState)
             {
-                switch (patrolState.dir)
+                switch (patrolState.dir.x)
                 {
                     case > 0:
                         {
@@ -176,7 +193,31 @@ namespace Code.Scripts.Enemy
                         }
                 }
             }
-            else if (fsm.GetCurrentState() == attackState)
+            else if (fsm.GetCurrentState() == alertState)
+            {
+                switch (alertState.dir.x)
+                {
+                    case > 0:
+                    {
+                        if (!facingRight)
+                        {
+                            Flip();
+                        }
+
+                        break;
+                    }
+                    case < 0:
+                    {
+                        if (facingRight)
+                        {
+                            Flip();
+                        }
+
+                        break;
+                    }
+                }
+            }
+            else if (fsm.GetCurrentState() == attackEndState)
             {
                 if (fov.visibleTargets.Count > 0)
                 {
@@ -193,14 +234,15 @@ namespace Code.Scripts.Enemy
 
         private void OnTakeDamageHandler(Vector2 origin)
         {
+            if (fsm.GetCurrentState().ID == EnemyStates.AttackEnd)
+                attackEndState.Stop();
+            
             if (origin.x > transform.position.x && !facingRight)
                 Flip();
             else if (origin.x < transform.position.x && facingRight)
                 Flip();
 
-            Vector2 pushDirection = facingRight ? Vector2.left : Vector2.right;
-
-            damagedState.SetDirection(pushDirection);
+            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
 
             if (fsm.GetCurrentState() != damagedState)
                 fsm.SetCurrentState(damagedState);
@@ -212,17 +254,11 @@ namespace Code.Scripts.Enemy
         {
             fsm.SetCurrentState(fsm.GetState(nextId));
         }
-        
+
         private void OnParriedHandler()
         {
+            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
             fsm.SetCurrentState(damagedState);
-            damagedState.SetDirection(facingRight ? -transform.right : transform.right);
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            //Gizmos.DrawRay(groundCheckPoint.position, groundCheckPoint.right * patrolState.dir);
         }
     }
 }

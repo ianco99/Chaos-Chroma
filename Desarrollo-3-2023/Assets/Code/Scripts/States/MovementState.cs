@@ -11,10 +11,10 @@ namespace Code.Scripts.States
     {
         protected readonly Rigidbody2D rb;
         protected readonly Transform transform;
-        private readonly float speed;
+        protected float speed;
         private readonly float accel;
 
-        public float dir;
+        public Vector2 dir;
 
         public MovementState(T id, string name, float speed, float accel, Transform transform, Rigidbody2D rb) : base(id, name)
         {
@@ -28,7 +28,7 @@ namespace Code.Scripts.States
         {
             base.OnUpdate();
 
-            if (Mathf.Approximately(dir, 0))
+            if (Mathf.Approximately(dir.x, 0))
                 Exit();
         }
 
@@ -36,7 +36,9 @@ namespace Code.Scripts.States
         {
             base.OnFixedUpdate();
 
-            MoveInDirection(dir);
+            Vector2 direction = transform.right * dir.x;
+
+            MoveInDirection(direction);
             ClampSpeed();
         }
 
@@ -44,9 +46,9 @@ namespace Code.Scripts.States
         /// Moves current object in given direction
         /// </summary>
         /// <param name="direction"></param>
-        private void MoveInDirection(float direction)
+        private void MoveInDirection(Vector2 direction)
         {
-            rb.AddForce(Vector2.right * (direction * accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
+            rb.AddForce(direction * (accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace Code.Scripts.States
         /// Check if the object is on the floor
         /// </summary>
         /// <returns></returns>
-        protected bool IsGrounded()
+        public bool IsGrounded()
         {
             if (!transform)
                 return false;

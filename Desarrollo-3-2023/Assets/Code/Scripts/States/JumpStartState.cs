@@ -1,5 +1,4 @@
 using Code.Scripts.States;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -35,12 +34,12 @@ namespace Patterns.FSM
             rb.AddForce(force, mode);
         }
 
-        public override void OnUpdate()
+        public override void OnFixedUpdate()
         {
-            if (rb.velocity.y <= 0)
+            if (rb.velocity.y < 0)
                 Exit();
             
-            base.OnUpdate();
+            base.OnFixedUpdate();
         }
     }
 }

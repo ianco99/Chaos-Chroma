@@ -250,6 +250,10 @@ namespace Code.Scripts.Player
             feet.sharedMaterial = movementState.IsGrounded() ? feetMat : bodyMat;
         }
 
+        private void AddTransitions()
+        {
+        }
+
         #region State activations
 
         /// <summary>
@@ -487,5 +491,20 @@ namespace Code.Scripts.Player
         }
 
         #endregion
+
+#if UNITY_EDITOR
+        private void OnGUI()
+        {
+            GUI.backgroundColor = new Color(0.5f, 0.5f, 0.5f, 0.25f);
+
+            float squareSize = 100f;
+            float padding = 10f;
+            Rect squareRect = new Rect(Screen.width - squareSize - padding, padding, squareSize, squareSize);
+
+            GUI.Box(squareRect, "");
+
+            GUI.TextField(squareRect, fsm.GetCurrentState().Name);
+        }
+#endif
     }
 }

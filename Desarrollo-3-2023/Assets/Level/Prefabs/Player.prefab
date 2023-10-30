@@ -430,6 +430,7 @@ MonoBehaviour:
   speed: 300
   acceleration: 2000
   jumpForce: 350
+  gravMultiplier: 2.5
   parryDuration: 0.5
   throwBackForce: 120
   minimumAttackHold: 0.2

@@ -8,13 +8,23 @@ namespace Patterns.FSM
     /// </summary>
     public class JumpEndState<T> : MovementState<T>
     {
-        public JumpEndState(T id, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb) : base(id, name, speed, acceleration, transform, rb)
+        private float gravMultiplier;
+
+        public JumpEndState(T id, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb, float gravMultiplier) : base(id, name, speed, acceleration, transform, rb)
         {
+            this.gravMultiplier = gravMultiplier;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+            rb.gravityScale *= gravMultiplier;
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            rb.gravityScale /= gravMultiplier;
         }
 
         public override void OnUpdate()

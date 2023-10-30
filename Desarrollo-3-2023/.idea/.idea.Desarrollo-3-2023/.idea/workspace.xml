@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="" />
+    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi Attack Ready-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi Attack Ready-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi Idle-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi Idle-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi Running-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi Running-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi White Border-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Character/Lachi White Border-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/LachiRunDefinitivo227-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Character/LachiRunDefinitivo227-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Character/LachiUsable.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Character/LachiUsable.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Tiles/TilesLachi (1).png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Tiles/TilesLachi (1).png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,19 +73,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.94426227",
     "git-widget-placeholder": "master-merge",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Administrator\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\Administrator\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\Aula 2\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Aula 2\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\Aula 2\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -83,7 +100,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Da Archive\Unity\2022.2.9f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.2.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -91,7 +108,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Da Archive\Unity\2022.2.9f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.2.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -108,10 +125,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="14056">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="14056" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -156,6 +173,7 @@
       <workItem from="1697985206983" duration="7332000" />
       <workItem from="1698341679212" duration="1247000" />
       <workItem from="1698342973963" duration="6448000" />
+      <workItem from="1698669442986" duration="5516000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -250,6 +268,69 @@
     <MESSAGE value="Fixed jump landing" />
     <MESSAGE value="Fixed enemy damaged exception" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixed enemy damaged exception" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs</url>
+          <line>27</line>
+          <properties documentPath="C:\Users\Aula 2\Downloads\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\States\JumpStartState.cs" initialLine="27" containingFunctionPresentation="Method 'OnEnter'">
+            <startOffsets>
+              <option value="786" />
+            </startOffsets>
+            <endOffsets>
+              <option value="873" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs</url>
+          <line>39</line>
+          <properties documentPath="C:\Users\Aula 2\Downloads\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\States\JumpStartState.cs" initialLine="39" containingFunctionPresentation="Method 'OnFixedUpdate'">
+            <startOffsets>
+              <option value="1171" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1178" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs</url>
+          <line>20</line>
+          <properties documentPath="C:\Users\Aula 2\Downloads\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\States\JumpEndState.cs" initialLine="20" containingFunctionPresentation="Method 'OnEnter'">
+            <startOffsets>
+              <option value="593" />
+            </startOffsets>
+            <endOffsets>
+              <option value="627" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs</url>
+          <line>314</line>
+          <properties documentPath="C:\Users\Aula 2\Downloads\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\Player\PlayerController.cs" initialLine="314" containingFunctionPresentation="Method 'CheckJumpStart'">
+            <startOffsets>
+              <option value="10312" />
+            </startOffsets>
+            <endOffsets>
+              <option value="10335" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="rb.velocity.y" language="C#" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

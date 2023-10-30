@@ -31,6 +31,7 @@ namespace Code.Scripts.Player
         [SerializeField] private float speed = 5f;
         [SerializeField] private float acceleration = 5f;
         [SerializeField] private float jumpForce = 5f;
+        [SerializeField] private float gravMultiplier = 10f;
         [SerializeField] private float parryDuration = 1f;
         [SerializeField] private float throwBackForce = 5f;
         [SerializeField] private float minimumAttackHold = .5f;
@@ -74,7 +75,7 @@ namespace Code.Scripts.Player
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", speed,
                 acceleration, trans, rb, jumpForce);
             jumpEndState =
-                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb);
+                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb, gravMultiplier);
             damagedState =
                 new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f,
                     throwBackForce, rb);
@@ -377,10 +378,10 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
             else if (godState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
-            else if (!movementState.Active)
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
+            else if (!movementState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (attackStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.AttackStart));
             else if (parryState.Active)

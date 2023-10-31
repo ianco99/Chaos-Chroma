@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0320181188d7374d964130f7e5496b1, type: 3}
   m_Name: EnemyAlertSettingsSO
   m_EditorClassIdentifier: 
-  alertSpeed: 80
-  alertAcceleration: 80
+  alertSpeed: 160
+  alertAcceleration: 160
   alertAttackDistance: 0.4
   groundCheckDistance: 0.4
   groundLayer:

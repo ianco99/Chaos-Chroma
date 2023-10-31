@@ -174,12 +174,10 @@ namespace Code.Scripts.Player
                     break;
 
                 case PlayerStates.Block:
-                    blockCapsule.SetActive(true);
                     BlockTransitions();
                     break;
 
                 case PlayerStates.Parry:
-                    parryCapsule.SetActive(true);
                     ParryTransitions();
                     break;
 

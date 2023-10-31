@@ -17,12 +17,13 @@ namespace Code.Scripts.Attack
         [SerializeField] private SpriteRenderer sprite;
         [SerializeField] private Transform attacker;
         [SerializeField] private SpriteRenderer characterOutline;
-        
+        [SerializeField] private Color objectiveColor;
+                
         public event Action OnParried;
         
         private readonly List<Damageable> hitObjects = new();
         private bool started;
-        private float colorChangeSpeed;
+        private float t;
 
         private void OnEnable()
         {
@@ -34,9 +35,8 @@ namespace Code.Scripts.Attack
             if (characterOutline)
                 characterOutline.color = Color.white;
             
-            colorChangeSpeed = 1f / hitDelay;
-            
             StartCoroutine(BeginAttackOnTime());
+            t = 0;
         }
 
         private void OnDisable()
@@ -107,10 +107,11 @@ namespace Code.Scripts.Attack
         /// </summary>
         private void UpdateCharacterOutlineColor()
         {
+            t += Time.deltaTime / hitDelay;
+            
             Color color = characterOutline.color;
             
-            color.g -= colorChangeSpeed * Time.deltaTime;
-            color.b -= colorChangeSpeed * Time.deltaTime;
+            color = Vector4.Lerp(Color.white, objectiveColor, t);
             
             characterOutline.color = color;
         }

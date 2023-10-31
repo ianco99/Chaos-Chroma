@@ -5856,10 +5856,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7524873492836403469, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 8024958223382410903, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -6221,10 +6217,9 @@ Transform:
   m_LocalPosition: {x: 0.40791127, y: -0.4562548, z: 0.04854036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1115049250}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &573203740
 GameObject:
@@ -6871,7 +6866,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003650598
 GameObject:
@@ -6884,6 +6879,7 @@ GameObject:
   - component: {fileID: 1003650599}
   - component: {fileID: 1003650601}
   - component: {fileID: 1003650600}
+  m_Layer: 0
   m_Name: Box4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6941,7 +6937,6 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-  m_Layer: 10
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -7763,8 +7758,8 @@ RectTransform:
   m_LocalScale: {x: 0.0066330517, y: 0.0066330517, z: 0.0066330517}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1115049250}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7936,7 +7931,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1441130923
 GameObject:
@@ -7950,6 +7945,7 @@ GameObject:
   - component: {fileID: 1441130927}
   - component: {fileID: 1441130926}
   - component: {fileID: 1441130925}
+  m_Layer: 0
   m_Name: Platform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8004,7 +8000,6 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
-  m_Layer: 10
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
@@ -8300,7 +8295,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1643469480
 PrefabInstance:

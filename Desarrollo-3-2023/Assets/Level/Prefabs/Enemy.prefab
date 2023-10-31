@@ -678,7 +678,7 @@ MonoBehaviour:
   sprite: {fileID: 5710982413378953928}
   attacker: {fileID: 4819109336555100032}
   characterOutline: {fileID: 8320540901993013661}
-  objectiveColor: {r: 0, g: 0, b: 0, a: 0}
+  objectiveColor: {r: 0.6627451, g: 0.1882353, b: 0.7294118, a: 1}
 --- !u!1 &8256870262022320000
 GameObject:
   m_ObjectHideFlags: 0

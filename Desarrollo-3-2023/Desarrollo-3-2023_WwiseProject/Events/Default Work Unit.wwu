@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C5084C62-8D82-4FF2-9D65-2D0CC555CDFD}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{C5084C62-8D82-4FF2-9D65-2D0CC555CDFD}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Music" ID="{75FF5712-B0A7-42D2-8217-55568A429F05}" ShortID="1035189129">
+					<ChildrenList>
+						<Event Name="Play_Music_Combate" ID="{8395B850-320B-4723-8E20-69C239F530A4}">
+							<ChildrenList>
+								<Action Name="" ID="{CAEC8E15-A0BA-47DF-9A83-0FF4F39E9814}" ShortID="678724308">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Music_Combate" ID="{0B192565-1C0A-4D2E-8E25-C1AD92DFB514}" WorkUnitID="{278C39D0-5D9E-4312-BDF3-4CC47CE1980F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

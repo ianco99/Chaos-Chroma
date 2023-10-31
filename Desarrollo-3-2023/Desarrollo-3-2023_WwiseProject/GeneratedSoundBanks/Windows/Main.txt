@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	317149247	Play_Music_Combate			\Default Work Unit\Music\Play_Music_Combate	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	260789924	BATTLE ESCENE	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\BATTLE ESCENE_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_Combate\BATTLE ESCENE\BATTLE ESCENE		8210684
+

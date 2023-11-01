@@ -1,15 +1,18 @@
 using Code.Scripts.Abstracts;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+namespace Code.Scripts.Menus
 {
-    public void StartGame()
+    public class MainMenu : MonoBehaviour
     {
-        GameManager.StartGame();
-    }
+        public void StartGame()
+        {
+            GameManager.StartGame();
+        }
     
-    public void Exit()
-    {
-        GameManager.Exit();
+        public void Exit()
+        {
+            GameManager.Exit();
+        }
     }
 }

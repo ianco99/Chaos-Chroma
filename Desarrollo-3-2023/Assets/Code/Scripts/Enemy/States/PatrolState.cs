@@ -38,10 +38,14 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if(!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up,
+                settings.groundCheckDistance, LayerMask.GetMask("Static"));
+            
+            if(hit)
             {
                 FlipDirection();
             }
+            Debug.DrawLine(groundCheckPoint.position, groundCheckPoint.position + groundCheckPoint.right * settings.groundCheckDistance, Color.red);
         }
 
         private void CheckWall()
@@ -50,7 +54,7 @@ namespace Patterns.FSM
                 return;
 
             RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Static"));
-
+            
             if (hit && hit.transform.name != patroller.name)
             {
                 FlipDirection();

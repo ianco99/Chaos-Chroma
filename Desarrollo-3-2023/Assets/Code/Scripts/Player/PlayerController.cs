@@ -324,7 +324,7 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckJumpEnd()
         {
-            if (rb.velocity.y < 0)
+            if (rb.velocity.y < -0.5f)
                 jumpEndState.Enter();
         }
 
@@ -371,6 +371,8 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
             else if (jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
+            else if (jumpEndState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
         }
 
         /// <summary>
@@ -390,6 +392,8 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.AttackStart));
             else if (parryState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
+            else if (jumpEndState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
         }
 
         /// <summary>

@@ -573,6 +573,9 @@ MonoBehaviour:
   - prefab: {fileID: 2603062281788332554, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
     odds: 1
     typeId: 0
+  - prefab: {fileID: 2603062281788332554, guid: e25f3c0991a1b8b40a503b475674ebd8, type: 3}
+    odds: 1
+    typeId: 1
   repeatSpawn: 0
   keepSpawning: 1
   interval: 0
@@ -7257,7 +7260,19 @@ MonoBehaviour:
   publisher: {fileID: 11400000, guid: 65dfafa8df9f30a42a4087477f7cb20a, type: 2}
   action:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 971353593}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!95 &971353593
 Animator:
   serializedVersion: 5
@@ -7266,7 +7281,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971353588}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 543fdaa5358ae5c4d985dc2b0bb857cd, type: 2}
   m_CullingMode: 0

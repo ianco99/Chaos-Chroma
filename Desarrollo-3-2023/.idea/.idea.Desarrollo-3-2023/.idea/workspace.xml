@@ -6,9 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Adjusted tutorial scene map and character size">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/chaos_chroma.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/chaos_chroma.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/defying_the_system.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/defying_the_system.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/exit.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/exit.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/image.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/start.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/UI/MainMenu/start.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +36,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Camera/Target.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Events/WinTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Menus/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Menus/WinLoseScreen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Factory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -39,7 +46,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/GodState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Aula 2/Downloads/Chaos-Chroma/Desarrollo-3-2023/Assets/Code/Scripts/States/JumpEndState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/ParryState.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -159,7 +165,7 @@
       <workItem from="1698341679212" duration="1247000" />
       <workItem from="1698342973963" duration="6448000" />
       <workItem from="1698669442986" duration="6333000" />
-      <workItem from="1698793323973" duration="2408000" />
+      <workItem from="1698793323973" duration="3273000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />

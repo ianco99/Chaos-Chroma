@@ -18,7 +18,7 @@ namespace Patterns.FSM
 
         public event Action<Vector2> OnTakeDamage;
         public event Action<Vector2> OnBlock;
-        public event Action OnDeath;
+        public kuznickiEventChannel.VoidEventChannel OnDeath;
 
 
         private void Awake()
@@ -62,7 +62,7 @@ namespace Patterns.FSM
         /// </summary>
         private void Die()
         {
-            OnDeath?.Invoke();
+            OnDeath?.RaiseEvent();
             
             if (!gameObject.CompareTag("Player"))
                 Destroy(gameObject);

@@ -83,7 +83,7 @@ namespace Code.Scripts.Enemy
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans, settings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", attackDelay);
             attackEndState = new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 1.0f, 2.4f, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 2.0f, 4.4f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -93,7 +93,7 @@ namespace Code.Scripts.Enemy
             fsm.AddState(damagedState);
 
             fsm.AddTransition(patrolState, alertState, ()=> suspectMeter > settings.alertValue);
-            fsm.AddTransition(alertState, attackStartState, () => suspectMeter >= settings.suspectMeterMaximum && detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) < settings.alertSettings.alertAttackDistance);
+            fsm.AddTransition(alertState, attackStartState, () => detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) < settings.alertSettings.alertAttackDistance);
             fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
             fsm.AddTransition(attackStartState, attackEndState, () => !attackStartState.Active && suspectMeter >= settings.suspectMeterMaximum && detectedPlayer != null);
             fsm.AddTransition(attackEndState, alertState, () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);

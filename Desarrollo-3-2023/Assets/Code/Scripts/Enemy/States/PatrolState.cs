@@ -37,11 +37,10 @@ namespace Patterns.FSM
         {
             if (!IsGrounded())
                 return;
-
             RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up,
                 settings.groundCheckDistance, LayerMask.GetMask("Static"));
             
-            if(hit)
+            if(!hit)
             {
                 FlipDirection();
             }

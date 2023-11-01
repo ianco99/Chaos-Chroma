@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolSpeed: 100
   patrolAcceleration: 100
-  groundCheckDistance: 1
+  groundCheckDistance: 1.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 1025

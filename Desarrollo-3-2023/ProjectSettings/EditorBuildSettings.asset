@@ -11,8 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scene/Tutorial.unity
     guid: 6d6469eb49125f840a641079f0a4510e
-  - enabled: 0
-    path: Assets/Level/Scene/Level 1.unity
+  - enabled: 1
+    path: Assets/Level/Scene/Level1.unity
     guid: 11c758318d493b444b7856c3aa8bdd3e
   - enabled: 1
     path: Assets/Level/Scene/WinLoseScreen.unity

@@ -19,6 +19,11 @@ namespace Code.Scripts.Abstracts
             SceneManager.LoadScene("WinLoseScreen");
         }
 
+        public static void LoadLevel1()
+        {
+            SceneManager.LoadScene("Level1");
+        }
+
         public static void Lose()
         {
             Instance.won = false;

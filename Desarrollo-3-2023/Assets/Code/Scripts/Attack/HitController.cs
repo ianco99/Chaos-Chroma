@@ -53,8 +53,8 @@ namespace Code.Scripts.Attack
             if (!started) return;
 
             Transform trans = transform;
-
-            Collider2D[] hits = Physics2D.OverlapBoxAll(trans.position, trans.localScale, trans.rotation.z);
+            Vector2 colliderSize = trans.GetComponent<BoxCollider2D>().size;
+            Collider2D[] hits = Physics2D.OverlapBoxAll(trans.position, colliderSize * trans.localScale, trans.rotation.z);
 
             foreach (Collider2D hit in hits)
             {

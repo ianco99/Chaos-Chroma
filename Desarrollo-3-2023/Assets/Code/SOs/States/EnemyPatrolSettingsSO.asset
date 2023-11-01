@@ -17,8 +17,8 @@ MonoBehaviour:
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1025
   wallLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1025
   wallCheckDistance: 0.6

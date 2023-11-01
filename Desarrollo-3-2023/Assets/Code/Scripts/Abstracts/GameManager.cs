@@ -1,3 +1,4 @@
+using UnityEngine.Device;
 using UnityEngine.SceneManagement;
 
 namespace Code.Scripts.Abstracts
@@ -26,12 +27,17 @@ namespace Code.Scripts.Abstracts
 
         public static void StartGame()
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Tutorial");
         }
 
         public static void ReturnToMenu()
         {
             SceneManager.LoadScene("Menu");
+        }
+
+        public static void Exit()
+        {
+            Application.Quit();
         }
     }
 }

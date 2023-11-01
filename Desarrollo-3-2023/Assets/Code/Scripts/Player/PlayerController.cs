@@ -31,6 +31,7 @@ namespace Code.Scripts.Player
         [SerializeField] private float speed = 5f;
         [SerializeField] private float acceleration = 5f;
         [SerializeField] private float jumpForce = 5f;
+        [SerializeField] private float gravMultiplier = 10f;
         [SerializeField] private float parryDuration = 1f;
         [SerializeField] private float throwBackForce = 5f;
         [SerializeField] private float minimumAttackHold = .5f;
@@ -58,6 +59,7 @@ namespace Code.Scripts.Player
 
         private FiniteStateMachine<PlayerStates> fsm;
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
+        private static readonly int Grounded = Animator.StringToHash("Grounded");
 
         private void Awake()
         {
@@ -74,7 +76,7 @@ namespace Code.Scripts.Player
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", speed,
                 acceleration, trans, rb, jumpForce);
             jumpEndState =
-                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb);
+                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb, gravMultiplier);
             damagedState =
                 new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f,
                     throwBackForce, rb);
@@ -173,12 +175,10 @@ namespace Code.Scripts.Player
                     break;
 
                 case PlayerStates.Block:
-                    blockCapsule.SetActive(true);
                     BlockTransitions();
                     break;
 
                 case PlayerStates.Parry:
-                    parryCapsule.SetActive(true);
                     ParryTransitions();
                     break;
 
@@ -239,6 +239,7 @@ namespace Code.Scripts.Player
         private void UpdateAnimationState()
         {
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
+            animator.SetBool(Grounded, movementState.IsGrounded());
         }
 
         /// <summary>
@@ -247,6 +248,10 @@ namespace Code.Scripts.Player
         private void UpdateMaterial()
         {
             feet.sharedMaterial = movementState.IsGrounded() ? feetMat : bodyMat;
+        }
+
+        private void AddTransitions()
+        {
         }
 
         #region State activations
@@ -319,7 +324,7 @@ namespace Code.Scripts.Player
         /// </summary>
         private void CheckJumpEnd()
         {
-            if (rb.velocity.y < 0)
+            if (rb.velocity.y < -0.5f)
                 jumpEndState.Enter();
         }
 
@@ -366,6 +371,8 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
             else if (jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
+            else if (jumpEndState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
         }
 
         /// <summary>
@@ -377,14 +384,16 @@ namespace Code.Scripts.Player
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Damaged));
             else if (godState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.GodMode));
-            else if (!movementState.Active)
-                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (jumpStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpStart));
+            else if (!movementState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.Idle));
             else if (attackStartState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.AttackStart));
             else if (parryState.Active)
                 fsm.SetCurrentState(fsm.GetState(PlayerStates.Parry));
+            else if (jumpEndState.Active)
+                fsm.SetCurrentState(fsm.GetState(PlayerStates.JumpEnd));
         }
 
         /// <summary>
@@ -486,5 +495,20 @@ namespace Code.Scripts.Player
         }
 
         #endregion
+
+#if UNITY_EDITOR
+        private void OnGUI()
+        {
+            GUI.backgroundColor = new Color(0.5f, 0.5f, 0.5f, 0.25f);
+
+            float squareSize = 100f;
+            float padding = 10f;
+            Rect squareRect = new Rect(Screen.width - squareSize - padding, padding, squareSize, squareSize);
+
+            GUI.Box(squareRect, "");
+
+            GUI.TextField(squareRect, fsm.GetCurrentState().Name);
+        }
+#endif
     }
 }

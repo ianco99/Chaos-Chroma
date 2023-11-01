@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28141a1c1ad9ca2459cf4700e30be4c3, type: 3}
   m_Name: EnemyPatrolSettingsSO
   m_EditorClassIdentifier: 
-  patrolSpeed: 50
-  patrolAcceleration: 50
-  groundCheckDistance: 0.4
+  patrolSpeed: 100
+  patrolAcceleration: 100
+  groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
   wallLayer:
     serializedVersion: 2
     m_Bits: 1
-  wallCheckDistance: 0.13
+  wallCheckDistance: 0.6

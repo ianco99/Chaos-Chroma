@@ -12,7 +12,7 @@ namespace Patterns.FSM
         public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb, float jumpForce) : base(id, name, speed, acceleration, transform, rb)
         {
             this.jumpForce = jumpForce;
-            this.behaviourClass = coroutineContainer;
+            behaviourClass = coroutineContainer;
         }
 
         public override void OnEnter()
@@ -26,6 +26,10 @@ namespace Patterns.FSM
             base.OnEnter();
 
             behaviourClass.StartCoroutine(AddForce(transform.up * jumpForce, ForceMode2D.Impulse));
+        }
+
+        public override void OnUpdate()
+        {
         }
 
         private IEnumerator AddForce(Vector3 force, ForceMode2D mode)

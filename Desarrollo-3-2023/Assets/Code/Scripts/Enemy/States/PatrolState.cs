@@ -45,7 +45,6 @@ namespace Patterns.FSM
             {
                 FlipDirection();
             }
-            Debug.DrawLine(groundCheckPoint.position, groundCheckPoint.position + groundCheckPoint.right * settings.groundCheckDistance, Color.red);
         }
 
         private void CheckWall()

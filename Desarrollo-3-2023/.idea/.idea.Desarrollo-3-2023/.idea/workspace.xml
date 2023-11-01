@@ -6,22 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Adjusted tutorial scene map and character size">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Character/LachiJumpStart.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Character/LachiJumpStart.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/click.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/click.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/right click.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/right click.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/spacebar.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/spacebar.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_attack.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_attack.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_jump.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_jump.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_move.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_move.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_parry.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/to_parry.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/wasd.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/wasd.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyAlertSettingsSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyAlertSettingsSO.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PatrolState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PatrolState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +161,7 @@
       <workItem from="1698341679212" duration="1247000" />
       <workItem from="1698342973963" duration="6448000" />
       <workItem from="1698669442986" duration="6333000" />
-      <workItem from="1698793323973" duration="5886000" />
+      <workItem from="1698793323973" duration="6886000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -280,16 +267,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Adjusted tutorial scene map and character size" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs</url>
-          <line>43</line>
-          <properties documentPath="C:\Users\Aula 2\Downloads\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\States\JumpStartState.cs" initialLine="39" containingFunctionPresentation="Method 'OnFixedUpdate'" />
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
         <watch expression="rb.velocity.y" language="C#" />

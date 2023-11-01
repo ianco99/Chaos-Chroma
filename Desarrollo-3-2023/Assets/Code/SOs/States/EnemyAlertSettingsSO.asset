@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertSpeed: 160
   alertAcceleration: 160
-  alertAttackDistance: 1
+  alertAttackDistance: 1.5
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2

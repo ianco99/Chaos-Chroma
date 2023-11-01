@@ -26,7 +26,7 @@ namespace Code.Scripts.Abstracts
 
         public static void StartGame()
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Tutorial");
         }
 
         public static void ReturnToMenu()

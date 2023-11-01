@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Adjusted tutorial scene map and character size">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Character/LachiAnimController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Character/LachiAnimController.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
-    </list>
+    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Adjusted tutorial scene map and character size" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,7 +154,7 @@
       <workItem from="1698341679212" duration="1247000" />
       <workItem from="1698342973963" duration="6448000" />
       <workItem from="1698669442986" duration="6333000" />
-      <workItem from="1698793323973" duration="665000" />
+      <workItem from="1698793323973" duration="1448000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -270,15 +264,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs</url>
-          <line>39</line>
+          <line>43</line>
           <properties documentPath="C:\Users\Aula 2\Downloads\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\States\JumpStartState.cs" initialLine="39" containingFunctionPresentation="Method 'OnFixedUpdate'" />
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpStartState.cs</url>
-          <line>21</line>
-          <properties documentPath="C:\Users\Aula 2\Downloads\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\States\JumpStartState.cs" initialLine="21" containingFunctionPresentation="Method 'OnEnter'" />
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

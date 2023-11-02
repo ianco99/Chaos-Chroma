@@ -573,7 +573,7 @@ MonoBehaviour:
   - prefab: {fileID: 2603062281788332554, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
     odds: 1
     typeId: 0
-  - prefab: {fileID: 2603062281788332554, guid: e25f3c0991a1b8b40a503b475674ebd8, type: 3}
+  - prefab: {fileID: 7953979280124003817, guid: 3575aa0aaeb556c49a3ffd4eb38f2286, type: 3}
     odds: 1
     typeId: 1
   repeatSpawn: 0

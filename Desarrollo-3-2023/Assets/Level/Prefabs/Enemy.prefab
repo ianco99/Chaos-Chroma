@@ -130,7 +130,7 @@ MonoBehaviour:
   startLife: 100
   lifeBar: {fileID: 4309287068212518327}
   parry: 0
-  OnDeath: {fileID: 11400000, guid: 65dfafa8df9f30a42a4087477f7cb20a, type: 2}
+  OnDeath: {fileID: 0}
 --- !u!61 &836443845740120934
 BoxCollider2D:
   m_ObjectHideFlags: 0

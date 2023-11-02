@@ -19,7 +19,7 @@ public class Subscriber : MonoBehaviour
             Debug.LogWarning("Warning: publisher not set in " + gameObject.name);
     }
 
-    [ContextMenu("MeOdio")]
+    [ContextMenu("ActivateAction")]
     private void DoAction()
     {
         action.Invoke();

@@ -231,7 +231,7 @@ MonoBehaviour:
   target: {fileID: 1744181166}
   offset: {x: 0, y: 1.4, z: -10}
   speed: 10
-  minHeight: -4
+  minHeight: -3
 --- !u!1 &54264368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6036,14 +6036,6 @@ PrefabInstance:
     - target: {fileID: 6862336575500731703, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8024958223382410903, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8024958223382410903, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

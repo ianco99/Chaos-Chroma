@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Adjusted tutorial scene map and character size">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Enemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
-    </list>
+    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Fixed door animation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +18,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d18341e808be4529a1a4512a7e51ab3d940a00/05/51685a67/Editor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Chaos-Chroma/Desarrollo-3-2023/Assets/Art/Textures/Level/Door animation-Sheet.png.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -41,6 +38,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/ParryState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Chaos-Chroma/Desarrollo-3-2023/Assets/Level/Prefabs/Enemy.prefab" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -160,7 +158,7 @@
       <workItem from="1698342973963" duration="6448000" />
       <workItem from="1698669442986" duration="6333000" />
       <workItem from="1698793323973" duration="6886000" />
-      <workItem from="1699019578893" duration="470000" />
+      <workItem from="1699019578893" duration="1173000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -242,7 +240,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698680349716</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Lower enemy life">
+      <option name="closed" value="true" />
+      <created>1699020142987</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699020142987</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed door animation">
+      <option name="closed" value="true" />
+      <created>1699022283573</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1699022283573</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +277,9 @@
     <MESSAGE value="Fixed jump landing" />
     <MESSAGE value="Fixed enemy damaged exception" />
     <MESSAGE value="Adjusted tutorial scene map and character size" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted tutorial scene map and character size" />
+    <MESSAGE value="Lower enemy life" />
+    <MESSAGE value="Fixed door animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed door animation" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

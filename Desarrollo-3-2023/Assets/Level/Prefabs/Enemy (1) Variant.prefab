@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: OnDeath
       value: 
       objectReference: {fileID: 11400000, guid: 65dfafa8df9f30a42a4087477f7cb20a, type: 2}
+    - target: {fileID: 3832601685886080571, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
+      propertyPath: startLife
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4819109336555100032, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -71,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 5124803523033914431, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977679872040531055, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
+      propertyPath: damage
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8470148947405600390, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: m_Sprite

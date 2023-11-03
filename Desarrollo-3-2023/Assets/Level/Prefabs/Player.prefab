@@ -340,7 +340,7 @@ Transform:
   - {fileID: 1415809846651763914}
   - {fileID: 8138434858430252606}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -441,6 +441,8 @@ MonoBehaviour:
   feet: {fileID: 2049524397439752245}
   feetMat: {fileID: 6200000, guid: 1b9ba9afeda3fe44580854d088b877c3, type: 2}
   bodyMat: {fileID: 6200000, guid: 16b07130e0c2b1741b4b968a4138ccd6, type: 2}
+  outline: {fileID: 8685973854917079561}
+  hitOutlineColor: {r: 0.1882353, g: 0.6156863, b: 0.7294118, a: 1}
   animator: {fileID: 4310963439013856538}
 --- !u!114 &2205056402196420099
 MonoBehaviour:
@@ -457,6 +459,7 @@ MonoBehaviour:
   startLife: 100
   lifeBar: {fileID: 3221651407555567147}
   parry: 0
+  OnDeath: {fileID: 0}
 --- !u!58 &2049524397439752245
 CircleCollider2D:
   m_ObjectHideFlags: 0

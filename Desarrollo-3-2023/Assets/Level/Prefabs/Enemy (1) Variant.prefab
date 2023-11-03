@@ -76,6 +76,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6145023305814156655, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
+      propertyPath: attackDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145023305814156655, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
+      propertyPath: damagedTime
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7977679872040531055, guid: 1060157c5bde25e4fb11b4856f7d144e, type: 3}
       propertyPath: damage
       value: 20

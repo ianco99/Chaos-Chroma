@@ -108,10 +108,8 @@ namespace Code.Scripts.Attack
         private void UpdateCharacterOutlineColor()
         {
             t += Time.deltaTime / hitDelay;
-            
-            Color color = characterOutline.color;
-            
-            color = Vector4.Lerp(Color.white, objectiveColor, t);
+
+            Color color = Vector4.Lerp(Color.white, objectiveColor, t);
             
             characterOutline.color = color;
         }

@@ -110,10 +110,13 @@ MonoBehaviour:
   suspectMeterSprite: {fileID: 1401541041181370207}
   groundCheckPoint: {fileID: 2552753043060546954}
   damageable: {fileID: 3832601685886080571}
+  outline: {fileID: 8320540901993013661}
+  hitOutlineColor: {r: 0.6627451, g: 0.1882353, b: 0.7294118, a: 1}
   suspectMeter: 0
   suspectUnit: 30
   hitDistance: 0.5
-  attackDelay: 0.2
+  attackDelay: 0.45
+  damagedTime: 2
   animator: {fileID: 2065283345791218431}
 --- !u!114 &3832601685886080571
 MonoBehaviour:
@@ -621,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.23
+  hitDelay: 0
   hitDuration: 0.5
   sprite: {fileID: 0}
   attacker: {fileID: 4819109336555100032}

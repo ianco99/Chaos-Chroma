@@ -42,7 +42,9 @@ namespace Code.Scripts.Player
         [SerializeField] private Collider2D feet;
         [SerializeField] private PhysicsMaterial2D feetMat;
         [SerializeField] private PhysicsMaterial2D bodyMat;
-
+        [SerializeField] private SpriteRenderer outline;
+        [SerializeField] private Color hitOutlineColor;
+        
         [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
@@ -69,7 +71,7 @@ namespace Code.Scripts.Player
                 new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, acceleration, trans, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackStartState =
-                new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", minimumAttackHold);
+                new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", minimumAttackHold, outline, hitOutlineColor);
             attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);

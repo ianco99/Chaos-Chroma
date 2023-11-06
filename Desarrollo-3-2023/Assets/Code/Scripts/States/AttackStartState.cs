@@ -43,6 +43,13 @@ namespace Patterns.FSM
             if (released && timeOnHold >= minTimeOnHold)
                 Exit();
         }
+        
+        public override void OnExit()
+        {
+            base.OnExit();
+            
+            characterOutline.color = Color.clear;
+        }
 
         /// <summary>
         /// Stop holding attack and exit state

@@ -26,12 +26,6 @@ namespace Patterns.FSM
             ResetState();
         }
 
-        public override void OnUpdate()
-        {
-            base.OnUpdate();
-
-        }
-
         public void SetDirection(Vector2 newDirection)
         {
             pushDirection = newDirection;

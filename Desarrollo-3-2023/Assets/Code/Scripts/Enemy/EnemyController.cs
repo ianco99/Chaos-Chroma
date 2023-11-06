@@ -46,6 +46,7 @@ namespace Code.Scripts.Enemy
 
         private Transform detectedPlayer;
         private bool turnedAggro;
+        private bool blocking;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
@@ -53,6 +54,7 @@ namespace Code.Scripts.Enemy
         private AttackStartState<EnemyStates> attackStartState;
         private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
+        private BlockState<EnemyStates> blockState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
@@ -106,10 +108,11 @@ namespace Code.Scripts.Enemy
                     settings.alertSettings.alertAttackDistance);
             fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
             fsm.AddTransition(attackStartState, attackEndState,
-                () => !attackStartState.Active && suspectMeter >= settings.suspectMeterMaximum &&
-                      detectedPlayer != null);
+                () => !attackStartState.Active && detectedPlayer != null);
             fsm.AddTransition(attackEndState, alertState,
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
+            fsm.AddTransition(damagedState, blockState, () => blocking);
+            fsm.AddTransition(blockState, alertState, () => !blocking);
             //fsm.AddTransition(attackEndState, patrolState, () => !attackEndState.Active && detectedPlayer == null);
 
             fsm.SetCurrentState(fsm.GetState(startingState));

@@ -340,7 +340,7 @@ Transform:
   - {fileID: 1415809846651763914}
   - {fileID: 8138434858430252606}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -355,7 +355,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 65
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -429,14 +429,12 @@ MonoBehaviour:
   startState: 0
   speed: 300
   acceleration: 2000
-  jumpForce: 420
-  gravMultiplier: 3
+  jumpForce: 750
+  gravMultiplier: 5
   parryDuration: 0.5
   throwBackForce: 120
   minimumAttackHold: 0.2
   hit: {fileID: 1395205784924420985}
-  parryCapsule: {fileID: 6399263026032754680}
-  blockCapsule: {fileID: 1102174282694968004}
   damageable: {fileID: 2205056402196420099}
   feet: {fileID: 2049524397439752245}
   feetMat: {fileID: 6200000, guid: 1b9ba9afeda3fe44580854d088b877c3, type: 2}
@@ -457,7 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 100
-  lifeBar: {fileID: 3221651407555567147}
+  lifeBar: {fileID: 0}
   parry: 0
   OnDeath: {fileID: 0}
 --- !u!58 &2049524397439752245
@@ -713,6 +711,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3760164075710270771, guid: c081836c1e4acc54985dcd5591bf1b02, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4459832129265988843, guid: c081836c1e4acc54985dcd5591bf1b02, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -799,24 +801,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7059690708237504158, guid: c081836c1e4acc54985dcd5591bf1b02, type: 3}
       propertyPath: m_Name
-      value: LifeBar
+      value: PlayerCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7034794354566573310, guid: c081836c1e4acc54985dcd5591bf1b02, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c081836c1e4acc54985dcd5591bf1b02, type: 3}
---- !u!114 &3221651407555567147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7034794354566573310, guid: c081836c1e4acc54985dcd5591bf1b02, type: 3}
-  m_PrefabInstance: {fileID: 5554353220125569749}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8138434858430252606 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4459832129265988843, guid: c081836c1e4acc54985dcd5591bf1b02, type: 3}

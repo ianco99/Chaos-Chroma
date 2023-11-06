@@ -59,7 +59,7 @@ namespace Code.Scripts.Player
 
         private FiniteStateMachine<PlayerStates> fsm;
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
-        private static readonly int Grounded = Animator.StringToHash("Grounded");
+        private static readonly int Grounded = Animator.StringToHash("OnGround");
 
         private void Awake()
         {

@@ -28,6 +28,10 @@ namespace Patterns.FSM
             behaviourClass.StartCoroutine(AddForce(transform.up * jumpForce, ForceMode2D.Impulse));
         }
 
+        public override void OnUpdate()
+        {
+        }
+
         private IEnumerator AddForce(Vector3 force, ForceMode2D mode)
         {
             yield return new WaitForFixedUpdate();

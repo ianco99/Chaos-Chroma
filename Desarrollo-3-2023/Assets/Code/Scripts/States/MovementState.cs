@@ -70,7 +70,7 @@ namespace Code.Scripts.States
 
             Vector3 pos = transform.position + Vector3.down * 1f;
             Vector3 scale = transform.localScale;
-            RaycastHit2D hit = Physics2D.Raycast(pos , Vector2.down, .02f * scale.y, ~(1 << 6 | 1 << 7 | 1 << 8 | 1 << 9));
+            RaycastHit2D hit = Physics2D.Raycast(pos , Vector2.down, .05f * scale.y, ~(1 << 6 | 1 << 7 | 1 << 8 | 1 << 9));
             
             Debug.DrawLine(pos, pos + Vector3.down * .02f, Color.red);
             

@@ -31,8 +31,6 @@ namespace Patterns.FSM
         {
             if (IsGrounded())
                 Exit();
-            
-            base.OnUpdate();
         }
     }
 }

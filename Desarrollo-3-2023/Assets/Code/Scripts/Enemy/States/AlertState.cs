@@ -67,18 +67,18 @@ namespace Patterns.FSM
 
             if(alertTarget)
             {
-                if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Default")))
-                {
-                    base.speed = 0;
-                }
-                else
-                {
-                    base.speed = settings.alertSpeed;
-                }
+                //if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
+                //{
+                //    base.speed = 0;
+                //}
+                //else
+                //{
+                //    base.speed = settings.alertSpeed;
+                //}
             }
             else
             {
-                if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Default")))
+                if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
                     FlipDirection();
             }
 

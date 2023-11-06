@@ -37,8 +37,10 @@ namespace Patterns.FSM
         {
             if (!IsGrounded())
                 return;
-
-            if(!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Default")))
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up,
+                settings.groundCheckDistance, LayerMask.GetMask("Static"));
+            
+            if(!hit)
             {
                 FlipDirection();
             }
@@ -49,8 +51,8 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Default", "Enemy"));
-
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Static"));
+            
             if (hit && hit.transform.name != patroller.name)
             {
                 FlipDirection();

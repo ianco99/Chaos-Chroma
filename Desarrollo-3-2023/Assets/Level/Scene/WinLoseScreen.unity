@@ -388,6 +388,7 @@ MonoBehaviour:
   target: {fileID: 2070141064}
   offset: {x: 0, y: 1.4, z: -2}
   speed: 10
+  minHeight: -4
 --- !u!1 &1191803753
 GameObject:
   m_ObjectHideFlags: 0

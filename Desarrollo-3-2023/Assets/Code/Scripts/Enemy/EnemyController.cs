@@ -33,11 +33,14 @@ namespace Code.Scripts.Enemy
         [SerializeField] private SpriteRenderer suspectMeterSprite;
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Damageable damageable;
+        [SerializeField] private SpriteRenderer outline;
+        [SerializeField] private Color hitOutlineColor;
 
         [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float hitDistance = 5f;
         [SerializeField] private float attackDelay = 0.2f;
+        [SerializeField] private float damagedTime = 2.0f;
 
         [Header("Animation")] [SerializeField] private Animator animator;
 
@@ -78,12 +81,17 @@ namespace Code.Scripts.Enemy
             fsm = new FiniteStateMachine<EnemyStates>();
 
             Transform trans = transform;
-            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, this, trans, settings.patrolSettings);
+            patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, this,
+                trans, settings.patrolSettings);
             patrolState.SetDirection(1.0f);
-            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans, settings.alertSettings, groundCheckPoint);
-            attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", attackDelay);
-            attackEndState = new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert, 1.0f, 2.4f, rb);
+            alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans,
+                settings.alertSettings, groundCheckPoint);
+            attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", attackDelay,
+                outline, hitOutlineColor);
+            attackEndState =
+                new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert,
+                damagedTime, 4.4f, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -92,11 +100,16 @@ namespace Code.Scripts.Enemy
             fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
 
-            fsm.AddTransition(patrolState, alertState, ()=> suspectMeter > settings.alertValue);
-            fsm.AddTransition(alertState, attackStartState, () => suspectMeter >= settings.suspectMeterMaximum && detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) < settings.alertSettings.alertAttackDistance);
+            fsm.AddTransition(patrolState, alertState, () => suspectMeter > settings.alertValue);
+            fsm.AddTransition(alertState, attackStartState,
+                () => detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) <
+                    settings.alertSettings.alertAttackDistance);
             fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
-            fsm.AddTransition(attackStartState, attackEndState, () => !attackStartState.Active && suspectMeter >= settings.suspectMeterMaximum && detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) < settings.alertSettings.alertAttackDistance);
-            fsm.AddTransition(attackEndState, alertState, () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
+            fsm.AddTransition(attackStartState, attackEndState,
+                () => !attackStartState.Active && suspectMeter >= settings.suspectMeterMaximum &&
+                      detectedPlayer != null);
+            fsm.AddTransition(attackEndState, alertState,
+                () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
             //fsm.AddTransition(attackEndState, patrolState, () => !attackEndState.Active && detectedPlayer == null);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
@@ -111,6 +124,16 @@ namespace Code.Scripts.Enemy
             CheckRotation();
             CheckFieldOfView();
             UpdateAnimationState();
+            ReleaseAttack();
+        }
+
+        /// <summary>
+        /// Check if enemy is preparing an attack and release it
+        /// </summary>
+        private void ReleaseAttack()
+        {
+            if (fsm.GetCurrentState().ID == EnemyStates.AttackStart)
+                attackStartState.Release();
         }
 
         private void FixedUpdate()
@@ -125,10 +148,9 @@ namespace Code.Scripts.Enemy
         {
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
         }
-        
+
         private void CheckFieldOfView()
         {
-
             if (fov.visibleTargets.Count <= 0)
             {
                 suspectMeter -= suspectUnit * Time.deltaTime;
@@ -139,9 +161,9 @@ namespace Code.Scripts.Enemy
                 alertState.SetTarget(detectedPlayer);
 
                 suspectMeter += suspectUnit *
-                            Mathf.Clamp(
-                                fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
-                                    transform.position), 0, fov.viewRadius) * Time.deltaTime;
+                                Mathf.Clamp(
+                                    fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
+                                        transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
                 if (suspectMeter < settings.alertValue)
                 {
@@ -154,7 +176,7 @@ namespace Code.Scripts.Enemy
             {
                 suspectMeterSprite.color = Color.yellow;
             }
-            else if(suspectMeter < settings.suspectMeterMaximum)
+            else if (suspectMeter < settings.suspectMeterMaximum)
             {
                 suspectMeterSprite.color = Color.white;
             }
@@ -176,21 +198,23 @@ namespace Code.Scripts.Enemy
                 switch (patrolState.dir.x)
                 {
                     case > 0:
+                    {
+                        if (!facingRight)
                         {
-                            if (!facingRight)
-                            {
-                                Flip();
-                            }
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                     case < 0:
+                    {
+                        if (facingRight)
                         {
-                            if (facingRight)
-                            {
-                                Flip();
-                            }
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                 }
             }
             else if (fsm.GetCurrentState() == alertState)
@@ -228,7 +252,6 @@ namespace Code.Scripts.Enemy
                     else if (targetPos.x < transform.position.x && facingRight)
                         Flip();
                 }
-
             }
         }
 
@@ -236,7 +259,7 @@ namespace Code.Scripts.Enemy
         {
             if (fsm.GetCurrentState().ID == EnemyStates.AttackEnd)
                 attackEndState.Stop();
-            
+
             if (origin.x > transform.position.x && !facingRight)
                 Flip();
             else if (origin.x < transform.position.x && facingRight)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Code.Scripts.Abstracts;
+using Code.Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +11,15 @@ namespace Patterns.FSM
     {
         [SerializeField] private float startLife = 100f;
         [SerializeField] private Slider lifeBar;
-        
+
         public bool parry;
         private float life;
         private bool block;
-        
+
         public event Action<Vector2> OnTakeDamage;
         public event Action<Vector2> OnBlock;
+        public kuznickiEventChannel.VoidEventChannel OnDeath;
+
 
         private void Awake()
         {
@@ -44,10 +47,10 @@ namespace Patterns.FSM
                 OnBlock?.Invoke(attackOrigin);
                 return true;
             }
-            
+
             OnTakeDamage?.Invoke(attackOrigin);
             life -= damage;
-            
+
             if (lifeBar)
                 lifeBar.value = life / startLife;
 
@@ -59,6 +62,8 @@ namespace Patterns.FSM
         /// </summary>
         private void Die()
         {
+            OnDeath?.RaiseEvent();
+            
             if (!gameObject.CompareTag("Player"))
                 Destroy(gameObject);
             else
@@ -80,7 +85,7 @@ namespace Patterns.FSM
         {
             block = false;
         }
-        
+
         /// <summary>
         /// Start action parry
         /// </summary>

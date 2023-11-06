@@ -249,6 +249,10 @@ namespace Code.Scripts.Player
             fsm.AddTransition(godState, idleState, () => !godState.Active);
         }
 
+        /// <summary>
+        /// Handler for when player enters state "Damaged"
+        /// </summary>
+        /// <returns></returns>
         private void OnDamagedEnterHandler()
         {
             if (attackStartState.Active)

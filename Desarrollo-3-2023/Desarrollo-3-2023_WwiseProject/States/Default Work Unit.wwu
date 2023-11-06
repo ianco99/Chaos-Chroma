@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{A6DF31CD-7E91-4D89-84A3-956831D1526A}" SchemaVersion="103">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{A6DF31CD-7E91-4D89-84A3-956831D1526A}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{A6DF31CD-7E91-4D89-84A3-956831D1526A}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="Music_State" ID="{D76B714B-B886-4838-88AA-B30EBF1AF947}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{2FB496E3-6FF8-4895-8B99-6166EC070C10}"/>
+						<State Name="ST_Mus_Menu" ID="{189165D5-DBC9-471D-A915-F5C17D26F353}"/>
+						<State Name="ST_Mus_Combate" ID="{E901FD52-C985-4FF1-B65D-6323518437FD}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

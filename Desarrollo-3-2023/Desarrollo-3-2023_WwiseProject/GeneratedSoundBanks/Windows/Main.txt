@@ -1,6 +1,16 @@
 Event	ID	Name			Wwise Object Path	Notes
-	317149247	Play_Music_Combate			\Default Work Unit\Music\Play_Music_Combate	
+	2932040671	Play_Music			\Default Work Unit\Music\Play_Music	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3826569560	Music_State			\Default Work Unit\Music_State	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Music_State			
+	2677331184	ST_Mus_Combate	Music_State			
+	3450655090	ST_Mus_Menu	Music_State			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	260789924	BATTLE ESCENE	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\BATTLE ESCENE_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music_Combate\BATTLE ESCENE\BATTLE ESCENE		8210684
+	61076188	MENU THEME	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\MENU THEME_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Music_Menu\MENU THEME\MENU THEME		27132052
+	260789924	BATTLE ESCENE	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\BATTLE ESCENE_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Music_Combate\BATTLE ESCENE\BATTLE ESCENE		9750172
+	422489200	ESCENA PERSONAJE	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\ESCENA PERSONAJE_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Music_Combate\ESCENA PERSONAJE\ESCENA PERSONAJE		4618536
 

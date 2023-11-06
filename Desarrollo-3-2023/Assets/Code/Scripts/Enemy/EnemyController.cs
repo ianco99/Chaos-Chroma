@@ -63,6 +63,7 @@ namespace Code.Scripts.Enemy
             InitFSM();
 
             damageable.OnTakeDamage += OnTakeDamageHandler;
+            damageable.OnBlock += OnBlockHandler;
             damagedState.onTimerEnded += OnTimerEndedHandler;
 
             fov.ToggleFindingTargets(true);
@@ -92,8 +93,9 @@ namespace Code.Scripts.Enemy
                 outline, hitOutlineColor);
             attackEndState =
                 new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert,
-                damagedTime, 4.4f, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
+                0.4f , 4.4f, rb);
+            blockState = new BlockState<EnemyStates>(EnemyStates.Block, "BlockState", damageable);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -101,6 +103,7 @@ namespace Code.Scripts.Enemy
             fsm.AddState(alertState);
             fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
+            fsm.AddState(blockState);
 
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > settings.alertValue);
             fsm.AddTransition(alertState, attackStartState,
@@ -111,9 +114,7 @@ namespace Code.Scripts.Enemy
                 () => !attackStartState.Active && detectedPlayer != null);
             fsm.AddTransition(attackEndState, alertState,
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
-            fsm.AddTransition(damagedState, blockState, () => blocking);
             fsm.AddTransition(blockState, alertState, () => !blocking);
-            //fsm.AddTransition(attackEndState, patrolState, () => !attackEndState.Active && detectedPlayer == null);
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -270,10 +271,21 @@ namespace Code.Scripts.Enemy
 
             damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
 
-            if (fsm.GetCurrentState() != damagedState)
+            if (fsm.GetCurrentState() != damagedState && fsm.GetCurrentState() != blockState)
+            {
                 fsm.SetCurrentState(damagedState);
+                blocking = true;
+            }
             else
-                damagedState.ResetState();
+            {
+                blocking = true;
+            }
+        }
+
+        private void OnBlockHandler(Vector2 dir)
+        {
+            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+            fsm.SetCurrentState(damagedState);
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

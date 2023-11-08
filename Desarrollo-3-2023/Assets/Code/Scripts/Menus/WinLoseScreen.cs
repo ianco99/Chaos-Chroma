@@ -18,7 +18,7 @@ namespace Code.Scripts.Menus
 
         public void Restart()
         {
-            GameManager.StartGame();
+            GameManager.StartTutorial();
         }
         
         public void Exit()

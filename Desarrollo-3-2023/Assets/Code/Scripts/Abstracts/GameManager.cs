@@ -30,7 +30,7 @@ namespace Code.Scripts.Abstracts
             SceneManager.LoadScene("WinLoseScreen");
         }
 
-        public static void StartGame()
+        public static void StartTutorial()
         {
             SceneManager.LoadScene("Tutorial");
         }

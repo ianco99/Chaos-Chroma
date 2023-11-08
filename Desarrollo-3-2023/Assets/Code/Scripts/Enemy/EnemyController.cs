@@ -27,7 +27,6 @@ namespace Code.Scripts.Enemy
         [SerializeField] private EnemyStates startingState;
 
         [SerializeField] private HitsManager hitsManager;
-        [SerializeField] private EnemySettings settings;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteMask suspectMeterMask;
         [SerializeField] private SpriteRenderer suspectMeterSprite;
@@ -55,6 +54,8 @@ namespace Code.Scripts.Enemy
         private DamagedState<EnemyStates> damagedState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
+        
+        public EnemySettings settings;
 
         private void Awake()
         {
@@ -64,6 +65,8 @@ namespace Code.Scripts.Enemy
             damagedState.onTimerEnded += OnTimerEndedHandler;
 
             fov.ToggleFindingTargets(true);
+
+            damageable.OnDeath = settings.deathEvent;
         }
 
         private void OnEnable()

@@ -1,3 +1,4 @@
+using kuznickiEventChannel;
 using UnityEngine;
 
 namespace Code.SOs.Enemy
@@ -21,5 +22,8 @@ namespace Code.SOs.Enemy
         public float suspectMeterMinimum = 0.0f;
         public float alertValue = 40.0f;
         public float suspectMeterMaximum = 100.0f;
+        
+        [Header("Death event")]
+        public VoidEventChannel deathEvent;
     }
 }

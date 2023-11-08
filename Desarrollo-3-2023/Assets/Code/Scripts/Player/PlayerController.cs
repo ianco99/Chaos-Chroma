@@ -42,7 +42,8 @@ namespace Code.Scripts.Player
         [SerializeField] private PhysicsMaterial2D bodyMat;
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private Color hitOutlineColor;
-
+        [SerializeField] private GameObject pauseCanvas;
+        
         [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
@@ -113,6 +114,7 @@ namespace Code.Scripts.Player
             InputManager.onBlockReleased += CheckBlock;
             InputManager.onJump += CheckJumpStart;
             InputManager.onGodMode += CheckGodMode;
+            InputManager.onPause += PauseHandler;
 
             damageable.OnTakeDamage += KnockBack;
             damageable.OnBlock += KnockBack;
@@ -129,6 +131,7 @@ namespace Code.Scripts.Player
             InputManager.onBlockReleased -= CheckBlock;
             InputManager.onJump -= CheckJumpStart;
             InputManager.onGodMode -= CheckGodMode;
+            InputManager.onPause -= PauseHandler;
 
             damageable.OnTakeDamage -= KnockBack;
             damageable.OnBlock -= KnockBack;
@@ -260,6 +263,15 @@ namespace Code.Scripts.Player
             
             if (attackEndState.Active)
                 attackEndState.Stop();
+        }
+        
+        /// <summary>
+        /// Handler for enter pause
+        /// </summary>
+        private void PauseHandler()
+        {
+            Time.timeScale = 0.0f;
+            pauseCanvas.SetActive(true);
         }
 
         #region State activations

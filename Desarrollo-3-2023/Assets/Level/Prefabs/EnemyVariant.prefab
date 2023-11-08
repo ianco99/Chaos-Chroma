@@ -72,7 +72,7 @@ Transform:
   - {fileID: 2552753043060546954}
   - {fileID: 7460692450909423010}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6145023305814156655
 MonoBehaviour:
@@ -110,10 +110,13 @@ MonoBehaviour:
   suspectMeterSprite: {fileID: 1401541041181370207}
   groundCheckPoint: {fileID: 2552753043060546954}
   damageable: {fileID: 3832601685886080571}
+  outline: {fileID: 8320540901993013661}
+  hitOutlineColor: {r: 0, g: 0, b: 0, a: 0}
   suspectMeter: 0
   suspectUnit: 30
   hitDistance: 0.5
   attackDelay: 0.2
+  damagedTime: 2
   animator: {fileID: 2065283345791218431}
 --- !u!114 &3832601685886080571
 MonoBehaviour:

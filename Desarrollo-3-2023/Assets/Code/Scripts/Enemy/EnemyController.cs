@@ -45,6 +45,7 @@ namespace Code.Scripts.Enemy
 
         private Transform detectedPlayer;
         private bool turnedAggro;
+        private bool blocking;
 
         private FiniteStateMachine<EnemyStates> fsm;
         private PatrolState<EnemyStates> patrolState;
@@ -52,6 +53,7 @@ namespace Code.Scripts.Enemy
         private AttackStartState<EnemyStates> attackStartState;
         private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
+        private KnockBackBlockState<EnemyStates> blockState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
         
@@ -62,6 +64,7 @@ namespace Code.Scripts.Enemy
             InitFSM();
 
             damageable.OnTakeDamage += OnTakeDamageHandler;
+            damageable.OnBlock += OnBlockHandler;
             damagedState.onTimerEnded += OnTimerEndedHandler;
 
             fov.ToggleFindingTargets(true);
@@ -93,8 +96,9 @@ namespace Code.Scripts.Enemy
                 outline, hitOutlineColor);
             attackEndState =
                 new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
-            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Alert,
-                damagedTime, 4.4f, rb);
+            damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
+                1.0f, 4.4f, rb);
+            blockState = new KnockBackBlockState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, rb, 4.4f);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -102,6 +106,7 @@ namespace Code.Scripts.Enemy
             fsm.AddState(alertState);
             fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
+            fsm.AddState(blockState);
 
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > settings.alertValue);
             fsm.AddTransition(alertState, attackStartState,
@@ -109,11 +114,10 @@ namespace Code.Scripts.Enemy
                     settings.alertSettings.alertAttackDistance);
             fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
             fsm.AddTransition(attackStartState, attackEndState,
-                () => !attackStartState.Active && suspectMeter >= settings.suspectMeterMaximum &&
-                      detectedPlayer != null);
+                () => !attackStartState.Active && detectedPlayer != null);
             fsm.AddTransition(attackEndState, alertState,
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
-            //fsm.AddTransition(attackEndState, patrolState, () => !attackEndState.Active && detectedPlayer == null);
+            fsm.AddTransition(blockState, alertState, () => blockState.FinishedTimer());
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -201,23 +205,23 @@ namespace Code.Scripts.Enemy
                 switch (patrolState.dir.x)
                 {
                     case > 0:
-                    {
-                        if (!facingRight)
                         {
-                            Flip();
-                        }
+                            if (!facingRight)
+                            {
+                                Flip();
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                     case < 0:
-                    {
-                        if (facingRight)
                         {
-                            Flip();
-                        }
+                            if (facingRight)
+                            {
+                                Flip();
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                 }
             }
             else if (fsm.GetCurrentState() == alertState)
@@ -225,23 +229,23 @@ namespace Code.Scripts.Enemy
                 switch (alertState.dir.x)
                 {
                     case > 0:
-                    {
-                        if (!facingRight)
                         {
-                            Flip();
-                        }
+                            if (!facingRight)
+                            {
+                                Flip();
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                     case < 0:
-                    {
-                        if (facingRight)
                         {
-                            Flip();
-                        }
+                            if (facingRight)
+                            {
+                                Flip();
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                 }
             }
             else if (fsm.GetCurrentState() == attackEndState)
@@ -268,12 +272,33 @@ namespace Code.Scripts.Enemy
             else if (origin.x < transform.position.x && facingRight)
                 Flip();
 
-            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
-
-            if (fsm.GetCurrentState() != damagedState)
+            if (fsm.GetCurrentState() != blockState && fsm.GetCurrentState() != damagedState)
+            {
+                damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
                 fsm.SetCurrentState(damagedState);
+            }
             else
-                damagedState.ResetState();
+            {
+                if (fsm.GetCurrentState() == blockState)
+                    blockState.ResetState();
+                else
+                    fsm.SetCurrentState(blockState);
+            }
+        }
+
+        private void OnBlockHandler(Vector2 dir)
+        {
+            if (dir.x > transform.position.x && !facingRight)
+                Flip();
+            else if (dir.x < transform.position.x && facingRight)
+                Flip();
+
+            blockState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+
+            if (fsm.GetCurrentState() == blockState)
+                blockState.ResetState();
+            else
+                fsm.SetCurrentState(blockState);
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

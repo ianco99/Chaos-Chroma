@@ -9,6 +9,8 @@ namespace Patterns.FSM
     {
         private readonly Rigidbody2D rb;
         private float force;
+        private float maxTime = 2.0f;
+        private float currentTime = 0.0f;
         private Vector2 pushDirection = Vector2.right;
 
         public KnockBackBlockState(T id, string name, Damageable damageable, Rigidbody2D rb, float force) : base(id, name, damageable)
@@ -24,6 +26,13 @@ namespace Patterns.FSM
             ResetState();
         }
 
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            currentTime += Time.deltaTime;
+        }
+
         public void SetDirection(Vector2 newDirection)
         {
             pushDirection = newDirection;
@@ -32,6 +41,9 @@ namespace Patterns.FSM
         public void ResetState()
         {
             rb.AddForce(pushDirection * force, ForceMode2D.Impulse);
+            currentTime = 0.0f;
         }
+
+        public bool FinishedTimer() => currentTime >= maxTime;
     }
 }

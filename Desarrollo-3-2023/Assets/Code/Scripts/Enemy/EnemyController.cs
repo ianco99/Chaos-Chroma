@@ -114,7 +114,7 @@ namespace Code.Scripts.Enemy
                 () => !attackStartState.Active && detectedPlayer != null);
             fsm.AddTransition(attackEndState, alertState,
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
-            //fsm.AddTransition(blockState, alertState, () => !blocking);
+            fsm.AddTransition(blockState, alertState, () => blockState.FinishedTimer());
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -285,6 +285,11 @@ namespace Code.Scripts.Enemy
 
         private void OnBlockHandler(Vector2 dir)
         {
+            if (dir.x > transform.position.x && !facingRight)
+                Flip();
+            else if (dir.x < transform.position.x && facingRight)
+                Flip();
+
             blockState.SetDirection(facingRight ? Vector2.left : Vector2.right);
 
             if (fsm.GetCurrentState() == blockState)

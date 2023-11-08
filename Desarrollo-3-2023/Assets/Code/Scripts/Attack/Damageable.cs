@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Code.Scripts.Abstracts;
-using Code.Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +9,7 @@ namespace Patterns.FSM
     public class Damageable : MonoBehaviour
     {
         [SerializeField] private float startLife = 100f;
-        [SerializeField] private Slider lifeBar;
+        [SerializeField] private Image lifeBar;
 
         public bool parry;
         private float life;
@@ -52,7 +51,7 @@ namespace Patterns.FSM
             life -= damage;
 
             if (lifeBar)
-                lifeBar.value = life / startLife;
+                lifeBar.fillAmount = life / startLife;
 
             return true;
         }

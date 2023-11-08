@@ -7,12 +7,25 @@ namespace Code.Scripts.Menus
     {
         [SerializeField] private GameObject levelSelectCanvas;
         [SerializeField] private GameObject mainMenuCanvas;
+        [SerializeField] private GameObject creditsMenuCanvas;
         public void StartGame()
         {
             levelSelectCanvas.SetActive(true);
             mainMenuCanvas.SetActive(false);
         }
-        
+
+        public void ShowCredits()
+        {
+            creditsMenuCanvas.SetActive(true);
+            mainMenuCanvas.SetActive(false);
+        }
+
+        public void HideCredits()
+        {
+            creditsMenuCanvas.SetActive(false);
+            mainMenuCanvas.SetActive(true);
+        }
+
         public void SelectTutorial()
         {
             GameManager.StartTutorial();

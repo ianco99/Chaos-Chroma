@@ -59,7 +59,7 @@ namespace Patterns.FSM
         /// <summary>
         /// Kill object
         /// </summary>
-        private void Die()
+        public void Die()
         {
             OnDeath?.RaiseEvent();
             

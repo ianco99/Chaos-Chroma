@@ -1,4 +1,5 @@
 using Code.Scripts.Abstracts;
+using Patterns.FSM;
 using UnityEngine;
 
 namespace Code.Scripts.Events
@@ -7,8 +8,8 @@ namespace Code.Scripts.Events
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
-                GameManager.Lose();
+            if (other.TryGetComponent(out Damageable damageable))
+                damageable.Die();
         }
     }
 }

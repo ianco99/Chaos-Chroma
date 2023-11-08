@@ -429,7 +429,7 @@ MonoBehaviour:
   startState: 0
   speed: 300
   acceleration: 2000
-  jumpForce: 750
+  jumpForce: 650
   gravMultiplier: 5
   parryDuration: 0.5
   throwBackForce: 120

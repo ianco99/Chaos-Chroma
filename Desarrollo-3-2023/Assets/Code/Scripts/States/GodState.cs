@@ -1,11 +1,12 @@
 using Code.Scripts.States;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
 {
     public class GodState<T> : MovementState<T>
     {
-        public GodState(T id, string name, float speed, float accel, Transform transform, Rigidbody2D rb) : base(id, name, speed, accel, transform, rb)
+        public GodState(T id, string name, GodSettings settings, Transform transform, Rigidbody2D rb) : base(id, name, settings.moveSettings, transform, rb)
         {
         }
 
@@ -25,7 +26,7 @@ namespace Patterns.FSM
 
         public override void OnUpdate()
         {
-            transform.Translate(dir * (Time.deltaTime * speed));
+            transform.Translate(dir * (Time.deltaTime * settings.speed));
         }
 
         public void Toggle()

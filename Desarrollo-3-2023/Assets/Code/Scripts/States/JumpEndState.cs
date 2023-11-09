@@ -1,4 +1,5 @@
 using Code.Scripts.States;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -8,23 +9,23 @@ namespace Patterns.FSM
     /// </summary>
     public class JumpEndState<T> : MovementState<T>
     {
-        private float gravMultiplier;
+        private JumpEndSettings jumpEndSettings;
 
-        public JumpEndState(T id, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb, float gravMultiplier) : base(id, name, speed, acceleration, transform, rb)
+        public JumpEndState(T id, string name, JumpEndSettings settings, Transform transform, Rigidbody2D rb) : base(id, name, settings.moveSettings, transform, rb)
         {
-            this.gravMultiplier = gravMultiplier;
+            jumpEndSettings = settings;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            rb.gravityScale *= gravMultiplier;
+            rb.gravityScale *= jumpEndSettings.gravMultiplier;
         }
 
         public override void OnExit()
         {
             base.OnExit();
-            rb.gravityScale /= gravMultiplier;
+            rb.gravityScale /= jumpEndSettings.gravMultiplier;
         }
 
         public override void OnUpdate()

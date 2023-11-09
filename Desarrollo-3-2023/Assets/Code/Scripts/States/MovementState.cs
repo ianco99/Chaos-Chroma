@@ -1,3 +1,4 @@
+using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
 
@@ -11,15 +12,13 @@ namespace Code.Scripts.States
     {
         protected readonly Rigidbody2D rb;
         protected readonly Transform transform;
-        protected float speed;
-        private readonly float accel;
+        protected MoveSettings settings;
 
         public Vector2 dir;
 
-        public MovementState(T id, string name, float speed, float accel, Transform transform, Rigidbody2D rb) : base(id, name)
+        public MovementState(T id, string name, MoveSettings settings, Transform transform, Rigidbody2D rb) : base(id, name)
         {
-            this.speed = speed;
-            this.accel = accel;
+            this.settings = settings;
             this.transform = transform;
             this.rb = rb;
         }
@@ -48,7 +47,7 @@ namespace Code.Scripts.States
         /// <param name="direction"></param>
         private void MoveInDirection(Vector2 direction)
         {
-            rb.AddForce(direction * (accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
+            rb.AddForce(direction * (settings.accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace Code.Scripts.States
         /// </summary>
         private void ClampSpeed()
         {
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed * Time.fixedDeltaTime, speed * Time.fixedDeltaTime), rb.velocity.y);
+            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -settings.speed * Time.fixedDeltaTime, settings.speed * Time.fixedDeltaTime), rb.velocity.y);
         }
 
         /// <summary>

@@ -2,6 +2,7 @@ using System;
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Input;
 using Code.Scripts.States;
+using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
 
@@ -28,8 +29,6 @@ namespace Code.Scripts.Player
     public class PlayerController : Character
     {
         [Header("Player:")] [SerializeField] private PlayerStates startState = PlayerStates.Idle;
-        [SerializeField] private float speed = 5f;
-        [SerializeField] private float acceleration = 5f;
         [SerializeField] private float jumpForce = 5f;
         [SerializeField] private float gravMultiplier = 10f;
         [SerializeField] private float parryDuration = 1f;
@@ -45,6 +44,12 @@ namespace Code.Scripts.Player
         [SerializeField] private Color hitOutlineColor;
         [SerializeField] private GameObject pauseCanvas;
 
+        [Header("StateSettings")]
+        [SerializeField] private MoveSettings moveSettings;
+        [SerializeField] private JumpStartSettings jumpStartSettings;
+        [SerializeField] private JumpEndSettings jumpEndSettings;
+        [SerializeField] private GodSettings godSettings;
+        
         [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
@@ -68,7 +73,7 @@ namespace Code.Scripts.Player
             Transform trans = transform;
 
             movementState =
-                new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", speed, acceleration, trans, rb);
+                new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", moveSettings, trans, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackStartState =
                 new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", minimumAttackHold,
@@ -76,15 +81,10 @@ namespace Code.Scripts.Player
             attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
-            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", speed,
-                airControl, trans, rb, jumpForce);
-            jumpEndState =
-                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, airControl, trans, rb,
-                    gravMultiplier);
-            damagedState =
-                new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f,
-                    throwBackForce, rb);
-            godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", 5f, acceleration, trans, rb);
+            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, trans, rb);
+            jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);
+            damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f, throwBackForce, rb);
+            godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", godSettings, trans, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();
 

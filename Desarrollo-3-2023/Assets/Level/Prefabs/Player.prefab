@@ -340,7 +340,7 @@ Transform:
   - {fileID: 1415809846651763914}
   - {fileID: 8138434858430252606}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -427,8 +427,6 @@ MonoBehaviour:
     sprite: {fileID: 8685973854917079561}
     transformFlip: 0
   startState: 0
-  speed: 500
-  acceleration: 2000
   jumpForce: 750
   gravMultiplier: 5
   parryDuration: 0.5
@@ -443,6 +441,10 @@ MonoBehaviour:
   outline: {fileID: 8685973854917079561}
   hitOutlineColor: {r: 0.1882353, g: 0.6156863, b: 0.7294118, a: 1}
   pauseCanvas: {fileID: 0}
+  moveSettings: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}
+  jumpStartSettings: {fileID: 11400000, guid: 4d19e0911203b1346b250e943fe01780, type: 2}
+  jumpEndSettings: {fileID: 11400000, guid: cf892d5be77c3e74da11ee4486ef8d7f, type: 2}
+  godSettings: {fileID: 11400000, guid: 8f5f3a83a4f2c3c4d97267c9e0a9feb8, type: 2}
   animator: {fileID: 4310963439013856538}
 --- !u!114 &2205056402196420099
 MonoBehaviour:

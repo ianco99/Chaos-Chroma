@@ -16,7 +16,7 @@ namespace Patterns.FSM
         private Transform groundCheckPoint;
         private Character patroller;
 
-        public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, name, settings.patrolSpeed, settings.patrolAcceleration,
+        public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, name, settings.moveSettings,
             transform, rb)
         {
             this.settings = settings;

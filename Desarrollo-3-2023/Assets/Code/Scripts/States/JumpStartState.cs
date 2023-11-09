@@ -1,5 +1,6 @@
 using Code.Scripts.States;
 using System.Collections;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -7,11 +8,11 @@ namespace Patterns.FSM
     public class JumpStartState<T> : MovementState<T>
     {
         private MonoBehaviour behaviourClass;
-        private readonly float jumpForce;
+        private JumpStartSettings jumpStartSettings;
         
-        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb, float jumpForce) : base(id, name, speed, acceleration, transform, rb)
+        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, JumpStartSettings startSettings, Transform transform, Rigidbody2D rb) : base(id, name, startSettings.moveSettings, transform, rb)
         {
-            this.jumpForce = jumpForce;
+            jumpStartSettings = startSettings;
             behaviourClass = coroutineContainer;
         }
 
@@ -25,7 +26,7 @@ namespace Patterns.FSM
 
             base.OnEnter();
 
-            behaviourClass.StartCoroutine(AddForce(transform.up * jumpForce, ForceMode2D.Impulse));
+            behaviourClass.StartCoroutine(AddForce(transform.up * jumpStartSettings.force, ForceMode2D.Impulse));
 
             rb.gravityScale *= 2f;
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -10,14 +11,14 @@ namespace Patterns.FSM
         public Action<T> onTimerEnded;
 
         protected T nextStateID;
+        protected TimerSettings timerSettings;
 
         protected float currentTimer;
-        protected float maxTimer;
 
-        public TimerTransitionState(T id, string name, T nextStateID, float maxTime) : base(id, name)
+        public TimerTransitionState(T id, string name, T nextStateID, TimerSettings settings) : base(id, name)
         {
             this.nextStateID = nextStateID;
-            this.maxTimer = maxTime;
+            timerSettings = settings;
         }
 
         public override void OnEnter()
@@ -32,7 +33,7 @@ namespace Patterns.FSM
 
             currentTimer += Time.deltaTime;
 
-            if (!(currentTimer > maxTimer)) return;
+            if (!(currentTimer > timerSettings.maxTime)) return;
             
             Exit();
             onTimerEnded?.Invoke(nextStateID);

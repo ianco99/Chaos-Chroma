@@ -444,6 +444,7 @@ MonoBehaviour:
   godSettings: {fileID: 11400000, guid: 8f5f3a83a4f2c3c4d97267c9e0a9feb8, type: 2}
   attackStartSettings: {fileID: 11400000, guid: 81e792fb5bccdb64eb826e6338378bbf, type: 2}
   parrySettings: {fileID: 11400000, guid: 039221402fd24364a901a3ee2e534984, type: 2}
+  damagedSettings: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
   animator: {fileID: 4310963439013856538}
 --- !u!114 &2205056402196420099
 MonoBehaviour:

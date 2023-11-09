@@ -48,7 +48,8 @@ namespace Code.Scripts.Player
         [SerializeField] private GodSettings godSettings;
         [SerializeField] private AttackStartSettings attackStartSettings;
         [SerializeField] private ParrySettings parrySettings;
-                        
+        [SerializeField] private DamagedSettings damagedSettings;
+                                
         [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
@@ -82,7 +83,7 @@ namespace Code.Scripts.Player
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, trans, rb);
             jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);
-            damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f, throwBackForce, rb);
+            damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, damagedSettings, rb);
             godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", godSettings, trans, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();

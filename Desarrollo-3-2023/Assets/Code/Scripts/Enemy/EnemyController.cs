@@ -97,7 +97,7 @@ namespace Code.Scripts.Enemy
             attackEndState =
                 new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
-                1.0f, 4.4f, rb);
+                settings.damagedSettings, rb);
             blockState = new KnockBackBlockState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, rb, 4.4f);
 
             fsm = new FiniteStateMachine<EnemyStates>();

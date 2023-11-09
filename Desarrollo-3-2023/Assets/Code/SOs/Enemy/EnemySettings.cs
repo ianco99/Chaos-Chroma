@@ -17,8 +17,10 @@ namespace Code.SOs.Enemy
         
         [Header("Attack")]
         public AttackStartSettings attackStartSettings;
-        // public AttackEndSettings attackEndSettings;
 
+        [Header("Damaged")]
+        public DamagedSettings damagedSettings;
+        
         [Header("Field of View")]
         public float viewRadius;
         public float viewAngle;

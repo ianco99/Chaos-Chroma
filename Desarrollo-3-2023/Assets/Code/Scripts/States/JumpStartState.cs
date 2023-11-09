@@ -26,6 +26,15 @@ namespace Patterns.FSM
             base.OnEnter();
 
             behaviourClass.StartCoroutine(AddForce(transform.up * jumpForce, ForceMode2D.Impulse));
+
+            rb.gravityScale *= 2f;
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            
+            rb.gravityScale /= 2f;
         }
 
         public override void OnUpdate()

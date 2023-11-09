@@ -35,6 +35,7 @@ namespace Code.Scripts.Player
         [SerializeField] private float parryDuration = 1f;
         [SerializeField] private float throwBackForce = 5f;
         [SerializeField] private float minimumAttackHold = .5f;
+        [SerializeField] private float airControl = 2f;
         [SerializeField] private GameObject hit;
         [SerializeField] private Damageable damageable;
         [SerializeField] private Collider2D feet;
@@ -43,7 +44,7 @@ namespace Code.Scripts.Player
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private Color hitOutlineColor;
         [SerializeField] private GameObject pauseCanvas;
-        
+
         [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
@@ -76,9 +77,9 @@ namespace Code.Scripts.Player
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", speed,
-                acceleration, trans, rb, jumpForce);
+                airControl, trans, rb, jumpForce);
             jumpEndState =
-                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, acceleration, trans, rb,
+                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", speed, airControl, trans, rb,
                     gravMultiplier);
             damagedState =
                 new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, .2f,
@@ -99,7 +100,7 @@ namespace Code.Scripts.Player
             fsm.AddState(godState);
 
             AddTransitions();
-            
+
             fsm.SetCurrentState(fsm.GetState(startState));
 
             fsm.Init();
@@ -118,7 +119,7 @@ namespace Code.Scripts.Player
 
             damageable.OnTakeDamage += KnockBack;
             damageable.OnBlock += KnockBack;
-            
+
             damagedState.onEnter += OnDamagedEnterHandler;
         }
 
@@ -135,7 +136,7 @@ namespace Code.Scripts.Player
 
             damageable.OnTakeDamage -= KnockBack;
             damageable.OnBlock -= KnockBack;
-            
+
             damagedState.onEnter -= OnDamagedEnterHandler;
         }
 
@@ -248,7 +249,7 @@ namespace Code.Scripts.Player
 
             fsm.AddTransition(damagedState, blockState, () => blockState.Active && !damagedState.Active);
             fsm.AddTransition(damagedState, idleState, () => !damagedState.Active);
-            
+
             fsm.AddTransition(godState, idleState, () => !godState.Active);
         }
 
@@ -260,11 +261,11 @@ namespace Code.Scripts.Player
         {
             if (attackStartState.Active)
                 attackStartState.Exit();
-            
+
             if (attackEndState.Active)
                 attackEndState.Stop();
         }
-        
+
         /// <summary>
         /// Handler for enter pause
         /// </summary>

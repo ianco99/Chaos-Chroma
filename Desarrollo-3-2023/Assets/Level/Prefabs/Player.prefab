@@ -340,7 +340,7 @@ Transform:
   - {fileID: 1415809846651763914}
   - {fileID: 8138434858430252606}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -427,13 +427,14 @@ MonoBehaviour:
     sprite: {fileID: 8685973854917079561}
     transformFlip: 0
   startState: 0
-  speed: 300
+  speed: 500
   acceleration: 2000
-  jumpForce: 650
+  jumpForce: 750
   gravMultiplier: 5
   parryDuration: 0.5
   throwBackForce: 120
   minimumAttackHold: 0.2
+  airControl: 800
   hit: {fileID: 1395205784924420985}
   damageable: {fileID: 2205056402196420099}
   feet: {fileID: 2049524397439752245}
@@ -441,6 +442,7 @@ MonoBehaviour:
   bodyMat: {fileID: 6200000, guid: 16b07130e0c2b1741b4b968a4138ccd6, type: 2}
   outline: {fileID: 8685973854917079561}
   hitOutlineColor: {r: 0.1882353, g: 0.6156863, b: 0.7294118, a: 1}
+  pauseCanvas: {fileID: 0}
   animator: {fileID: 4310963439013856538}
 --- !u!114 &2205056402196420099
 MonoBehaviour:

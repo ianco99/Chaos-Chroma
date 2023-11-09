@@ -29,12 +29,9 @@ namespace Code.Scripts.Player
     public class PlayerController : Character
     {
         [Header("Player:")] [SerializeField] private PlayerStates startState = PlayerStates.Idle;
-        [SerializeField] private float jumpForce = 5f;
-        [SerializeField] private float gravMultiplier = 10f;
         [SerializeField] private float parryDuration = 1f;
         [SerializeField] private float throwBackForce = 5f;
         [SerializeField] private float minimumAttackHold = .5f;
-        [SerializeField] private float airControl = 2f;
         [SerializeField] private GameObject hit;
         [SerializeField] private Damageable damageable;
         [SerializeField] private Collider2D feet;
@@ -49,7 +46,8 @@ namespace Code.Scripts.Player
         [SerializeField] private JumpStartSettings jumpStartSettings;
         [SerializeField] private JumpEndSettings jumpEndSettings;
         [SerializeField] private GodSettings godSettings;
-        
+        [SerializeField] private AttackStartSettings attackStartSettings;
+                
         [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
@@ -76,8 +74,8 @@ namespace Code.Scripts.Player
                 new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", moveSettings, trans, rb);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackStartState =
-                new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", minimumAttackHold,
-                    outline, hitOutlineColor);
+                new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", attackStartSettings,
+                    outline);
             attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);

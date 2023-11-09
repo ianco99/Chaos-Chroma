@@ -1,3 +1,4 @@
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -8,18 +9,16 @@ namespace Patterns.FSM
     /// <typeparam name="T"></typeparam>
     public class AttackStartState<T> : BaseState<T>
     {
+        private AttackStartSettings attackStartSettings;
         private float timeOnHold;
-        private readonly float minTimeOnHold;
         private bool released;
         private float t;
         private readonly SpriteRenderer characterOutline;
-        private readonly Color objectiveColor;
 
-        public AttackStartState(T id, string name, float minTimeOnHold, SpriteRenderer characterOutline, Color objectiveColor) : base(id, name)
+        public AttackStartState(T id, string name, AttackStartSettings settings, SpriteRenderer characterOutline) : base(id, name)
         {
-            this.minTimeOnHold = minTimeOnHold;
             this.characterOutline = characterOutline;
-            this.objectiveColor = objectiveColor;
+            attackStartSettings = settings;
         }
 
         public override void OnEnter()
@@ -40,7 +39,7 @@ namespace Patterns.FSM
             timeOnHold += Time.deltaTime;
             UpdateCharacterOutlineColor();
             
-            if (released && timeOnHold >= minTimeOnHold)
+            if (released && timeOnHold >= attackStartSettings.minTimeOnHold)
                 Exit();
         }
         
@@ -58,7 +57,7 @@ namespace Patterns.FSM
         {
             released = true;
             
-            if (timeOnHold < minTimeOnHold)
+            if (timeOnHold < attackStartSettings.minTimeOnHold)
                 return;
             
             Exit();
@@ -69,9 +68,9 @@ namespace Patterns.FSM
         /// </summary>
         private void UpdateCharacterOutlineColor()
         {
-            t += Time.deltaTime / minTimeOnHold;
+            t += Time.deltaTime / attackStartSettings.minTimeOnHold;
 
-            Color color = Vector4.Lerp(Color.white, objectiveColor, t);
+            Color color = Vector4.Lerp(Color.white, attackStartSettings.objectiveColor, t);
             
             characterOutline.color = color;
         }

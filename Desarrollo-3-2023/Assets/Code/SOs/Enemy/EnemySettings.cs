@@ -14,6 +14,10 @@ namespace Code.SOs.Enemy
 
         [Header("Alert")]
         public AlertSettings alertSettings;
+        
+        [Header("Attack")]
+        public AttackStartSettings attackStartSettings;
+        // public AttackEndSettings attackEndSettings;
 
         [Header("Field of View")]
         public float viewRadius;

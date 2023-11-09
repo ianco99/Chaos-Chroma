@@ -47,7 +47,8 @@ namespace Code.Scripts.Player
         [SerializeField] private JumpEndSettings jumpEndSettings;
         [SerializeField] private GodSettings godSettings;
         [SerializeField] private AttackStartSettings attackStartSettings;
-                
+        [SerializeField] private ParrySettings parrySettings;
+                        
         [Header("Animation")] [SerializeField] private Animator animator;
 
         // States
@@ -77,7 +78,7 @@ namespace Code.Scripts.Player
                 new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", attackStartSettings,
                     outline);
             attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit);
-            parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parryDuration);
+            parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parrySettings);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, trans, rb);
             jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);

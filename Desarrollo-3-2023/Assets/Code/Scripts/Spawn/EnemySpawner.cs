@@ -9,12 +9,17 @@ namespace Code.Scripts.Spawn
     {
         [SerializeField] private List<GameObject> prefabs;
         [SerializeField] private List<EnemySettings> config;
-        
+
         private void Start()
         {
-            Spawn(0);
+            if (prefabs.Count > 0)
+                Spawn(0);
         }
 
+        /// <summary>
+        /// Spawns the enemy on given index of the list
+        /// </summary>
+        /// <param name="index">Index of the enemy on the list</param>
         private void Spawn(int index)
         {
             EnemyManager.Instance.SpawnEnemy(prefabs[index], transform.position, config[index]);

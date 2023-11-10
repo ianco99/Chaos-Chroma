@@ -219,10 +219,12 @@
 									<ChildrenList>
 										<Effect Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
 											<PropertyList>
-												<Property Name="FrequencyBand3" Type="Real32" Value="10000"/>
-												<Property Name="GainBand3" Type="Real32" Value="3"/>
+												<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+												<Property Name="FrequencyBand3" Type="Real32" Value="2300"/>
+												<Property Name="GainBand3" Type="Real32" Value="-6"/>
 												<Property Name="OnOffBand1" Type="bool" Value="False"/>
 												<Property Name="OnOffBand2" Type="bool" Value="False"/>
+												<Property Name="QFactorBand3" Type="Real32" Value="2.6"/>
 											</PropertyList>
 										</Effect>
 										<Effect Name="Cut_3dB_10KHz" ID="{83EAB3EA-A43D-470F-A183-7F02DAA44A4D}" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">

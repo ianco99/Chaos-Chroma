@@ -25,25 +25,34 @@ public class MusicController : MonoBehaviour
     private void Start()
     {
         music.Post(gameObject);
-        combate.SetValue();
-        menuActivo = false;
-        winActivo = false;
+        menu.SetValue();
+        //menuActivo = true;
+       // winActivo = false;
 
     }
 
     private void Update()
     {
        
-        if (SceneManager.GetActiveScene().name == "Menu" && menuActivo == false)
+        if (SceneManager.GetActiveScene().name == "Level1")
         {
-            menu.SetValue();
-            menuActivo= true;
+            //&& menuActivo == false
+            combate.SetValue();
+            //menuActivo= false;
         }
 
-        if (SceneManager.GetActiveScene().name == "WinLoseScreen" && winActivo == false)
+        if (SceneManager.GetActiveScene().name == "Tutorial")
         {
+            //&& menuActivo == false
+            combate.SetValue();
+           // menuActivo = false;
+        }
+
+        if (SceneManager.GetActiveScene().name == "WinLoseScreen" )
+        {
+            //&& winActivo == false
             menu.SetValue();
-            winActivo = true;
+            //winActivo = true;
         }
 
 

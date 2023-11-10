@@ -1,5 +1,14 @@
 Event	ID	Name			Wwise Object Path	Notes
+	396327889	Play_Charge_Attack			\Default Work Unit\Player\Vx\Play_Charge_Attack	
+	585933822	Play_Death_NoReverb			\Default Work Unit\Player\Vx\Play_Death_NoReverb	
+	1000715389	Play_Amb_Gral			\Default Work Unit\Amb\Play_Amb_Gral	
+	1580169750	Play_Defense			\Default Work Unit\Player\Vx\Play_Defense	
+	2796167582	Play_ESPADA_SFX			\Default Work Unit\Player\Play_ESPADA_SFX	
 	2932040671	Play_Music			\Default Work Unit\Music\Play_Music	
+	2960666077	Play_Hit			\Default Work Unit\Player\Vx\Play_Hit	
+	3689126666	Play_Jump			\Default Work Unit\Player\Vx\Play_Jump	
+	3854155799	Play_Footsteps			\Default Work Unit\Player\Play_Footsteps	
+	4093367312	Play_Breathing			\Default Work Unit\Player\Vx\Play_Breathing	
 
 State Group	ID	Name			Wwise Object Path	Notes
 	3826569560	Music_State			\Default Work Unit\Music_State	
@@ -9,8 +18,47 @@ State	ID	Name	State Group			Notes
 	2677331184	ST_Mus_Combate	Music_State			
 	3450655090	ST_Mus_Menu	Music_State			
 
+Effect plug-ins	ID	Name	Type				Notes
+	502214465	Boost_3dB_10KHz (Custom)	Wwise Parametric EQ			
+	2998002419	Boost_3dB_10KHz	Wwise Parametric EQ			
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	23863857	Attack_Light_2	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Attack_Light_2_74AE2238.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Attack_Light\Attack_Light_2		31060
+	32024351	Breathing_3	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Breathing_3_A3983B84.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Breathing\Breathing_3		66462
+	45754932	Attack_Light_5	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Attack_Light_5_AB3EEB6F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Attack_Light\Attack_Light_5		26930
 	61076188	MENU THEME	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\MENU THEME_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Music_Menu\MENU THEME\MENU THEME		27132052
+	124033715	Breathing_2	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Breathing_2_1E22E08C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Breathing\Breathing_2		85012
+	183217751	PJ FOOTSTEP_02	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\PJ FOOTSTEP_E2E4E4DD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\Footsteps\PJ FOOTSTEP_02		40088
+	194215284	Hit_Player_3	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Hit_Player_3_97001EED.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Hit\Hit_Player_3		36356
+	195191624	LIGHT SFX	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\LIGHT SFX_AEEB8499.wem		\Actor-Mixer Hierarchy\Default Work Unit\Amb\Amb_Gral\LIGHT SFX		967872
+	248459884	PJ FOOTSTEP_01	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\PJ FOOTSTEP_157CAFC9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\Footsteps\PJ FOOTSTEP_01		41248
 	260789924	BATTLE ESCENE	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\BATTLE ESCENE_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Music_Combate\BATTLE ESCENE\BATTLE ESCENE		9750172
+	263265426	Attack_Light_1	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Attack_Light_1_49E43658.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Attack_Light\Attack_Light_1		21882
+	267144149	Death_NoReverb	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Death_NoReverb_348E3325.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Death_NoReverb		231634
+	309821918	PJ FOOTSTEP_03	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\PJ FOOTSTEP_43E84AA8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\Footsteps\PJ FOOTSTEP_03		36852
+	331386206	Breathing_1	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Breathing_1_1EAECF67.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Breathing\Breathing_1		78482
+	409685430	Defense_Parry_3	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Defense_Parry_3_89C4A984.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Defense\Defense_Parry_3		22656
+	421489011	Hit_Player_5	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Hit_Player_5_1D821E9F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Hit\Hit_Player_5		39656
 	422489200	ESCENA PERSONAJE	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\ESCENA PERSONAJE_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Music_Combate\ESCENA PERSONAJE\ESCENA PERSONAJE		4618536
+	482342367	Defense_Parry_4	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Defense_Parry_4_23EE3531.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Defense\Defense_Parry_4		32090
+	497474993	Defense_Parry_2	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Defense_Parry_2_B583207E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Defense\Defense_Parry_2		26892
+	507124204	Jump_6	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Jump_6_1FA520C9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Jump\Jump_6		20802
+	524745254	Charge_Attack_2	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Charge_Attack_2_EA786F62.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Charge_Attack\Charge_Attack_2		88628
+	566366744	Attack_Light_4	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Attack_Light_4_B060F2A5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Attack_Light\Attack_Light_4		32676
+	582501710	Charge_Attack_3	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Charge_Attack_3_A4C7C4AE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Charge_Attack\Charge_Attack_3		72102
+	589305986	Breathing_4	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Breathing_4_C09F96D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Breathing\Breathing_4		79020
+	595462971	Jump_1	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Jump_1_5B762456.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Jump\Jump_1		22942
+	639679766	Jump_2	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Jump_2_8A8AB4D2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Jump\Jump_2		21922
+	648595725	Charge_Attack_1	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Charge_Attack_1_4BC3211E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Charge_Attack\Charge_Attack_1		96398
+	700359098	Hit_Player_4	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Hit_Player_4_51534C93.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Hit\Hit_Player_4		40496
+	851951867	Defense_Parry_1	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Defense_Parry_1_4AA634A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Defense\Defense_Parry_1		35060
+	882770564	Hit_Player_2	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Hit_Player_2_6DC533CA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Hit\Hit_Player_2		30486
+	889998793	PJ FOOTSTEP	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\PJ FOOTSTEP_10B038EB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\Footsteps\PJ FOOTSTEP		23496
+	917364694	Hit_Player_1	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Hit_Player_1_2CC380A7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Hit\Hit_Player_1		29328
+	953918999	Jump_4	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Jump_4_E3331FC4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Jump\Jump_4		18768
+	957423634	Attack_Light_6	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Attack_Light_6_0AEEED73.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Attack_Light\Attack_Light_6		30270
+	968073298	Jump_3	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Jump_3_EEB45194.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Jump\Jump_3		16878
+	969132786	RAIN AMB	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\RAIN AMB_AF0F03FC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Amb\Amb_Gral\RAIN AMB		21697328
+	1022713896	Jump_5	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\Jump_5_46DD5DB7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\VX\Vx\Jump\Jump_5		15902
+	1038728550	ESPADA SFX	C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\SFX\ESPADA SFX_9165521F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personaje\ESPADA SFX		162964
 

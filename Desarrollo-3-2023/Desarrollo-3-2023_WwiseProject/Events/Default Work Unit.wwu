@@ -37,17 +37,10 @@
 					<ChildrenList>
 						<Event Name="Play_ESPADA_SFX" ID="{64602E84-B2E7-41E8-A7EC-08816BDDCFD8}">
 							<ChildrenList>
-								<Action Name="" ID="{2716A017-76BC-4593-AE0C-5172533325A2}" ShortID="388948755">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Attack_Light" ID="{5DCD1F12-10D3-4919-B3E2-BC8D026AE2AD}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
 								<Action Name="" ID="{F8DABE03-6EBE-45CD-9592-315D6E57CF0C}" ShortID="212127846">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="ESPADA SFX" ID="{9A198149-42A8-4EB7-8EB7-FEA982D87DAA}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+											<ObjectRef Name="Ataque" ID="{AA324094-731B-44CF-959B-78D2775A8C58}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -134,6 +127,20 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="Stop_Footsteps" ID="{50ED9432-D7B4-482E-92BB-2BC97E3F7440}">
+							<ChildrenList>
+								<Action Name="" ID="{4C99E98D-8FAE-4AB5-B59E-53C6814F2D34}" ShortID="401871902">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Footsteps" ID="{4260E7DE-8E05-453B-9559-4266ACF8FAD2}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

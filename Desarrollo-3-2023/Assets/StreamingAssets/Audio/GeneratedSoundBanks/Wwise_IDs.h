@@ -23,6 +23,7 @@ namespace AK
         static const AkUniqueID PLAY_HIT = 2960666077U;
         static const AkUniqueID PLAY_JUMP = 3689126666U;
         static const AkUniqueID PLAY_MUSIC = 2932040671U;
+        static const AkUniqueID STOP_FOOTSTEPS = 2963349357U;
     } // namespace EVENTS
 
     namespace STATES

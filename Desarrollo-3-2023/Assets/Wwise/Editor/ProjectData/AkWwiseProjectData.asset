@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 624c08c5828df24f9d652d0cc555cdfd
     GuidInternal: 
-    m_lastTime: -8585020638136570987
+    m_lastTime: -8585019808345020068
     List:
     - name: Amb
       guid: 3c768fe332b69f42a2dd3c4aadea7f6a
@@ -365,6 +365,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Stop_Footsteps
+      guid: 3294ed50b4d72e4892bb2bc97e3f7440
+      id: 2963349357
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 624c08c5828df24f9d652d0cc555cdfd
+      - ElementName: Player
+        ObjectType: 4
+        guid: 190ba928209e95438f64994048fe7c6e
+      - ElementName: Stop_Footsteps
+        ObjectType: 3
+        guid: 3294ed50b4d72e4892bb2bc97e3f7440
+      Path: Events\Default Work Unit\Player\Stop_Footsteps
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Vx
       guid: c01df539b98d9442ac7badd02f452edf
       id: 1534528563
@@ -508,7 +528,7 @@ MonoBehaviour:
     m_lastTime: -8585028242686563810
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 0100000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+  ExpandedWaapiItemIds: 01000000050000000600000007000000090000000a0000000b0000000c0000000d0000000e0000000f0000001b0000001c000000
   AutoSyncSelection: 1
   autoPopulateEnabled: 1
   currentDataSource: 0

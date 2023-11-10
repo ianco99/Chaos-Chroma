@@ -18,6 +18,7 @@ namespace Code.Scripts.Attack
         [SerializeField] private Transform attacker;
         [SerializeField] private SpriteRenderer characterOutline;
         [SerializeField] private Color objectiveColor;
+        
                 
         public event Action OnParried;
         

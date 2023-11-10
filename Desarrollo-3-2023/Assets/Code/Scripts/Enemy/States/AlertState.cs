@@ -1,5 +1,6 @@
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.States;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -15,7 +16,7 @@ namespace Patterns.FSM
         private Transform alertTarget;
         private Transform groundCheckPoint;
 
-        public AlertState(Rigidbody2D rb, T id, string name, Character patroller, Transform transform, AlertSettings settings, Transform groundCheckPoint) : base(id, name, settings.alertSpeed, settings.alertAcceleration,
+        public AlertState(Rigidbody2D rb, T id, string name, Character patroller, Transform transform, AlertSettings settings, Transform groundCheckPoint) : base(id, name, settings.moveSettings,
             transform, rb)
         {
             this.patroller = patroller;

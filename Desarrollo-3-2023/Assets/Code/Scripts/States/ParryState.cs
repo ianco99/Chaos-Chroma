@@ -1,23 +1,23 @@
-using UnityEngine;
+using Code.SOs.States;
 
 namespace Patterns.FSM
 {
     public class ParryState<T> : BaseState<T>
     {
+        private readonly ParrySettings parrySettings;
         private readonly Damageable parrier;
-        private readonly float parryDuration;
         
-        public ParryState(T id, string name, Damageable damageable, float parryDuration) : base(id, name)
+        public ParryState(T id, string name, Damageable damageable, ParrySettings settings) : base(id, name)
         {
             parrier = damageable;
-            this.parryDuration = parryDuration;
+            parrySettings = settings;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
             
-            parrier.StartParry(parryDuration);
+            parrier.StartParry(parrySettings.duration);
         }
 
         public override void OnUpdate()

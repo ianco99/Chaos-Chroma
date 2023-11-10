@@ -1,10 +1,10 @@
+using Code.SOs.States;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PatrolSettingsSO", menuName = "ScriptableObjects/StateSettings/PatrolSettings")]
 public class PatrolSettings : ScriptableObject, IPatrolSettings
 {
-    public float patrolSpeed;
-    public float patrolAcceleration;
+    public MoveSettings moveSettings;
 
     [Header("GroundCheck")]
     public float groundCheckDistance;

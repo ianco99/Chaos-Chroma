@@ -1,3 +1,5 @@
+using Code.SOs.States;
+using kuznickiEventChannel;
 using UnityEngine;
 
 namespace Code.SOs.Enemy
@@ -12,7 +14,13 @@ namespace Code.SOs.Enemy
 
         [Header("Alert")]
         public AlertSettings alertSettings;
+        
+        [Header("Attack")]
+        public AttackStartSettings attackStartSettings;
 
+        [Header("Damaged")]
+        public DamagedSettings damagedSettings;
+        
         [Header("Field of View")]
         public float viewRadius;
         public float viewAngle;
@@ -21,5 +29,8 @@ namespace Code.SOs.Enemy
         public float suspectMeterMinimum = 0.0f;
         public float alertValue = 40.0f;
         public float suspectMeterMaximum = 100.0f;
+        
+        [Header("Death event")]
+        public VoidEventChannel deathEvent;
     }
 }

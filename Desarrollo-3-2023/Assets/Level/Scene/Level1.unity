@@ -24344,7 +24344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 7953979280124003817, guid: 3575aa0aaeb556c49a3ffd4eb38f2286, type: 3}
+  - {fileID: 5581236849421622092, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
   config:
   - {fileID: 11400000, guid: c0786edc6c21aa844ae9f5aa0cb799b8, type: 2}
 --- !u!1 &1632612308

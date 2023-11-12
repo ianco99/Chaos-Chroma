@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Textures/Enemy/Boss.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Textures/Enemy/Boss/LachiBoss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Art/Textures/Enemy/Boss/LachiBoss.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossAreaManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossAreaManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab.meta" afterDir="false" />
+    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Separated punch from retrieve">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/FiniteStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/FiniteStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RetrievePunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RetrievePunch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossAreaManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossAreaManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +33,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/SOs/States/TimerSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitsManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,6 +42,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/RetrieveState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Events/WinTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Game/GameSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Menus/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
@@ -63,6 +58,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/ParryState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Chaos-Chroma/Desarrollo-3-2023/Assets/Level/Prefabs/Boss.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/SelectableEditor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -189,7 +185,7 @@
       <workItem from="1699417223833" duration="2698000" />
       <workItem from="1699469035335" duration="12897000" />
       <workItem from="1699622595903" duration="577000" />
-      <workItem from="1699719961493" duration="2794000" />
+      <workItem from="1699719961493" duration="11523000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -343,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699502640729</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Separated punch from retrieve">
+      <option name="closed" value="true" />
+      <created>1699732210574</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1699732210574</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,7 +377,8 @@
     <MESSAGE value="Fixed fall trigger" />
     <MESSAGE value="Fix lost tile in lvl 1" />
     <MESSAGE value="Added attack start state settings SO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added attack start state settings SO" />
+    <MESSAGE value="Separated punch from retrieve" />
+    <option name="LAST_COMMIT_MESSAGE" value="Separated punch from retrieve" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

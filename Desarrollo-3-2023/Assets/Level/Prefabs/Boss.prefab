@@ -142,7 +142,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -357,6 +357,10 @@ MonoBehaviour:
   flippables: []
   initialState: Idle
   areaManager: {fileID: 8796829815296455739}
+  leftPunch: {fileID: 5850544933449685682}
+  rightPunch: {fileID: 5397680888766976982}
+  leftRetrieve: {fileID: 1156298478108974962}
+  rightRetrieve: {fileID: 112336210925785604}
 --- !u!50 &4883076550811678276
 Rigidbody2D:
   serializedVersion: 4
@@ -655,7 +659,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

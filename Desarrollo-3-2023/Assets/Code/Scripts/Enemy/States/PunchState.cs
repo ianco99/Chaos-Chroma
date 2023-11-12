@@ -2,13 +2,17 @@ using Code.Scripts.Attack;
 
 namespace Patterns.FSM
 {
+    /// <summary>
+    /// Handler for punch state
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class PunchState<T> : BaseState<T>
     {
         private readonly FirePunch leftPunch;
         private readonly FirePunch rightPunch;
         private float distance;
         
-        public bool ended = false;
+        public bool Ended { get; private set; }
         
         public PunchState(T id, FirePunch leftPunch, FirePunch rightPunch) : base(id)
         {
@@ -23,9 +27,12 @@ namespace Patterns.FSM
             Punch();
         }
         
+        /// <summary>
+        /// Initiate the punch
+        /// </summary>
         private void Punch()
         {
-            ended = false;
+            Ended = false;
             
             if (distance > 0)
                 leftPunch.Punch(distance);
@@ -38,7 +45,16 @@ namespace Patterns.FSM
             base.OnUpdate();
             
             if (!leftPunch.Move && !rightPunch.Move)
-                ended = true;
+                Ended = true;
+        }
+        
+        /// <summary>
+        /// Set the distance to throw the punch to
+        /// </summary>
+        /// <param name="distance">Distance to throw</param>
+        public void SetTargetDistance(float distance)
+        {
+            this.distance = distance;
         }
     }
 }

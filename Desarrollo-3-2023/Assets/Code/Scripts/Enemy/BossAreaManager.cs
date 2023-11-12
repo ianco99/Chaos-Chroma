@@ -31,7 +31,7 @@ namespace Code.Scripts.Enemy
         /// <returns>true if it is, false if it isn't</returns>
         public bool IsPlayerInArea()
         {
-            return playerInArea != null;
+            return playerInArea;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Code.Scripts.Enemy
         /// <returns>difference in x axis</returns>
         public float GetPositionDifference()
         {
-            if (playerInArea == null)
+            if (!playerInArea)
                 return 0;
 
             return playerInArea.transform.position.x - transform.position.x;

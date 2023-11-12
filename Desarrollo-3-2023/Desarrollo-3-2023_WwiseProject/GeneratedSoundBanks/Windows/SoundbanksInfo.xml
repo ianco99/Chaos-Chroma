@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX" Hash="2137679492">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX" Hash="1876450591">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1000715389" Name="Play_Amb_Gral" ObjectPath="\Events\Default Work Unit\Amb\Play_Amb_Gral" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="195191624" Language="SFX">
+							<ShortName>LIGHT SFX.wav</ShortName>
+							<Path>SFX\LIGHT SFX_AEEB8499.wem</Path>
+						</File>
+						<File Id="969132786" Language="SFX">
+							<ShortName>RAIN AMB.wav</ShortName>
+							<Path>SFX\RAIN AMB_AF0F03FC.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4093367312" Name="Play_Breathing" ObjectPath="\Events\Default Work Unit\Player\Vx\Play_Breathing" DurationType="OneShot" DurationMin="0.652826" DurationMax="0.835211">
+					<IncludedMemoryFiles>
+						<File Id="32024351" Language="SFX">
+							<ShortName>Breathing_3.wav</ShortName>
+							<Path>SFX\Breathing_3_A3983B84.wem</Path>
+						</File>
+						<File Id="124033715" Language="SFX">
+							<ShortName>Breathing_2.wav</ShortName>
+							<Path>SFX\Breathing_2_1E22E08C.wem</Path>
+						</File>
+						<File Id="331386206" Language="SFX">
+							<ShortName>Breathing_1.wav</ShortName>
+							<Path>SFX\Breathing_1_1EAECF67.wem</Path>
+						</File>
+						<File Id="589305986" Language="SFX">
+							<ShortName>Breathing_4.wav</ShortName>
+							<Path>SFX\Breathing_4_C09F96D0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="396327889" Name="Play_Charge_Attack" ObjectPath="\Events\Default Work Unit\Player\Vx\Play_Charge_Attack" DurationType="OneShot" DurationMin="0.708279" DurationMax="0.947156">
+					<IncludedMemoryFiles>
+						<File Id="524745254" Language="SFX">
+							<ShortName>Charge_Attack_2.wav</ShortName>
+							<Path>SFX\Charge_Attack_2_EA786F62.wem</Path>
+						</File>
+						<File Id="582501710" Language="SFX">
+							<ShortName>Charge_Attack_3.wav</ShortName>
+							<Path>SFX\Charge_Attack_3_A4C7C4AE.wem</Path>
+						</File>
+						<File Id="648595725" Language="SFX">
+							<ShortName>Charge_Attack_1.wav</ShortName>
+							<Path>SFX\Charge_Attack_1_4BC3211E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="585933822" Name="Play_Death_NoReverb" ObjectPath="\Events\Default Work Unit\Player\Vx\Play_Death_NoReverb" DurationType="OneShot" DurationMin="2.276802" DurationMax="2.276802">
+					<IncludedMemoryFiles>
+						<File Id="267144149" Language="SFX">
+							<ShortName>Death_NoReverb.wav</ShortName>
+							<Path>SFX\Death_NoReverb_348E3325.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1580169750" Name="Play_Defense" ObjectPath="\Events\Default Work Unit\Player\Vx\Play_Defense" DurationType="OneShot" DurationMin="0.22213" DurationMax="0.344079">
+					<IncludedMemoryFiles>
+						<File Id="409685430" Language="SFX">
+							<ShortName>Defense_Parry_3.wav</ShortName>
+							<Path>SFX\Defense_Parry_3_89C4A984.wem</Path>
+						</File>
+						<File Id="482342367" Language="SFX">
+							<ShortName>Defense_Parry_4.wav</ShortName>
+							<Path>SFX\Defense_Parry_4_23EE3531.wem</Path>
+						</File>
+						<File Id="497474993" Language="SFX">
+							<ShortName>Defense_Parry_2.wav</ShortName>
+							<Path>SFX\Defense_Parry_2_B583207E.wem</Path>
+						</File>
+						<File Id="851951867" Language="SFX">
+							<ShortName>Defense_Parry_1.wav</ShortName>
+							<Path>SFX\Defense_Parry_1_4AA634A9.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2796167582" Name="Play_ESPADA_SFX" ObjectPath="\Events\Default Work Unit\Player\Play_ESPADA_SFX" DurationType="OneShot" DurationMin="0.653" DurationMax="0.776553">
+					<IncludedMemoryFiles>
+						<File Id="23863857" Language="SFX">
+							<ShortName>Attack_Light_2.wav</ShortName>
+							<Path>SFX\Attack_Light_2_74AE2238.wem</Path>
+						</File>
+						<File Id="45754932" Language="SFX">
+							<ShortName>Attack_Light_5.wav</ShortName>
+							<Path>SFX\Attack_Light_5_AB3EEB6F.wem</Path>
+						</File>
+						<File Id="263265426" Language="SFX">
+							<ShortName>Attack_Light_1.wav</ShortName>
+							<Path>SFX\Attack_Light_1_49E43658.wem</Path>
+						</File>
+						<File Id="566366744" Language="SFX">
+							<ShortName>Attack_Light_4.wav</ShortName>
+							<Path>SFX\Attack_Light_4_B060F2A5.wem</Path>
+						</File>
+						<File Id="957423634" Language="SFX">
+							<ShortName>Attack_Light_6.wav</ShortName>
+							<Path>SFX\Attack_Light_6_0AEEED73.wem</Path>
+						</File>
+						<File Id="1038728550" Language="SFX">
+							<ShortName>ESPADA SFX.wav</ShortName>
+							<Path>SFX\ESPADA SFX_9165521F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3854155799" Name="Play_Footsteps" ObjectPath="\Events\Default Work Unit\Player\Play_Footsteps" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="183217751" Language="SFX">
+							<ShortName>PJ FOOTSTEP.wav</ShortName>
+							<Path>SFX\PJ FOOTSTEP_E2E4E4DD.wem</Path>
+						</File>
+						<File Id="248459884" Language="SFX">
+							<ShortName>PJ FOOTSTEP.wav</ShortName>
+							<Path>SFX\PJ FOOTSTEP_157CAFC9.wem</Path>
+						</File>
+						<File Id="309821918" Language="SFX">
+							<ShortName>PJ FOOTSTEP.wav</ShortName>
+							<Path>SFX\PJ FOOTSTEP_43E84AA8.wem</Path>
+						</File>
+						<File Id="889998793" Language="SFX">
+							<ShortName>PJ FOOTSTEP.wav</ShortName>
+							<Path>SFX\PJ FOOTSTEP_10B038EB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2960666077" Name="Play_Hit" ObjectPath="\Events\Default Work Unit\Player\Vx\Play_Hit" DurationType="OneShot" DurationMin="0.287724" DurationMax="0.397527">
+					<IncludedMemoryFiles>
+						<File Id="194215284" Language="SFX">
+							<ShortName>Hit_Player_3.wav</ShortName>
+							<Path>SFX\Hit_Player_3_97001EED.wem</Path>
+						</File>
+						<File Id="421489011" Language="SFX">
+							<ShortName>Hit_Player_5.wav</ShortName>
+							<Path>SFX\Hit_Player_5_1D821E9F.wem</Path>
+						</File>
+						<File Id="700359098" Language="SFX">
+							<ShortName>Hit_Player_4.wav</ShortName>
+							<Path>SFX\Hit_Player_4_51534C93.wem</Path>
+						</File>
+						<File Id="882770564" Language="SFX">
+							<ShortName>Hit_Player_2.wav</ShortName>
+							<Path>SFX\Hit_Player_2_6DC533CA.wem</Path>
+						</File>
+						<File Id="917364694" Language="SFX">
+							<ShortName>Hit_Player_1.wav</ShortName>
+							<Path>SFX\Hit_Player_1_2CC380A7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3689126666" Name="Play_Jump" ObjectPath="\Events\Default Work Unit\Player\Vx\Play_Jump" DurationType="OneShot" DurationMin="0.155708" DurationMax="0.224932">
+					<IncludedMemoryFiles>
+						<File Id="507124204" Language="SFX">
+							<ShortName>Jump_6.wav</ShortName>
+							<Path>SFX\Jump_6_1FA520C9.wem</Path>
+						</File>
+						<File Id="595462971" Language="SFX">
+							<ShortName>Jump_1.wav</ShortName>
+							<Path>SFX\Jump_1_5B762456.wem</Path>
+						</File>
+						<File Id="639679766" Language="SFX">
+							<ShortName>Jump_2.wav</ShortName>
+							<Path>SFX\Jump_2_8A8AB4D2.wem</Path>
+						</File>
+						<File Id="953918999" Language="SFX">
+							<ShortName>Jump_4.wav</ShortName>
+							<Path>SFX\Jump_4_E3331FC4.wem</Path>
+						</File>
+						<File Id="968073298" Language="SFX">
+							<ShortName>Jump_3.wav</ShortName>
+							<Path>SFX\Jump_3_EEB45194.wem</Path>
+						</File>
+						<File Id="1022713896" Language="SFX">
+							<ShortName>Jump_5.wav</ShortName>
+							<Path>SFX\Jump_5_46DD5DB7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2932040671" Name="Play_Music" ObjectPath="\Events\Default Work Unit\Music\Play_Music" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="61076188" Language="SFX">
+							<ShortName>MENU THEME.wav</ShortName>
+							<Path>SFX\MENU THEME_D79FB2B7.wem</Path>
+						</File>
+						<File Id="260789924" Language="SFX">
+							<ShortName>BATTLE ESCENE.wav</ShortName>
+							<Path>SFX\BATTLE ESCENE_D79FB2B7.wem</Path>
+						</File>
+						<File Id="422489200" Language="SFX">
+							<ShortName>ESCENA PERSONAJE.wav</ShortName>
+							<Path>SFX\ESCENA PERSONAJE_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{E901FD52-C985-4FF1-B65D-6323518437FD}">
+							<Media>
+								<File Id="260789924"/>
+								<File Id="422489200"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{189165D5-DBC9-471D-A915-F5C17D26F353}">
+							<Media>
+								<File Id="61076188"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="2963349357" Name="Stop_Footsteps" ObjectPath="\Events\Default Work Unit\Player\Stop_Footsteps" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+			</IncludedEvents>
+			<StateGroups>
+				<StateGroup Id="3826569560" Name="Music_State" ObjectPath="\States\Default Work Unit\Music_State" GUID="{D76B714B-B886-4838-88AA-B30EBF1AF947}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Music_State\None" GUID="{2FB496E3-6FF8-4895-8B99-6166EC070C10}"/>
+						<State Id="3450655090" Name="ST_Mus_Menu" ObjectPath="\States\Default Work Unit\Music_State\ST_Mus_Menu" GUID="{189165D5-DBC9-471D-A915-F5C17D26F353}"/>
+						<State Id="2677331184" Name="ST_Mus_Combate" ObjectPath="\States\Default Work Unit\Music_State\ST_Mus_Combate" GUID="{E901FD52-C985-4FF1-B65D-6323518437FD}"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

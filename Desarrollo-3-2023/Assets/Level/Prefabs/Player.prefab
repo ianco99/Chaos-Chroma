@@ -340,7 +340,7 @@ Transform:
   - {fileID: 1415809846651763914}
   - {fileID: 8138434858430252606}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -446,6 +446,30 @@ MonoBehaviour:
   parrySettings: {fileID: 11400000, guid: 039221402fd24364a901a3ee2e534984, type: 2}
   damagedSettings: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
   animator: {fileID: 4310963439013856538}
+  playEspada:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1371c7a14dbd8bc49a9393c89f6ac46b, type: 2}
+  playJump:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 95e37789b0fa8044a8e4b81ff673ba78, type: 2}
+  playDefense:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 717e655f7456d2447b5e0fb8022813b1, type: 2}
+  playHit:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8abf90205d2a4d84581735d934a5a37e, type: 2}
+  playFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 120a6a8515644d1498d835f8012346e8, type: 2}
+  stopFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f2381177cdb516841b39e2f1eff4f1b3, type: 2}
 --- !u!114 &2205056402196420099
 MonoBehaviour:
   m_ObjectHideFlags: 0

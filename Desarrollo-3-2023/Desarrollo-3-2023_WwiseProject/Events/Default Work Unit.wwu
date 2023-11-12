@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C5084C62-8D82-4FF2-9D65-2D0CC555CDFD}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{C5084C62-8D82-4FF2-9D65-2D0CC555CDFD}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Music" ID="{75FF5712-B0A7-42D2-8217-55568A429F05}" ShortID="1035189129">
+					<ChildrenList>
+						<Event Name="Play_Music" ID="{8395B850-320B-4723-8E20-69C239F530A4}">
+							<ChildrenList>
+								<Action Name="" ID="{CAEC8E15-A0BA-47DF-9A83-0FF4F39E9814}" ShortID="678724308">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Music" ID="{B7F8A8F9-284D-4E3B-B0D2-8347D3C71D9B}" WorkUnitID="{278C39D0-5D9E-4312-BDF3-4CC47CE1980F}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Amb" ID="{E38F763C-B632-429F-A2DD-3C4AADEA7F6A}" ShortID="98865556">
+					<ChildrenList>
+						<Event Name="Play_Amb_Gral" ID="{9C562EB8-EE65-486D-92D0-B80F80311E17}">
+							<ChildrenList>
+								<Action Name="" ID="{DD549A6F-310E-43E5-9B54-7331DB7B9500}" ShortID="107980600">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Amb_Gral" ID="{0A72536B-307F-490A-8DAD-1CCCEE76BF3F}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Player" ID="{28A90B19-9E20-4395-8F64-994048FE7C6E}" ShortID="355301151">
+					<ChildrenList>
+						<Event Name="Play_ESPADA_SFX" ID="{64602E84-B2E7-41E8-A7EC-08816BDDCFD8}">
+							<ChildrenList>
+								<Action Name="" ID="{F8DABE03-6EBE-45CD-9592-315D6E57CF0C}" ShortID="212127846">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Ataque" ID="{AA324094-731B-44CF-959B-78D2775A8C58}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_Footsteps" ID="{A6CE2D69-BBB7-4AD1-86B6-6FAA448D33E0}">
+							<ChildrenList>
+								<Action Name="" ID="{B8A6FBD8-CA90-4DEF-9EEE-1BE3AEB87BDB}" ShortID="105675900">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Footsteps" ID="{4260E7DE-8E05-453B-9559-4266ACF8FAD2}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="Vx" ID="{39F51DC0-8DB9-4294-AC7B-ADD02F452EDF}" ShortID="763449190">
+							<ChildrenList>
+								<Event Name="Play_Breathing" ID="{3012392F-64F4-41DF-9FD4-0E816127F1F3}">
+									<ChildrenList>
+										<Action Name="" ID="{607AB885-091B-41EE-B37E-A83D5F73F87B}" ShortID="73909937">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Breathing" ID="{6C818A33-B42C-4D03-8CC5-85DD6D31E51F}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Charge_Attack" ID="{DCBD667F-5ED3-4137-BC01-3E32CB5A40E1}">
+									<ChildrenList>
+										<Action Name="" ID="{B95AF055-DE12-4823-A39D-6478357026E3}" ShortID="428738844">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Charge_Attack" ID="{F25AF7F7-7232-458F-9036-195C42EF49A9}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Death_NoReverb" ID="{77EE4FCF-D8D2-454D-89B3-8EA5EA8AA6DA}">
+									<ChildrenList>
+										<Action Name="" ID="{4606E89D-444F-41A2-B1FC-D6A9D424F33B}" ShortID="188047244">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Death_NoReverb" ID="{841ACB1C-800A-495D-AAC1-899F0BF16ECB}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Defense" ID="{BB8C219C-0511-4EDB-A133-DA2CB8F07065}">
+									<ChildrenList>
+										<Action Name="" ID="{14F1F1EA-D796-41BC-A53C-8EB3647D23E8}" ShortID="602156161">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Defense" ID="{F8896548-AD04-4CDA-9E47-20464ACEE0D0}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Hit" ID="{060BC113-2862-46F1-B460-3A4859D89181}">
+									<ChildrenList>
+										<Action Name="" ID="{13B91EAA-448B-432D-8ADB-A8CB75CE0461}" ShortID="635702513">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Hit" ID="{3168DBB9-23CE-44C3-92C2-D9E87B72BF6F}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Jump" ID="{1FF3006C-674A-4F29-A465-0F24A6EFCD50}">
+									<ChildrenList>
+										<Action Name="" ID="{5C25EE1B-BC74-4EC0-AE98-18D448CB84DB}" ShortID="313185255">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Jump" ID="{A7F2910B-966B-4A25-8807-D1E4DF9DAF83}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Event Name="Stop_Footsteps" ID="{50ED9432-D7B4-482E-92BB-2BC97E3F7440}">
+							<ChildrenList>
+								<Action Name="" ID="{4C99E98D-8FAE-4AB5-B59E-53C6814F2D34}" ShortID="401871902">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Footsteps" ID="{4260E7DE-8E05-453B-9559-4266ACF8FAD2}" WorkUnitID="{69BF3AA2-E6FC-4122-BD9E-65920CFC92A8}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

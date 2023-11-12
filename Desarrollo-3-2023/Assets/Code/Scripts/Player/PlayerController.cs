@@ -48,6 +48,18 @@ namespace Code.Scripts.Player
                                 
         [Header("Animation")] [SerializeField] private Animator animator;
 
+        [Header("Audio Events")]
+        [SerializeField] private AK.Wwise.Event playEspada;
+        [SerializeField] private AK.Wwise.Event playJump;
+        [SerializeField] private AK.Wwise.Event playDefense;
+        [SerializeField] private AK.Wwise.Event playHit;
+        [SerializeField] private AK.Wwise.Event playFootstep;
+        [SerializeField] private AK.Wwise.Event stopFootstep;
+        private bool isWalking = false;
+
+
+
+
         // States
         private MovementState<PlayerStates> movementState;
         private IdleState<PlayerStates> idleState;
@@ -257,6 +269,7 @@ namespace Code.Scripts.Player
         {
             if (attackStartState.Active)
                 attackStartState.Exit();
+            playHit.Post(gameObject);
 
             if (attackEndState.Active)
                 attackEndState.Stop();
@@ -282,12 +295,29 @@ namespace Code.Scripts.Player
         private void CheckMoving(Vector2 input)
         {
             if (input.x != 0 || input.y != 0)
+         
+            {    
                 movementState.Enter();
+                if (isWalking == false)
+                {
+                    playFootstep.Post(gameObject);
+                    isWalking = true;
+                    Debug.Log("caminando");
+                }
+            }
 
+            if (input.x == 0 && isWalking == true)
+            {
+                isWalking = false;
+                stopFootstep.Post(gameObject);
+                Debug.Log("quieto");
+            }
             movementState.dir = input;
             jumpStartState.dir = input;
             jumpEndState.dir = input;
             godState.dir = input;
+
+         
         }
 
         /// <summary>
@@ -297,6 +327,7 @@ namespace Code.Scripts.Player
         {
             if (fsm.GetCurrentState().ID == PlayerStates.Idle || fsm.GetCurrentState().ID == PlayerStates.Move)
                 attackStartState.Enter();
+            playEspada.Post(gameObject);
         }
 
         /// <summary>
@@ -328,6 +359,7 @@ namespace Code.Scripts.Player
         private void CheckBlock()
         {
             blockState.Exit();
+            playDefense.Post(gameObject);
         }
 
         /// <summary>
@@ -336,6 +368,7 @@ namespace Code.Scripts.Player
         private void CheckJumpStart()
         {
             jumpStartState.Enter();
+            playJump.Post(gameObject);
         }
 
         /// <summary>

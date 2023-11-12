@@ -24,6 +24,8 @@ namespace Patterns.FSM
         public virtual void OnEnter()
         {
             onEnter?.Invoke();
+            
+            Active = true;
         }
 
         public virtual void OnUpdate()

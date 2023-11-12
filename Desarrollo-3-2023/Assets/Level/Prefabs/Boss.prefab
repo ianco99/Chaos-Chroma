@@ -361,6 +361,7 @@ MonoBehaviour:
   rightPunch: {fileID: 5397680888766976982}
   leftRetrieve: {fileID: 1156298478108974962}
   rightRetrieve: {fileID: 112336210925785604}
+  timerSettings: {fileID: 11400000, guid: f39254182e6fcea4c8a0b9c57505ca91, type: 2}
 --- !u!50 &4883076550811678276
 Rigidbody2D:
   serializedVersion: 4

@@ -58,8 +58,6 @@ namespace Code.Scripts.Enemy
         private void Update()
         {
             fsm.Update();
-            
-            Debug.Log(fsm.GetCurrentState().ID);
         }
 
         /// <summary>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Code.Scripts.Enemy
@@ -5,24 +6,35 @@ namespace Code.Scripts.Enemy
     /// <summary>
     /// Player detector manager
     /// </summary>
-    public class BossAreaManager : MonoBehaviour
+    public class AreaDetector : MonoBehaviour
     {
-        private GameObject playerInArea;
+        [SerializeField] private List<string> detectableTags;
+        
+        private GameObject detectableInArea;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.CompareTag("Player"))
+            bool detected = false;
+            
+            foreach (string detectableTag in detectableTags)
+            {
+                if (!other.CompareTag(detectableTag)) continue;
+                
+                detected = true;
+            }
+            
+            if (!detected)
                 return;
 
-            playerInArea = other.gameObject;
+            detectableInArea = other.gameObject;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject != playerInArea)
+            if (other.gameObject != detectableInArea)
                 return;
             
-            playerInArea = null;
+            detectableInArea = null;
         }
 
         /// <summary>
@@ -31,7 +43,7 @@ namespace Code.Scripts.Enemy
         /// <returns>true if it is, false if it isn't</returns>
         public bool IsPlayerInArea()
         {
-            return playerInArea;
+            return detectableInArea;
         }
 
         /// <summary>
@@ -40,10 +52,10 @@ namespace Code.Scripts.Enemy
         /// <returns>difference in x axis</returns>
         public float GetPositionDifference()
         {
-            if (!playerInArea)
+            if (!detectableInArea)
                 return 0;
 
-            return playerInArea.transform.position.x - transform.position.x;
+            return detectableInArea.transform.position.x - transform.position.x;
         }
     }
 }

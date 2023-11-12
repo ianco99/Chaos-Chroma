@@ -14,8 +14,9 @@ namespace Code.Scripts.Enemy
         [Header("FSM:")]
         [SerializeField] private string initialState;
         
-        [Header("Detection Area:")]
-        [SerializeField] private BossAreaManager areaManager;
+        [Header("Areas:")]
+        [SerializeField] private AreaDetector detectionArea;
+        [SerializeField] private AreaDetector attackArea;
         
         [Header("Punch:")]
         [SerializeField] private FirePunch leftPunch;
@@ -25,12 +26,14 @@ namespace Code.Scripts.Enemy
        
         [Header("State Settings:")]
         [SerializeField] private TimerSettings timerSettings;
+        [SerializeField] private MoveSettings moveSettings;
         
         // States
         private IdleState<string> idleState;
         private PunchState<string> punchState;
         private RetrieveState<string> retrieveState; 
         private CooldownState<string> cooldownState;
+        private MovementState<string> movementState;
 
         private void Awake()
         {
@@ -48,11 +51,13 @@ namespace Code.Scripts.Enemy
             punchState = new PunchState<string>("Punch", leftPunch, rightPunch);
             retrieveState = new RetrieveState<string>("Retrieve", leftRetrieve, rightRetrieve);
             cooldownState = new CooldownState<string>("Cooldown", idleState.ID, timerSettings);
+            movementState = new MovementState<string>("Movement", moveSettings, transform, rb);
 
             fsm.AddState(idleState);
             fsm.AddState(punchState);
             fsm.AddState(retrieveState);
             fsm.AddState(cooldownState);
+            fsm.AddState(movementState);
 
             AddTransitions();
 
@@ -66,9 +71,15 @@ namespace Code.Scripts.Enemy
         /// </summary>
         private void AddTransitions()
         {
-            fsm.AddTransition(idleState, punchState, areaManager.IsPlayerInArea);
+            fsm.AddTransition(idleState, movementState, detectionArea.IsPlayerInArea);
+            fsm.AddTransition(idleState, punchState, attackArea.IsPlayerInArea);
+            
+            fsm.AddTransition(movementState, punchState, attackArea.IsPlayerInArea);
+            
             fsm.AddTransition(punchState, retrieveState, () => punchState.Ended);
+            
             fsm.AddTransition(retrieveState, cooldownState, () => retrieveState.Ended);
+            
             fsm.AddTransition(cooldownState, idleState, () => !cooldownState.Active);
         }
 
@@ -85,6 +96,13 @@ namespace Code.Scripts.Enemy
         private void Update()
         {
             fsm.Update();
+            
+            movementState.dir.x = Mathf.Clamp(detectionArea.GetPositionDifference(), -1, 1);
+        }
+        
+        private void FixedUpdate()
+        {
+            fsm.FixedUpdate();
         }
 
         /// <summary>
@@ -92,7 +110,7 @@ namespace Code.Scripts.Enemy
         /// </summary>
         private void OnEnterPunchHandler()
         {
-            punchState.SetTargetDistance(areaManager.GetPositionDifference());
+            punchState.SetTargetDistance(detectionArea.GetPositionDifference());
         }
     }
 }

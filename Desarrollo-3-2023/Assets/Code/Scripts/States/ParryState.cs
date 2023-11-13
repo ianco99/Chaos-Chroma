@@ -1,10 +1,11 @@
 using Code.SOs.States;
+using UnityEngine;
 
 namespace Patterns.FSM
 {
     public class ParryState<T> : BaseState<T>
     {
-        private readonly ParrySettings parrySettings;
+        private ParrySettings parrySettings;
         private readonly Damageable parrier;
         
         public ParryState(T id, string name, Damageable damageable, ParrySettings settings) : base(id, name)
@@ -16,7 +17,10 @@ namespace Patterns.FSM
         public override void OnEnter()
         {
             base.OnEnter();
-            
+
+            Debug.Log(parrier);
+            Debug.Log(parrySettings);
+            Debug.Log(parrySettings.duration);
             parrier.StartParry(parrySettings.duration);
         }
 

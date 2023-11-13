@@ -38,6 +38,11 @@ namespace Patterns.FSM
             pushDirection = newDirection;
         }
 
+        public void SetForce(float newForce)
+        {
+            force = newForce;
+        }
+
         public void ResetState()
         {
             rb.AddForce(pushDirection * force, ForceMode2D.Impulse);

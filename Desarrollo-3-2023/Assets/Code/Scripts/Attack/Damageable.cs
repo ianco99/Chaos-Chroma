@@ -17,6 +17,7 @@ namespace Patterns.FSM
 
         public event Action<Vector2> OnTakeDamage;
         public event Action<Vector2> OnBlock;
+        public event Action<Vector2> OnParry;
         public kuznickiEventChannel.VoidEventChannel OnDeath;
 
 
@@ -39,7 +40,10 @@ namespace Patterns.FSM
         public bool TakeDamage(float damage, Vector2 attackOrigin)
         {
             if (parry)
+            {
+                OnParry?.Invoke(attackOrigin);
                 return false;
+            }
 
             if (block)
             {
@@ -100,8 +104,9 @@ namespace Patterns.FSM
         private IEnumerator Parry(float parryDuration)
         {
             parry = true;
-
+            Debug.Log("god");
             yield return new WaitForSeconds(parryDuration);
+            Debug.Log("no god");
             parry = false;
         }
     }

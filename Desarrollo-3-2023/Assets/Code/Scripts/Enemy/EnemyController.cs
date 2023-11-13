@@ -53,10 +53,10 @@ namespace Code.Scripts.Enemy
         private AttackStartState<EnemyStates> attackStartState;
         private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
-        private KnockBackBlockState<EnemyStates> blockState;
+        private ParryState<EnemyStates> blockState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
-        
+
         public EnemySettings settings;
 
         private void Awake()
@@ -98,7 +98,7 @@ namespace Code.Scripts.Enemy
                 new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
                 settings.damagedSettings, rb);
-            blockState = new KnockBackBlockState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, rb, 4.4f);
+            blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, settings.parrySettings);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -117,7 +117,7 @@ namespace Code.Scripts.Enemy
                 () => !attackStartState.Active && detectedPlayer != null);
             fsm.AddTransition(attackEndState, alertState,
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
-            fsm.AddTransition(blockState, alertState, () => blockState.FinishedTimer());
+            //fsm.AddTransition(blockState, alertState, () => blockState.FinishedTimer());
 
             fsm.SetCurrentState(fsm.GetState(startingState));
 
@@ -279,10 +279,16 @@ namespace Code.Scripts.Enemy
             }
             else
             {
-                if (fsm.GetCurrentState() == blockState)
-                    blockState.ResetState();
-                else
-                    fsm.SetCurrentState(blockState);
+                //if (fsm.GetCurrentState() == blockState)
+                //{
+                //    blockState.SetForce(settings.blockSettings.knockbackForce);
+                //    blockState.ResetState();
+                //}
+                //else
+                //{
+                //    blockState.SetForce(0.0f);
+                //    fsm.SetCurrentState(blockState);
+                //}
             }
         }
 
@@ -293,12 +299,10 @@ namespace Code.Scripts.Enemy
             else if (dir.x < transform.position.x && facingRight)
                 Flip();
 
-            blockState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+            //blockState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+            //blockState.SetForce(settings.blockSettings.knockbackForce);
 
-            if (fsm.GetCurrentState() == blockState)
-                blockState.ResetState();
-            else
-                fsm.SetCurrentState(blockState);
+            //blockState.ResetState();
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

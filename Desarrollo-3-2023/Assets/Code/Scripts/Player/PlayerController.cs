@@ -1,5 +1,6 @@
 using System;
 using Code.Scripts.Abstracts.Character;
+using Code.Scripts.Attack;
 using Code.Scripts.Input;
 using Code.Scripts.States;
 using Code.SOs.States;
@@ -95,7 +96,7 @@ namespace Code.Scripts.Player
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, trans, rb);
             jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);
-            damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Idle, damagedSettings, rb);
+            damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Block, damagedSettings, rb);
             godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", godSettings, trans, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();
@@ -133,6 +134,8 @@ namespace Code.Scripts.Player
             damageable.OnBlock += KnockBack;
 
             damagedState.onEnter += OnDamagedEnterHandler;
+
+            hit.GetComponent<HitsManager>().OnParried += OnParriedHandler;
         }
 
         private void OnDisable()
@@ -150,6 +153,8 @@ namespace Code.Scripts.Player
             damageable.OnBlock -= KnockBack;
 
             damagedState.onEnter -= OnDamagedEnterHandler;
+
+            hit.GetComponent<HitsManager>().OnParried -= OnParriedHandler;
         }
 
         private void Update()
@@ -402,6 +407,14 @@ namespace Code.Scripts.Player
 
             damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
             damagedState.Enter();
+        }
+
+        private void OnParriedHandler()
+        {
+            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+
+            damagedState.Enter();
+
         }
 
         #endregion

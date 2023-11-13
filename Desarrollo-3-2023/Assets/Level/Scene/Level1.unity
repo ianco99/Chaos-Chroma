@@ -2444,7 +2444,7 @@ GameObject:
   - component: {fileID: 501178469}
   - component: {fileID: 501178468}
   - component: {fileID: 501178471}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Platform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25583,30 +25583,6 @@ PrefabInstance:
       propertyPath: pauseCanvas
       value: 
       objectReference: {fileID: 2103039417}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: playHit.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 8abf90205d2a4d84581735d934a5a37e, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: playJump.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 95e37789b0fa8044a8e4b81ff673ba78, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: playEspada.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 1371c7a14dbd8bc49a9393c89f6ac46b, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: playDefense.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 717e655f7456d2447b5e0fb8022813b1, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: playFootstep.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: 120a6a8515644d1498d835f8012346e8, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: stopFootstep.WwiseObjectReference
-      value: 
-      objectReference: {fileID: 11400000, guid: f2381177cdb516841b39e2f1eff4f1b3, type: 2}
     - target: {fileID: 6862336575500731703, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: m_Name
       value: Player

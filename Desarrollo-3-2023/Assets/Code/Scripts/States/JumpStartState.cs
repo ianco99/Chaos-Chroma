@@ -31,7 +31,7 @@ namespace Patterns.FSM
             behaviourClass.StartCoroutine(AddForce(transform.up * jumpStartSettings.force, ForceMode2D.Impulse));
 
             originalGravScale = rb.gravityScale;
-            rb.gravityScale *= 2f;
+            // rb.gravityScale *= 2f;
         }
 
         public override void OnExit()

@@ -14,6 +14,7 @@ namespace Code.Scripts.Attack
         [SerializeField] private float damage = 10f;
         [SerializeField] private float hitDelay = .2f;
         [SerializeField] private float hitDuration = 1f;
+        [SerializeField] private bool finishByDuration = true;
         [SerializeField] private SpriteRenderer sprite;
         [SerializeField] private Transform attacker;
         [SerializeField] private SpriteRenderer characterOutline;
@@ -80,7 +81,8 @@ namespace Code.Scripts.Attack
                 sprite.enabled = true;
             
             started = true;
-            StartCoroutine(StopOnTime());
+            if (finishByDuration)
+                StartCoroutine(StopOnTime());
         }
 
         /// <summary>

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1156298478108974962}
   - component: {fileID: 1478420695554030810}
   - component: {fileID: 6235451097825461062}
+  - component: {fileID: 1598149097237989774}
   m_Layer: 0
   m_Name: Punch
   m_TagString: Untagged
@@ -101,7 +102,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.78431374}
   m_FlipX: 0
@@ -142,7 +143,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -158,6 +159,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1598149097237989774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624388751075788607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780aeedab9bd5ae45aa51a677de98169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 30
+  hitDelay: 0
+  hitDuration: 5
+  finishByDuration: 0
+  sprite: {fileID: 43860067576175658}
+  attacker: {fileID: 7447287461447200753}
+  characterOutline: {fileID: 0}
+  objectiveColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1533364633406203369
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +268,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -399,7 +420,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -791,7 +812,7 @@ Transform:
   - {fileID: 850656403992607110}
   - {fileID: 4748955373487805031}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6660972805920217182
 MonoBehaviour:
@@ -816,6 +837,8 @@ MonoBehaviour:
   rightPunch: {fileID: 5397680888766976982}
   leftRetrieve: {fileID: 1156298478108974962}
   rightRetrieve: {fileID: 112336210925785604}
+  leftHit: {fileID: 1598149097237989774}
+  rightHit: {fileID: 7820543413038013072}
   timerSettings: {fileID: 11400000, guid: f39254182e6fcea4c8a0b9c57505ca91, type: 2}
   moveSettings: {fileID: 11400000, guid: 839889885e8d5294e90349bfaa3b7654, type: 2}
 --- !u!114 &4994991711041449135
@@ -1003,6 +1026,7 @@ GameObject:
   - component: {fileID: 112336210925785604}
   - component: {fileID: 43860067576175658}
   - component: {fileID: 1187850927309717854}
+  - component: {fileID: 7820543413038013072}
   m_Layer: 0
   m_Name: Punch
   m_TagString: Untagged
@@ -1091,7 +1115,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.78431374}
   m_FlipX: 0
@@ -1132,7 +1156,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1148,6 +1172,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7820543413038013072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981027635098746275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780aeedab9bd5ae45aa51a677de98169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 30
+  hitDelay: 0
+  hitDuration: 5
+  finishByDuration: 0
+  sprite: {fileID: 43860067576175658}
+  attacker: {fileID: 7447287461447200753}
+  characterOutline: {fileID: 0}
+  objectiveColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &4664681184656298538
 PrefabInstance:
   m_ObjectHideFlags: 0

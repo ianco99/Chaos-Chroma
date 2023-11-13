@@ -23,6 +23,10 @@ namespace Code.Scripts.Enemy
         [SerializeField] private FirePunch rightPunch;
         [SerializeField] private RetrievePunch leftRetrieve;
         [SerializeField] private RetrievePunch rightRetrieve;
+        
+        [Header("Hits:")] 
+        [SerializeField] private HitController leftHit;
+        [SerializeField] private HitController rightHit;
        
         [Header("State Settings:")]
         [SerializeField] private TimerSettings timerSettings;
@@ -86,11 +90,15 @@ namespace Code.Scripts.Enemy
         private void OnEnable()
         {
             punchState.onEnter += OnEnterPunchHandler;
+            cooldownState.onEnter += OnEnterCooldownHandler;
+            retrieveState.onExit += OnExitRetrieveHandler;
         }
 
         private void OnDisable()
         {
             punchState.onEnter -= OnEnterPunchHandler;
+            cooldownState.onEnter -= OnEnterCooldownHandler;
+            retrieveState.onExit -= OnExitRetrieveHandler;
         }
 
         private void Update()
@@ -111,6 +119,17 @@ namespace Code.Scripts.Enemy
         private void OnEnterPunchHandler()
         {
             punchState.SetTargetDistance(detectionArea.GetPositionDifference());
+        }
+
+        private void OnEnterCooldownHandler()
+        {
+            cooldownState.Enter();
+        }
+
+        private void OnExitRetrieveHandler()
+        {
+            leftHit.Stop();
+            rightHit.Stop();
         }
     }
 }

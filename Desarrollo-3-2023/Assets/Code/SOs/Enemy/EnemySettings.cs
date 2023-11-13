@@ -20,7 +20,13 @@ namespace Code.SOs.Enemy
 
         [Header("Damaged")]
         public DamagedSettings damagedSettings;
-        
+
+        [Header("Block")]
+        public KnockbackBlockSettings blockSettings;
+
+        [Header("Parry")]
+        public ParrySettings parrySettings;
+
         [Header("Field of View")]
         public float viewRadius;
         public float viewAngle;

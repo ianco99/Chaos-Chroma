@@ -16,6 +16,8 @@ MonoBehaviour:
   alertSettings: {fileID: 11400000, guid: 4fdcc6853bce2cf4aba6362c79a97b49, type: 2}
   attackStartSettings: {fileID: 11400000, guid: 2ec768d0f34e25f499f5680c1121206a, type: 2}
   damagedSettings: {fileID: 11400000, guid: 2de781c9949e356449bcbccfc15c13c4, type: 2}
+  blockSettings: {fileID: 11400000, guid: 2d96f0069582a2947b214631256cfc79, type: 2}
+  parrySettings: {fileID: 11400000, guid: bdb923da71ab4f9489487cb142d617af, type: 2}
   viewRadius: 6
   viewAngle: 60
   suspectMeterMinimum: 0

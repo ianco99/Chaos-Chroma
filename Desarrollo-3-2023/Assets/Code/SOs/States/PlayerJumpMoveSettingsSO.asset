@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027a30467f6592646be67d5e23d23f17, type: 3}
   m_Name: PlayerJumpMoveSettingsSO
   m_EditorClassIdentifier: 
-  speed: 200
-  accel: 100
+  speed: 300
+  accel: 50

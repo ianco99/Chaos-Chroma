@@ -1,4 +1,5 @@
 using Code.Scripts.Attack;
+using UnityEngine;
 
 namespace Patterns.FSM
 {
@@ -10,7 +11,7 @@ namespace Patterns.FSM
     {
         private readonly FirePunch leftPunch;
         private readonly FirePunch rightPunch;
-        private float distance;
+        private Vector2 targetPos;
 
         public bool Ended { get; private set; }
 
@@ -34,15 +35,15 @@ namespace Patterns.FSM
         {
             Ended = false;
 
-            if (distance > 0)
+            if (targetPos.x > 0)
             {
                 leftPunch.gameObject.SetActive(true);
-                leftPunch.Punch(distance);
+                leftPunch.Punch(targetPos);
             }
             else
             {
                 rightPunch.gameObject.SetActive(true);
-                rightPunch.Punch(distance);
+                rightPunch.Punch(targetPos);
             }
         }
 
@@ -57,10 +58,10 @@ namespace Patterns.FSM
         /// <summary>
         /// Set the distance to throw the punch to
         /// </summary>
-        /// <param name="distance">Distance to throw</param>
-        public void SetTargetDistance(float distance)
+        /// <param name="pos">Position to throw punch to</param>
+        public void SetTargetPos(Vector2 pos)
         {
-            this.distance = distance;
+            targetPos = pos;
         }
     }
 }

@@ -105,7 +105,7 @@ namespace Code.Scripts.Enemy
         {
             fsm.Update();
             
-            movementState.dir.x = Mathf.Clamp(detectionArea.GetPositionDifference(), -1, 1);
+            movementState.dir = detectionArea.GetPositionDifference().normalized;
         }
         
         private void FixedUpdate()
@@ -118,14 +118,20 @@ namespace Code.Scripts.Enemy
         /// </summary>
         private void OnEnterPunchHandler()
         {
-            punchState.SetTargetDistance(detectionArea.GetPositionDifference());
+            punchState.SetTargetPos(detectionArea.GetPositionDifference());
         }
 
+        /// <summary>
+        /// Set cooldown state as active when entered
+        /// </summary>
         private void OnEnterCooldownHandler()
         {
             cooldownState.Enter();
         }
 
+        /// <summary>
+        /// Stop Hit when exited retrieve
+        /// </summary>
         private void OnExitRetrieveHandler()
         {
             leftHit.Stop();

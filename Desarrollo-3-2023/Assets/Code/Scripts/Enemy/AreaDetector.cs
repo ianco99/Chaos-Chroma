@@ -50,12 +50,12 @@ namespace Code.Scripts.Enemy
         /// Gives the difference between the detected player and the center of the area
         /// </summary>
         /// <returns>difference in x axis</returns>
-        public float GetPositionDifference()
+        public Vector2 GetPositionDifference()
         {
             if (!detectableInArea)
-                return 0;
+                return Vector2.zero;
 
-            return detectableInArea.transform.position.x - transform.position.x;
+            return detectableInArea.transform.position - transform.position;
         }
     }
 }

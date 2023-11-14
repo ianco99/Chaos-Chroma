@@ -37,13 +37,16 @@ namespace Code.Scripts.Attack
         /// <summary>
         /// Initiate the punch
         /// </summary>
-        /// <param name="distance">Distance to punch to</param>
-        public void Punch(float distance)
+        /// <param name="pos">Position to punch to</param>
+        public void Punch(Vector2 pos)
         {
-            Transform trans = transform;
-            
             Move = true;
-            targetPos = trans.localPosition + trans.right * distance;
+            targetPos = pos;
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            Move = false;
         }
     }
 }

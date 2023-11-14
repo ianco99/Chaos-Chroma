@@ -1,5 +1,6 @@
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
+using Code.Scripts.SOs.Animator;
 using Code.Scripts.States;
 using Code.SOs.States;
 using Patterns.FSM;
@@ -11,35 +12,38 @@ namespace Code.Scripts.Enemy
     {
         private FiniteStateMachine<string> fsm;
 
-        [Header("FSM:")]
-        [SerializeField] private string initialState;
-        
-        [Header("Areas:")]
-        [SerializeField] private AreaDetector detectionArea;
+        [Header("FSM:")] [SerializeField] private string initialState;
+
+        [Header("Areas:")] [SerializeField] private AreaDetector detectionArea;
         [SerializeField] private AreaDetector attackArea;
-        
-        [Header("Punch:")]
-        [SerializeField] private FirePunch leftPunch;
+
+        [Header("Punch:")] [SerializeField] private FirePunch leftPunch;
         [SerializeField] private FirePunch rightPunch;
         [SerializeField] private RetrievePunch leftRetrieve;
         [SerializeField] private RetrievePunch rightRetrieve;
-        
-        [Header("Hits:")] 
-        [SerializeField] private HitController leftHit;
+
+        [Header("Hits:")] [SerializeField] private HitController leftHit;
         [SerializeField] private HitController rightHit;
-       
-        [Header("State Settings:")]
-        [SerializeField] private TimerSettings timerSettings;
+
+        [Header("State Settings:")] [SerializeField]
+        private TimerSettings timerSettings;
+
         [SerializeField] private MoveSettings moveSettings;
         [SerializeField] private DamagedSettings damagedSettings;
 
-        [Header("Life:")]
-        [SerializeField] private Damageable damageable;
-        
+        [Header("Life:")] [SerializeField] private Damageable damageable;
+
+        [Header("Animations:")] 
+        [SerializeField] private string animatorParameterName;
+        [SerializeField] private Animator animator;
+
+
+        private StateSetter<string> stateSetter;
+
         // States
         private IdleState<string> idleState;
         private PunchState<string> punchState;
-        private RetrieveState<string> retrieveState; 
+        private RetrieveState<string> retrieveState;
         private CooldownState<string> cooldownState;
         private MovementState<string> movementState;
         private DamagedState<string> damagedState;
@@ -47,6 +51,7 @@ namespace Code.Scripts.Enemy
         private void Awake()
         {
             InitFsm();
+            InitStateSetter();
         }
 
         /// <summary>
@@ -83,17 +88,17 @@ namespace Code.Scripts.Enemy
         {
             fsm.AddTransition(idleState, movementState, detectionArea.IsPlayerInArea);
             fsm.AddTransition(idleState, punchState, attackArea.IsPlayerInArea);
-            
+
             fsm.AddTransition(movementState, punchState, attackArea.IsPlayerInArea);
-            
+
             fsm.AddTransition(punchState, damagedState, () => damagedState.Active);
             fsm.AddTransition(punchState, retrieveState, () => punchState.Ended);
-            
+
             fsm.AddTransition(retrieveState, damagedState, () => damagedState.Active);
             fsm.AddTransition(retrieveState, cooldownState, () => retrieveState.Ended);
-            
+
             fsm.AddTransition(cooldownState, idleState, () => !cooldownState.Active);
-            
+
             fsm.AddTransition(damagedState, idleState, () => !damagedState.Active);
         }
 
@@ -123,12 +128,29 @@ namespace Code.Scripts.Enemy
         {
             fsm.Update();
             
+            stateSetter.UpdateAnimator(fsm.GetCurrentState().ID);
+
             movementState.dir = detectionArea.GetPositionDifference().normalized;
         }
-        
+
         private void FixedUpdate()
         {
             fsm.FixedUpdate();
+        }
+
+        /// <summary>
+        /// Initialize stateSetter and add states
+        /// </summary>
+        private void InitStateSetter()
+        {
+            stateSetter = new StateSetter<string>(animatorParameterName, animator);
+            
+            stateSetter.AddState(idleState.ID, 0);
+            stateSetter.AddState(punchState.ID, 1);
+            stateSetter.AddState(retrieveState.ID, 2);
+            stateSetter.AddState(cooldownState.ID, 3);
+            stateSetter.AddState(movementState.ID, 4);
+            stateSetter.AddState(damagedState.ID, 5);
         }
 
         /// <summary>
@@ -146,7 +168,7 @@ namespace Code.Scripts.Enemy
         {
             cooldownState.Enter();
         }
-        
+
         /// <summary>
         /// Set damaged state when entered
         /// </summary>
@@ -163,29 +185,29 @@ namespace Code.Scripts.Enemy
             leftHit.Stop();
             rightHit.Stop();
         }
-        
+
         /// <summary>
         /// Set damaged state on parried
         /// </summary>
         private void OnLeftParriedHandler()
         {
             ResetPunches();
-            
+
             damagedState.SetDirection(Vector2.left);
             damagedState.Enter();
         }
-        
+
         /// <summary>
         /// Set damaged state on parried
         /// </summary>
         private void OnRightParriedHandler()
         {
             ResetPunches();
-            
+
             damagedState.SetDirection(Vector2.right);
             damagedState.Enter();
         }
-        
+
         /// <summary>
         /// Set damaged state on take damage
         /// </summary>
@@ -193,7 +215,7 @@ namespace Code.Scripts.Enemy
         private void OnTakeDamageHandler(Vector2 origin)
         {
             ResetPunches();
-            
+
             damagedState.SetDirection(origin.x > transform.position.x ? Vector2.left : Vector2.right);
             damagedState.Enter();
         }

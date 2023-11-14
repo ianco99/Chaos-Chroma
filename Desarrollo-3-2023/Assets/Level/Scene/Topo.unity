@@ -860,6 +860,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 302326415}
     m_Modifications:
+    - target: {fileID: -6660972805920217182, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1888335897}
+    - target: {fileID: -6660972805920217182, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+      propertyPath: animatorParameterName
+      value: BossState
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354471406429959078, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267783482277813923, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5581236849421622092, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -911,8 +927,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5581236849421622092, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1888335897}
   m_SourcePrefab: {fileID: 100100000, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+--- !u!1 &1888335892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5581236849421622092, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+  m_PrefabInstance: {fileID: 1026054360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1888335897
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888335892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f3166b043726754fb9b1a1d99eca812, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1981110840
 GameObject:
   m_ObjectHideFlags: 0

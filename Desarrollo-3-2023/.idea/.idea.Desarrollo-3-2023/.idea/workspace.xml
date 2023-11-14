@@ -4,17 +4,76 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Fixed player jump">
-      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpMoveSettingsSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpMoveSettingsSO.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpStartSettingsSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpStartSettingsSO.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/AreaDetector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/AreaDetector.cs" afterDir="false" />
+    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Made boss attack bidirectional">
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/Enemy/EnemySettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/Enemy/EnemySettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/Events/FloatEventChannel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/Events/FloatEventChannel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/Events/VoidEventChannel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/Events/VoidEventChannel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/AlertSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/AlertSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/AttackStartSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/AttackStartSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/BossCooldownTimerSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/BossCooldownTimerSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/BossMoveSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/BossMoveSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/DamagedSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/DamagedSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyAlertSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyAlertSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyAttackStartSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyAttackStartSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyDamagedSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyDamagedSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyDamagedTimerSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyDamagedTimerSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyMoveSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyMoveSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyPatrolSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/EnemyPatrolSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/GodSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/GodSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/IAlertSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/IAlertSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/IPatrolSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/IPatrolSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/JumpEndSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/JumpEndSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/JumpStartSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/JumpStartSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/MoveSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/MoveSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/ParrySettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/ParrySettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PatrolSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PatrolSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerAttackStartSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerAttackStartSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerDamagedSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerDamagedSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerDamagedTimerSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerDamagedTimerSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerGodSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerGodSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpEndSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpEndSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpMoveSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpMoveSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpStartSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerJumpStartSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerMoveSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerMoveSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerParrySettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/PlayerParrySettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/SpecialAttackStartSettingsSO.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/SpecialAttackStartSettingsSO.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/TimerSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/TimerSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RetrievePunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RetrievePunch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,11 +87,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Code/SOs/States/DamagedSettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/SOs/States/GodSettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/SOs/States/JumpEndSettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/SOs/States/JumpStartSettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/SOs/States/TimerSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" root0="FORCE_HIGHLIGHTING" />
@@ -63,7 +117,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/ParryState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Wwise/API/Runtime/WwiseTypes/WwiseTypes/AkWwiseEvent.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Aula 2/Downloads/Chaos-Chroma/Desarrollo-3-2023/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Chaos-Chroma/Desarrollo-3-2023/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/SelectableEditor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -194,7 +248,7 @@
       <workItem from="1699719961493" duration="11523000" />
       <workItem from="1699803309024" duration="10385000" />
       <workItem from="1699879588586" duration="5011000" />
-      <workItem from="1699899727996" duration="2158000" />
+      <workItem from="1699899727996" duration="6598000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -364,7 +418,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699889595086</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Made boss attack bidirectional">
+      <option name="closed" value="true" />
+      <created>1699920284709</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1699920284709</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,9 +458,27 @@
     <MESSAGE value="Added attack start state settings SO" />
     <MESSAGE value="Separated punch from retrieve" />
     <MESSAGE value="Fixed player jump" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed player jump" />
+    <MESSAGE value="Made boss attack bidirectional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made boss attack bidirectional" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/DamagedState.cs</url>
+          <line>23</line>
+          <properties documentPath="D:\Da Archive\Unity Projects\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\Enemy\States\DamagedState.cs" initialLine="23" containingFunctionPresentation="Method 'OnEnter'">
+            <startOffsets>
+              <option value="689" />
+            </startOffsets>
+            <endOffsets>
+              <option value="704" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
         <watch expression="rb.velocity.y" language="C#" />

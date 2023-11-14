@@ -31,6 +31,10 @@ namespace Code.Scripts.Enemy
         [Header("State Settings:")]
         [SerializeField] private TimerSettings timerSettings;
         [SerializeField] private MoveSettings moveSettings;
+        [SerializeField] private DamagedSettings damagedSettings;
+
+        [Header("Life:")]
+        [SerializeField] private Damageable damageable;
         
         // States
         private IdleState<string> idleState;
@@ -38,6 +42,7 @@ namespace Code.Scripts.Enemy
         private RetrieveState<string> retrieveState; 
         private CooldownState<string> cooldownState;
         private MovementState<string> movementState;
+        private DamagedState<string> damagedState;
 
         private void Awake()
         {
@@ -56,6 +61,7 @@ namespace Code.Scripts.Enemy
             retrieveState = new RetrieveState<string>("Retrieve", leftRetrieve, rightRetrieve);
             cooldownState = new CooldownState<string>("Cooldown", idleState.ID, timerSettings);
             movementState = new MovementState<string>("Movement", moveSettings, transform, rb);
+            damagedState = new DamagedState<string>("Damaged", idleState.ID, "Idle", damagedSettings, rb);
 
             fsm.AddState(idleState);
             fsm.AddState(punchState);
@@ -80,25 +86,37 @@ namespace Code.Scripts.Enemy
             
             fsm.AddTransition(movementState, punchState, attackArea.IsPlayerInArea);
             
+            fsm.AddTransition(punchState, damagedState, () => damagedState.Active);
             fsm.AddTransition(punchState, retrieveState, () => punchState.Ended);
             
+            fsm.AddTransition(retrieveState, damagedState, () => damagedState.Active);
             fsm.AddTransition(retrieveState, cooldownState, () => retrieveState.Ended);
             
             fsm.AddTransition(cooldownState, idleState, () => !cooldownState.Active);
+            
+            fsm.AddTransition(damagedState, idleState, () => !damagedState.Active);
         }
 
         private void OnEnable()
         {
             punchState.onEnter += OnEnterPunchHandler;
             cooldownState.onEnter += OnEnterCooldownHandler;
+            damagedState.onEnter += OnEnterDamagedHandler;
             retrieveState.onExit += OnExitRetrieveHandler;
+            damageable.OnTakeDamage += OnTakeDamageHandler;
+            leftHit.OnParried += OnLeftParriedHandler;
+            rightHit.OnParried += OnRightParriedHandler;
         }
 
         private void OnDisable()
         {
             punchState.onEnter -= OnEnterPunchHandler;
             cooldownState.onEnter -= OnEnterCooldownHandler;
+            damagedState.onEnter -= OnEnterDamagedHandler;
             retrieveState.onExit -= OnExitRetrieveHandler;
+            damageable.OnTakeDamage -= OnTakeDamageHandler;
+            leftHit.OnParried -= OnLeftParriedHandler;
+            rightHit.OnParried -= OnRightParriedHandler;
         }
 
         private void Update()
@@ -128,6 +146,14 @@ namespace Code.Scripts.Enemy
         {
             cooldownState.Enter();
         }
+        
+        /// <summary>
+        /// Set damaged state when entered
+        /// </summary>
+        private void OnEnterDamagedHandler()
+        {
+            damagedState.Enter();
+        }
 
         /// <summary>
         /// Stop Hit when exited retrieve
@@ -136,6 +162,51 @@ namespace Code.Scripts.Enemy
         {
             leftHit.Stop();
             rightHit.Stop();
+        }
+        
+        /// <summary>
+        /// Set damaged state on parried
+        /// </summary>
+        private void OnLeftParriedHandler()
+        {
+            ResetPunches();
+            
+            damagedState.SetDirection(Vector2.left);
+            damagedState.Enter();
+        }
+        
+        /// <summary>
+        /// Set damaged state on parried
+        /// </summary>
+        private void OnRightParriedHandler()
+        {
+            ResetPunches();
+            
+            damagedState.SetDirection(Vector2.right);
+            damagedState.Enter();
+        }
+        
+        /// <summary>
+        /// Set damaged state on take damage
+        /// </summary>
+        /// <param name="origin">Origin of damage</param>
+        private void OnTakeDamageHandler(Vector2 origin)
+        {
+            ResetPunches();
+            
+            damagedState.SetDirection(origin.x > transform.position.x ? Vector2.left : Vector2.right);
+            damagedState.Enter();
+        }
+
+        /// <summary>
+        /// Instantly reset punches to original state
+        /// </summary>
+        private void ResetPunches()
+        {
+            leftHit.Stop();
+            rightHit.Stop();
+            punchState.Stop();
+            retrieveState.Reset();
         }
     }
 }

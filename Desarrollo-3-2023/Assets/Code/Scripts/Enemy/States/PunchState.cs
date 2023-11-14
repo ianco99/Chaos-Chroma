@@ -63,5 +63,15 @@ namespace Patterns.FSM
         {
             targetPos = pos;
         }
+        
+        /// <summary>
+        /// Instantly stop punch
+        /// </summary>
+        public void Stop()
+        {
+            Ended = true;
+            leftPunch.Stop(true);
+            rightPunch.Stop(true);
+        }
     }
 }

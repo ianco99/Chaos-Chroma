@@ -38,5 +38,16 @@ namespace Patterns.FSM
             if (!leftPunch.Move && !rightPunch.Move)
                 Ended = true;
         }
+        
+        /// <summary>
+        /// Instantly retrieve punches
+        /// </summary>
+        public void Reset()
+        {
+            Ended = true;
+            
+            leftPunch.Reset();
+            rightPunch.Reset();
+        }
     }
 }

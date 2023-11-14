@@ -52,5 +52,11 @@ namespace Code.Scripts.Attack
         {
             return transform.localPosition == startPos;
         }
+        
+        public void Reset()
+        {
+            Move = false;
+            transform.localPosition = startPos;
+        }
     }
 }

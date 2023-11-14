@@ -841,6 +841,8 @@ MonoBehaviour:
   rightHit: {fileID: 7820543413038013072}
   timerSettings: {fileID: 11400000, guid: f39254182e6fcea4c8a0b9c57505ca91, type: 2}
   moveSettings: {fileID: 11400000, guid: 839889885e8d5294e90349bfaa3b7654, type: 2}
+  damagedSettings: {fileID: 11400000, guid: ae0e069b21c489b42870621b16bfe9ba, type: 2}
+  damageable: {fileID: 4994991711041449135}
 --- !u!114 &4994991711041449135
 MonoBehaviour:
   m_ObjectHideFlags: 0

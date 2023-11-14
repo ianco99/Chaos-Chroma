@@ -445,6 +445,7 @@ MonoBehaviour:
   attackStartSettings: {fileID: 11400000, guid: 81e792fb5bccdb64eb826e6338378bbf, type: 2}
   parrySettings: {fileID: 11400000, guid: 039221402fd24364a901a3ee2e534984, type: 2}
   damagedSettings: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
+  knockbackSettings: {fileID: 11400000, guid: 3784e577f618bd24c8150d635623e2cb, type: 2}
   animator: {fileID: 4310963439013856538}
   playEspada:
     idInternal: 0

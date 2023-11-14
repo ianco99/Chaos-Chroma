@@ -21,7 +21,8 @@ namespace Code.Scripts.Player
         Block,
         Parry,
         Damaged,
-        GodMode
+        GodMode,
+        Knockback
     }
 
     /// <summary>
@@ -50,6 +51,7 @@ namespace Code.Scripts.Player
         [SerializeField] private AttackStartSettings attackStartSettings;
         [SerializeField] private ParrySettings parrySettings;
         [SerializeField] private DamagedSettings damagedSettings;
+        [SerializeField] private DamagedSettings knockbackSettings;
                                 
         [Header("Animation")] [SerializeField] private Animator animator;
 
@@ -76,6 +78,7 @@ namespace Code.Scripts.Player
         private JumpEndState<PlayerStates> jumpEndState;
         private DamagedState<PlayerStates> damagedState;
         private GodState<PlayerStates> godState;
+        private DamagedState<PlayerStates> knockbackState;
 
         private FiniteStateMachine<PlayerStates> fsm;
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
@@ -98,6 +101,7 @@ namespace Code.Scripts.Player
             jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);
             damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Block, damagedSettings, rb);
             godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", godSettings, trans, rb);
+            knockbackState = new DamagedState<PlayerStates>(PlayerStates.Knockback, "KnockbackState", PlayerStates.Block, knockbackSettings, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();
 
@@ -111,6 +115,7 @@ namespace Code.Scripts.Player
             fsm.AddState(jumpEndState);
             fsm.AddState(damagedState);
             fsm.AddState(godState);
+            fsm.AddState(knockbackState);
 
             AddTransitions();
 
@@ -411,10 +416,10 @@ namespace Code.Scripts.Player
 
         private void OnParriedHandler()
         {
-            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
-
-            damagedState.Enter();
-
+            knockbackState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+            Debug.LogError("mid");
+            fsm.SetCurrentState(knockbackState);
+            //knockbackState.Enter();
         }
 
         #endregion

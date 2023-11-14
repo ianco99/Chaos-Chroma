@@ -25607,6 +25607,10 @@ PrefabInstance:
       propertyPath: stopFootstep.WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: f2381177cdb516841b39e2f1eff4f1b3, type: 2}
+    - target: {fileID: 4247475268178023887, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
+      propertyPath: hitDelay
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 6862336575500731703, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: m_Name
       value: Player

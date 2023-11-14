@@ -33,6 +33,11 @@ namespace Patterns.FSM
             pushDirection = newDirection;
         }
 
+        public void SetForce(float newForce)
+        {
+            damagedSettings.force = newForce;
+        }
+
         public void ResetState()
         {
             currentTimer = 0;

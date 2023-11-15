@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed75bf82a1e75549a2d9f52764fac96, type: 3}
+  m_Script: {fileID: 11500000, guid: 0395342bfae9ec241bea8d46ed6c353e, type: 3}
   m_Name: PlayerJumpStartSettingsSO
   m_EditorClassIdentifier: 
   force: 11

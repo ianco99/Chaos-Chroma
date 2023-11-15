@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee7870a40984a2429982c8696ba8f7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f94a1f5bea623b4092c37c33446c517, type: 3}
   m_Name: EnemyAttackStartSettingsSO
   m_EditorClassIdentifier: 
   minTimeOnHold: 0.45
-  objectiveColor: {r: 0.6627451, g: 0.1882353, b: 0.7294118, a: 1}
+  objectiveColor: {r: 0.6627451, g: 0.18823531, b: 0.7294118, a: 1}

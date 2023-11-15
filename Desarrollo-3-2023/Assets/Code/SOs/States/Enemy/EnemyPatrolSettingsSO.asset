@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28141a1c1ad9ca2459cf4700e30be4c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c161f0801dcde8f47aa6defbd6e93e90, type: 3}
   m_Name: EnemyPatrolSettingsSO
   m_EditorClassIdentifier: 
   moveSettings: {fileID: 11400000, guid: 54fe1f3bbe60a8f4994919b2e620c7d0, type: 2}
@@ -20,4 +20,4 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 1025
-  wallCheckDistance: 0.6
+  wallCheckDistance: 0.8

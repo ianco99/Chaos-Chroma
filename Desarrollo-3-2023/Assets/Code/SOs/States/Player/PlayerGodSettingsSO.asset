@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 799de4fb522d6904abc6579de11fdae0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f2373b77143b114b81051c60c73c01c, type: 3}
   m_Name: PlayerGodSettingsSO
   m_EditorClassIdentifier: 
   moveSettings: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}

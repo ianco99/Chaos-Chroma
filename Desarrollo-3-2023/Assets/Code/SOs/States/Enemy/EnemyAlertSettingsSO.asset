@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0320181188d7374d964130f7e5496b1, type: 3}
+  m_Script: {fileID: 11500000, guid: fa61f779f3033024f9c615b7e80ed779, type: 3}
   m_Name: EnemyAlertSettingsSO
   m_EditorClassIdentifier: 
   moveSettings: {fileID: 11400000, guid: 54fe1f3bbe60a8f4994919b2e620c7d0, type: 2}

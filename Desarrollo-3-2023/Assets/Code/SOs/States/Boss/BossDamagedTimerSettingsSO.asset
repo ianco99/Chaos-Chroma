@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8030f8c61e4753a4d9947484a8290e1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a40678445192a04c896f14db8a9d287, type: 3}
   m_Name: BossDamagedTimerSettingsSO
   m_EditorClassIdentifier: 
   maxTime: 3

@@ -73,6 +73,14 @@ namespace Patterns.FSM
                 GameManager.Lose();
         }
 
+        public void Heal(float heal)
+        {
+            life += heal;
+
+            if (lifeBar)
+                lifeBar.fillAmount = life / startLife;
+        }
+
         /// <summary>
         /// Start action block
         /// </summary>

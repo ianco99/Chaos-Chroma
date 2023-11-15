@@ -624,8 +624,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0
+  hitDelay: 0.2
   hitDuration: 0.5
+  finishByDuration: 1
   sprite: {fileID: 0}
   attacker: {fileID: 4819109336555100032}
   characterOutline: {fileID: 8320540901993013661}

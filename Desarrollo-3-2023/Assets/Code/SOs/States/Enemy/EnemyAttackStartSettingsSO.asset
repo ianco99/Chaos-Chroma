@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f94a1f5bea623b4092c37c33446c517, type: 3}
   m_Name: EnemyAttackStartSettingsSO
   m_EditorClassIdentifier: 
-  minTimeOnHold: 0.45
+  minTimeOnHold: 0.2
   objectiveColor: {r: 0.6627451, g: 0.18823531, b: 0.7294118, a: 1}

@@ -407,7 +407,7 @@ Transform:
   - {fileID: 8138434858430252606}
   - {fileID: 1832251140546065990}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0
+  hitDelay: 0.1
   hitDuration: 0.5
   finishByDuration: 1
   sprite: {fileID: 0}

@@ -150,7 +150,7 @@ namespace Code.Scripts.Enemy
 
         private IEnumerator ParryTimer()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(settings.parrySettings.duration);
             fsm.SetCurrentState(alertState);
         }
 

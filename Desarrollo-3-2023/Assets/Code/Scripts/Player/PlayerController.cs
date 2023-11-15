@@ -129,6 +129,9 @@ namespace Code.Scripts.Player
             damageable.OnBlock += KnockBack;
 
             damagedState.onEnter += OnDamagedEnterHandler;
+
+            speedPickup += OnSpeedPickUp;
+            lifePickup += OnLifePickUp;
         }
 
         private void OnDisable()
@@ -146,6 +149,12 @@ namespace Code.Scripts.Player
             damageable.OnBlock -= KnockBack;
 
             damagedState.onEnter -= OnDamagedEnterHandler;
+
+            speedPickup -= OnSpeedPickUp;
+            lifePickup -= OnLifePickUp;
+
+            //TODO: Move to a better place
+            moveSettings.speed = 300.0f;
         }
 
         private void Update()
@@ -273,6 +282,16 @@ namespace Code.Scripts.Player
 
             if (attackEndState.Active)
                 attackEndState.Stop();
+        }
+
+        private void OnSpeedPickUp(float speedBump)
+        {
+            moveSettings.speed += speedBump;
+        }
+
+        private void OnLifePickUp(float healBump)
+        {
+            damageable.Heal(healBump);
         }
 
         /// <summary>

@@ -32,6 +32,9 @@ namespace Code.Scripts.Abstracts.Character
         [SerializeField] protected bool facingRight = true;
         [SerializeField] private List<Flippable> flippables;
 
+        public Action<float> speedPickup;
+        public Action<float> lifePickup;
+
         /// <summary>
         /// Turn character around
         /// </summary>

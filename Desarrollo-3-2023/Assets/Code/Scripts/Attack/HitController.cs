@@ -65,6 +65,7 @@ namespace Code.Scripts.Attack
                 if (!damageable.TakeDamage(damage, attacker.transform.position))
                 {
                     OnParried?.Invoke();
+                    Stop();
                     return;
                 }   
                 

@@ -433,6 +433,7 @@ namespace Code.Scripts.Player
         {
             knockbackState.SetDirection(facingRight ? Vector2.left : Vector2.right);
             fsm.SetCurrentState(knockbackState);
+            Debug.LogError("how many times?");
             //knockbackState.Enter();
         }
 

@@ -26183,41 +26183,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: godSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f5f3a83a4f2c3c4d97267c9e0a9feb8, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: pauseCanvas
       value: 
       objectReference: {fileID: 2103039417}
     - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: moveSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: parrySettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 039221402fd24364a901a3ee2e534984, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: damagedSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: jumpEndSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: cf892d5be77c3e74da11ee4486ef8d7f, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: jumpStartSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 4d19e0911203b1346b250e943fe01780, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: knockbackSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: attackStartSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 81e792fb5bccdb64eb826e6338378bbf, type: 2}
+      objectReference: {fileID: 11400000, guid: 805cf9ea59ef67f43bf5ee694fcb7cb9, type: 2}
     - target: {fileID: 6862336575500731703, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: m_Name
       value: Player

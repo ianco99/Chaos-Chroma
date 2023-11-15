@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a40678445192a04c896f14db8a9d287, type: 3}
-  m_Name: EnemyDamagedTimerSettingsSO
+  m_Script: {fileID: 11500000, guid: 372ed9e6ab01a0a418bd26512096cc9a, type: 3}
+  m_Name: EnemyKnockbackdSettingsSO
   m_EditorClassIdentifier: 
-  maxTime: 0.5
+  timerSettings: {fileID: 11400000, guid: 0feeee85717ab1d48be78925ee61d839, type: 2}
+  force: 12

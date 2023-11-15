@@ -417,7 +417,6 @@ namespace Code.Scripts.Player
         private void OnParriedHandler()
         {
             knockbackState.SetDirection(facingRight ? Vector2.left : Vector2.right);
-            Debug.LogError("mid");
             fsm.SetCurrentState(knockbackState);
             //knockbackState.Enter();
         }

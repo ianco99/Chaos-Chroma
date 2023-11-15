@@ -104,9 +104,7 @@ namespace Patterns.FSM
         private IEnumerator Parry(float parryDuration)
         {
             parry = true;
-            Debug.Log("god");
             yield return new WaitForSeconds(parryDuration);
-            Debug.Log("no god");
             parry = false;
         }
     }

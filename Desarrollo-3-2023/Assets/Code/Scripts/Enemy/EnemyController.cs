@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Code.FOV;
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
@@ -19,7 +20,8 @@ namespace Code.Scripts.Enemy
         Block,
         Parry,
         Damaged,
-        Fall
+        Fall,
+        Impulsed
     }
 
     public class EnemyController : Character
@@ -54,6 +56,7 @@ namespace Code.Scripts.Enemy
         private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
         private ParryState<EnemyStates> blockState;
+        private DamagedState<EnemyStates> impulseState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
@@ -65,6 +68,7 @@ namespace Code.Scripts.Enemy
 
             damageable.OnTakeDamage += OnTakeDamageHandler;
             damageable.OnBlock += OnBlockHandler;
+            damageable.OnParry += OnParryHandler;
             damagedState.onTimerEnded += OnTimerEndedHandler;
 
             fov.ToggleFindingTargets(true);
@@ -99,6 +103,7 @@ namespace Code.Scripts.Enemy
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
                 settings.damagedSettings, rb);
             blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, settings.parrySettings);
+            impulseState = new DamagedState<EnemyStates>(EnemyStates.Impulsed, "ImpulseState", EnemyStates.Alert, settings.damagedSettings, rb);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -107,6 +112,7 @@ namespace Code.Scripts.Enemy
             fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
             fsm.AddState(blockState);
+            fsm.AddState(impulseState);
 
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > settings.alertValue);
             fsm.AddTransition(alertState, attackStartState,
@@ -119,7 +125,15 @@ namespace Code.Scripts.Enemy
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
             //fsm.AddTransition(blockState, alertState, () => blockState.FinishedTimer());
 
+            blockState.onEnter += () =>
+            {
+                StartCoroutine(ParryTimer());
+            };
+            
+            
             fsm.SetCurrentState(fsm.GetState(startingState));
+
+
 
             fsm.Init();
         }
@@ -132,6 +146,12 @@ namespace Code.Scripts.Enemy
             CheckFieldOfView();
             UpdateAnimationState();
             ReleaseAttack();
+        }
+
+        private IEnumerator ParryTimer()
+        {
+            yield return new WaitForSeconds(0.5f);
+            fsm.SetCurrentState(alertState);
         }
 
         /// <summary>
@@ -314,6 +334,12 @@ namespace Code.Scripts.Enemy
         {
             damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
             fsm.SetCurrentState(damagedState);
+        }
+
+        private void OnParryHandler(Vector2 dir)
+        {
+            impulseState.SetDirection(dir.x > transform.position.x ? Vector2.left : Vector2.right);
+            fsm.SetCurrentState(impulseState);
         }
     }
 }

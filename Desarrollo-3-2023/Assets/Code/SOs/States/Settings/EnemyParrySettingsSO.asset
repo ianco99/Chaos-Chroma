@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcddaf3a8f6b4214999ce93f5e9c3cfb, type: 3}
   m_Name: EnemyParrySettingsSO
   m_EditorClassIdentifier: 
-  duration: 9999
+  duration: 0.5

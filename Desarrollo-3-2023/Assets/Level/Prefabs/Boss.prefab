@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 1580397228942104752}
   - component: {fileID: 7867089686823640593}
   - component: {fileID: 1682828813330276128}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 8796829815296455739}
   - component: {fileID: 2282861827603414065}
   - component: {fileID: 8044326548661370627}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,6 +786,7 @@ GameObject:
   - component: {fileID: 4994991711041449135}
   - component: {fileID: 4883076550811678276}
   - component: {fileID: 8111135292383764608}
+  - component: {fileID: 8396066565068786238}
   m_Layer: 9
   m_Name: Boss
   m_TagString: Untagged
@@ -843,6 +844,8 @@ MonoBehaviour:
   moveSettings: {fileID: 11400000, guid: 839889885e8d5294e90349bfaa3b7654, type: 2}
   damagedSettings: {fileID: 11400000, guid: ae0e069b21c489b42870621b16bfe9ba, type: 2}
   damageable: {fileID: 4994991711041449135}
+  animatorParameterName: BossState
+  animator: {fileID: 8396066565068786238}
 --- !u!114 &4994991711041449135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +934,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.38}
   m_EdgeRadius: 0
+--- !u!95 &8396066565068786238
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581236849421622092}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f3166b043726754fb9b1a1d99eca812, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5774202805024342699
 GameObject:
   m_ObjectHideFlags: 0

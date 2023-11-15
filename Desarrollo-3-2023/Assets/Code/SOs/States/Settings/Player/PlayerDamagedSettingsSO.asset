@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerDamagedSettingsSO
   m_EditorClassIdentifier: 
   timerSettings: {fileID: 11400000, guid: c98b33ed2631ad143946929c27ba03c6, type: 2}
-  force: 10
+  force: 120

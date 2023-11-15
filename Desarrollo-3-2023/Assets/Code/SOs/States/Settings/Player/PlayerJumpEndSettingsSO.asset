@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365d444f0b5ccee47825f766037936a6, type: 3}
   m_Name: PlayerJumpEndSettingsSO
   m_EditorClassIdentifier: 
-  gravMultiplier: 2.5
-  moveSettings: {fileID: 11400000, guid: 191be4b29901d3441bb8b28faffba912, type: 2}
+  gravMultiplier: 5
+  moveSettings: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}

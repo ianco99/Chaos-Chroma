@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed75bf82a1e75549a2d9f52764fac96, type: 3}
   m_Name: PlayerJumpStartSettingsSO
   m_EditorClassIdentifier: 
-  force: 11
-  moveSettings: {fileID: 11400000, guid: 191be4b29901d3441bb8b28faffba912, type: 2}
+  force: 750
+  moveSettings: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}

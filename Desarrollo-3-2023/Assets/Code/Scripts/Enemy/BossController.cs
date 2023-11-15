@@ -38,7 +38,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private Animator animator;
 
 
-        private StateSetter<string> stateSetter;
+        private AnimatorStateSetter<string, int> animatorStateSetter;
 
         // States
         private IdleState<string> idleState;
@@ -86,10 +86,10 @@ namespace Code.Scripts.Enemy
         /// </summary>
         private void AddTransitions()
         {
-            fsm.AddTransition(idleState, movementState, detectionArea.IsPlayerInArea);
-            fsm.AddTransition(idleState, punchState, attackArea.IsPlayerInArea);
+            fsm.AddTransition(idleState, movementState, detectionArea.IsDetectableInArea);
+            fsm.AddTransition(idleState, punchState, attackArea.IsDetectableInArea);
 
-            fsm.AddTransition(movementState, punchState, attackArea.IsPlayerInArea);
+            fsm.AddTransition(movementState, punchState, attackArea.IsDetectableInArea);
 
             fsm.AddTransition(punchState, damagedState, () => damagedState.Active);
             fsm.AddTransition(punchState, retrieveState, () => punchState.Ended);
@@ -128,7 +128,7 @@ namespace Code.Scripts.Enemy
         {
             fsm.Update();
             
-            stateSetter.UpdateAnimator(fsm.GetCurrentState().ID);
+            animatorStateSetter.AnimatorSetValue(fsm.GetCurrentState().ID);
 
             movementState.dir = detectionArea.GetPositionDifference().normalized;
         }
@@ -143,14 +143,14 @@ namespace Code.Scripts.Enemy
         /// </summary>
         private void InitStateSetter()
         {
-            stateSetter = new StateSetter<string>(animatorParameterName, animator);
+            animatorStateSetter = new AnimatorStateSetter<string, int>(animatorParameterName, animator);
             
-            stateSetter.AddState(idleState.ID, 0);
-            stateSetter.AddState(punchState.ID, 1);
-            stateSetter.AddState(retrieveState.ID, 2);
-            stateSetter.AddState(cooldownState.ID, 3);
-            stateSetter.AddState(movementState.ID, 4);
-            stateSetter.AddState(damagedState.ID, 5);
+            animatorStateSetter.AddState(idleState.ID, 0);
+            animatorStateSetter.AddState(punchState.ID, 1);
+            animatorStateSetter.AddState(retrieveState.ID, 2);
+            animatorStateSetter.AddState(cooldownState.ID, 3);
+            animatorStateSetter.AddState(movementState.ID, 4);
+            animatorStateSetter.AddState(damagedState.ID, 5);
         }
 
         /// <summary>

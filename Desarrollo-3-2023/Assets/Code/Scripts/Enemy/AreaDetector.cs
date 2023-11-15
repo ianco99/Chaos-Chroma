@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ namespace Code.Scripts.Enemy
     /// </summary>
     public class AreaDetector : MonoBehaviour
     {
+        public kuznickiEventChannel.VoidEventChannel OnEntered;
+        public kuznickiEventChannel.VoidEventChannel OnExited;
+        public kuznickiEventChannel.VoidEventChannel OnStay;
+        
         [SerializeField] private List<string> detectableTags;
         
         private GameObject detectableInArea;
@@ -26,22 +31,32 @@ namespace Code.Scripts.Enemy
             if (!detected)
                 return;
 
+            OnEntered?.RaiseEvent();
             detectableInArea = other.gameObject;
         }
 
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.gameObject != detectableInArea)
+                return;
+            
+            OnStay?.RaiseEvent();
+        }
+        
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject != detectableInArea)
                 return;
             
+            OnExited?.RaiseEvent();
             detectableInArea = null;
         }
 
         /// <summary>
-        /// Get if player is in area
+        /// Get if detectable is in area
         /// </summary>
         /// <returns>true if it is, false if it isn't</returns>
-        public bool IsPlayerInArea()
+        public bool IsDetectableInArea()
         {
             return detectableInArea;
         }

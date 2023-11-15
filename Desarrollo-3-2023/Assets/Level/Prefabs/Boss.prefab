@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1478420695554030810}
   - component: {fileID: 6235451097825461062}
   - component: {fileID: 1598149097237989774}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Punch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 1580397228942104752}
   - component: {fileID: 7867089686823640593}
   - component: {fileID: 1682828813330276128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,6 +529,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1516fa00ef8815f42af8940b14a0bc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnEntered: {fileID: 0}
+  OnExited: {fileID: 0}
+  OnStay: {fileID: 0}
   detectableTags:
   - Player
 --- !u!212 &7867089686823640593
@@ -640,7 +643,7 @@ GameObject:
   - component: {fileID: 8796829815296455739}
   - component: {fileID: 2282861827603414065}
   - component: {fileID: 8044326548661370627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,6 +677,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1516fa00ef8815f42af8940b14a0bc01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnEntered: {fileID: 0}
+  OnExited: {fileID: 0}
+  OnStay: {fileID: 0}
   detectableTags:
   - Player
 --- !u!212 &2282861827603414065
@@ -813,7 +819,7 @@ Transform:
   - {fileID: 850656403992607110}
   - {fileID: 4748955373487805031}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6660972805920217182
 MonoBehaviour:
@@ -1053,7 +1059,7 @@ GameObject:
   - component: {fileID: 43860067576175658}
   - component: {fileID: 1187850927309717854}
   - component: {fileID: 7820543413038013072}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Punch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

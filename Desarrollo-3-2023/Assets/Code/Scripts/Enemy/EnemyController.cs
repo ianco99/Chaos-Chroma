@@ -21,7 +21,8 @@ namespace Code.Scripts.Enemy
         Parry,
         Damaged,
         Fall,
-        Impulsed
+        Impulsed,
+        Parried
     }
 
     public class EnemyController : Character
@@ -55,6 +56,7 @@ namespace Code.Scripts.Enemy
         private AttackStartState<EnemyStates> attackStartState;
         private AttackEndState<EnemyStates> attackEndState;
         private DamagedState<EnemyStates> damagedState;
+        private DamagedState<EnemyStates> parriedState;
         private ParryState<EnemyStates> blockState;
         private DamagedState<EnemyStates> impulseState;
 
@@ -70,6 +72,7 @@ namespace Code.Scripts.Enemy
             damageable.OnBlock += OnBlockHandler;
             damageable.OnParry += OnParryHandler;
             damagedState.onTimerEnded += OnTimerEndedHandler;
+            parriedState.onTimerEnded += OnTimerEndedHandler;
 
             fov.ToggleFindingTargets(true);
 
@@ -102,6 +105,7 @@ namespace Code.Scripts.Enemy
                 new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
                 settings.damagedSettings, rb);
+            parriedState = new DamagedState<EnemyStates>(EnemyStates.Parried, "ParriedState", EnemyStates.Block, settings.parriedSettings, rb);
             blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, settings.parrySettings);
             impulseState = new DamagedState<EnemyStates>(EnemyStates.Impulsed, "ImpulseState", EnemyStates.Alert, settings.damagedSettings, rb);
 
@@ -111,6 +115,7 @@ namespace Code.Scripts.Enemy
             fsm.AddState(alertState);
             fsm.AddState(attackEndState);
             fsm.AddState(damagedState);
+            fsm.AddState(parriedState);
             fsm.AddState(blockState);
             fsm.AddState(impulseState);
 
@@ -332,8 +337,8 @@ namespace Code.Scripts.Enemy
 
         private void OnParriedHandler()
         {
-            damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
-            fsm.SetCurrentState(damagedState);
+            parriedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+            fsm.SetCurrentState(parriedState);
         }
 
         private void OnParryHandler(Vector2 dir)

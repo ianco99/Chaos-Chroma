@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959eeab192a3aba45876b616635c6e76, type: 3}
   m_Name: EnemySettings
   m_EditorClassIdentifier: 
-  patrolSettings: {fileID: 11400000, guid: 64669c52b7829304fbd022067eb3fa07, type: 2}
-  alertSettings: {fileID: 11400000, guid: c26d79ff24ba7df478d13f5a9e5b9fa4, type: 2}
-  attackStartSettings: {fileID: 11400000, guid: 4b7d561b12f4c394191897c09c0b261e, type: 2}
-  damagedSettings: {fileID: 11400000, guid: 30e2d52d263774545a35e5a70cd380d7, type: 2}
-  blockSettings: {fileID: 11400000, guid: 2d96f0069582a2947b214631256cfc79, type: 2}
-  parrySettings: {fileID: 11400000, guid: 920c0e18c36876d44b93f63dcd3d8d32, type: 2}
+  patrolSettings: {fileID: 11400000, guid: 3ba78d0446e325a49a9852ed7ec5cb39, type: 2}
+  alertSettings: {fileID: 11400000, guid: 4fdcc6853bce2cf4aba6362c79a97b49, type: 2}
+  attackStartSettings: {fileID: 11400000, guid: e111bb221964cef49ad7d0644afbc3b0, type: 2}
+  damagedSettings: {fileID: 11400000, guid: 2de781c9949e356449bcbccfc15c13c4, type: 2}
   viewRadius: 6.06
   viewAngle: 60
   suspectMeterMinimum: 0

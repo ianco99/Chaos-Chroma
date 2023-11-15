@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 7141998918b82ce4a911a4a71cec1835, type: 3}
   m_Name: EnemyDamagedSettingsSO
-  m_EditorClassIdentifier: Assembly-CSharp:Code.SOs.States:DamagedSettings
-  timerSettings: {fileID: 11400000, guid: 0de8431748be3ed4c9e06df425d570c1, type: 2}
-  force: 0
+  m_EditorClassIdentifier: 
+  timerSettings: {fileID: 11400000, guid: 43a9d0cb17396fe4597b08a1f47c306f, type: 2}
+  force: 4.4

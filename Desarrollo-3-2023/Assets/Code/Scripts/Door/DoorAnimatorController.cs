@@ -10,18 +10,18 @@ namespace Code.Scripts.Door
                 
         [SerializeField] private Animator animator;
         [SerializeField] private string parameterName;
-        
-        private string closeState = "Close";
-        private string openState = "Open";
-        
+
+        private const string CloseState = "Close";
+        private const string OpenState = "Open";
+
         AnimatorStateSetter<string, int> animatorStateSetter;
         
         private void Awake()
         {
             animatorStateSetter = new AnimatorStateSetter<string, int>(parameterName, animator);
             
-            animatorStateSetter.AddState(closeState, 0);
-            animatorStateSetter.AddState(openState, 1);
+            animatorStateSetter.AddState(CloseState, 0);
+            animatorStateSetter.AddState(OpenState, 1);
         }
         
         private void Update()
@@ -41,12 +41,12 @@ namespace Code.Scripts.Door
         
         public void OpenDoor()
         {
-            animatorStateSetter.AnimatorSetValue(openState);
+            animatorStateSetter.AnimatorSetValue(OpenState);
         }
         
         public void CloseDoor()
         {
-            animatorStateSetter.AnimatorSetValue(closeState);
+            animatorStateSetter.AnimatorSetValue(CloseState);
         }
     }
 }

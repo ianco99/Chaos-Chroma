@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/OptionsMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/OptionsMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/WinLoseScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/WinLoseScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/OptionsMenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/OptionsMenu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +193,7 @@
       <workItem from="1699899727996" duration="6598000" />
       <workItem from="1699985021895" duration="5701000" />
       <workItem from="1700052317289" duration="11178000" />
-      <workItem from="1700503772245" duration="606000" />
+      <workItem from="1700503772245" duration="2864000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />

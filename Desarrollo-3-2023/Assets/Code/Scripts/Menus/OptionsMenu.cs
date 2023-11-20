@@ -40,6 +40,14 @@ namespace Code.Scripts.Menus
         {
             GameSettings.Instance.music = volume;
         }
+        
+        /// <summary>
+        /// Reload current level
+        /// </summary>
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         private void OnDestroy()
         {

@@ -973,6 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 209210992}
+  - component: {fileID: 209210994}
   - component: {fileID: 209210993}
   m_Layer: 0
   m_Name: click
@@ -989,7 +990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209210991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.6, y: 4.7814183, z: 0}
+  m_LocalPosition: {x: -25.05, y: 4.7814183, z: 0}
   m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1037,7 +1038,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: e479fc9209c09e54abaa69086becba8f, type: 3}
+  m_Sprite: {fileID: -346834735, guid: 5ddeff5dc7a0ffd4eaab65359d79226d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1048,6 +1049,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &209210994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209210991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e724849f1dfa6543a9e9639b45e2688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerSprite: {fileID: -346834735, guid: 5ddeff5dc7a0ffd4eaab65359d79226d, type: 3}
+  keyboardMouseSprite: {fileID: 21300000, guid: 917d6c77e31da88489fa9a373fd19537, type: 3}
+  spriteRenderer: {fileID: 209210993}
 --- !u!1 &285088209
 GameObject:
   m_ObjectHideFlags: 0
@@ -11865,6 +11881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 966185246}
+  - component: {fileID: 966185247}
   - component: {fileID: 966185245}
   m_Layer: 0
   m_Name: right click_0
@@ -11914,7 +11931,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 38ff79c517bc98741ad6da4427c5e7d1, type: 3}
+  m_Sprite: {fileID: 998068200, guid: 620e753fc742e7e42bed40fded876a08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11933,13 +11950,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966185244}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.36, y: 4.79, z: 0}
+  m_LocalPosition: {x: -20.839, y: 4.79, z: 0}
   m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1779862642}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966185247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966185244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e724849f1dfa6543a9e9639b45e2688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerSprite: {fileID: 998068200, guid: 620e753fc742e7e42bed40fded876a08, type: 3}
+  keyboardMouseSprite: {fileID: 21300000, guid: 594ee996d2a027147b57a002011bd3dc, type: 3}
+  spriteRenderer: {fileID: 966185245}
 --- !u!4 &971353590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 378860016975335290, guid: cf1c3491173a64f4dbc4d32eb41f1cad, type: 3}
@@ -13462,7 +13494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570203895}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.990299, y: 0.69000006, z: -0.04854036}
+  m_LocalPosition: {x: 5.7102995, y: 0.69000006, z: -0.04854036}
   m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13530,6 +13562,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1602399720}
+  - component: {fileID: 1602399722}
   - component: {fileID: 1602399721}
   m_Layer: 0
   m_Name: spacebar
@@ -13546,7 +13579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602399719}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.63, y: 4.86, z: 0}
+  m_LocalPosition: {x: -14.91, y: 5.009, z: 0}
   m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13594,7 +13627,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 3c567a75067efb04d9c3f049691286b1, type: 3}
+  m_Sprite: {fileID: 1404861681, guid: a650f0727bdf2f449b8d95910270b4be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13605,6 +13638,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1602399722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602399719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e724849f1dfa6543a9e9639b45e2688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerSprite: {fileID: 1404861681, guid: a650f0727bdf2f449b8d95910270b4be, type: 3}
+  keyboardMouseSprite: {fileID: 21300000, guid: 3c567a75067efb04d9c3f049691286b1, type: 3}
+  spriteRenderer: {fileID: 1602399721}
 --- !u!1 &1603931127
 GameObject:
   m_ObjectHideFlags: 0
@@ -13614,6 +13662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1603931129}
+  - component: {fileID: 1603931130}
   - component: {fileID: 1603931128}
   m_Layer: 0
   m_Name: wasd_0
@@ -13663,7 +13712,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 12c419109d52ace439a1dd485cc4934c, type: 3}
+  m_Sprite: {fileID: 560083457, guid: 0e5c349b705c48a4b80d3f8734dba522, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13682,13 +13731,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603931127}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.93, y: 4.8380265, z: 0}
+  m_LocalPosition: {x: -29, y: 4.8380265, z: 0}
   m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1779862642}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1603931130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603931127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e724849f1dfa6543a9e9639b45e2688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerSprite: {fileID: 560083457, guid: 0e5c349b705c48a4b80d3f8734dba522, type: 3}
+  keyboardMouseSprite: {fileID: 21300000, guid: 12c419109d52ace439a1dd485cc4934c, type: 3}
+  spriteRenderer: {fileID: 1603931128}
 --- !u!1001 &1643469480
 PrefabInstance:
   m_ObjectHideFlags: 0

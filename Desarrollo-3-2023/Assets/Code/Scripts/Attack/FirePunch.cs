@@ -53,12 +53,9 @@ namespace Code.Scripts.Attack
         /// Stop moving punches and reset the object
         /// </summary>
         /// <param name="reset">Should reset entire attack</param>
-        public void Stop(bool reset = false)
+        public void Stop()
         {
             Move = false;
-            
-            if (reset)
-                gameObject.SetActive(false);
         }
     }
 }

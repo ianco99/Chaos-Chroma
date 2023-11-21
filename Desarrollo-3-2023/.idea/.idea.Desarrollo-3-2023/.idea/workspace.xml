@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Input/InputTutorialSwitcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Input/InputTutorialSwitcher.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/Attack.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/Attack.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/Block.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/Block.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/Jump.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/Jump.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/Move.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/Move.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/click-export.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/click-export.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Text/right click-export.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Textures/Text/right click-export.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,10 +134,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="10052">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="10052" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -199,7 +196,8 @@
       <workItem from="1699899727996" duration="6598000" />
       <workItem from="1699985021895" duration="5701000" />
       <workItem from="1700052317289" duration="11178000" />
-      <workItem from="1700503772245" duration="11048000" />
+      <workItem from="1700503772245" duration="11152000" />
+      <workItem from="1700607994030" duration="1475000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />

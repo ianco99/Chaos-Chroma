@@ -158,6 +158,9 @@ namespace Code.Scripts.Enemy
         /// </summary>
         private void OnEnterPunchHandler()
         {
+            leftHit.gameObject.SetActive(true);
+            rightHit.gameObject.SetActive(true);
+            
             punchState.SetTargetPos(detectionArea.GetPositionDifference());
         }
 

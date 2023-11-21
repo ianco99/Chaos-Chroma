@@ -70,8 +70,8 @@ namespace Patterns.FSM
         public void Stop()
         {
             Ended = true;
-            leftPunch.Stop(true);
-            rightPunch.Stop(true);
+            leftPunch.Stop();
+            rightPunch.Stop();
         }
     }
 }

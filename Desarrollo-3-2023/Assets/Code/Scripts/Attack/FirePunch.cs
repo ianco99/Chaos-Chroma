@@ -8,7 +8,8 @@ namespace Code.Scripts.Attack
     public class FirePunch : MonoBehaviour
     {
         [SerializeField] private float speed = 20f;
-        
+        [SerializeField] private bool isLeft;
+                
         private Vector3 targetPos;
         
         /// <summary>
@@ -42,6 +43,9 @@ namespace Code.Scripts.Attack
         {
             Move = true;
             targetPos = pos;
+
+            float angle = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(isLeft ? angle : angle + 180, Vector3.forward);
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -52,9 +56,9 @@ namespace Code.Scripts.Attack
         /// <summary>
         /// Stop moving punches and reset the object
         /// </summary>
-        /// <param name="reset">Should reset entire attack</param>
         public void Stop()
         {
+            transform.rotation = Quaternion.identity;
             Move = false;
         }
     }

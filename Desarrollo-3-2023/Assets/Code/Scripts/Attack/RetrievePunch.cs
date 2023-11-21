@@ -40,8 +40,10 @@ namespace Code.Scripts.Attack
         /// </summary>
         private void CheckRetrieveFinished()
         {
-            if (transform.localPosition == startPos)
-                Move = false;
+            if (transform.localPosition != startPos) return;
+            
+            Move = false;
+            transform.rotation = Quaternion.identity;
         }
         
         /// <summary>
@@ -53,10 +55,17 @@ namespace Code.Scripts.Attack
             return transform.localPosition == startPos;
         }
         
+        /// <summary>
+        /// Immediately set hand to original position and rotation
+        /// </summary>
         public void Reset()
         {
             Move = false;
-            transform.localPosition = startPos;
+            
+            Transform trans = transform;
+            
+            trans.localPosition = startPos;
+            trans.rotation = Quaternion.identity;
         }
     }
 }

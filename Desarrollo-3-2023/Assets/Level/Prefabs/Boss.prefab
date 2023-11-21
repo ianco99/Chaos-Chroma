@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  isLeft: 1
 --- !u!114 &1156298478108974962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  isLeft: 0
 --- !u!114 &112336210925785604
 MonoBehaviour:
   m_ObjectHideFlags: 0

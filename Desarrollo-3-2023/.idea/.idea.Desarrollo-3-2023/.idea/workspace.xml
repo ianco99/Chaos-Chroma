@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
+    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Added chains and punches to Boss">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RetrievePunch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RetrievePunch.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +24,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/e2/b943f062/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/ec/2c000a2a/InvokableCall.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/93b2f6f843ff4a25aee844423c1a540e10fc00/c8/7f0636a6/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a63bf50d8b744d7dae5f00886f3270f43e000/25/bf41c02d/Graph.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" root0="FORCE_HIGHLIGHTING" />
@@ -61,6 +58,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/ParryState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Chaos-Chroma/Desarrollo-3-2023/Assets/Level/Prefabs/Boss.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Wwise/API/Runtime/WwiseTypes/WwiseTypes/AkWwiseEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.kuznicki.eventchannel@0cf33b06d9/Runtime/EventChannel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/SelectableEditor.cs" root0="SKIP_HIGHLIGHTING" />
@@ -134,10 +132,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="820">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="820" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -197,7 +195,7 @@
       <workItem from="1699985021895" duration="5701000" />
       <workItem from="1700052317289" duration="11178000" />
       <workItem from="1700503772245" duration="11152000" />
-      <workItem from="1700607994030" duration="1475000" />
+      <workItem from="1700607994030" duration="2439000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -383,7 +381,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700006268846</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added chains and punches to Boss">
+      <option name="closed" value="true" />
+      <created>1700609544758</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1700609544758</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,26 +423,10 @@
     <MESSAGE value="Fixed player jump" />
     <MESSAGE value="Made boss attack bidirectional" />
     <MESSAGE value="Added boss animations (clips)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added boss animations (clips)" />
+    <MESSAGE value="Added chains and punches to Boss" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added chains and punches to Boss" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/AreaDetector.cs</url>
-          <line>33</line>
-          <properties documentPath="D:\Da Archive\Unity Projects\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\Enemy\AreaDetector.cs" initialLine="33" containingFunctionPresentation="Method 'OnTriggerEnter2D'">
-            <startOffsets>
-              <option value="928" />
-            </startOffsets>
-            <endOffsets>
-              <option value="952" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
         <watch expression="rb.velocity.y" language="C#" />

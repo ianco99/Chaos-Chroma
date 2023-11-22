@@ -26690,10 +26690,6 @@ PrefabInstance:
       propertyPath: pauseCanvas
       value: 
       objectReference: {fileID: 2103039417}
-    - target: {fileID: 2365708590959872771, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
-      propertyPath: knockbackSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 805cf9ea59ef67f43bf5ee694fcb7cb9, type: 2}
     - target: {fileID: 6862336575500731703, guid: 0dd2d48b5eaeaab4daa2b013a82a6344, type: 3}
       propertyPath: m_Name
       value: Player

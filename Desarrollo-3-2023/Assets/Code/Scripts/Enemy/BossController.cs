@@ -1,3 +1,4 @@
+using System;
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
 using Code.Scripts.SOs.Animator;
@@ -36,8 +37,9 @@ namespace Code.Scripts.Enemy
         [Header("Animations:")] 
         [SerializeField] private string animatorParameterName;
         [SerializeField] private Animator animator;
-
-
+        
+        public static event Action<Vector2> OnBurst;
+        
         private AnimatorStateSetter<string, int> animatorStateSetter;
 
         // States
@@ -218,9 +220,11 @@ namespace Code.Scripts.Enemy
         private void OnTakeDamageHandler(Vector2 origin)
         {
             ResetPunches();
-
+            
             damagedState.SetDirection(origin.x > transform.position.x ? Vector2.left : Vector2.right);
             damagedState.Enter();
+            
+            OnBurst?.Invoke(transform.position);
         }
 
         /// <summary>

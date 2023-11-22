@@ -1,23 +1,26 @@
-using UnityEngine;
 using kuznickiEventChannel;
+using UnityEngine;
 using UnityEngine.Events;
 
-public class Subscriber : MonoBehaviour
+namespace Code.Scripts.Abstracts
 {
-    [SerializeField] private EventChannelSO publisher;
-    [SerializeField] private UnityEvent action;
-
-    private void Start()
+    public class Subscriber : MonoBehaviour
     {
-        if (publisher != null)
-            publisher.Subscribe(DoAction);
-        else
-            Debug.LogWarning("Warning: publisher not set in " + gameObject.name);
-    }
+        [SerializeField] private EventChannelSO publisher;
+        [SerializeField] private UnityEvent action;
 
-    [ContextMenu("ActivateAction")]
-    private void DoAction()
-    {
-        action.Invoke();
+        private void Start()
+        {
+            if (publisher != null)
+                publisher.Subscribe(DoAction);
+            else
+                Debug.LogWarning("Warning: publisher not set in " + gameObject.name);
+        }
+
+        [ContextMenu("ActivateAction")]
+        private void DoAction()
+        {
+            action.Invoke();
+        }
     }
 }

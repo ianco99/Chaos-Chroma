@@ -407,7 +407,7 @@ Transform:
   - {fileID: 8138434858430252606}
   - {fileID: 1832251140546065990}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -501,6 +501,7 @@ MonoBehaviour:
   bodyMat: {fileID: 6200000, guid: 16b07130e0c2b1741b4b968a4138ccd6, type: 2}
   outline: {fileID: 8685973854917079561}
   pauseCanvas: {fileID: 0}
+  burstStrength: 15
   moveSettings: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}
   jumpStartSettings: {fileID: 11400000, guid: 4d19e0911203b1346b250e943fe01780, type: 2}
   jumpEndSettings: {fileID: 11400000, guid: cf892d5be77c3e74da11ee4486ef8d7f, type: 2}

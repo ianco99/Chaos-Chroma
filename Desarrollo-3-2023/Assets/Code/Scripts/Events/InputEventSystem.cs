@@ -27,7 +27,7 @@ namespace Code.Scripts.Events
 
         private void MoveCharacters(Vector2 axis)
         {
-            onMoveChannel.RaiseEvent(axis);
+            onMoveChannel?.RaiseEvent(axis);
         }
 
         private void AttackPressedAttackers()

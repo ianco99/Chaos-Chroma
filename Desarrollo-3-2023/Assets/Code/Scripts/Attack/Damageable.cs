@@ -20,7 +20,6 @@ namespace Patterns.FSM
         public event Action<Vector2> OnParry;
         public kuznickiEventChannel.VoidEventChannel OnDeath;
 
-
         private void Awake()
         {
             life = startLife;

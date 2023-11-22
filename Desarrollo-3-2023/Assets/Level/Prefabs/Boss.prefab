@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 850656403992607110}
   - component: {fileID: 8382561150117590226}
   - component: {fileID: 8125808306341617883}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 4748955373487805031}
   - component: {fileID: 6665199542606934748}
   - component: {fileID: 5707815234581621595}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 4883076550811678276}
   - component: {fileID: 8111135292383764608}
   - component: {fileID: 8396066565068786238}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1148,7 +1148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6099281180154221307}
   - component: {fileID: 4649131968844694853}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1496,7 +1496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7059690708237504158, guid: 4dcc9e78d76965846858f5f9ee53c15d, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7142711618911977131, guid: 4dcc9e78d76965846858f5f9ee53c15d, type: 3}
       propertyPath: m_Layer

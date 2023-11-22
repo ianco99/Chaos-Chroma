@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Code.Scripts.Abstracts;
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
+using Code.Scripts.Enemy;
 using Code.Scripts.Input;
 using Code.Scripts.States;
 using Code.SOs.States;
@@ -39,7 +41,8 @@ namespace Code.Scripts.Player
         [SerializeField] private PhysicsMaterial2D bodyMat;
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private GameObject pauseCanvas;
-
+        [SerializeField] private float burstStrength = 10f;
+        
         [Header("StateSettings")]
         [SerializeField] private MoveSettings moveSettings;
         [SerializeField] private JumpStartSettings jumpStartSettings;
@@ -60,10 +63,7 @@ namespace Code.Scripts.Player
         [SerializeField] private AK.Wwise.Event playFootstep;
         [SerializeField] private AK.Wwise.Event stopFootstep;
         private bool isWalking = false;
-
-
-
-
+        
         // States
         private MovementState<PlayerStates> movementState;
         private IdleState<PlayerStates> idleState;
@@ -140,6 +140,8 @@ namespace Code.Scripts.Player
             hit.GetComponent<HitsManager>().OnParried += OnParriedHandler;
             speedPickup += OnSpeedPickUp;
             lifePickup += OnLifePickUp;
+            
+            BossController.OnBurst += OnBurstHandler;
         }
 
         private void OnDisable()
@@ -308,7 +310,32 @@ namespace Code.Scripts.Player
         /// </summary>
         private void PauseHandler()
         {
-            pauseCanvas.SetActive(GameManager.Pause());
+            if (pauseCanvas)
+                pauseCanvas.SetActive(GameManager.Pause());
+        }
+
+        /// <summary>
+        /// Handle boss burst
+        /// </summary>
+        /// <param name="burstOrigin">Center of the burst</param>
+        private void OnBurstHandler(Vector2 burstOrigin)
+        {
+            Vector2 dir = (Vector2)transform.position - burstOrigin;
+
+            StartCoroutine(AddForce(dir * burstStrength, ForceMode2D.Impulse));
+        }
+
+        /// <summary>
+        /// Add force on fixed update
+        /// </summary>
+        /// <param name="force"></param>
+        /// <param name="forceMode"></param>
+        /// <returns></returns>
+        private IEnumerator AddForce(Vector2 force, ForceMode2D forceMode)
+        {
+            yield return new WaitForFixedUpdate();
+            
+            rb.AddForce(force, forceMode);
         }
 
         #region State activations

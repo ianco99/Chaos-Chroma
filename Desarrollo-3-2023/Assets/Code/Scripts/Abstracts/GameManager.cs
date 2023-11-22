@@ -1,5 +1,6 @@
-using UnityEngine.Device;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using Application = UnityEngine.Device.Application;
 
 namespace Code.Scripts.Abstracts
 {
@@ -8,9 +9,15 @@ namespace Code.Scripts.Abstracts
         private static GameManager instance;
 
         private bool won;
+        private bool paused;
         private string lostLevel = "Tutorial";
 
         private static GameManager Instance => instance ??= new GameManager();
+
+        public static string LostLevel
+        {
+            set => Instance.lostLevel = value;
+        }
 
         public static bool Won => Instance.won;
 
@@ -20,7 +27,7 @@ namespace Code.Scripts.Abstracts
         public static void Win()
         {
             Instance.won = true;
-            Instance.lostLevel = "Tutorial";
+            LostLevel = "Tutorial";
             SceneManager.LoadScene("WinLoseScreen");
         }
 
@@ -29,6 +36,7 @@ namespace Code.Scripts.Abstracts
         /// </summary>
         public static void LoadLevel1()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene("Level1");
         }
 
@@ -37,8 +45,9 @@ namespace Code.Scripts.Abstracts
         /// </summary>
         public static void Lose()
         {
+            Time.timeScale = 1f;
             Instance.won = false;
-            Instance.lostLevel = SceneManager.GetActiveScene().name;
+            LostLevel = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("WinLoseScreen");
         }
 
@@ -47,14 +56,16 @@ namespace Code.Scripts.Abstracts
         /// </summary>
         public static void StartTutorial()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene("Tutorial");
         }
-        
+
         /// <summary>
         /// Reload failed level
         /// </summary>
         public static void RetryLevel()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(Instance.lostLevel);
         }
 
@@ -63,6 +74,7 @@ namespace Code.Scripts.Abstracts
         /// </summary>
         public static void ReturnToMenu()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene("Menu");
         }
 
@@ -72,6 +84,18 @@ namespace Code.Scripts.Abstracts
         public static void Exit()
         {
             Application.Quit();
+        }
+
+        /// <summary>
+        /// Pause and unpause the game
+        /// </summary>
+        /// <returns>true if game is paused else false</returns>
+        public static bool Pause()
+        {
+            Instance.paused = !Instance.paused;
+            Time.timeScale = Instance.paused ? 0f : 1f;
+
+            return Instance.paused;
         }
     }
 }

@@ -407,7 +407,7 @@ Transform:
   - {fileID: 8138434858430252606}
   - {fileID: 1832251140546065990}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
@@ -508,7 +508,7 @@ MonoBehaviour:
   attackStartSettings: {fileID: 11400000, guid: 81e792fb5bccdb64eb826e6338378bbf, type: 2}
   parrySettings: {fileID: 11400000, guid: 039221402fd24364a901a3ee2e534984, type: 2}
   damagedSettings: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
-  knockbackSettings: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
+  knockbackSettings: {fileID: 11400000, guid: 805cf9ea59ef67f43bf5ee694fcb7cb9, type: 2}
   animator: {fileID: 4310963439013856538}
   playEspada:
     idInternal: 0

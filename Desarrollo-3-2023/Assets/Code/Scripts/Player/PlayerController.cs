@@ -1,4 +1,5 @@
 using System;
+using Code.Scripts.Abstracts;
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
 using Code.Scripts.Input;
@@ -307,10 +308,7 @@ namespace Code.Scripts.Player
         /// </summary>
         private void PauseHandler()
         {
-            Time.timeScale = 0.0f;
-            
-            if (pauseCanvas)
-                pauseCanvas.SetActive(true);
+            pauseCanvas.SetActive(GameManager.Pause());
         }
 
         #region State activations

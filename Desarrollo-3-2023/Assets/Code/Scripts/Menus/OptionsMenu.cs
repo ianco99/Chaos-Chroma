@@ -1,3 +1,5 @@
+using System;
+using Code.Scripts.Abstracts;
 using Code.Scripts.Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,12 +8,17 @@ namespace Code.Scripts.Menus
 {
     public class OptionsMenu : MonoBehaviour
     {
+        private void Start()
+        {
+            GameManager.LostLevel = SceneManager.GetActiveScene().name;
+        }
+
         /// <summary>
         /// Resume the game
         /// </summary>
         public void Resume()
         {
-            Time.timeScale = 1f;
+            GameManager.Pause();
         }
 
         /// <summary>
@@ -19,8 +26,7 @@ namespace Code.Scripts.Menus
         /// </summary>
         public void Quit()
         {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("Menu");
+            GameManager.ReturnToMenu();
         }
 
         /// <summary>
@@ -46,7 +52,7 @@ namespace Code.Scripts.Menus
         /// </summary>
         public void RestartLevel()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameManager.RetryLevel();
         }
 
         private void OnDestroy()

@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="Made punches directional">
-      <change afterPath="$PROJECT_DIR$/Assets/Code/SOs/Events/BossBurstVector2EventChannel.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/SOs/Events/BossBurstVector2EventChannel.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Events/Vector2EventChannel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Events/Vector2EventChannel.cs.meta" afterDir="false" />
+    <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Subscriber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Subscriber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Events/InputEventSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Events/InputEventSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +102,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../Downloads/0.11.2\ChaosChroma.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../Downloads/0.12.0\Chaos Chroma Defying the System.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="F:\Chino\Desarrollo-3-01" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -210,7 +198,7 @@
       <workItem from="1699985021895" duration="5701000" />
       <workItem from="1700052317289" duration="11178000" />
       <workItem from="1700503772245" duration="11152000" />
-      <workItem from="1700607994030" duration="8249000" />
+      <workItem from="1700607994030" duration="9569000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />

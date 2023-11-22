@@ -163,6 +163,8 @@ namespace Code.Scripts.Player
             hit.GetComponent<HitsManager>().OnParried -= OnParriedHandler;
             speedPickup -= OnSpeedPickUp;
             lifePickup -= OnLifePickUp;
+            
+            BossController.OnBurst -= OnBurstHandler;
 
             //TODO: Move to a better place
             moveSettings.speed = 300.0f;

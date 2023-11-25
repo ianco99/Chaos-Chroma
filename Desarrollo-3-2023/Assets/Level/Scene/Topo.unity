@@ -991,17 +991,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 302326415}
     m_Modifications:
-    - target: {fileID: -6660972805920217182, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
-      propertyPath: flippables.Array.data[0].transformFlip
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5581236849421622092, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
       propertyPath: m_Name
       value: Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 5707815234581621595, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7447287461447200753, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
       propertyPath: m_RootOrder
@@ -1046,10 +1038,6 @@ PrefabInstance:
     - target: {fileID: 7447287461447200753, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8125808306341617883, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

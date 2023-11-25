@@ -1744,7 +1744,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -520.0442}
+  m_AnchoredPosition: {x: 960, y: -520.1371}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981741685
@@ -2001,7 +2001,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 371.74, y: 60.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1326889653
 MonoBehaviour:
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -151.93532, y: -20.0596, z: -152.03896, w: -20.059687}
+  m_margin: {x: -2.593628, y: 1.7952633, z: 0.94557196, w: -3.6685467}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2509,7 +2509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -760.13257}
+  m_AnchoredPosition: {x: 960, y: -760.4114}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659545142
@@ -3241,6 +3241,7 @@ MonoBehaviour:
   levelSelectCanvas: {fileID: 1455546509}
   mainMenuCanvas: {fileID: 2123354151}
   creditsMenuCanvas: {fileID: 82864453}
+  firstSelectedObjectLevelSelector: {fileID: 981741683}
 --- !u!1 &2028249481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3457,7 +3458,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 482.4, y: 70.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2069682960
 MonoBehaviour:
@@ -3542,7 +3543,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -151.93532, y: -20.0596, z: -152.03896, w: -20.059687}
+  m_margin: {x: -0.7723694, y: -0.025955217, z: 0.94529724, w: -1.8472309}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

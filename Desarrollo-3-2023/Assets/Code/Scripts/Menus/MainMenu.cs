@@ -1,5 +1,7 @@
+using System;
 using Code.Scripts.Abstracts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Code.Scripts.Menus
 {
@@ -8,10 +10,14 @@ namespace Code.Scripts.Menus
         [SerializeField] private GameObject levelSelectCanvas;
         [SerializeField] private GameObject mainMenuCanvas;
         [SerializeField] private GameObject creditsMenuCanvas;
+        [SerializeField] private GameObject firstSelectedObjectLevelSelector;
+                
         public void StartGame()
         {
-            levelSelectCanvas.SetActive(true);
             mainMenuCanvas.SetActive(false);
+            levelSelectCanvas.SetActive(true);
+            
+            EventSystem.current.SetSelectedGameObject(firstSelectedObjectLevelSelector);
         }
 
         public void ShowCredits()

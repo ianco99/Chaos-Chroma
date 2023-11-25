@@ -1,5 +1,5 @@
-using System;
 using Code.Scripts.Abstracts;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,7 +11,13 @@ namespace Code.Scripts.Menus
         [SerializeField] private GameObject mainMenuCanvas;
         [SerializeField] private GameObject creditsMenuCanvas;
         [SerializeField] private GameObject firstSelectedObjectLevelSelector;
-                
+        [SerializeField] private TextMeshProUGUI versionText;
+        
+        private void Awake()
+        {
+            versionText.text = "v" + Application.version;
+        }
+
         public void StartGame()
         {
             mainMenuCanvas.SetActive(false);

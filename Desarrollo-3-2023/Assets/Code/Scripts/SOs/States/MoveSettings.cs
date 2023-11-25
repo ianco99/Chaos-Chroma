@@ -7,5 +7,6 @@ namespace Code.SOs.States
     {
         public float speed;
         public float accel;
+        public float groundDistance;
     }
 }

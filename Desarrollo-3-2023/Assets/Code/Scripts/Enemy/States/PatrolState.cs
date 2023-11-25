@@ -16,6 +16,14 @@ namespace Patterns.FSM
         private Transform groundCheckPoint;
         private Character patroller;
 
+        public PatrolState(Rigidbody2D rb, T id, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, settings.moveSettings,
+            transform, rb)
+        {
+            this.settings = settings;
+            this.groundCheckPoint = groundCheckPoint;
+            this.patroller = patroller;
+        }
+
         public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, name, settings.moveSettings,
             transform, rb)
         {
@@ -26,11 +34,8 @@ namespace Patterns.FSM
 
         public override void OnUpdate()
         {
-            base.OnUpdate();
-            
             CheckGround();
             CheckWall();
-             
         }
 
         private void CheckGround()
@@ -51,7 +56,9 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Static"));
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Static", "Platform"));
+            
+            Debug.DrawLine(groundCheckPoint.position, (Vector2)groundCheckPoint.position + dir * settings.wallCheckDistance, Color.red);
             
             if (hit && hit.transform.name != patroller.name)
             {

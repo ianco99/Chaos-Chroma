@@ -47,6 +47,9 @@ namespace Code.Scripts.Enemy
         [Header("GroundCheck: ")]
         [SerializeField] private Transform groundCheck;
         
+        [Header("Lifebar: ")]
+        [SerializeField] private GameObject lifebar;
+        
         public static event Action<Vector2> OnBurst;
 
         private bool move;
@@ -154,6 +157,8 @@ namespace Code.Scripts.Enemy
 
             movementState.dir = detectionArea.GetPositionDifference().normalized;
             UpdateRotation();
+
+            lifebar.SetActive(detectionArea.IsDetectableInArea());
         }
 
         private void FixedUpdate()
@@ -175,7 +180,7 @@ namespace Code.Scripts.Enemy
             animatorStateSetter.AddState(movementState.ID, 4);
             animatorStateSetter.AddState(damagedState.ID, 5);
         }
-
+        
         /// <summary>
         /// Update target position on enter punch state
         /// </summary>

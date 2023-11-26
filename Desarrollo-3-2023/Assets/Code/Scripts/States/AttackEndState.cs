@@ -11,16 +11,23 @@ namespace Code.Scripts.States
     public class AttackEndState<T> : BaseState<T>
     {
         private readonly GameObject hit;
-
-        public AttackEndState(T id, string name, GameObject hit) : base(id, name)
+        private AK.Wwise.Event playEspada;
+        public AttackEndState(T id, string name, GameObject hit, AK.Wwise.Event playEspada = null) : base(id, name)
         {
             this.hit = hit;
+            this.playEspada = playEspada;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+
             hit.SetActive(true);
+            
+            if(playEspada != null)
+            {
+                playEspada.Post(hit);
+            }
         }
 
         public override void OnUpdate()

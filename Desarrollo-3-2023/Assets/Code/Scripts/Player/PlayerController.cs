@@ -86,7 +86,7 @@ namespace Code.Scripts.Player
             Transform trans = transform;
 
             movementState =
-                new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", moveSettings, trans, rb);
+                new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", moveSettings, trans, rb, playFootstep, stopFootstep);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackStartState =
                 new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", attackStartSettings,
@@ -354,7 +354,6 @@ namespace Code.Scripts.Player
                 movementState.Enter();
                 if (isWalking == false)
                 {
-                    playFootstep.Post(gameObject);
                     isWalking = true;
                     Debug.Log("caminando");
                 }
@@ -363,7 +362,6 @@ namespace Code.Scripts.Player
             if (input.x == 0 && isWalking == true)
             {
                 isWalking = false;
-                stopFootstep.Post(gameObject);
                 Debug.Log("quieto");
             }
             movementState.dir = input;

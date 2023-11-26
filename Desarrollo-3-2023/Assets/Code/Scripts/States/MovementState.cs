@@ -14,25 +14,38 @@ namespace Code.Scripts.States
         protected readonly Transform transform;
         protected MoveSettings settings;
 
+        private AK.Wwise.Event playFootstep;
+        private AK.Wwise.Event stopFootstep;
+
+        private bool isPlayingSound = false;
+
         public Vector2 dir;
 
-        public MovementState(T id, MoveSettings settings, Transform transform, Rigidbody2D rb) : base(id)
+        public MovementState(T id, MoveSettings settings, Transform transform, Rigidbody2D rb, AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id)
         {
             this.settings = settings;
             this.transform = transform;
             this.rb = rb;
+
+            this.playFootstep = playFootstep;
+            this.stopFootstep = stopFootstep;
         }
-        
-        public MovementState(T id, string name, MoveSettings settings, Transform transform, Rigidbody2D rb) : base(id, name)
+
+        public MovementState(T id, string name, MoveSettings settings, Transform transform, Rigidbody2D rb, AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id, name)
         {
             this.settings = settings;
             this.transform = transform;
             this.rb = rb;
+
+            this.playFootstep = playFootstep;
+            this.stopFootstep = stopFootstep;
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
+
+            CheckSound();
 
             if (Mathf.Approximately(dir.x, 0))
                 Exit();
@@ -46,6 +59,17 @@ namespace Code.Scripts.States
 
             MoveInDirection(direction);
             ClampSpeed();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            if (isPlayingSound)
+            {
+                stopFootstep.Post(rb.gameObject);
+                isPlayingSound = false;
+            }
         }
 
         /// <summary>
@@ -76,11 +100,36 @@ namespace Code.Scripts.States
 
             Vector3 pos = transform.position + Vector3.down * 1f;
             Vector3 scale = transform.localScale;
-            RaycastHit2D hit = Physics2D.Raycast(pos , Vector2.down, settings.groundDistance, LayerMask.GetMask("Static", "Platform", "Default"));
-            
+            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, settings.groundDistance, LayerMask.GetMask("Static", "Platform", "Default"));
+
             Debug.DrawLine(pos, pos + Vector3.down * settings.groundDistance, Color.red);
-            
+
             return hit.collider;
+        }
+
+        private void CheckSound()
+        {
+            if (playFootstep == null)
+                return;
+            if (stopFootstep == null)
+                return;
+
+            if (IsGrounded())
+            {
+                if (!isPlayingSound)
+                {
+                    isPlayingSound = true;
+                    playFootstep.Post(rb.gameObject);
+                }
+            }
+            else
+            {
+                if (isPlayingSound)
+                {
+                    isPlayingSound = false;
+                    stopFootstep.Post(rb.gameObject);
+                }
+            }
         }
     }
 }

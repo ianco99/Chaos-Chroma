@@ -7,13 +7,15 @@ namespace Patterns.FSM
 {
     public class JumpStartState<T> : MovementState<T>
     {
+        private AK.Wwise.Event playJump;
         private MonoBehaviour behaviourClass;
         private JumpStartSettings jumpStartSettings;
 
         private float originalGravScale;
-        
-        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, JumpStartSettings startSettings, Transform transform, Rigidbody2D rb) : base(id, name, startSettings.moveSettings, transform, rb)
+
+        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, JumpStartSettings startSettings, AK.Wwise.Event playJump, Transform transform, Rigidbody2D rb) : base(id, name, startSettings.moveSettings, transform, rb)
         {
+            this.playJump = playJump;
             jumpStartSettings = startSettings;
             behaviourClass = coroutineContainer;
         }
@@ -48,6 +50,7 @@ namespace Patterns.FSM
         private IEnumerator AddForce(Vector3 force, ForceMode2D mode)
         {
             yield return new WaitForFixedUpdate();
+            playJump.Post(behaviourClass.gameObject);
             rb.AddForce(force, mode);
         }
 

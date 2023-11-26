@@ -94,7 +94,7 @@ namespace Code.Scripts.Player
             attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parrySettings);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
-            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, trans, rb);
+            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, playJump, trans, rb);
             jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);
             damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Block, damagedSettings, rb);
             godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", godSettings, trans, rb);
@@ -422,7 +422,6 @@ namespace Code.Scripts.Player
         private void CheckJumpStart()
         {
             jumpStartState.Enter();
-            playJump.Post(gameObject);
         }
 
         /// <summary>

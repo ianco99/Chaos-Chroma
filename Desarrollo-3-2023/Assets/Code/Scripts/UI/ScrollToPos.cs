@@ -17,6 +17,9 @@ public class ScrollToPos : MonoBehaviour
     [SerializeField] private Scrollbar scrollbar;
     [SerializeField] private Axis axis;
     [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private bool negative = false;
+    [SerializeField] private float maxValue;
+    [SerializeField] private float minValue;
 
     private void Start()
     {
@@ -26,10 +29,15 @@ public class ScrollToPos : MonoBehaviour
     public void TranslatePos(float a)
     {
         Vector3 newPos = rectTransform.localPosition;
-      
-        float newCoord = 1731.0f * a;
 
-        Mathf.Clamp(newCoord, 0, 1731.0f);
+        float newCoord;
+
+        if (negative)
+            newCoord = maxValue * (1 - a);
+        else
+            newCoord = maxValue * a;
+
+        Mathf.Clamp(newCoord, minValue, maxValue);
 
         switch (axis)
         {

@@ -38,6 +38,12 @@ namespace Code.Scripts.Menus
             mainMenuCanvas.SetActive(true);
         }
 
+        public void BackToMainMenu()
+        {
+            levelSelectCanvas.SetActive(false);
+            mainMenuCanvas.SetActive(true);
+        }
+
         public void SelectTutorial()
         {
             GameManager.StartTutorial();

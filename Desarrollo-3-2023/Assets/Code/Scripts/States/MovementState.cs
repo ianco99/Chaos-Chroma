@@ -17,7 +17,7 @@ namespace Code.Scripts.States
         private AK.Wwise.Event playFootstep;
         private AK.Wwise.Event stopFootstep;
 
-        private bool isPlayingSound = false;
+        private bool isPlayingSound;
 
         public Vector2 dir;
 

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 300
   accel: 50
-  groundDistance: 0.02
+  groundDistance: 0.1

@@ -1484,7 +1484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 247741308}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2942,7 +2942,7 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.12}
+  m_Offset: {x: 0, y: 0.4}
   m_EdgeRadius: 0
   m_Points:
   - {x: -0.5000001, y: 0}
@@ -24539,7 +24539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1515655772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26708,7 +26708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1824331403}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}

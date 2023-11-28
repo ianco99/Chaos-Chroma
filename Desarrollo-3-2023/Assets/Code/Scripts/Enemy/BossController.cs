@@ -131,7 +131,7 @@ namespace Code.Scripts.Enemy
             cooldownState.onEnter += OnEnterCooldownHandler;
             patrolState.onEnter += OnEnterPatrolHandler;
             damagedState.onEnter += OnEnterDamagedHandler;
-            retrieveState.onExit += OnExitRetrieveHandler;
+            retrieveState.onEnter += OnEnterRetrieveHandler;
             damageable.OnTakeDamage += OnTakeDamageHandler;
             leftHit.OnParried += OnLeftParriedHandler;
             rightHit.OnParried += OnRightParriedHandler;
@@ -143,7 +143,7 @@ namespace Code.Scripts.Enemy
             cooldownState.onEnter -= OnEnterCooldownHandler;
             patrolState.onEnter -= OnEnterPatrolHandler;
             damagedState.onEnter -= OnEnterDamagedHandler;
-            retrieveState.onExit -= OnExitRetrieveHandler;
+            retrieveState.onEnter -= OnEnterRetrieveHandler;
             damageable.OnTakeDamage -= OnTakeDamageHandler;
             leftHit.OnParried -= OnLeftParriedHandler;
             rightHit.OnParried -= OnRightParriedHandler;
@@ -220,7 +220,7 @@ namespace Code.Scripts.Enemy
         /// <summary>
         /// Stop Hit when exited retrieve
         /// </summary>
-        private void OnExitRetrieveHandler()
+        private void OnEnterRetrieveHandler()
         {
             leftHit.Stop();
             rightHit.Stop();

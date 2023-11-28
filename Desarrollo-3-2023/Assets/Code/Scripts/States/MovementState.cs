@@ -100,9 +100,9 @@ namespace Code.Scripts.States
 
             Vector3 pos = transform.position + Vector3.down * 1f;
             Vector3 scale = transform.localScale;
-            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, settings.groundDistance, LayerMask.GetMask("Static", "Platform", "Default"));
+            RaycastHit2D hit = Physics2D.Raycast(pos + Vector3.up * settings.groundDistance, Vector2.down, settings.groundDistance * 2f, LayerMask.GetMask("Static", "Platform", "Default"));
 
-            Debug.DrawLine(pos, pos + Vector3.down * settings.groundDistance, Color.red);
+            Debug.DrawLine(pos + Vector3.up * settings.groundDistance, pos + Vector3.down * settings.groundDistance, Color.red);
 
             return hit.collider;
         }

@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0
+  hitDelay: 0.15
   hitDuration: 0.5
   finishByDuration: 1
   sprite: {fileID: 0}

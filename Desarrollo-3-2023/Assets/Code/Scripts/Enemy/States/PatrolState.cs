@@ -58,8 +58,6 @@ namespace Patterns.FSM
 
             RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Static", "Platform"));
             
-            Debug.DrawLine(groundCheckPoint.position, (Vector2)groundCheckPoint.position + dir * settings.wallCheckDistance, Color.red);
-            
             if (hit && hit.transform.name != patroller.name)
             {
                 FlipDirection();

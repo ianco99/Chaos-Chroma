@@ -997,7 +997,7 @@ Transform:
   - {fileID: 4461748847753651257}
   - {fileID: 3840721248536089983}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6660972805920217182
 MonoBehaviour:
@@ -1434,19 +1434,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.74570286
+      value: 0.70147926
       objectReference: {fileID: 0}
     - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.1719769
+      value: 0.141
       objectReference: {fileID: 0}
     - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.254335
+      value: 0.29656234
       objectReference: {fileID: 0}
     - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.007368371
+      value: 0.009220423
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8778870643109271665, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
       propertyPath: m_Pivot.x

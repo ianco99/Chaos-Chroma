@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/SOs/States/Player/PlayerJumpMoveSettingsSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/SOs/States/Player/PlayerJumpMoveSettingsSO.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/MovementState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +33,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorAnimatorController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorCloser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/AreaDetector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Chaos-Chroma/Desarrollo-3-2023/Assets/Code/Scripts/Enemy/BossController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossLifebarController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/CooldownState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -403,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700610577047</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Removed boss damaging when retrieving">
+      <option name="closed" value="true" />
+      <created>1701203661531</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701203661531</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,7 +418,6 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Fixed ground check" />
     <MESSAGE value="Updated attack system" />
     <MESSAGE value="Added win and lose screens" />
     <MESSAGE value="Implemented win/lose conditions" />
@@ -439,7 +442,8 @@
     <MESSAGE value="Added boss animations (clips)" />
     <MESSAGE value="Added chains and punches to Boss" />
     <MESSAGE value="Made punches directional" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made punches directional" />
+    <MESSAGE value="Removed boss damaging when retrieving" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed boss damaging when retrieving" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

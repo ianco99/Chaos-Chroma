@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dfe12664322248444ab763f9cddf2790
+guid: a7c2e561d329b1f4cabf6a0d6fb93a14
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -119,11 +119,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hurt_0
+      name: Boss Idle+Moving-Sheet_0
       rect:
         serializedVersion: 2
         x: 16
-        y: 30
+        y: 16
         width: 96
         height: 84
       alignment: 0
@@ -133,18 +133,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d72c64920f883b4469cc3c76f86fe59d
-      internalID: 521519144
+      spriteID: f053691c774eeda409d9651fc27cda8f
+      internalID: 1619126920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_1
+      name: Boss Idle+Moving-Sheet_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 30
+        x: 144
+        y: 16
         width: 96
         height: 84
       alignment: 0
@@ -154,18 +154,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09d811b6e0876a241a52da79a9bc7999
-      internalID: -631572447
+      spriteID: 91f1e49f0b55163499fdd21f192fe236
+      internalID: 866553689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_2
+      name: Boss Idle+Moving-Sheet_2
       rect:
         serializedVersion: 2
-        x: 240
-        y: 30
+        x: 272
+        y: 16
         width: 96
         height: 84
       alignment: 0
@@ -175,18 +175,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db231581f22c81c46ad9468d5ac0bac7
-      internalID: -1944813923
+      spriteID: 5ee8f485a2dccbf49bb1e8859438ef6c
+      internalID: -773549193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_3
+      name: Boss Idle+Moving-Sheet_4
       rect:
         serializedVersion: 2
-        x: 352
-        y: 30
+        x: 400
+        y: 16
         width: 96
         height: 84
       alignment: 0
@@ -196,18 +196,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3471e7fb112b0d144ba6fb876c0c9b9a
-      internalID: -1667398524
+      spriteID: 3f4825cd716d6234d98cf6bd36fc053b
+      internalID: 45074522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_4
+      name: Boss Idle+Moving-Sheet_5
       rect:
         serializedVersion: 2
-        x: 464
-        y: 30
+        x: 528
+        y: 16
         width: 96
         height: 84
       alignment: 0
@@ -217,18 +217,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac6923eb2d6817242a77aa9c5bba6f74
-      internalID: 1919561215
+      spriteID: 03db1830161726645a99045e054e41aa
+      internalID: -781967928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hurt_5
+      name: Boss Idle+Moving-Sheet_6
       rect:
         serializedVersion: 2
-        x: 576
-        y: 30
+        x: 656
+        y: 16
         width: 96
         height: 84
       alignment: 0
@@ -238,8 +238,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27a48cd2ee72529408745f6a08fd70d2
-      internalID: -330704188
+      spriteID: 8f8b9f7bfc2293b458b2f2c00cb8cac6
+      internalID: 684698198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss Idle+Moving-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 16
+        width: 96
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2327de41d89b8d4993490986c45c028
+      internalID: 978244400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss Idle+Moving-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 16
+        width: 96
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a72314955bfe0f948afd48afae273ff0
+      internalID: 1693594685
       vertices: []
       indices: 
       edges: []
@@ -255,12 +297,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hurt_0: 521519144
-      Hurt_1: -631572447
-      Hurt_2: -1944813923
-      Hurt_3: -1667398524
-      Hurt_4: 1919561215
-      Hurt_5: -330704188
+      Boss Idle+Moving-Sheet_0: 1619126920
+      Boss Idle+Moving-Sheet_1: 866553689
+      Boss Idle+Moving-Sheet_10: 1693594685
+      Boss Idle+Moving-Sheet_11: -802909801
+      Boss Idle+Moving-Sheet_12: -739845987
+      Boss Idle+Moving-Sheet_2: -773549193
+      Boss Idle+Moving-Sheet_3: -168775650
+      Boss Idle+Moving-Sheet_4: 45074522
+      Boss Idle+Moving-Sheet_5: -781967928
+      Boss Idle+Moving-Sheet_6: 684698198
+      Boss Idle+Moving-Sheet_7: -1925623168
+      Boss Idle+Moving-Sheet_8: 978244400
+      Boss Idle+Moving-Sheet_9: -2036060085
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

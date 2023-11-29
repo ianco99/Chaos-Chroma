@@ -323,6 +323,8 @@ namespace Code.Scripts.Player
         private void OnBurstHandler(Vector2 burstOrigin)
         {
             Vector2 dir = (Vector2)transform.position - burstOrigin;
+            dir.y = 0;
+            dir.Normalize();
 
             rb.AddForce(dir * burstStrength, ForceMode2D.Impulse);
         }

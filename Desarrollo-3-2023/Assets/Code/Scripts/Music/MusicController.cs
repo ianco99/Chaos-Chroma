@@ -13,24 +13,19 @@ public class MusicController : MonoBehaviour
     [SerializeField] AK.Wwise.State combate;
     
      
-     bool alreadyActive = false;
+     bool menuActivo = false;
      bool winActivo = false;
 
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        alreadyActive = true;
     }
 
     private void Start()
     {
-        if(!alreadyActive)
-        {
-            music.Post(gameObject);
-            menu.SetValue();
-        }
-
+        music.Post(gameObject);
+        menu.SetValue();
         //menuActivo = true;
        // winActivo = false;
 

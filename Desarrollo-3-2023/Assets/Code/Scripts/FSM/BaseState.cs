@@ -1,7 +1,12 @@
+using System;
+
 namespace Patterns.FSM
 {
     public abstract class BaseState<T> : IState
     {
+        public event Action onEnter;
+        public event Action onExit;
+        
         public string Name { get; set; }
         public T ID { get; private set; }
         public bool Active { get; private set; }
@@ -18,7 +23,7 @@ namespace Patterns.FSM
 
         public virtual void OnEnter()
         {
-            
+            onEnter?.Invoke();
         }
 
         public virtual void OnUpdate()
@@ -33,7 +38,7 @@ namespace Patterns.FSM
 
         public virtual void OnExit()
         {
-
+            onExit?.Invoke();
         }
 
         public void Enter()

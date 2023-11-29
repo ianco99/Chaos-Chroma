@@ -1,3 +1,4 @@
+using Code.Scripts.Abstracts.Character;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
 using System;
@@ -11,55 +12,41 @@ namespace Patterns.FSM
     /// <typeparam name="T"></typeparam>
     public class PatrolState<T> : MovementState<T>
     {
-        private readonly EnemySettings settings;
-        private readonly Transform patroller;
+        private readonly PatrolSettings settings;
         private Transform groundCheckPoint;
-        private int curPatrolPoint;
+        private Character patroller;
 
-        public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Transform transform, EnemySettings settings) : base(id, name, settings.patrolSpeed, settings.acceleration,
+        public PatrolState(Rigidbody2D rb, T id, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, settings.moveSettings,
             transform, rb)
         {
-            patroller = transform;
             this.settings = settings;
             this.groundCheckPoint = groundCheckPoint;
+            this.patroller = patroller;
         }
 
-        public override void OnEnter()
+        public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, name, settings.moveSettings,
+            transform, rb)
         {
-            base.OnEnter();
-            dir = -1f;
+            this.settings = settings;
+            this.groundCheckPoint = groundCheckPoint;
+            this.patroller = patroller;
         }
 
         public override void OnUpdate()
         {
-            base.OnUpdate();
-            
             CheckGround();
             CheckWall();
-             
-        }
-
-        /// <summary>
-        /// Update direction if reached patrol point
-        /// </summary>
-        private void CheckDirection()
-        {
-            if (!(Mathf.Abs(patroller.position.x - settings.patrolPoints[curPatrolPoint].x) < .5f)) return;
-            
-            curPatrolPoint++;
-                
-            if (curPatrolPoint >= settings.patrolPoints.Length)
-                curPatrolPoint = 0;
         }
 
         private void CheckGround()
         {
             if (!IsGrounded())
                 return;
-
-            if(!Physics2D.Raycast(groundCheckPoint.position, Vector2.down, settings.groundCheckDistance))
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up,
+                settings.groundCheckDistance, LayerMask.GetMask("Static", "Platform"));
+            
+            if(!hit)
             {
-                Debug.Log("Ground not found");
                 FlipDirection();
             }
         }
@@ -69,16 +56,17 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if (Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance))
+            RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, groundCheckPoint.right * dir, settings.wallCheckDistance, LayerMask.GetMask("Static", "Platform"));
+            
+            if (hit && hit.transform.name != patroller.name)
             {
-                Debug.Log("Wall found");
                 FlipDirection();
             }
         }
 
         public void SetDirection(float newDirection)
         {
-            dir = newDirection;
+            dir.x = newDirection;
         }
 
         public void FlipDirection()

@@ -1,5 +1,6 @@
+using Code.Scripts.Abstracts.Character;
 using Code.Scripts.States;
-using Code.SOs.Enemy;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -10,35 +11,88 @@ namespace Patterns.FSM
     /// <typeparam name="T"></typeparam>
     public class AlertState<T> : MovementState<T>
     {
-        private readonly EnemySettings settings;
-        private readonly Transform patroller;
+        private readonly AlertSettings settings;
+        private readonly Character patroller;
         private Transform alertTarget;
-        private Vector3 currentDirection;
+        private Transform groundCheckPoint;
 
-        public AlertState(Rigidbody2D rb, T id, string name, Transform transform, EnemySettings settings) : base(id, name, settings.alertSpeed, settings.acceleration,
+        public AlertState(Rigidbody2D rb, T id, string name, Character patroller, Transform transform, AlertSettings settings, Transform groundCheckPoint) : base(id, name, settings.moveSettings,
             transform, rb)
         {
-            patroller = transform;
+            this.patroller = patroller;
             this.settings = settings;
+            this.groundCheckPoint = groundCheckPoint;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+
+            if (alertTarget)
+            {
+                dir = (alertTarget.transform.position - patroller.transform.position).normalized;
+            }
+            else
+            {
+                if (patroller.IsFacingRight())
+                {
+                    dir = patroller.transform.right.normalized;
+                }
+                else
+                {
+                    dir = -patroller.transform.right.normalized;
+                }
+            }
+
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
 
-            currentDirection = alertTarget.position - patroller.position;
-            var newDirection = currentDirection.normalized;
-            dir = newDirection.x;
+            if(alertTarget)
+            {
+                dir = alertTarget.transform.position - patroller.transform.position;
+            }
+
+            Vector3 newDirection = dir.normalized;
+            dir.x = newDirection.x;
+
+            CheckGround();
+        }
+
+        private void CheckGround()
+        {
+            if (!IsGrounded())
+                return;
+
+            if(alertTarget)
+            {
+                //if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
+                //{
+                //    base.speed = 0;
+                //}
+                //else
+                //{
+                //    base.speed = settings.alertSpeed;
+                //}
+            }
+            else
+            {
+                if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
+                    FlipDirection();
+            }
+
         }
 
         public void SetTarget(Transform target)
         {
             alertTarget = target;
+        }
+
+        public void FlipDirection()
+        {
+            dir = -dir;
         }
     }
 }

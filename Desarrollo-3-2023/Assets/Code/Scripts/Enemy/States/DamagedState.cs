@@ -1,6 +1,4 @@
-using Code.Scripts.States;
-using Code.SOs.Enemy;
-using System;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
@@ -11,13 +9,14 @@ namespace Patterns.FSM
     /// <typeparam name="T"></typeparam>
     public class DamagedState<T> : TimerTransitionState<T>
     {
-        private float force;
+        private DamagedSettings damagedSettings;
         private Rigidbody2D rb;
         private Vector2 pushDirection = Vector2.right;
-        public DamagedState( T id, string name, T nextStateID, float maxTime, float force, Rigidbody2D rb) : base(id, name, nextStateID, maxTime)
+        
+        public DamagedState( T id, string name, T nextStateID, DamagedSettings settings, Rigidbody2D rb) : base(id, name, nextStateID, settings.timerSettings)
         {
             this.rb = rb;
-            this.force = force;
+            damagedSettings = settings;
         }
 
         public override void OnEnter()
@@ -26,21 +25,20 @@ namespace Patterns.FSM
             ResetState();
         }
 
-        public override void OnUpdate()
-        {
-            base.OnUpdate();
-
-        }
-
         public void SetDirection(Vector2 newDirection)
         {
             pushDirection = newDirection;
         }
 
+        public void SetForce(float newForce)
+        {
+            damagedSettings.force = newForce;
+        }
+
         public void ResetState()
         {
-            base.currentTimer = 0;
-            rb.AddForce(pushDirection * force, ForceMode2D.Impulse);
+            currentTimer = 0;
+            rb.AddForce(pushDirection * damagedSettings.force, ForceMode2D.Impulse);
         }
     }
 }

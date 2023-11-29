@@ -1,19 +1,23 @@
 using Code.Scripts.States;
-using System;
 using System.Collections;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
 {
     public class JumpStartState<T> : MovementState<T>
     {
+        private AK.Wwise.Event playJump;
         private MonoBehaviour behaviourClass;
-        private readonly float jumpForce;
-        
-        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, float speed, float acceleration, Transform transform, Rigidbody2D rb, float jumpForce) : base(id, name, speed, acceleration, transform, rb)
+        private JumpStartSettings jumpStartSettings;
+
+        private float originalGravScale;
+
+        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, JumpStartSettings startSettings, AK.Wwise.Event playJump, Transform transform, Rigidbody2D rb) : base(id, name, startSettings.moveSettings, transform, rb)
         {
-            this.jumpForce = jumpForce;
-            this.behaviourClass = coroutineContainer;
+            this.playJump = playJump;
+            jumpStartSettings = startSettings;
+            behaviourClass = coroutineContainer;
         }
 
         public override void OnEnter()
@@ -26,21 +30,36 @@ namespace Patterns.FSM
 
             base.OnEnter();
 
-            behaviourClass.StartCoroutine(AddForce(transform.up * jumpForce, ForceMode2D.Impulse));
+            behaviourClass.StartCoroutine(AddForce(transform.up * jumpStartSettings.force, ForceMode2D.Impulse));
+
+            originalGravScale = rb.gravityScale;
+            // rb.gravityScale *= 2f;
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            
+            rb.gravityScale = originalGravScale;
+        }
+
+        public override void OnUpdate()
+        {
         }
 
         private IEnumerator AddForce(Vector3 force, ForceMode2D mode)
         {
             yield return new WaitForFixedUpdate();
+            playJump.Post(behaviourClass.gameObject);
             rb.AddForce(force, mode);
         }
 
-        public override void OnUpdate()
+        public override void OnFixedUpdate()
         {
-            if (rb.velocity.y <= 0)
+            if (rb.velocity.y < 0)
                 Exit();
             
-            base.OnUpdate();
+            base.OnFixedUpdate();
         }
     }
 }

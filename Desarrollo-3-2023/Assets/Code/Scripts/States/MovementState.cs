@@ -1,3 +1,4 @@
+using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
 
@@ -11,24 +12,42 @@ namespace Code.Scripts.States
     {
         protected readonly Rigidbody2D rb;
         protected readonly Transform transform;
-        private readonly float speed;
-        private readonly float accel;
+        protected MoveSettings settings;
 
-        public float dir;
+        private AK.Wwise.Event playFootstep;
+        private AK.Wwise.Event stopFootstep;
 
-        public MovementState(T id, string name, float speed, float accel, Transform transform, Rigidbody2D rb) : base(id, name)
+        private bool isPlayingSound;
+
+        public Vector2 dir;
+
+        public MovementState(T id, MoveSettings settings, Transform transform, Rigidbody2D rb, AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id)
         {
-            this.speed = speed;
-            this.accel = accel;
+            this.settings = settings;
             this.transform = transform;
             this.rb = rb;
+
+            this.playFootstep = playFootstep;
+            this.stopFootstep = stopFootstep;
+        }
+
+        public MovementState(T id, string name, MoveSettings settings, Transform transform, Rigidbody2D rb, AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id, name)
+        {
+            this.settings = settings;
+            this.transform = transform;
+            this.rb = rb;
+
+            this.playFootstep = playFootstep;
+            this.stopFootstep = stopFootstep;
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
 
-            if (Mathf.Approximately(dir, 0))
+            CheckSound();
+
+            if (Mathf.Approximately(dir.x, 0))
                 Exit();
         }
 
@@ -36,17 +55,30 @@ namespace Code.Scripts.States
         {
             base.OnFixedUpdate();
 
-            MoveInDirection(dir);
+            Vector2 direction = transform.right * dir.x;
+
+            MoveInDirection(direction);
             ClampSpeed();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            if (isPlayingSound)
+            {
+                stopFootstep.Post(rb.gameObject);
+                isPlayingSound = false;
+            }
         }
 
         /// <summary>
         /// Moves current object in given direction
         /// </summary>
         /// <param name="direction"></param>
-        private void MoveInDirection(float direction)
+        private void MoveInDirection(Vector2 direction)
         {
-            rb.AddForce(Vector2.right * (direction * accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
+            rb.AddForce(direction * (settings.accel * Time.fixedDeltaTime), ForceMode2D.Impulse);
         }
 
         /// <summary>
@@ -54,23 +86,50 @@ namespace Code.Scripts.States
         /// </summary>
         private void ClampSpeed()
         {
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -speed * Time.fixedDeltaTime, speed * Time.fixedDeltaTime), rb.velocity.y);
+            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -settings.speed * Time.fixedDeltaTime, settings.speed * Time.fixedDeltaTime), rb.velocity.y);
         }
 
         /// <summary>
         /// Check if the object is on the floor
         /// </summary>
         /// <returns></returns>
-        protected bool IsGrounded()
+        public bool IsGrounded()
         {
             if (!transform)
                 return false;
 
-            Vector3 pos = transform.position;
+            Vector3 pos = transform.position + Vector3.down * 1f;
             Vector3 scale = transform.localScale;
-            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, .35f * scale.y, ~(1 << 6 | 1 << 7 | 1 << 8));
-            
+            RaycastHit2D hit = Physics2D.Raycast(pos + Vector3.up * settings.groundDistance, Vector2.down, settings.groundDistance * 2f, LayerMask.GetMask("Static", "Platform", "Default"));
+
+            Debug.DrawLine(pos + Vector3.up * settings.groundDistance, pos + Vector3.down * settings.groundDistance, Color.red);
+
             return hit.collider;
+        }
+
+        private void CheckSound()
+        {
+            if (playFootstep == null)
+                return;
+            if (stopFootstep == null)
+                return;
+
+            if (IsGrounded())
+            {
+                if (!isPlayingSound)
+                {
+                    isPlayingSound = true;
+                    playFootstep.Post(rb.gameObject);
+                }
+            }
+            else
+            {
+                if (isPlayingSound)
+                {
+                    isPlayingSound = false;
+                    stopFootstep.Post(rb.gameObject);
+                }
+            }
         }
     }
 }

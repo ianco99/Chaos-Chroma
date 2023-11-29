@@ -1,18 +1,29 @@
 using System;
 using System.Collections;
+using Code.Scripts.Abstracts;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Patterns.FSM
 {
     public class Damageable : MonoBehaviour
     {
-        [SerializeField] private float life = 100f;
-        
+        [SerializeField] private float startLife = 100f;
+        [SerializeField] private Image lifeBar;
+
         public bool parry;
+        private float life;
         private bool block;
-        
+
         public event Action<Vector2> OnTakeDamage;
         public event Action<Vector2> OnBlock;
+        public event Action<Vector2> OnParry;
+        public kuznickiEventChannel.VoidEventChannel OnDeath;
+
+        private void Awake()
+        {
+            life = startLife;
+        }
 
         private void Update()
         {
@@ -28,16 +39,22 @@ namespace Patterns.FSM
         public bool TakeDamage(float damage, Vector2 attackOrigin)
         {
             if (parry)
+            {
+                OnParry?.Invoke(attackOrigin);
                 return false;
+            }
 
             if (block)
             {
                 OnBlock?.Invoke(attackOrigin);
                 return true;
             }
-            
+
             OnTakeDamage?.Invoke(attackOrigin);
             life -= damage;
+
+            if (lifeBar)
+                lifeBar.fillAmount = life / startLife;
 
             return true;
         }
@@ -45,10 +62,22 @@ namespace Patterns.FSM
         /// <summary>
         /// Kill object
         /// </summary>
-        private void Die()
+        public void Die()
         {
+            OnDeath?.RaiseEvent();
+            
             if (!gameObject.CompareTag("Player"))
                 Destroy(gameObject);
+            else
+                GameManager.Lose();
+        }
+
+        public void Heal(float heal)
+        {
+            life += heal;
+
+            if (lifeBar)
+                lifeBar.fillAmount = life / startLife;
         }
 
         /// <summary>
@@ -66,7 +95,7 @@ namespace Patterns.FSM
         {
             block = false;
         }
-        
+
         /// <summary>
         /// Start action parry
         /// </summary>
@@ -82,7 +111,6 @@ namespace Patterns.FSM
         private IEnumerator Parry(float parryDuration)
         {
             parry = true;
-
             yield return new WaitForSeconds(parryDuration);
             parry = false;
         }

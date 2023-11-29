@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,18 +20,49 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/87/f0daee7c/UnitySynchronizationContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/e2/b943f062/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/ec/2c000a2a/InvokableCall.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/93b2f6f843ff4a25aee844423c1a540e10fc00/c8/7f0636a6/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a63bf50d8b744d7dae5f00886f3270f43e000/25/bf41c02d/Graph.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/FirePunch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitsManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Camera/Target.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorAnimatorController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorCloser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/AreaDetector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Da Archive/Unity Projects/Chaos-Chroma/Desarrollo-3-2023/Assets/Code/Scripts/Enemy/BossController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/CooldownState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/AttackState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PunchState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/RetrieveState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Events/WinTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Game/GameSettings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Input/InputTutorialSwitcher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/LineRenderer/ChainController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Menus/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Menus/WinLoseScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/SOs/Animator/AnimatorStateSetter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/SOs/Events/Vector2EventChannel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Spawn/EnemySpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Factory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/AttackEndState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/AttackStartState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/BlockState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/GodState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/IdleState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/JumpEndState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/States/ParryState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/Da Archive/Unity Projects/Desarrollo-3-2023/Desarrollo-3-2023/Assets/Level/Scene/Topo.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Wwise/API/Runtime/WwiseTypes/WwiseTypes/AkWwiseEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.kuznicki.eventchannel@0cf33b06d9/Runtime/EventChannel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.kuznicki.eventchannel@0cf33b06d9/Runtime/Vector2EventChannel.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/SelectableEditor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -45,16 +76,18 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.94426227&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master-merge&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.sourcegraph.cody.config.ui.AccountConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -67,7 +100,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../Downloads/ChaosChroma0.6.0\ChaosChroma.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../Downloads/0.13.0\Chaos Chroma Defying the System.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="F:\Chino\Desarrollo-3-01" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -100,10 +133,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="16832">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="16832" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -137,7 +170,36 @@
       <workItem from="1696201782237" duration="733000" />
       <workItem from="1696258047600" duration="4416000" />
       <workItem from="1696273314128" duration="2578000" />
-      <workItem from="1696516446406" duration="2040000" />
+      <workItem from="1696516446406" duration="9715000" />
+      <workItem from="1696594920821" duration="5383000" />
+      <workItem from="1696607036462" duration="2708000" />
+      <workItem from="1696710339413" duration="2926000" />
+      <workItem from="1696770991592" duration="1617000" />
+      <workItem from="1696855670366" duration="240000" />
+      <workItem from="1696855962322" duration="1185000" />
+      <workItem from="1697059303769" duration="6696000" />
+      <workItem from="1697985206983" duration="7332000" />
+      <workItem from="1698341679212" duration="1247000" />
+      <workItem from="1698342973963" duration="6448000" />
+      <workItem from="1698669442986" duration="6333000" />
+      <workItem from="1698793323973" duration="6886000" />
+      <workItem from="1699019578893" duration="6840000" />
+      <workItem from="1699275466611" duration="1064000" />
+      <workItem from="1699405324683" duration="8776000" />
+      <workItem from="1699417223833" duration="2698000" />
+      <workItem from="1699469035335" duration="12897000" />
+      <workItem from="1699622595903" duration="577000" />
+      <workItem from="1699719961493" duration="11523000" />
+      <workItem from="1699803309024" duration="10385000" />
+      <workItem from="1699879588586" duration="5011000" />
+      <workItem from="1699899727996" duration="6598000" />
+      <workItem from="1699985021895" duration="5701000" />
+      <workItem from="1700052317289" duration="11178000" />
+      <workItem from="1700503772245" duration="11152000" />
+      <workItem from="1700607994030" duration="9569000" />
+      <workItem from="1700833007953" duration="9513000" />
+      <workItem from="1700925006047" duration="12066000" />
+      <workItem from="1701215994378" duration="3028000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -155,7 +217,199 @@
       <option name="project" value="LOCAL" />
       <updated>1696262200732</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added win and lose screens">
+      <option name="closed" value="true" />
+      <created>1696599825591</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696599825591</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implemented win/lose conditions">
+      <option name="closed" value="true" />
+      <created>1696600667900</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696600667900</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated attack input">
+      <option name="closed" value="true" />
+      <created>1697124532766</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697124532766</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Made platforms one-way">
+      <option name="closed" value="true" />
+      <created>1697897806680</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697897806680</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added interrupt attack to enemy">
+      <option name="closed" value="true" />
+      <created>1697989677846</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697989677846</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed jump landing">
+      <option name="closed" value="true" />
+      <created>1697993671253</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1697993671253</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixed enemy damaged exception">
+      <option name="closed" value="true" />
+      <created>1697994545641</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1697994545641</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Adjusted tutorial scene map and character size">
+      <option name="closed" value="true" />
+      <created>1698680349716</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1698680349716</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Lower enemy life">
+      <option name="closed" value="true" />
+      <created>1699020142987</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699020142987</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed door animation">
+      <option name="closed" value="true" />
+      <created>1699022283573</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1699022283573</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added enemy spawner and fixed doors">
+      <option name="closed" value="true" />
+      <created>1699412041460</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1699412041460</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Updated jump force">
+      <option name="closed" value="true" />
+      <created>1699413457969</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699413457969</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixed special enemy lifebar">
+      <option name="closed" value="true" />
+      <created>1699415264067</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699415264067</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixed animations">
+      <option name="closed" value="true" />
+      <created>1699416838125</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1699416838125</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fixed fall trigger">
+      <option name="closed" value="true" />
+      <created>1699484007214</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699484007214</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fix lost tile in lvl 1">
+      <option name="closed" value="true" />
+      <created>1699485608329</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1699485608329</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added attack start state settings SO">
+      <option name="closed" value="true" />
+      <created>1699502640729</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1699502640729</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Separated punch from retrieve">
+      <option name="closed" value="true" />
+      <created>1699732210574</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1699732210574</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fixed player jump">
+      <option name="closed" value="true" />
+      <created>1699889595086</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1699889595086</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Made boss attack bidirectional">
+      <option name="closed" value="true" />
+      <created>1699920284709</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1699920284709</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added boss animations (clips)">
+      <option name="closed" value="true" />
+      <created>1700006268846</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1700006268846</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added chains and punches to Boss">
+      <option name="closed" value="true" />
+      <created>1700609544758</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1700609544758</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Made punches directional">
+      <option name="closed" value="true" />
+      <created>1700610577047</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1700610577047</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Removed boss damaging when retrieving">
+      <option name="closed" value="true" />
+      <created>1701203661531</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701203661531</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,54 +420,40 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Fixed ground check" />
     <MESSAGE value="Updated attack system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated attack system" />
+    <MESSAGE value="Added win and lose screens" />
+    <MESSAGE value="Implemented win/lose conditions" />
+    <MESSAGE value="Updated attack input" />
+    <MESSAGE value="Made platforms one-way" />
+    <MESSAGE value="Added interrupt attack to enemy" />
+    <MESSAGE value="Fixed jump landing" />
+    <MESSAGE value="Fixed enemy damaged exception" />
+    <MESSAGE value="Adjusted tutorial scene map and character size" />
+    <MESSAGE value="Lower enemy life" />
+    <MESSAGE value="Fixed door animation" />
+    <MESSAGE value="Added enemy spawner and fixed doors" />
+    <MESSAGE value="Updated jump force" />
+    <MESSAGE value="Fixed special enemy lifebar" />
+    <MESSAGE value="Fixed animations" />
+    <MESSAGE value="Fixed fall trigger" />
+    <MESSAGE value="Fix lost tile in lvl 1" />
+    <MESSAGE value="Added attack start state settings SO" />
+    <MESSAGE value="Separated punch from retrieve" />
+    <MESSAGE value="Fixed player jump" />
+    <MESSAGE value="Made boss attack bidirectional" />
+    <MESSAGE value="Added boss animations (clips)" />
+    <MESSAGE value="Added chains and punches to Boss" />
+    <MESSAGE value="Made punches directional" />
+    <MESSAGE value="Removed boss damaging when retrieving" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed boss damaging when retrieving" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs</url>
-          <line>156</line>
-          <properties documentPath="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023\Assets\Code\Scripts\Player\PlayerController.cs" initialLine="157" containingFunctionPresentation="Method 'CheckPlayerState'">
-            <startOffsets>
-              <option value="5258" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5279" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs</url>
-          <line>254</line>
-          <properties documentPath="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023\Assets\Code\Scripts\Player\PlayerController.cs" initialLine="254" containingFunctionPresentation="Method 'OnDamagedHandler'">
-            <startOffsets>
-              <option value="7695" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7716" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs</url>
-          <line>283</line>
-          <properties documentPath="D:\Da Archive\Unity Projects\Desarrollo-3-2023\Desarrollo-3-2023\Assets\Code\Scripts\Player\PlayerController.cs" initialLine="283" containingFunctionPresentation="Method 'MoveTransitions'">
-            <startOffsets>
-              <option value="8640" />
-            </startOffsets>
-            <endOffsets>
-              <option value="8664" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="rb.velocity.y" language="C#" />
+        <watch expression="Active" language="C#" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

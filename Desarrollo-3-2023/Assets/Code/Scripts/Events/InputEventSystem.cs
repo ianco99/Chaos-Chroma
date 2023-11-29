@@ -1,44 +1,48 @@
 using Code.Scripts.Input;
-using UnityEngine;
 using kuznickiEventChannel;
+using UnityEngine;
 
-public class InputEventSystem : MonoBehaviourSingleton<InputEventSystem>
+namespace Code.Scripts.Events
 {
-    [SerializeField] private FloatEventChannel onMoveChannel;
-    [SerializeField] private VoidEventChannel onAttackChannel;
-    [SerializeField] private VoidEventChannel onBlockChannel;
-    [SerializeField] private VoidEventChannel onJumpChannel;
-
-    public FloatEventChannel OnMoveChannel { get => onMoveChannel; private set => onMoveChannel = value; }
-    public VoidEventChannel OnAttackChannel { get => onAttackChannel; private set => onAttackChannel = value; } 
-    public VoidEventChannel OnBlockChannel { get => onBlockChannel; private set => onBlockChannel = value; }
-    public VoidEventChannel OnJumpChannel { get => onJumpChannel; private set => onJumpChannel = value; }
-
-
-    private void Start()
+    public class InputEventSystem : MonoBehaviourSingleton<InputEventSystem>
     {
-        InputManager.onMove += MoveCharacters;
-        InputManager.onAttack += AttackAttackers;
-        InputManager.onBlockPressed += BlockBlockers;
-        InputManager.onJump += JumpJumpers;
-    }
+        [SerializeField] private Vector2EventChannel onMoveChannel;
+        [SerializeField] private VoidEventChannel onAttackChannel;
+        [SerializeField] private VoidEventChannel onBlockChannel;
+        [SerializeField] private VoidEventChannel onJumpChannel;
 
-    private void MoveCharacters(float axis)
-    {
-        onMoveChannel.RaiseEvent(axis);
-    }
+        public Vector2EventChannel OnMoveChannel { get => onMoveChannel; private set => onMoveChannel = value; }
+        public VoidEventChannel OnAttackChannel { get => onAttackChannel; private set => onAttackChannel = value; } 
+        public VoidEventChannel OnBlockChannel { get => onBlockChannel; private set => onBlockChannel = value; }
+        public VoidEventChannel OnJumpChannel { get => onJumpChannel; private set => onJumpChannel = value; }
 
-    private void AttackAttackers()
-    {
-        onAttackChannel.RaiseEvent();
-    }
-    private void BlockBlockers()
-    {
-        onBlockChannel.RaiseEvent();
-    }
 
-    private void JumpJumpers()
-    {
-        onJumpChannel.RaiseEvent();
+        private void Start()
+        {
+            InputManager.onMove += MoveCharacters;
+            InputManager.onAttackPressed += AttackPressedAttackers;
+            InputManager.onBlockPressed += BlockBlockers;
+            InputManager.onJump += JumpJumpers;
+        }
+
+        private void MoveCharacters(Vector2 axis)
+        {
+            onMoveChannel?.RaiseEvent(axis);
+        }
+
+        private void AttackPressedAttackers()
+        {
+            onAttackChannel.RaiseEvent();
+        }
+    
+        private void BlockBlockers()
+        {
+            onBlockChannel.RaiseEvent();
+        }
+
+        private void JumpJumpers()
+        {
+            onJumpChannel.RaiseEvent();
+        }
     }
 }

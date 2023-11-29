@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959eeab192a3aba45876b616635c6e76, type: 3}
+  m_Name: SpecialDoor3Settings
+  m_EditorClassIdentifier: 
+  patrolSettings: {fileID: 11400000, guid: 3ba78d0446e325a49a9852ed7ec5cb39, type: 2}
+  alertSettings: {fileID: 11400000, guid: 4fdcc6853bce2cf4aba6362c79a97b49, type: 2}
+  attackStartSettings: {fileID: 11400000, guid: e111bb221964cef49ad7d0644afbc3b0, type: 2}
+  damagedSettings: {fileID: 11400000, guid: 2de781c9949e356449bcbccfc15c13c4, type: 2}
+  blockSettings: {fileID: 0}
+  parrySettings: {fileID: 11400000, guid: 920c0e18c36876d44b93f63dcd3d8d32, type: 2}
+  parriedSettings: {fileID: 11400000, guid: 1f27d55325f02374f85a38f355b8ac10, type: 2}
+  viewRadius: 6
+  viewAngle: 60
+  suspectMeterMinimum: 0
+  alertValue: 20
+  suspectMeterMaximum: 100
+  deathEvent: {fileID: 11400000, guid: 2e975d21713aa1d4298c7c4f51f06194, type: 2}

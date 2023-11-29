@@ -50,12 +50,12 @@ namespace Patterns.FSM
                 return true;
             }
 
-            OnTakeDamage?.Invoke(attackOrigin);
             life -= damage;
 
             if (lifeBar)
                 lifeBar.fillAmount = life / startLife;
 
+            OnTakeDamage?.Invoke(attackOrigin);
             return true;
         }
 
@@ -65,10 +65,8 @@ namespace Patterns.FSM
         public void Die()
         {
             OnDeath?.RaiseEvent();
-            
-            if (!gameObject.CompareTag("Player"))
-                Destroy(gameObject);
-            else
+
+            if (gameObject.CompareTag("Player"))
                 GameManager.Lose();
         }
 
@@ -102,6 +100,11 @@ namespace Patterns.FSM
         public void StartParry(float parryDuration)
         {
             StartCoroutine(Parry(parryDuration));
+        }
+
+        public float GetLife()
+        {
+            return life;
         }
 
         /// <summary>

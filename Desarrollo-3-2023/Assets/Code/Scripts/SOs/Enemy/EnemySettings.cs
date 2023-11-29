@@ -30,6 +30,9 @@ namespace Code.SOs.Enemy
         [Header("Parried")]
         public DamagedSettings parriedSettings;
 
+        [Header("Parried")]
+        public TimerSettings deathSettings;
+
         [Header("Field of View")]
         public float viewRadius;
         public float viewAngle;

@@ -22,7 +22,8 @@ namespace Code.Scripts.Enemy
         Damaged,
         Fall,
         Impulsed,
-        Parried
+        Parried,
+        Death
     }
 
     public class EnemyController : Character
@@ -59,6 +60,7 @@ namespace Code.Scripts.Enemy
         private DamagedState<EnemyStates> parriedState;
         private ParryState<EnemyStates> blockState;
         private DamagedState<EnemyStates> impulseState;
+        private DeathState<EnemyStates> deathState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
@@ -73,6 +75,7 @@ namespace Code.Scripts.Enemy
             damageable.OnParry += OnParryHandler;
             damagedState.onTimerEnded += OnTimerEndedHandler;
             parriedState.onTimerEnded += OnTimerEndedHandler;
+            deathState.onTimerEnded += () => Destroy(gameObject);
 
             fov.ToggleFindingTargets(true);
 
@@ -108,6 +111,8 @@ namespace Code.Scripts.Enemy
             parriedState = new DamagedState<EnemyStates>(EnemyStates.Parried, "ParriedState", EnemyStates.Block, settings.parriedSettings, rb);
             blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, settings.parrySettings);
             impulseState = new DamagedState<EnemyStates>(EnemyStates.Impulsed, "ImpulseState", EnemyStates.Alert, settings.damagedSettings, rb);
+
+            deathState = new DeathState<EnemyStates>(EnemyStates.Death, settings.deathSettings);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -289,6 +294,12 @@ namespace Code.Scripts.Enemy
 
         private void OnTakeDamageHandler(Vector2 origin)
         {
+            if (damageable.GetLife() <= 0)
+            {
+                OnDeathHandler();
+                return;
+            }
+
             if (fsm.GetCurrentState().ID == EnemyStates.AttackEnd)
                 attackEndState.Stop();
 
@@ -301,19 +312,6 @@ namespace Code.Scripts.Enemy
             {
                 damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
                 fsm.SetCurrentState(damagedState);
-            }
-            else
-            {
-                //if (fsm.GetCurrentState() == blockState)
-                //{
-                //    blockState.SetForce(settings.blockSettings.knockbackForce);
-                //    blockState.ResetState();
-                //}
-                //else
-                //{
-                //    blockState.SetForce(0.0f);
-                //    fsm.SetCurrentState(blockState);
-                //}
             }
         }
 
@@ -345,6 +343,11 @@ namespace Code.Scripts.Enemy
         {
             impulseState.SetDirection(dir.x > transform.position.x ? Vector2.left : Vector2.right);
             fsm.SetCurrentState(impulseState);
+        }
+
+        public void OnDeathHandler()
+        {
+            fsm.SetCurrentState(deathState);
         }
     }
 }

@@ -59,7 +59,6 @@ namespace Code.Scripts.Enemy
         private IdleState<string> idleState;
         private PunchState<string> punchState;
         private RetrieveState<string> retrieveState;
-        private CooldownState<string> cooldownState;
         private MovementState<string> movementState;
         private DamagedState<string> damagedState;
         private PatrolState<string> patrolState;
@@ -82,7 +81,6 @@ namespace Code.Scripts.Enemy
             idleState = new IdleState<string>("Idle");
             punchState = new PunchState<string>("Punch", leftPunch, rightPunch);
             retrieveState = new RetrieveState<string>("Retrieve", leftRetrieve, rightRetrieve);
-            cooldownState = new CooldownState<string>("Cooldown", idleState.ID, timerSettings);
             movementState = new MovementState<string>("Movement", moveSettings, trans, rb);
             damagedState = new DamagedState<string>("Damaged", idleState.ID, "Idle", damagedSettings, rb);
             patrolState = new PatrolState<string>(rb, "Patrol", groundCheck, this, trans, patrolSettings);
@@ -90,7 +88,6 @@ namespace Code.Scripts.Enemy
             fsm.AddState(idleState);
             fsm.AddState(punchState);
             fsm.AddState(retrieveState);
-            fsm.AddState(cooldownState);
             fsm.AddState(movementState);
             fsm.AddState(damagedState);
             fsm.AddState(patrolState);
@@ -120,6 +117,7 @@ namespace Code.Scripts.Enemy
             fsm.AddTransition(retrieveState, damagedState, () => damagedState.Active);
             fsm.AddTransition(retrieveState, patrolState, () => retrieveState.Ended);
 
+            fsm.AddTransition(patrolState, damagedState, () => damagedState.Active);
             fsm.AddTransition(patrolState, idleState, () => !patrolState.Active);
 
             fsm.AddTransition(damagedState, patrolState, () => !damagedState.Active);
@@ -128,7 +126,6 @@ namespace Code.Scripts.Enemy
         private void OnEnable()
         {
             punchState.onEnter += OnEnterPunchHandler;
-            cooldownState.onEnter += OnEnterCooldownHandler;
             patrolState.onEnter += OnEnterPatrolHandler;
             damagedState.onEnter += OnEnterDamagedHandler;
             retrieveState.onEnter += OnEnterRetrieveHandler;
@@ -140,7 +137,6 @@ namespace Code.Scripts.Enemy
         private void OnDisable()
         {
             punchState.onEnter -= OnEnterPunchHandler;
-            cooldownState.onEnter -= OnEnterCooldownHandler;
             patrolState.onEnter -= OnEnterPatrolHandler;
             damagedState.onEnter -= OnEnterDamagedHandler;
             retrieveState.onEnter -= OnEnterRetrieveHandler;
@@ -190,14 +186,6 @@ namespace Code.Scripts.Enemy
             rightHit.gameObject.SetActive(true);
             
             punchState.SetTargetPos(detectionArea.GetPositionDifference());
-        }
-
-        /// <summary>
-        /// Set cooldown state as active when entered
-        /// </summary>
-        private void OnEnterCooldownHandler()
-        {
-            cooldownState.Enter();
         }
         
         /// <summary>

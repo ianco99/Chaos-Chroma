@@ -324,20 +324,7 @@ namespace Code.Scripts.Player
         {
             Vector2 dir = (Vector2)transform.position - burstOrigin;
 
-            StartCoroutine(AddForce(dir * burstStrength, ForceMode2D.Impulse));
-        }
-
-        /// <summary>
-        /// Add force on fixed update
-        /// </summary>
-        /// <param name="force"></param>
-        /// <param name="forceMode"></param>
-        /// <returns></returns>
-        private IEnumerator AddForce(Vector2 force, ForceMode2D forceMode)
-        {
-            yield return new WaitForFixedUpdate();
-            
-            rb.AddForce(force, forceMode);
+            rb.AddForce(dir * burstStrength, ForceMode2D.Impulse);
         }
 
         #region State activations

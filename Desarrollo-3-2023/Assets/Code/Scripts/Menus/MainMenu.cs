@@ -11,6 +11,8 @@ namespace Code.Scripts.Menus
         [SerializeField] private GameObject mainMenuCanvas;
         [SerializeField] private GameObject creditsMenuCanvas;
         [SerializeField] private GameObject firstSelectedObjectLevelSelector;
+        [SerializeField] private GameObject firstSelectedObjectCredits;
+        [SerializeField] private GameObject firstSelectedObjectMainMenu;
         [SerializeField] private TextMeshProUGUI versionText;
         
         private void Awake()
@@ -30,18 +32,21 @@ namespace Code.Scripts.Menus
         {
             creditsMenuCanvas.SetActive(true);
             mainMenuCanvas.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(firstSelectedObjectCredits);
         }
 
         public void HideCredits()
         {
             creditsMenuCanvas.SetActive(false);
             mainMenuCanvas.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(firstSelectedObjectMainMenu);
         }
 
         public void BackToMainMenu()
         {
             levelSelectCanvas.SetActive(false);
             mainMenuCanvas.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(firstSelectedObjectMainMenu);
         }
 
         public void SelectTutorial()

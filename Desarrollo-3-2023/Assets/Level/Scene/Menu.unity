@@ -929,7 +929,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.5
+  m_fontSize: 68.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4535,6 +4535,8 @@ MonoBehaviour:
   mainMenuCanvas: {fileID: 1934823349}
   creditsMenuCanvas: {fileID: 82864453}
   firstSelectedObjectLevelSelector: {fileID: 981741683}
+  firstSelectedObjectCredits: {fileID: 98875172}
+  firstSelectedObjectMainMenu: {fileID: 1846832362}
   versionText: {fileID: 548512131}
 --- !u!1 &2028249481
 GameObject:

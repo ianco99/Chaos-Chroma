@@ -57,7 +57,18 @@ namespace Code.Scripts.States
 
             Vector2 direction = transform.right * dir.x;
 
-            MoveInDirection(direction);
+            if (dir.x == 0.0f)
+            {
+                if (IsGrounded())
+                    rb.velocity = new Vector2(0.0f, rb.velocity.y);
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x / 1.3f, rb.velocity.y);
+                }
+            }
+            else
+                MoveInDirection(direction);
+
             ClampSpeed();
         }
 

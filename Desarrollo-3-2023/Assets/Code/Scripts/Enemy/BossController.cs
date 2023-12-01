@@ -36,6 +36,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private MoveSettings moveSettings;
         [SerializeField] private DamagedSettings damagedSettings;
         [SerializeField] private PatrolSettings patrolSettings;
+        [SerializeField] private TimerSettings deathTimerSettings;
 
         [Header("Life:")]
         [SerializeField] private Damageable damageable;
@@ -62,6 +63,7 @@ namespace Code.Scripts.Enemy
         private MovementState<string> movementState;
         private DamagedState<string> damagedState;
         private PatrolState<string> patrolState;
+        private DeathState<string> deathState;
 
         private void Awake()
         {
@@ -84,6 +86,7 @@ namespace Code.Scripts.Enemy
             movementState = new MovementState<string>("Movement", moveSettings, trans, rb);
             damagedState = new DamagedState<string>("Damaged", idleState.ID, "Idle", damagedSettings, rb);
             patrolState = new PatrolState<string>(rb, "Patrol", groundCheck, this, trans, patrolSettings);
+            deathState = new DeathState<string>("Death", deathTimerSettings);
 
             fsm.AddState(idleState);
             fsm.AddState(punchState);
@@ -118,6 +121,7 @@ namespace Code.Scripts.Enemy
             fsm.AddTransition(retrieveState, patrolState, () => retrieveState.Ended);
 
             fsm.AddTransition(patrolState, damagedState, () => damagedState.Active);
+            fsm.AddTransition(patrolState, deathState, () => damageable.GetLife() <= 0f);
             fsm.AddTransition(patrolState, idleState, () => !patrolState.Active);
 
             fsm.AddTransition(damagedState, patrolState, () => !damagedState.Active);
@@ -132,6 +136,7 @@ namespace Code.Scripts.Enemy
             damageable.OnTakeDamage += OnTakeDamageHandler;
             leftHit.OnParried += OnLeftParriedHandler;
             rightHit.OnParried += OnRightParriedHandler;
+            deathState.onTimerEnded += () => Destroy(gameObject);
         }
 
         private void OnDisable()
@@ -143,6 +148,7 @@ namespace Code.Scripts.Enemy
             damageable.OnTakeDamage -= OnTakeDamageHandler;
             leftHit.OnParried -= OnLeftParriedHandler;
             rightHit.OnParried -= OnRightParriedHandler;
+            deathState.onTimerEnded -= () => Destroy(gameObject);
         }
 
         private void Update()
@@ -175,6 +181,7 @@ namespace Code.Scripts.Enemy
             animatorStateSetter.AddState(patrolState.ID, 3);
             animatorStateSetter.AddState(movementState.ID, 4);
             animatorStateSetter.AddState(damagedState.ID, 5);
+            animatorStateSetter.AddState(deathState.ID, 6);
         }
         
         /// <summary>

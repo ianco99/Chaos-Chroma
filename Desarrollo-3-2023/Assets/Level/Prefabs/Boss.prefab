@@ -1031,6 +1031,7 @@ MonoBehaviour:
   moveSettings: {fileID: 11400000, guid: 839889885e8d5294e90349bfaa3b7654, type: 2}
   damagedSettings: {fileID: 11400000, guid: ae0e069b21c489b42870621b16bfe9ba, type: 2}
   patrolSettings: {fileID: 11400000, guid: 1bb0376c8978c88448ae34dcc4f8d575, type: 2}
+  deathTimerSettings: {fileID: 11400000, guid: 2816821c32a1d1448ba47847b9b4f2ee, type: 2}
   damageable: {fileID: 4994991711041449135}
   animatorParameterName: BossState
   animator: {fileID: 8396066565068786238}
@@ -1218,7 +1219,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1619126920, guid: a7c2e561d329b1f4cabf6a0d6fb93a14, type: 3}
+  m_Sprite: {fileID: 521519144, guid: dfe12664322248444ab763f9cddf2790, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -1025,6 +1025,8 @@ MonoBehaviour:
   rightPunch: {fileID: 5397680888766976982}
   leftRetrieve: {fileID: 1156298478108974962}
   rightRetrieve: {fileID: 112336210925785604}
+  leftHand: {fileID: 4748955373487805031}
+  rightHand: {fileID: 850656403992607110}
   leftHit: {fileID: 7406330644167445759}
   rightHit: {fileID: 97222697007980748}
   timerSettings: {fileID: 11400000, guid: f39254182e6fcea4c8a0b9c57505ca91, type: 2}
@@ -1032,6 +1034,7 @@ MonoBehaviour:
   damagedSettings: {fileID: 11400000, guid: ae0e069b21c489b42870621b16bfe9ba, type: 2}
   patrolSettings: {fileID: 11400000, guid: 1bb0376c8978c88448ae34dcc4f8d575, type: 2}
   deathTimerSettings: {fileID: 11400000, guid: 2816821c32a1d1448ba47847b9b4f2ee, type: 2}
+  stunnedSettings: {fileID: 11400000, guid: 96014b61641b68247bad569bb1455e73, type: 2}
   damageable: {fileID: 4994991711041449135}
   animatorParameterName: BossState
   animator: {fileID: 8396066565068786238}

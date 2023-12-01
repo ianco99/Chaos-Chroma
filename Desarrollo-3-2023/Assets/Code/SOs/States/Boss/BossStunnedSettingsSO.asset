@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a40678445192a04c896f14db8a9d287, type: 3}
-  m_Name: BossDamagedTimerSettingsSO
+  m_Script: {fileID: 11500000, guid: d77919fe7c8b9294cb94ab6cfd6f07d9, type: 3}
+  m_Name: BossStunnedSettingsSO
   m_EditorClassIdentifier: 
-  maxTime: 1
+  timerSettings: {fileID: 11400000, guid: e567e4c575243464db08da2ce15630c6, type: 2}

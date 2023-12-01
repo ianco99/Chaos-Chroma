@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a40678445192a04c896f14db8a9d287, type: 3}
   m_Name: BossDeathTimerSettingsSO
   m_EditorClassIdentifier: 
-  maxTime: 0
+  maxTime: 1.5

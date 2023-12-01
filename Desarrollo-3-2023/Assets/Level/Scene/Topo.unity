@@ -991,6 +991,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 302326415}
     m_Modifications:
+    - target: {fileID: 4994991711041449135, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
+      propertyPath: startLife
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5581236849421622092, guid: 6fdd74ca182dc3e41937f9d36473e156, type: 3}
       propertyPath: m_Name
       value: Boss

@@ -7,22 +7,24 @@ using Random = UnityEngine.Random;
 
 namespace Code.Scripts.Attack
 {
-    enum Dir
-    {
-        Side,
-        Down,
-        Up
-    }
-    
     /// <summary>
     /// Controls the randomizer for attacks. (add different types of attacks to the list)
     /// </summary>
     public class HitsManager : MonoBehaviour
     {
+        private enum Dir
+        {
+            Side,
+            Down,
+            Up
+        }
+        
+        public int DirAsInt => (int)dir;
+        
         [SerializeField] private List<GameObject> hitObjects;
         
         private readonly List<HitController> hits = new();
-        private Dir dir = Dir.Side;
+        private Dir dir;
 
         private bool isHitting;
 

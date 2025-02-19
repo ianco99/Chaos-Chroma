@@ -62,7 +62,7 @@ namespace Code.Scripts.Player
         [SerializeField] private Event playHit;
         [SerializeField] private Event playFootstep;
         [SerializeField] private Event stopFootstep;
-        private bool isWalking = false;
+        private bool isWalking;
         
         // States
         private MovementState<PlayerStates> movementState;
@@ -80,6 +80,7 @@ namespace Code.Scripts.Player
         private FiniteStateMachine<PlayerStates> fsm;
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
         private static readonly int Grounded = Animator.StringToHash("OnGround");
+        private static readonly int DirTag = Animator.StringToHash("Dir");
 
         private void Awake()
         {
@@ -226,6 +227,7 @@ namespace Code.Scripts.Player
         {
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
             animator.SetBool(Grounded, movementState.IsGrounded());
+            animator.SetInteger(DirTag, attackEndState.Dir);
         }
 
         /// <summary>
@@ -344,14 +346,12 @@ namespace Code.Scripts.Player
                 if (isWalking == false)
                 {
                     isWalking = true;
-                    Debug.Log("caminando");
                 }
             }
 
-            if (input.x == 0 && isWalking == true)
+            if (input.x == 0 && isWalking)
             {
                 isWalking = false;
-                Debug.Log("quieto");
             }
             movementState.dir = input;
             jumpStartState.dir = input;

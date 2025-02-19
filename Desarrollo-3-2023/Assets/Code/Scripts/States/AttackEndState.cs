@@ -12,10 +12,13 @@ namespace Code.Scripts.States
     {
         private readonly GameObject hit;
         private AK.Wwise.Event playEspada;
+        private readonly HitsManager hitsManager;
+
         public AttackEndState(T id, string name, GameObject hit, AK.Wwise.Event playEspada = null) : base(id, name)
         {
             this.hit = hit;
             this.playEspada = playEspada;
+            hitsManager = this.hit.GetComponent<HitsManager>();
         }
 
         public override void OnEnter()
@@ -40,11 +43,13 @@ namespace Code.Scripts.States
         /// </summary>
         public void Stop()
         {
-            if (hit.TryGetComponent(out HitsManager hitManager))
-                hitManager.Stop();
+            if (hitsManager)
+                hitsManager.Stop();
 
             hit.SetActive(false);
             Exit();
         }
+        
+        public int Dir => hitsManager.DirAsInt;
     }
 }

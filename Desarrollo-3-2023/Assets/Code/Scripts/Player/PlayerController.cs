@@ -298,7 +298,7 @@ namespace Code.Scripts.Player
             if (attackEndState.Active)
                 attackEndState.Stop();
         }
-
+        
         private void OnSpeedPickUp(float speedBump)
         {
             moveSettings.speed += speedBump;
@@ -340,25 +340,21 @@ namespace Code.Scripts.Player
         private void CheckMoving(Vector2 input)
         {
             if (input.x != 0 || input.y != 0)
-         
             {    
                 movementState.Enter();
                 if (isWalking == false)
-                {
                     isWalking = true;
-                }
             }
 
             if (input.x == 0 && isWalking)
-            {
                 isWalking = false;
-            }
+            
             movementState.dir = input;
             jumpStartState.dir = input;
             jumpEndState.dir = input;
             godState.dir = input;
 
-         
+            attackEndState.SetDir(input);
         }
 
         /// <summary>

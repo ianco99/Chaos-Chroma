@@ -530,9 +530,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 741303295280261315}
+  - component: {fileID: 2365708590959872771}
   - component: {fileID: 4478575230716991624}
   - component: {fileID: 506832735701640231}
-  - component: {fileID: 2365708590959872771}
   - component: {fileID: 2205056402196420099}
   - component: {fileID: 4310963439013856538}
   m_Layer: 6
@@ -564,6 +564,76 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2365708590959872771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862336575500731703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455e599d05d110b4d9d951f48eccb752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4478575230716991624}
+  sprite: {fileID: 6937958059078036410}
+  facingRight: 1
+  flippables:
+  - trans: {fileID: 5859794102443244788}
+    sprite: {fileID: 0}
+    transformFlip: 1
+  - trans: {fileID: 1078505406815155981}
+    sprite: {fileID: 8685973854917079561}
+    transformFlip: 0
+  - trans: {fileID: 2466962638212749553}
+    sprite: {fileID: 0}
+    transformFlip: 1
+  - trans: {fileID: 2808819206053552127}
+    sprite: {fileID: 0}
+    transformFlip: 1
+  startState: 0
+  hit: {fileID: 1395205784924420985}
+  damageable: {fileID: 2205056402196420099}
+  feet: {fileID: 2991221812841030863}
+  feetMat: {fileID: 6200000, guid: 1b9ba9afeda3fe44580854d088b877c3, type: 2}
+  bodyMat: {fileID: 6200000, guid: 16b07130e0c2b1741b4b968a4138ccd6, type: 2}
+  outline: {fileID: 8685973854917079561}
+  pauseCanvas: {fileID: 0}
+  burstStrength: 15
+  moveSettings: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}
+  jumpStartSettings: {fileID: 11400000, guid: 4d19e0911203b1346b250e943fe01780, type: 2}
+  jumpEndSettings: {fileID: 11400000, guid: cf892d5be77c3e74da11ee4486ef8d7f, type: 2}
+  godSettings: {fileID: 11400000, guid: 8f5f3a83a4f2c3c4d97267c9e0a9feb8, type: 2}
+  attackStartSettings: {fileID: 11400000, guid: 81e792fb5bccdb64eb826e6338378bbf, type: 2}
+  parrySettings: {fileID: 11400000, guid: 039221402fd24364a901a3ee2e534984, type: 2}
+  damagedSettings: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
+  knockbackSettings: {fileID: 11400000, guid: 805cf9ea59ef67f43bf5ee694fcb7cb9, type: 2}
+  animator: {fileID: 4310963439013856538}
+  playEspada:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1371c7a14dbd8bc49a9393c89f6ac46b, type: 2}
+  playJump:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 95e37789b0fa8044a8e4b81ff673ba78, type: 2}
+  playDefense:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 717e655f7456d2447b5e0fb8022813b1, type: 2}
+  playHit:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8abf90205d2a4d84581735d934a5a37e, type: 2}
+  playFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 120a6a8515644d1498d835f8012346e8, type: 2}
+  stopFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f2381177cdb516841b39e2f1eff4f1b3, type: 2}
 --- !u!50 &4478575230716991624
 Rigidbody2D:
   serializedVersion: 4
@@ -626,70 +696,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.00000011920929, y: -0.09686613}
   m_Size: {x: 0.54118705, y: 1.5705094}
   m_Direction: 0
---- !u!114 &2365708590959872771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862336575500731703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455e599d05d110b4d9d951f48eccb752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4478575230716991624}
-  sprite: {fileID: 6937958059078036410}
-  facingRight: 1
-  flippables:
-  - trans: {fileID: 1260848906208662760}
-    sprite: {fileID: 0}
-    transformFlip: 0
-  - trans: {fileID: 1078505406815155981}
-    sprite: {fileID: 8685973854917079561}
-    transformFlip: 0
-  startState: 0
-  hit: {fileID: 1395205784924420985}
-  damageable: {fileID: 2205056402196420099}
-  feet: {fileID: 2991221812841030863}
-  feetMat: {fileID: 6200000, guid: 1b9ba9afeda3fe44580854d088b877c3, type: 2}
-  bodyMat: {fileID: 6200000, guid: 16b07130e0c2b1741b4b968a4138ccd6, type: 2}
-  outline: {fileID: 8685973854917079561}
-  pauseCanvas: {fileID: 0}
-  burstStrength: 15
-  moveSettings: {fileID: 11400000, guid: 8848e7525b389684f911fddbeddedd24, type: 2}
-  jumpStartSettings: {fileID: 11400000, guid: 4d19e0911203b1346b250e943fe01780, type: 2}
-  jumpEndSettings: {fileID: 11400000, guid: cf892d5be77c3e74da11ee4486ef8d7f, type: 2}
-  godSettings: {fileID: 11400000, guid: 8f5f3a83a4f2c3c4d97267c9e0a9feb8, type: 2}
-  attackStartSettings: {fileID: 11400000, guid: 81e792fb5bccdb64eb826e6338378bbf, type: 2}
-  parrySettings: {fileID: 11400000, guid: 039221402fd24364a901a3ee2e534984, type: 2}
-  damagedSettings: {fileID: 11400000, guid: 93aa1af77a1fbe942bf12c99c66e7b92, type: 2}
-  knockbackSettings: {fileID: 11400000, guid: 805cf9ea59ef67f43bf5ee694fcb7cb9, type: 2}
-  animator: {fileID: 4310963439013856538}
-  playEspada:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 1371c7a14dbd8bc49a9393c89f6ac46b, type: 2}
-  playJump:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 95e37789b0fa8044a8e4b81ff673ba78, type: 2}
-  playDefense:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 717e655f7456d2447b5e0fb8022813b1, type: 2}
-  playHit:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 8abf90205d2a4d84581735d934a5a37e, type: 2}
-  playFootstep:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 120a6a8515644d1498d835f8012346e8, type: 2}
-  stopFootstep:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: f2381177cdb516841b39e2f1eff4f1b3, type: 2}
 --- !u!114 &2205056402196420099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,7 +746,7 @@ GameObject:
   - component: {fileID: 4247475268178023887}
   - component: {fileID: 4305685662430608814}
   m_Layer: 7
-  m_Name: Hit (1)
+  m_Name: HitSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

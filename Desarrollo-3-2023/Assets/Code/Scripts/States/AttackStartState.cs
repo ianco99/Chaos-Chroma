@@ -9,11 +9,19 @@ namespace Patterns.FSM
     /// <typeparam name="T"></typeparam>
     public class AttackStartState<T> : BaseState<T>
     {
+        private enum Dir
+        {
+            Side,
+            Up,
+            Down
+        }
+        
         private AttackStartSettings attackStartSettings;
         private float timeOnHold;
         private bool released;
         private float t;
         private readonly SpriteRenderer characterOutline;
+        private Dir dir;
 
         public AttackStartState(T id, string name, AttackStartSettings settings, SpriteRenderer characterOutline) : base(id, name)
         {
@@ -73,6 +81,39 @@ namespace Patterns.FSM
             Color color = Vector4.Lerp(Color.white, attackStartSettings.objectiveColor, t);
             
             characterOutline.color = color;
+        }
+
+        /// <summary>
+        /// Direct attack up
+        /// </summary>
+        private void DirUp()
+        {
+            dir = Dir.Up;
+        }
+        
+        /// <summary>
+        /// Direct attack down
+        /// </summary>
+        private void DirDown()
+        {
+            dir = Dir.Down;
+        }
+        
+        /// <summary>
+        /// Direct attack side
+        /// </summary>
+        private void DirSide()
+        {
+            dir = Dir.Side;
+        }
+        
+        /// <summary>
+        /// Get attack direction
+        /// </summary>
+        /// <returns></returns>
+        public int GetDir()
+        {
+            return (int)dir;
         }
     }
 }

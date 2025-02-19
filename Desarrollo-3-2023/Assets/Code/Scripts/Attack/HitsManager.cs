@@ -1,10 +1,19 @@
 using System;
 using System.Collections.Generic;
+using Code.Scripts.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace Code.Scripts.Attack
 {
+    enum Dir
+    {
+        Side,
+        Down,
+        Up
+    }
+    
     /// <summary>
     /// Controls the randomizer for attacks. (add different types of attacks to the list)
     /// </summary>
@@ -13,10 +22,20 @@ namespace Code.Scripts.Attack
         [SerializeField] private List<GameObject> hitObjects;
         
         private readonly List<HitController> hits = new();
-        private int index;
+        private Dir dir = Dir.Side;
 
         public event Action OnParried;
 
+        private void Start()
+        {
+            InputManager.onMove += SetDir;
+        }
+
+        private void OnDestroy()
+        {
+            InputManager.onMove -= SetDir;
+        }
+        
         private void Awake()
         {
             foreach (GameObject hitObject in hitObjects)
@@ -30,21 +49,19 @@ namespace Code.Scripts.Attack
 
         private void OnEnable()
         {
-            index = Random.Range(0, hits.Count);
+            hits[(int)dir].gameObject.SetActive(true);
 
-            hits[index].gameObject.SetActive(true);
-
-            hits[index].OnParried += OnParriedHandler;
+            hits[(int)dir].OnParried += OnParriedHandler;
         }
 
         private void OnDisable()
         {
-            hits[index].OnParried -= OnParriedHandler;
+            hits[(int)dir].OnParried -= OnParriedHandler;
         }
 
         private void Update()
         {
-            if (!hits[index].gameObject.activeSelf)
+            if (!hits[(int)dir].gameObject.activeSelf)
                 gameObject.SetActive(false);
         }
 
@@ -61,10 +78,22 @@ namespace Code.Scripts.Attack
         /// </summary>
         public void Stop()
         {
-            if (hits[index].enabled)
-                hits[index].Stop();
+            if (hits[(int)dir].enabled)
+                hits[(int)dir].Stop();
             
             gameObject.SetActive(false);
+        }
+
+        private void SetDir(Vector2 input)
+        {
+            float vertical = input.y;
+
+            dir = vertical switch
+            {
+                > 0 => Dir.Up,
+                < 0 => Dir.Down,
+                _ => Dir.Side
+            };
         }
     }
 }

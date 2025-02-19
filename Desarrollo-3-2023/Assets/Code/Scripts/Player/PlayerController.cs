@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Code.Scripts.Abstracts;
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
@@ -9,6 +8,7 @@ using Code.Scripts.States;
 using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
+using Event = AK.Wwise.Event;
 
 namespace Code.Scripts.Player
 {
@@ -56,12 +56,12 @@ namespace Code.Scripts.Player
         [Header("Animation")] [SerializeField] private Animator animator;
 
         [Header("Audio Events")]
-        [SerializeField] private AK.Wwise.Event playEspada;
-        [SerializeField] private AK.Wwise.Event playJump;
-        [SerializeField] private AK.Wwise.Event playDefense;
-        [SerializeField] private AK.Wwise.Event playHit;
-        [SerializeField] private AK.Wwise.Event playFootstep;
-        [SerializeField] private AK.Wwise.Event stopFootstep;
+        [SerializeField] private Event playEspada;
+        [SerializeField] private Event playJump;
+        [SerializeField] private Event playDefense;
+        [SerializeField] private Event playHit;
+        [SerializeField] private Event playFootstep;
+        [SerializeField] private Event stopFootstep;
         private bool isWalking = false;
         
         // States

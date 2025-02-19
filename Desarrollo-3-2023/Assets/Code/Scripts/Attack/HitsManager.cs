@@ -24,6 +24,8 @@ namespace Code.Scripts.Attack
         private readonly List<HitController> hits = new();
         private Dir dir = Dir.Side;
 
+        private bool isHitting;
+
         public event Action OnParried;
 
         private void Start()
@@ -49,6 +51,8 @@ namespace Code.Scripts.Attack
 
         private void OnEnable()
         {
+            isHitting = true;
+            
             hits[(int)dir].gameObject.SetActive(true);
 
             hits[(int)dir].OnParried += OnParriedHandler;
@@ -56,7 +60,12 @@ namespace Code.Scripts.Attack
 
         private void OnDisable()
         {
+            isHitting = false;
+            
             hits[(int)dir].OnParried -= OnParriedHandler;
+
+            foreach (HitController hit in hits)
+                hit.Stop();
         }
 
         private void Update()
@@ -86,6 +95,9 @@ namespace Code.Scripts.Attack
 
         private void SetDir(Vector2 input)
         {
+            if (isHitting)
+                return;
+            
             float vertical = input.y;
 
             dir = vertical switch

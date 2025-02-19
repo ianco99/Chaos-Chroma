@@ -19,7 +19,6 @@ namespace Code.Scripts.Attack
         [SerializeField] private Transform attacker;
         [SerializeField] private SpriteRenderer characterOutline;
         [SerializeField] private Color objectiveColor;
-        
                 
         public event Action OnParried;
         
@@ -51,7 +50,12 @@ namespace Code.Scripts.Attack
         {
             if (characterOutline)
                 UpdateCharacterOutlineColor();
-                
+
+            Hit();
+        }
+
+        private void Hit()
+        {
             if (!started) return;
 
             Transform trans = transform;
@@ -85,8 +89,16 @@ namespace Code.Scripts.Attack
                 sprite.enabled = true;
             
             started = true;
+            
             if (finishByDuration)
+            {
                 StartCoroutine(StopOnTime());
+            }
+            else
+            {
+                Hit();
+                Stop();
+            }
         }
 
         /// <summary>
@@ -96,8 +108,7 @@ namespace Code.Scripts.Attack
         private IEnumerator StopOnTime()
         {
             yield return new WaitForSeconds(hitDuration);
-            hitObjects.Clear();
-            gameObject.SetActive(false);
+            Stop();
         }
 
         /// <summary>

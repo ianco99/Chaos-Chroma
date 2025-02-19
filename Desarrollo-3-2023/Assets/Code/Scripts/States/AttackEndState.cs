@@ -23,11 +23,8 @@ namespace Code.Scripts.States
             base.OnEnter();
 
             hit.SetActive(true);
-            
-            if(playEspada != null)
-            {
-                playEspada.Post(hit);
-            }
+
+            playEspada?.Post(hit);
         }
 
         public override void OnUpdate()

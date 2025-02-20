@@ -37,6 +37,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Damageable damageable;
         [SerializeField] private SpriteRenderer outline;
+        [SerializeField] private BoxCollider2D bodyCollider;
         [SerializeField] private Color hitOutlineColor;
 
         [SerializeField] private float suspectMeter;
@@ -45,7 +46,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float attackDelay = 0.2f;
         [SerializeField] private float damagedTime = 2.0f;
 
-        [Header("Animation")] [SerializeField] private Animator animator;
+        [Header("Animation")][SerializeField] private Animator animator;
 
         private Transform detectedPlayer;
         private bool turnedAggro;
@@ -133,17 +134,14 @@ namespace Code.Scripts.Enemy
                 () => !attackStartState.Active && detectedPlayer != null);
             fsm.AddTransition(attackEndState, alertState,
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
-            //fsm.AddTransition(blockState, alertState, () => blockState.FinishedTimer());
 
             blockState.onEnter += () =>
             {
                 StartCoroutine(ParryTimer());
             };
-            
-            
+
+
             fsm.SetCurrentState(fsm.GetState(startingState));
-
-
 
             fsm.Init();
         }
@@ -154,6 +152,7 @@ namespace Code.Scripts.Enemy
 
             CheckRotation();
             CheckFieldOfView();
+            CheckAttackDir();
             UpdateAnimationState();
             ReleaseAttack();
         }
@@ -226,6 +225,20 @@ namespace Code.Scripts.Enemy
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
+        }
+
+        private void CheckAttackDir()
+        {
+            if (detectedPlayer)
+            {
+                Vector3 targetPos = detectedPlayer.position;
+
+                if (targetPos.x > transform.position.x - bodyCollider.size.x / 2.0f &&
+                targetPos.x < transform.position.x + bodyCollider.size.x / 2.0f)
+                {
+                    Debug.Log("He is above me isn't he");
+                }
+            }
         }
 
         private void CheckRotation()
@@ -321,11 +334,6 @@ namespace Code.Scripts.Enemy
                 Flip();
             else if (dir.x < transform.position.x && facingRight)
                 Flip();
-
-            //blockState.SetDirection(facingRight ? Vector2.left : Vector2.right);
-            //blockState.SetForce(settings.blockSettings.knockbackForce);
-
-            //blockState.ResetState();
         }
 
         private void OnTimerEndedHandler(EnemyStates nextId)

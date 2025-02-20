@@ -50,7 +50,7 @@ namespace Patterns.FSM
         {
             base.OnUpdate();
 
-            if(alertTarget)
+            if (alertTarget)
             {
                 dir = alertTarget.transform.position - patroller.transform.position;
             }
@@ -66,23 +66,9 @@ namespace Patterns.FSM
             if (!IsGrounded())
                 return;
 
-            if(alertTarget)
-            {
-                //if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
-                //{
-                //    base.speed = 0;
-                //}
-                //else
-                //{
-                //    base.speed = settings.alertSpeed;
-                //}
-            }
-            else
-            {
+            if (!alertTarget)
                 if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
                     FlipDirection();
-            }
-
         }
 
         public void SetTarget(Transform target)

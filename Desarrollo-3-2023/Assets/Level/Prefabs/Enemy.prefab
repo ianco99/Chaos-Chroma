@@ -110,6 +110,7 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 2552753043060546954}
   damageable: {fileID: 3832601685886080571}
   outline: {fileID: 8320540901993013661}
+  bodyCollider: {fileID: 836443845740120934}
   hitOutlineColor: {r: 0.6627451, g: 0.1882353, b: 0.7294118, a: 1}
   suspectMeter: 0
   suspectUnit: 30

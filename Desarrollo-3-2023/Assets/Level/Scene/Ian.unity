@@ -574,9 +574,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1971185237}
-  offset: {x: 0, y: 0, z: -2}
+  offset: {x: 0, y: 1.4, z: -10}
   speed: 10
-  minHeight: -4
+  minHeight: -3
 --- !u!114 &517285588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 851979465}
   - component: {fileID: 851979464}
   - component: {fileID: 851979466}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

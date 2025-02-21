@@ -1,17 +1,18 @@
 using System;
 using System.Collections;
-using Code.Scripts.Abstracts.Character;
+using System.Collections.Generic;
 using Code.Scripts.Attack;
 using Code.Scripts.SOs.Animator;
 using Code.Scripts.SOs.States;
 using Code.Scripts.States;
+using Code.SOs.Enemy;
 using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
 
 namespace Code.Scripts.Enemy
 {
-    public class BossController : Character
+    public class BossController : BaseEnemyController
     {
         private FiniteStateMachine<string> fsm;
 
@@ -72,6 +73,8 @@ namespace Code.Scripts.Enemy
         {
             InitFsm();
             InitStateSetter();
+            
+            deathState.onTimerEnded += () => Destroy(gameObject);
         }
 
         /// <summary>
@@ -148,7 +151,6 @@ namespace Code.Scripts.Enemy
             damageable.OnTakeDamage += OnTakeDamageHandler;
             leftHit.OnParried += OnParriedHandler;
             rightHit.OnParried += OnParriedHandler;
-            deathState.onTimerEnded += () => Destroy(gameObject);
         }
 
         private void OnDisable()
@@ -160,7 +162,6 @@ namespace Code.Scripts.Enemy
             damageable.OnTakeDamage -= OnTakeDamageHandler;
             leftHit.OnParried -= OnParriedHandler;
             rightHit.OnParried -= OnParriedHandler;
-            deathState.onTimerEnded -= () => Destroy(gameObject);
         }
 
         private void Update()

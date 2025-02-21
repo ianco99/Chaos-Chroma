@@ -28,12 +28,12 @@ namespace Code.Scripts.Enemy
                 Destroy(gameObject);
         }
 
-        public void SpawnEnemy(GameObject enemyType, Vector3 position, EnemySettings config)
+        public void SpawnEnemy(GameObject enemyType, Vector3 position, BaseEnemySettings config)
         {
             if (!prefabs.Contains(enemyType))
                 prefabs.Add(enemyType);
 
-            if (enemyType.TryGetComponent(out EnemyController enemyController))
+            if (enemyType.TryGetComponent(out BaseEnemyController enemyController))
                 enemyController.settings = config;
 
             GameObject enemy = Instantiate(enemyType, position, Quaternion.identity);

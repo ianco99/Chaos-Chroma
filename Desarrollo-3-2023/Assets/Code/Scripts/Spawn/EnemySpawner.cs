@@ -8,7 +8,7 @@ namespace Code.Scripts.Spawn
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private List<GameObject> prefabs;
-        [SerializeField] private List<EnemySettings> config;
+        [SerializeField] private List<BaseEnemySettings> config;
 
         private void Start()
         {

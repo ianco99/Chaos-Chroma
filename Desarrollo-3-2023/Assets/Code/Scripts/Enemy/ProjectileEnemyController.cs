@@ -1,19 +1,18 @@
 using Code.FOV;
-using Code.Scripts.Abstracts.Character;
 using Code.SOs.Enemy;
 using Patterns.FSM;
 using UnityEngine;
 
 namespace Code.Scripts.Enemy
 {
-    public class ProjectileEnemyController : Character
+    public class ProjectileEnemyController : BaseEnemyController
     {
         private FiniteStateMachine<int> fsm;
         
         // States
         private PatrolState<int> patrolState;
 
-        private ProjectileEnemySettings settings;
+        private ProjectileEnemySettings ProjectileEnemySettings => settings as ProjectileEnemySettings;
         
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Animator animator;
@@ -42,11 +41,11 @@ namespace Code.Scripts.Enemy
         {
             fsm = new FiniteStateMachine<int>();
             
-            patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, settings.patrolSettings);
+            patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
             
             fsm.AddState(patrolState);
             
-            // fsm.AddTransition(patrolState, alertState, () => suspectMeter > settings.alertValue);
+            // fsm.AddTransition(patrolState, alertState, () => suspectMeter > ProjectileEnemySettings.alertValue);
             
             fsm.SetCurrentState(patrolState);
             
@@ -91,27 +90,27 @@ namespace Code.Scripts.Enemy
                                     fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
                                         transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
-                if (suspectMeter < settings.alertValue)
+                if (suspectMeter < ProjectileEnemySettings.alertValue)
                 {
                     detectedPlayer = null;
                     suspectMeterSprite.color = Color.white;
                 }
             }
 
-            if (suspectMeter >= settings.alertValue)
+            if (suspectMeter >= ProjectileEnemySettings.alertValue)
             {
                 suspectMeterSprite.color = Color.yellow;
             }
-            else if (suspectMeter < settings.suspectMeterMaximum)
+            else if (suspectMeter < ProjectileEnemySettings.suspectMeterMaximum)
             {
                 suspectMeterSprite.color = Color.white;
             }
 
-            suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
+            suspectMeter = Mathf.Clamp(suspectMeter, ProjectileEnemySettings.suspectMeterMinimum, ProjectileEnemySettings.suspectMeterMaximum);
 
 
-            var normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) /
-                                         ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
+            var normalizedSuspectMeter = (suspectMeter - (ProjectileEnemySettings.suspectMeterMinimum)) /
+                                         ((ProjectileEnemySettings.suspectMeterMaximum) - (ProjectileEnemySettings.suspectMeterMinimum));
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
@@ -180,6 +179,5 @@ namespace Code.Scripts.Enemy
             //     }
             // }
         }
-
     }
 }

@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4819109336555100032}
-  - component: {fileID: 6145023305814156655}
   - component: {fileID: 1818570120842507129}
   - component: {fileID: 3832601685886080571}
   - component: {fileID: 836443845740120934}
@@ -74,50 +73,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6145023305814156655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2603062281788332554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6cfb9c3abf752c4c957d09567306bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 2334605050899191207}
-  sprite: {fileID: 8470148947405600390}
-  facingRight: 0
-  flippables:
-  - trans: {fileID: 0}
-    sprite: {fileID: 0}
-    transformFlip: 0
-  - trans: {fileID: 968319048612638191}
-    sprite: {fileID: 0}
-    transformFlip: 3
-  - trans: {fileID: 2552753043060546954}
-    sprite: {fileID: 0}
-    transformFlip: 0
-  - trans: {fileID: 5850806394402431521}
-    sprite: {fileID: 8320540901993013661}
-    transformFlip: 0
-  startingState: 0
-  hitsManager: {fileID: 0}
-  fov: {fileID: 2620014508958615141}
-  suspectMeterMask: {fileID: 7237382853668965831}
-  suspectMeterSprite: {fileID: 1401541041181370207}
-  groundCheckPoint: {fileID: 2552753043060546954}
-  damageable: {fileID: 3832601685886080571}
-  outline: {fileID: 8320540901993013661}
-  hitOutlineColor: {r: 0.6627451, g: 0.1882353, b: 0.7294118, a: 1}
-  suspectMeter: 0
-  suspectUnit: 30
-  hitDistance: 0.5
-  attackDelay: 0.45
-  damagedTime: 2
-  animator: {fileID: 2065283345791218431}
-  settings: {fileID: 11400000, guid: 4c0ae0d5a229eaa4c8eb801f79170928, type: 2}
 --- !u!114 &1818570120842507129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,8 +98,8 @@ MonoBehaviour:
   - trans: {fileID: 5850806394402431521}
     sprite: {fileID: 8320540901993013661}
     transformFlip: 0
+  settings: {fileID: 0}
   groundCheckPoint: {fileID: 2552753043060546954}
-  config: {fileID: 11400000, guid: f4b6e9896651e5d40af2691bdd46c948, type: 2}
   animator: {fileID: 2065283345791218431}
   fov: {fileID: 2620014508958615141}
   suspectMeter: 0

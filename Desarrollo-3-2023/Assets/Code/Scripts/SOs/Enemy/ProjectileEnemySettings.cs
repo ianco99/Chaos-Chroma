@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Code.SOs.Enemy
 {
     [CreateAssetMenu(fileName = "ProjectileEnemySettings", menuName = "ScriptableObjects/ProjectileEnemySettings")]
-    public class ProjectileEnemySettings : ScriptableObject
+    public class ProjectileEnemySettings : BaseEnemySettings
     {
         [Header("Patrol")] public PatrolSettings patrolSettings;
 

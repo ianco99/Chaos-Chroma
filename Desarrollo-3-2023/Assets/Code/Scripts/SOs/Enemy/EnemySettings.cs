@@ -6,7 +6,7 @@ namespace Code.SOs.Enemy
 {
     [CreateAssetMenu(fileName = "EnemySettings", menuName = "ScriptableObjects/EnemySettings")]
 
-    public class EnemySettings : ScriptableObject
+    public class EnemySettings : BaseEnemySettings
     {
 
         [Header("Patrol")]

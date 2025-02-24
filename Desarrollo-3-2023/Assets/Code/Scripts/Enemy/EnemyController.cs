@@ -63,7 +63,7 @@ namespace Code.Scripts.Enemy
         private DeathState<EnemyStates> deathState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
-        
+
         private EnemySettings EnemySettings => settings as EnemySettings;
 
         private void Awake()
@@ -126,8 +126,7 @@ namespace Code.Scripts.Enemy
 
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > EnemySettings.alertValue);
             fsm.AddTransition(alertState, attackStartState,
-                () => detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) <
-                    EnemySettings.alertSettings.alertAttackDistance);
+                () => IsAttackTransitionable());
             fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
             fsm.AddTransition(attackStartState, attackEndState,
                 () => !attackStartState.Active && detectedPlayer != null);
@@ -167,8 +166,10 @@ namespace Code.Scripts.Enemy
         /// </summary>
         private void ReleaseAttack()
         {
-            if (fsm.GetCurrentState().ID == EnemyStates.AttackStart)
+            if (fsm.GetCurrentState().ID == EnemyStates.AttackStart && attackStartState.Active)
+            {
                 attackStartState.Release();
+            }
         }
 
         private void FixedUpdate()
@@ -226,14 +227,18 @@ namespace Code.Scripts.Enemy
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
         }
 
+        /// <summary>
+        /// Define attack direction between up and side orientations
+        /// </summary>
         private void CheckAttackDir()
         {
             if (detectedPlayer)
             {
                 Vector3 targetPos = detectedPlayer.position;
 
-                if (targetPos.x > transform.position.x - bodyCollider.size.x / 2.0f &&
-                targetPos.x < transform.position.x + bodyCollider.size.x / 2.0f)
+                if (targetPos.x > transform.position.x - bodyCollider.size.x / 0.2f &&
+                targetPos.x < transform.position.x + bodyCollider.size.x / 0.2f && 
+                targetPos.y > hitsManager.transform.position.y + 1.0f)
                 {
                     hitsManager.SetDir(Vector2.up);
                 }
@@ -359,6 +364,19 @@ namespace Code.Scripts.Enemy
         public void OnDeathHandler()
         {
             fsm.SetCurrentState(deathState);
+        }
+
+        private bool IsAttackTransitionable()
+        {
+            if (detectedPlayer != null)
+            {
+                if (hitsManager.GetDir() == 2)
+                    return Vector3.Distance(transform.position, detectedPlayer.position) < EnemySettings.alertSettings.alertAttackUpDistance;
+                else
+                    return Vector3.Distance(transform.position, detectedPlayer.position) < EnemySettings.alertSettings.alertAttackSideDistance;
+            }
+
+            return false;
         }
     }
 }

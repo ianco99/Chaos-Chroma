@@ -6,7 +6,8 @@ namespace Code.SOs.States
     public class AlertSettings : ScriptableObject, IAlertSettings
     {
         public MoveSettings moveSettings;
-        public float alertAttackDistance;
+        public float alertAttackSideDistance;
+        public float alertAttackUpDistance;
 
         [Header("GroundCheck")]
         public float groundCheckDistance;

@@ -46,7 +46,9 @@ namespace Code.Scripts.States
             base.OnUpdate();
 
             if (!hit.activeSelf)
+            {
                 Exit();
+            }
         }
 
         /// <summary>
@@ -55,7 +57,9 @@ namespace Code.Scripts.States
         public void Stop()
         {
             if (hitsManager)
+            {
                 hitsManager.Stop();
+            }
 
             hit.SetActive(false);
             Exit();

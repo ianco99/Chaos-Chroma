@@ -18,22 +18,22 @@ namespace Code.Scripts.Attack
             Down,
             Up
         }
-        
+
         public int DirAsInt => (int)dir;
-        
+
         [SerializeField] private List<GameObject> hitObjects;
-        
+
         private readonly List<HitController> hits = new();
         private Dir dir;
 
         public event Action OnParried;
-        
+
         private void Awake()
         {
             foreach (GameObject hitObject in hitObjects)
             {
                 if (!hitObject.TryGetComponent(out HitController hit)) continue;
-                
+
                 hits.Add(hit);
                 hitObject.SetActive(false);
             }
@@ -57,7 +57,9 @@ namespace Code.Scripts.Attack
         private void Update()
         {
             if (!hits[(int)dir].gameObject.activeSelf)
+            {
                 gameObject.SetActive(false);
+            }
         }
 
         /// <summary>
@@ -74,8 +76,11 @@ namespace Code.Scripts.Attack
         public void Stop()
         {
             if (hits[(int)dir].enabled)
+            {
+                Debug.Log("Stopped");
                 hits[(int)dir].Stop();
-            
+            }
+
             gameObject.SetActive(false);
         }
 
@@ -89,6 +94,11 @@ namespace Code.Scripts.Attack
                 < 0 => Dir.Down,
                 _ => Dir.Side
             };
+        }
+
+        public int GetDir()
+        {
+            return DirAsInt;
         }
     }
 }

@@ -235,7 +235,11 @@ namespace Code.Scripts.Enemy
                 if (targetPos.x > transform.position.x - bodyCollider.size.x / 2.0f &&
                 targetPos.x < transform.position.x + bodyCollider.size.x / 2.0f)
                 {
-                    Debug.Log("He is above me isn't he");
+                    hitsManager.SetDir(Vector2.up);
+                }
+                else
+                {
+                    hitsManager.SetDir(Vector2.zero);
                 }
             }
         }

@@ -14,7 +14,7 @@ namespace Code.Scripts.States
         private AK.Wwise.Event playEspada;
         private readonly HitsManager hitsManager;
 
-        private bool IsAttacking;
+        private bool isAttacking;
         
         public AttackEndState(T id, string name, GameObject hit, AK.Wwise.Event playEspada = null) : base(id, name)
         {
@@ -31,14 +31,14 @@ namespace Code.Scripts.States
 
             playEspada?.Post(hit);
             
-            IsAttacking = true;
+            isAttacking = true;
         }
 
         public override void OnExit()
         {
             base.OnExit();
             
-            IsAttacking = false;
+            isAttacking = false;
         }
 
         public override void OnUpdate()
@@ -63,7 +63,7 @@ namespace Code.Scripts.States
 
         public void SetDir(Vector2 direction)
         {
-            if (IsAttacking)
+            if (isAttacking)
                 return;
             
             hitsManager.SetDir(direction);

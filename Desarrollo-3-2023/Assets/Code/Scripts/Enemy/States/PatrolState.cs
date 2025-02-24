@@ -22,6 +22,8 @@ namespace Patterns.FSM
             this.settings = settings;
             this.groundCheckPoint = groundCheckPoint;
             this.patroller = patroller;
+            
+            SetDirection(1f);
         }
 
         public PatrolState(Rigidbody2D rb, T id, string name, Transform groundCheckPoint, Character patroller, Transform transform, PatrolSettings settings) : base(id, name, settings.moveSettings,
@@ -30,6 +32,8 @@ namespace Patterns.FSM
             this.settings = settings;
             this.groundCheckPoint = groundCheckPoint;
             this.patroller = patroller;
+            
+            SetDirection(1f);
         }
 
         public override void OnUpdate()

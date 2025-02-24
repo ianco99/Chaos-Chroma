@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Code.FOV;
-using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
@@ -26,7 +25,7 @@ namespace Code.Scripts.Enemy
         Death
     }
 
-    public class EnemyController : Character
+    public class EnemyController : BaseEnemyController
     {
         [SerializeField] private EnemyStates startingState;
 
@@ -64,8 +63,8 @@ namespace Code.Scripts.Enemy
         private DeathState<EnemyStates> deathState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
-
-        public EnemySettings settings;
+        
+        private EnemySettings EnemySettings => settings as EnemySettings;
 
         private void Awake()
         {
@@ -80,7 +79,7 @@ namespace Code.Scripts.Enemy
 
             fov.ToggleFindingTargets(true);
 
-            damageable.OnDeath = settings.deathEvent;
+            damageable.OnDeath = EnemySettings.deathEvent;
         }
 
         private void OnEnable()
@@ -99,21 +98,21 @@ namespace Code.Scripts.Enemy
 
             Transform trans = transform;
             patrolState = new PatrolState<EnemyStates>(rb, EnemyStates.Patrol, "PatrolState", groundCheckPoint, this,
-                trans, settings.patrolSettings);
+                trans, EnemySettings.patrolSettings);
             patrolState.SetDirection(1.0f);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans,
-                settings.alertSettings, groundCheckPoint);
-            attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", settings.attackStartSettings,
+                EnemySettings.alertSettings, groundCheckPoint);
+            attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", EnemySettings.attackStartSettings,
                 outline);
             attackEndState =
                 new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
-                settings.damagedSettings, rb);
-            parriedState = new DamagedState<EnemyStates>(EnemyStates.Parried, "ParriedState", EnemyStates.Block, settings.parriedSettings, rb);
-            blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, settings.parrySettings);
-            impulseState = new DamagedState<EnemyStates>(EnemyStates.Impulsed, "ImpulseState", EnemyStates.Alert, settings.damagedSettings, rb);
+                EnemySettings.damagedSettings, rb);
+            parriedState = new DamagedState<EnemyStates>(EnemyStates.Parried, "ParriedState", EnemyStates.Block, EnemySettings.parriedSettings, rb);
+            blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, EnemySettings.parrySettings);
+            impulseState = new DamagedState<EnemyStates>(EnemyStates.Impulsed, "ImpulseState", EnemyStates.Alert, EnemySettings.damagedSettings, rb);
 
-            deathState = new DeathState<EnemyStates>(EnemyStates.Death, settings.deathSettings);
+            deathState = new DeathState<EnemyStates>(EnemyStates.Death, EnemySettings.deathSettings);
 
             fsm = new FiniteStateMachine<EnemyStates>();
 
@@ -125,10 +124,10 @@ namespace Code.Scripts.Enemy
             fsm.AddState(blockState);
             fsm.AddState(impulseState);
 
-            fsm.AddTransition(patrolState, alertState, () => suspectMeter > settings.alertValue);
+            fsm.AddTransition(patrolState, alertState, () => suspectMeter > EnemySettings.alertValue);
             fsm.AddTransition(alertState, attackStartState,
                 () => detectedPlayer != null && Vector3.Distance(trans.position, detectedPlayer.position) <
-                    settings.alertSettings.alertAttackDistance);
+                    EnemySettings.alertSettings.alertAttackDistance);
             fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
             fsm.AddTransition(attackStartState, attackEndState,
                 () => !attackStartState.Active && detectedPlayer != null);
@@ -159,7 +158,7 @@ namespace Code.Scripts.Enemy
 
         private IEnumerator ParryTimer()
         {
-            yield return new WaitForSeconds(settings.parrySettings.duration);
+            yield return new WaitForSeconds(EnemySettings.parrySettings.duration);
             fsm.SetCurrentState(alertState);
         }
 
@@ -201,27 +200,27 @@ namespace Code.Scripts.Enemy
                                     fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
                                         transform.position), 0, fov.viewRadius) * Time.deltaTime;
 
-                if (suspectMeter < settings.alertValue)
+                if (suspectMeter < EnemySettings.alertValue)
                 {
                     detectedPlayer = null;
                     suspectMeterSprite.color = Color.white;
                 }
             }
 
-            if (suspectMeter >= settings.alertValue)
+            if (suspectMeter >= EnemySettings.alertValue)
             {
                 suspectMeterSprite.color = Color.yellow;
             }
-            else if (suspectMeter < settings.suspectMeterMaximum)
+            else if (suspectMeter < EnemySettings.suspectMeterMaximum)
             {
                 suspectMeterSprite.color = Color.white;
             }
 
-            suspectMeter = Mathf.Clamp(suspectMeter, settings.suspectMeterMinimum, settings.suspectMeterMaximum);
+            suspectMeter = Mathf.Clamp(suspectMeter, EnemySettings.suspectMeterMinimum, EnemySettings.suspectMeterMaximum);
 
 
-            var normalizedSuspectMeter = (suspectMeter - (settings.suspectMeterMinimum)) /
-                                         ((settings.suspectMeterMaximum) - (settings.suspectMeterMinimum));
+            var normalizedSuspectMeter = (suspectMeter - (EnemySettings.suspectMeterMinimum)) /
+                                         ((EnemySettings.suspectMeterMaximum) - (EnemySettings.suspectMeterMinimum));
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);

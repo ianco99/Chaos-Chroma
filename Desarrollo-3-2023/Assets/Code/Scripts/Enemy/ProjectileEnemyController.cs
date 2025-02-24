@@ -8,16 +8,14 @@ namespace Code.Scripts.Enemy
     public class ProjectileEnemyController : BaseEnemyController
     {
         private FiniteStateMachine<int> fsm;
-        
-        // States
-        private PatrolState<int> patrolState;
 
         private ProjectileEnemySettings ProjectileEnemySettings => settings as ProjectileEnemySettings;
         
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Animator animator;
         [SerializeField] private FieldOfView fov;
-        
+        [SerializeField] private SpriteRenderer outline;
+
         [Header("Suspect")]
         [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
@@ -27,6 +25,11 @@ namespace Code.Scripts.Enemy
         [SerializeField] private SpriteMask suspectMeterMask;
 
         private Transform detectedPlayer;
+        
+        // States
+        private PatrolState<int> patrolState;
+        private AlertState<int> alertState;
+        private AttackStartState<int> attackStartState;
         
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
@@ -41,11 +44,17 @@ namespace Code.Scripts.Enemy
         {
             fsm = new FiniteStateMachine<int>();
             
-            patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
+            patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
+            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, ProjectileEnemySettings.alertSettings, groundCheckPoint);
+            attackStartState = new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
             
             fsm.AddState(patrolState);
             
-            // fsm.AddTransition(patrolState, alertState, () => suspectMeter > ProjectileEnemySettings.alertValue);
+            fsm.AddTransition(patrolState, alertState, () => suspectMeter > ProjectileEnemySettings.alertValue);
+            
+            fsm.AddTransition(alertState, attackStartState, () => IsAttackTransitionable());
+            fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null);
+            fsm.AddTransition(attackStartState, patrolState, () => !attackStartState.Active && detectedPlayer != null);
             
             fsm.SetCurrentState(patrolState);
             
@@ -59,6 +68,9 @@ namespace Code.Scripts.Enemy
             CheckRotation();
             CheckFieldOfView();
             UpdateAnimationState();
+            ReleaseAttack();
+            
+            state = fsm.GetCurrentState().Name;
         }
         
         private void FixedUpdate()
@@ -83,7 +95,7 @@ namespace Code.Scripts.Enemy
             else
             {
                 detectedPlayer = fov.visibleTargets[0];
-                // alertState.SetTarget(detectedPlayer);
+                alertState.SetTarget(detectedPlayer);
 
                 suspectMeter += suspectUnit *
                                 Mathf.Clamp(
@@ -109,8 +121,8 @@ namespace Code.Scripts.Enemy
             suspectMeter = Mathf.Clamp(suspectMeter, ProjectileEnemySettings.suspectMeterMinimum, ProjectileEnemySettings.suspectMeterMaximum);
 
 
-            var normalizedSuspectMeter = (suspectMeter - (ProjectileEnemySettings.suspectMeterMinimum)) /
-                                         ((ProjectileEnemySettings.suspectMeterMaximum) - (ProjectileEnemySettings.suspectMeterMinimum));
+            float normalizedSuspectMeter = (suspectMeter - (ProjectileEnemySettings.suspectMeterMinimum)) /
+                                           ((ProjectileEnemySettings.suspectMeterMaximum) - (ProjectileEnemySettings.suspectMeterMinimum));
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
@@ -142,30 +154,30 @@ namespace Code.Scripts.Enemy
                         }
                 }
             }
-            // else if (fsm.GetCurrentState() == alertState)
-            // {
-            //     switch (alertState.dir.x)
-            //     {
-            //         case > 0:
-            //             {
-            //                 if (!facingRight)
-            //                 {
-            //                     Flip();
-            //                 }
-            //
-            //                 break;
-            //             }
-            //         case < 0:
-            //             {
-            //                 if (facingRight)
-            //                 {
-            //                     Flip();
-            //                 }
-            //
-            //                 break;
-            //             }
-            //     }
-            // }
+            else if (fsm.GetCurrentState() == alertState)
+            {
+                switch (alertState.dir.x)
+                {
+                    case > 0:
+                        {
+                            if (!facingRight)
+                            {
+                                Flip();
+                            }
+            
+                            break;
+                        }
+                    case < 0:
+                        {
+                            if (facingRight)
+                            {
+                                Flip();
+                            }
+            
+                            break;
+                        }
+                }
+            }
             // else if (fsm.GetCurrentState() == attackEndState)
             // {
             //     if (fov.visibleTargets.Count > 0)
@@ -178,6 +190,25 @@ namespace Code.Scripts.Enemy
             //             Flip();
             //     }
             // }
+        }
+        
+        private bool IsAttackTransitionable()
+        {
+            if (detectedPlayer != null)
+                    return Vector3.Distance(transform.position, detectedPlayer.position) < ProjectileEnemySettings.alertSettings.alertAttackUpDistance;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check if enemy is preparing an attack and release it
+        /// </summary>
+        private void ReleaseAttack()
+        {
+            if (fsm.GetCurrentState().ID == attackStartState.ID && attackStartState.Active)
+            {
+                attackStartState.Release();
+            }
         }
     }
 }

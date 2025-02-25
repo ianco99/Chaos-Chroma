@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Code.Scripts.Attack
@@ -17,6 +18,7 @@ namespace Code.Scripts.Attack
 
         [Header("References")] [SerializeField]
         private Transform spawnPos;
+        [SerializeField] private ProjectileFX fx;
 
         [SerializeField] private List<ProjectileSettings> projectileSettingsList = new();
         [SerializeField] private Rigidbody2D holderRb;
@@ -44,9 +46,11 @@ namespace Code.Scripts.Attack
         /// Disables the projectile's game object to make it inactive.
         /// </summary>
         /// <param name="obj">The projectile being returned to the pool.</param>
-        private static void OnReturnedToPool(Projectile obj)
+        private void OnReturnedToPool(Projectile obj)
         {
             obj.gameObject.SetActive(false);
+            
+            fx.PlayHitFX(obj.transform.position);
         }
 
         /// <summary>
@@ -108,10 +112,12 @@ namespace Code.Scripts.Attack
             bullets--;
 
             UpdateRotation();
-            
+
             Vector2 inhVel = holderRb != null ? holderRb.velocity : Vector2.zero;
 
             pool.Get().Shoot(aim, projectileSettingsList[Random.Range(0, projectileSettingsList.Count)], inhVel);
+            
+            fx.PlayShootFX();
         }
 
         /// <summary>

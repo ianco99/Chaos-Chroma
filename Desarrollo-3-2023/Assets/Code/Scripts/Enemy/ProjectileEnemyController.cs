@@ -1,9 +1,7 @@
-using System;
 using Code.FOV;
 using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
-using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
 
@@ -23,9 +21,6 @@ namespace Code.Scripts.Enemy
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private ProjectileLauncher projectileLauncher;
-        
-        [Header("State settings")]
-        [SerializeField] private TimerSettings shootTimerSettings;
         
         [Header("Suspect")]
         [SerializeField] private float suspectMeter;
@@ -72,7 +67,7 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, ProjectileEnemySettings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", 1, shootTimerSettings, projectileLauncher);
+            shootState = new ShootState<int>(3, "ShootState", 1, ProjectileEnemySettings.shootTimerSettings, projectileLauncher);
             
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
@@ -81,7 +76,7 @@ namespace Code.Scripts.Enemy
             
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > ProjectileEnemySettings.alertValue);
             
-            fsm.AddTransition(alertState, attackStartState, () => IsAttackTransitionable());
+            fsm.AddTransition(alertState, attackStartState, IsAttackTransitionable);
             fsm.AddTransition(alertState, patrolState, () => DetectedPlayer == null);
             
             fsm.AddTransition(attackStartState, shootState, () => !attackStartState.Active && DetectedPlayer != null);

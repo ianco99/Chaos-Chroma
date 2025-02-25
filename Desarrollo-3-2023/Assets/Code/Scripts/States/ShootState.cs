@@ -24,6 +24,8 @@ namespace Code.Scripts.States
         {
             base.OnEnter();
             
+            projectileLauncher.SetAim(target.position - projectileLauncher.transform.position);
+
             projectileLauncher.Shoot();
         }
 
@@ -32,13 +34,6 @@ namespace Code.Scripts.States
             base.OnExit();
             
             projectileLauncher.transform.rotation = Quaternion.identity;
-        }
-        
-        public override void OnUpdate()
-        {
-            base.OnUpdate();
-            
-            projectileLauncher.SetAim(target.position - projectileLauncher.transform.position);
         }
         
         /// <summary>

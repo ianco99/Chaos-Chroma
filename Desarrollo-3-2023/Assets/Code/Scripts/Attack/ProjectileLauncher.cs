@@ -31,7 +31,10 @@ namespace Code.Scripts.Attack
                 OnProjectileDestroyed);
         }
 
-        private void Update()
+        /// <summary>
+        /// Updates the rotation of the projectile launcher to face the current aim direction.
+        /// </summary>
+        private void UpdateRotation()
         {
             transform.rotation = Quaternion.LookRotation(Vector3.forward, aim);
         }
@@ -104,6 +107,8 @@ namespace Code.Scripts.Attack
 
             bullets--;
 
+            UpdateRotation();
+            
             Vector2 inhVel = holderRb != null ? holderRb.velocity : Vector2.zero;
 
             pool.Get().Shoot(aim, projectileSettingsList[Random.Range(0, projectileSettingsList.Count)], inhVel);

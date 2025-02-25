@@ -30,9 +30,9 @@ namespace Code.Scripts.Attack
             this.settings = settings;
 
             transform.rotation = Quaternion.LookRotation(Vector3.forward, aim);
-            transform.Rotate(Vector3.forward, Random.Range(-settings.accuracyModifier, settings.accuracyModifier));
+            transform.Rotate(Vector3.forward, Random.Range(-settings.accuracyModifier / 2f, settings.accuracyModifier / 2f));
 
-            rb.AddForce(transform.up * settings.speed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            rb.AddForce(transform.up * (settings.speed * Time.fixedDeltaTime), ForceMode2D.Impulse);
 
             StartCoroutine(WaitAndDestroy(settings.lifeTime));
         }

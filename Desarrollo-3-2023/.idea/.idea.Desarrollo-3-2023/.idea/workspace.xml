@@ -6,17 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Projectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/ProjectileLauncher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/ProjectileLauncher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/ProjectileEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/ProjectileEnemyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/EnemySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/EnemySettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/ProjectileEnemySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/ProjectileEnemySettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/EnemySpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/ProjectileEnemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/ProjectileEnemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/ShootState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/ShootState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Topo.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,6 +218,7 @@
       <workItem from="1740060509770" duration="4818000" />
       <workItem from="1740145444532" duration="1288000" />
       <workItem from="1740157721559" duration="14552000" />
+      <workItem from="1740493515590" duration="1962000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />

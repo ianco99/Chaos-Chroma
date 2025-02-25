@@ -18,6 +18,11 @@ namespace Patterns.FSM
         {
             timerSettings = settings;
         }
+        
+        public DeathState(T id, string name, TimerSettings settings) : base(id, name)
+        {
+            timerSettings = settings;
+        }
 
         public DeathState(T id, string name, T nextStateID, TimerSettings settings) : base(id, name)
         {

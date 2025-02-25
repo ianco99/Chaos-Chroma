@@ -21,6 +21,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private ProjectileLauncher projectileLauncher;
+        [SerializeField] private Damageable damageable;
         
         [Header("Suspect")]
         [SerializeField] private float suspectMeter;
@@ -47,6 +48,8 @@ namespace Code.Scripts.Enemy
         private AlertState<int> alertState;
         private AttackStartState<int> attackStartState;
         private ShootState<int> shootState;
+        private DamagedState<int> damagedState;
+        private DeathState<int> deathState;
 
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
@@ -55,6 +58,10 @@ namespace Code.Scripts.Enemy
             InitFsm();
             
             fov.ToggleFindingTargets(true);
+            
+            damageable.OnTakeDamage += OnTakeDamageHandler;
+            damagedState.onTimerEnded += OnTimerStateEndedHandler;
+            deathState.onTimerEnded += () => Destroy(gameObject);
         }
 
         /// <summary>
@@ -67,19 +74,23 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, ProjectileEnemySettings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", 1, ProjectileEnemySettings.shootTimerSettings, projectileLauncher);
+            shootState = new ShootState<int>(3, "ShootState", alertState.ID, ProjectileEnemySettings.shootTimerSettings, projectileLauncher);
+            damagedState = new DamagedState<int>(4, "DamagedState", alertState.ID, ProjectileEnemySettings.damagedSettings, rb);
+            deathState = new DeathState<int>(5, "DeathState", ProjectileEnemySettings.deathTimerSettings);
             
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
             fsm.AddState(attackStartState);
             fsm.AddState(shootState);
+            fsm.AddState(damagedState);
+            fsm.AddState(deathState);
             
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > ProjectileEnemySettings.alertValue);
             
             fsm.AddTransition(alertState, attackStartState, IsAttackTransitionable);
-            fsm.AddTransition(alertState, patrolState, () => DetectedPlayer == null);
+            fsm.AddTransition(alertState, patrolState, () => !DetectedPlayer);
             
-            fsm.AddTransition(attackStartState, shootState, () => !attackStartState.Active && DetectedPlayer != null);
+            fsm.AddTransition(attackStartState, shootState, () => !attackStartState.Active && DetectedPlayer);
             fsm.AddTransition(attackStartState, patrolState, () => !attackStartState.Active);
             
             fsm.SetCurrentState(patrolState);
@@ -258,6 +269,34 @@ namespace Code.Scripts.Enemy
             {
                 attackStartState.Release();
             }
+        }
+        
+        private void OnTakeDamageHandler(Vector2 origin)
+        {
+            if (damageable.GetLife() <= 0)
+            {
+                OnDeathHandler();
+                return;
+            }
+
+            // if (fsm.GetCurrentState() == shootState)
+            //     shootState.Stop();
+
+            if (origin.x > transform.position.x && !facingRight)
+                Flip();
+            else if (origin.x < transform.position.x && facingRight)
+                Flip();
+
+            if (fsm.GetCurrentState() != damagedState)
+            {
+                damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+                fsm.SetCurrentState(damagedState);
+            }
+        }
+
+        private void OnDeathHandler()
+        {
+            fsm.SetCurrentState(deathState);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Code.SOs.Enemy
         [Header("Damaged")] public DamagedSettings damagedSettings;
         
         [Header("Shoot")] public TimerSettings shootTimerSettings;
+        
+        [Header("Death")] public TimerSettings deathTimerSettings;
 
         [Header("Field of View")] public float viewRadius;
         public float viewAngle;

@@ -192,6 +192,7 @@ MonoBehaviour:
   fov: {fileID: 2620014508958615141}
   outline: {fileID: 8320540901993013661}
   projectileLauncher: {fileID: 7415223879781478559}
+  damageable: {fileID: 3832601685886080571}
   suspectMeter: 0
   suspectUnit: 30
   attackDelay: 0.45
@@ -296,7 +297,7 @@ Animator:
   m_GameObject: {fileID: 2603062281788332554}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f296cc62a925ae245929cdfb33975ec5, type: 2}
+  m_Controller: {fileID: 9100000, guid: daca956a45fbdf943bb30f8efb7ea2bd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

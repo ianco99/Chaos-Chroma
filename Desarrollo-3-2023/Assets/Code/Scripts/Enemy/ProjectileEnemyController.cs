@@ -1,10 +1,17 @@
+using System;
 using Code.FOV;
+using Code.Scripts.Attack;
+using Code.Scripts.States;
 using Code.SOs.Enemy;
+using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
 
 namespace Code.Scripts.Enemy
 {
+    /// <summary>
+    /// Controller for projectile enemy
+    /// </summary>
     public class ProjectileEnemyController : BaseEnemyController
     {
         private FiniteStateMachine<int> fsm;
@@ -15,7 +22,11 @@ namespace Code.Scripts.Enemy
         [SerializeField] private Animator animator;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteRenderer outline;
-
+        [SerializeField] private ProjectileLauncher projectileLauncher;
+        
+        [Header("State settings")]
+        [SerializeField] private TimerSettings shootTimerSettings;
+        
         [Header("Suspect")]
         [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
@@ -26,11 +37,22 @@ namespace Code.Scripts.Enemy
 
         private Transform detectedPlayer;
         
+        private Transform DetectedPlayer
+        {
+            get => detectedPlayer;
+            set
+            {
+                detectedPlayer = value;
+                shootState.SetTarget(value);
+            }
+        }
+        
         // States
         private PatrolState<int> patrolState;
         private AlertState<int> alertState;
         private AttackStartState<int> attackStartState;
-        
+        private ShootState<int> shootState;
+
         private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
         private void Awake()
@@ -40,6 +62,9 @@ namespace Code.Scripts.Enemy
             fov.ToggleFindingTargets(true);
         }
 
+        /// <summary>
+        /// Initialize the Finite State Machine with all states and transitions.
+        /// </summary>
         private void InitFsm()
         {
             fsm = new FiniteStateMachine<int>();
@@ -47,20 +72,40 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, ProjectileEnemySettings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
+            shootState = new ShootState<int>(3, "ShootState", 1, shootTimerSettings, projectileLauncher);
             
             fsm.AddState(patrolState);
+            fsm.AddState(alertState);
+            fsm.AddState(attackStartState);
+            fsm.AddState(shootState);
             
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > ProjectileEnemySettings.alertValue);
             
             fsm.AddTransition(alertState, attackStartState, () => IsAttackTransitionable());
-            fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null);
-            fsm.AddTransition(attackStartState, patrolState, () => !attackStartState.Active && detectedPlayer != null);
+            fsm.AddTransition(alertState, patrolState, () => DetectedPlayer == null);
+            
+            fsm.AddTransition(attackStartState, shootState, () => !attackStartState.Active && DetectedPlayer != null);
+            fsm.AddTransition(attackStartState, patrolState, () => !attackStartState.Active);
             
             fsm.SetCurrentState(patrolState);
             
             fsm.Init();
         }
-        
+
+        private void OnEnable()
+        {
+            shootState.onTimerEnded += OnTimerStateEndedHandler;
+        }
+
+        /// <summary>
+        /// Handles the timer ending event for the shoot state.
+        /// </summary>
+        /// <param name="nextId">The ID of the next state to transition to.</param>
+        private void OnTimerStateEndedHandler(int nextId)
+        {
+            fsm.SetCurrentState(fsm.GetState(nextId));
+        }
+
         private void Update()
         {
             fsm.Update();
@@ -69,8 +114,6 @@ namespace Code.Scripts.Enemy
             CheckFieldOfView();
             UpdateAnimationState();
             ReleaseAttack();
-            
-            state = fsm.GetCurrentState().Name;
         }
         
         private void FixedUpdate()
@@ -86,6 +129,9 @@ namespace Code.Scripts.Enemy
             animator.SetInteger(CharacterState, fsm.GetCurrentState().ID);
         }
 
+        /// <summary>
+        /// Checks the field of view and updates the suspect meter accordingly.
+        /// </summary>
         private void CheckFieldOfView()
         {
             if (fov.visibleTargets.Count <= 0)
@@ -94,8 +140,8 @@ namespace Code.Scripts.Enemy
             }
             else
             {
-                detectedPlayer = fov.visibleTargets[0];
-                alertState.SetTarget(detectedPlayer);
+                DetectedPlayer = fov.visibleTargets[0];
+                alertState.SetTarget(DetectedPlayer);
 
                 suspectMeter += suspectUnit *
                                 Mathf.Clamp(
@@ -104,7 +150,7 @@ namespace Code.Scripts.Enemy
 
                 if (suspectMeter < ProjectileEnemySettings.alertValue)
                 {
-                    detectedPlayer = null;
+                    DetectedPlayer = null;
                     suspectMeterSprite.color = Color.white;
                 }
             }
@@ -192,10 +238,18 @@ namespace Code.Scripts.Enemy
             // }
         }
         
+        /// <summary>
+        /// Checks if the enemy can transition to an attack state from its current state.
+        /// </summary>
+        /// <returns>True if the enemy can transition to an attack state, false otherwise.</returns>
+        /// <remarks>
+        /// An attack state can be transitioned to if the enemy has a detected player and the distance
+        /// between the enemy and the detected player is within the alert attack distance.
+        /// </remarks>
         private bool IsAttackTransitionable()
         {
-            if (detectedPlayer != null)
-                    return Vector3.Distance(transform.position, detectedPlayer.position) < ProjectileEnemySettings.alertSettings.alertAttackUpDistance;
+            if (DetectedPlayer != null)
+                    return Vector3.Distance(transform.position, DetectedPlayer.position) < ProjectileEnemySettings.alertSettings.alertAttackUpDistance;
 
             return false;
         }

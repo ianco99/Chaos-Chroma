@@ -10,6 +10,8 @@ namespace Code.Scripts.Attack
     /// </summary>
     public class ProjectileLauncher : MonoBehaviour
     {
+        private static GameObject _projectiles;
+
         [Header("Settings")] [SerializeField] private int bullets;
         [SerializeField] private Projectile projectile;
 
@@ -25,7 +27,13 @@ namespace Code.Scripts.Attack
 
         private void Awake()
         {
-            pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeFromPool, OnReturnedToPool);
+            pool = new ObjectPool<Projectile>(CreateProjectile, OnTakeFromPool, OnReturnedToPool,
+                OnProjectileDestroyed);
+        }
+
+        private void Update()
+        {
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, aim);
         }
 
         /// <summary>
@@ -56,10 +64,23 @@ namespace Code.Scripts.Attack
         /// <returns>A new Projectile instance.</returns>
         private Projectile CreateProjectile()
         {
-            Projectile instance = Instantiate(projectile, transform);
+            if (_projectiles == null)
+                _projectiles = new GameObject("Projectiles");
+
+            Projectile instance = Instantiate(projectile, _projectiles.transform);
             instance.EndProjectile += OnProjectileEndProjectile;
 
             return instance;
+        }
+
+        /// <summary>
+        /// Called when a projectile is destroyed.
+        /// Unsubscribes from projectile events to prevent memory leaks.
+        /// </summary>
+        /// <param name="obj">The projectile that was destroyed.</param>
+        private void OnProjectileDestroyed(Projectile obj)
+        {
+            obj.EndProjectile -= OnProjectileEndProjectile;
         }
 
         /// <summary>
@@ -69,7 +90,8 @@ namespace Code.Scripts.Attack
         /// <param name="obj">The projectile that hit something.</param>
         private void OnProjectileEndProjectile(Projectile obj)
         {
-            pool.Release(obj);
+            if (obj.gameObject.activeSelf)
+                pool.Release(obj);
         }
 
         /// <summary>
@@ -77,6 +99,11 @@ namespace Code.Scripts.Attack
         /// </summary>
         public void Shoot()
         {
+            if (bullets <= 0)
+                return;
+
+            bullets--;
+
             Vector2 inhVel = holderRb != null ? holderRb.velocity : Vector2.zero;
 
             pool.Get().Shoot(aim, projectileSettingsList[Random.Range(0, projectileSettingsList.Count)], inhVel);

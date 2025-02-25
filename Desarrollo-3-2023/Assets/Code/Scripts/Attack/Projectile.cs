@@ -14,9 +14,9 @@ namespace Code.Scripts.Attack
         [SerializeField] private Rigidbody2D rb;
 
         private ProjectileSettings settings;
-        
+
         public event Action<Projectile> EndProjectile;
-        
+
         /// <summary>
         /// Shoot a projectile in the given direction with the given settings and inherited velocity.
         /// </summary>
@@ -26,25 +26,30 @@ namespace Code.Scripts.Attack
         public void Shoot(Vector2 aim, ProjectileSettings settings, Vector2 inheritedVel)
         {
             rb.velocity = inheritedVel;
-            
+
             this.settings = settings;
-            
+
             transform.rotation = Quaternion.LookRotation(Vector3.forward, aim);
             transform.Rotate(Vector3.forward, Random.Range(-settings.accuracyModifier, settings.accuracyModifier));
-            
+
             rb.AddForce(transform.up * settings.speed * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
             StartCoroutine(WaitAndDestroy(settings.lifeTime));
         }
-        
-        private void OnCollisionEnter2D(Collision2D col)
+
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.gameObject.TryGetComponent(out Damageable damageable))
-                damageable.TakeDamage(settings.damage, transform.position);
+            if (!col.gameObject.TryGetComponent(out Damageable damageable)) return;
+
+            if (!damageable.TakeDamage(settings.damage, transform.position))
+            {
+                rb.velocity *= -1f;
+                return;
+            }
 
             EndProjectile?.Invoke(this);
         }
-        
+
         /// <summary>
         /// Waits for the given time and then destroys the projectile.
         /// </summary>
@@ -53,7 +58,7 @@ namespace Code.Scripts.Attack
         private IEnumerator WaitAndDestroy(float time)
         {
             yield return new WaitForSeconds(time);
-            
+
             EndProjectile?.Invoke(this);
         }
     }

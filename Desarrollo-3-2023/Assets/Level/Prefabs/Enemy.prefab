@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 278413393925353619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.08, y: 1.4599999, z: 0}
-  m_LocalScale: {x: 2.104766, y: 0.87, z: 1}
+  m_LocalScale: {x: 1.7471662, y: 0.87, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4819109336555100032}
@@ -92,13 +92,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitDelay: 0.1
+  hitDelay: 0.15
   hitDuration: 0.5
   finishByDuration: 1
-  sprite: {fileID: 3345122283381070433}
-  attacker: {fileID: 0}
-  characterOutline: {fileID: 0}
-  objectiveColor: {r: 0.1882353, g: 0.6156863, b: 0.7294118, a: 1}
+  sprite: {fileID: 0}
+  attacker: {fileID: 4819109336555100032}
+  characterOutline: {fileID: 8320540901993013661}
+  objectiveColor: {r: 0.6627451, g: 0.1882353, b: 0.7294118, a: 1}
 --- !u!212 &3345122283381070433
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   - trans: {fileID: 5850806394402431521}
     sprite: {fileID: 8320540901993013661}
     transformFlip: 0
+  settings: {fileID: 11400000, guid: 4c0ae0d5a229eaa4c8eb801f79170928, type: 2}
   startingState: 0
   hitsManager: {fileID: 8638102827480609628}
   fov: {fileID: 2620014508958615141}
@@ -270,7 +271,6 @@ MonoBehaviour:
   attackDelay: 0.45
   damagedTime: 2
   animator: {fileID: 2065283345791218431}
-  settings: {fileID: 11400000, guid: 4c0ae0d5a229eaa4c8eb801f79170928, type: 2}
 --- !u!114 &3832601685886080571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,7 +915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitObjects:
   - {fileID: 8036446102372292097}
-  - {fileID: 8036446102372292097}
+  - {fileID: 278413393925353619}
   - {fileID: 278413393925353619}
 --- !u!1001 &6515923542060626249
 PrefabInstance:

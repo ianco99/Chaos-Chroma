@@ -42,7 +42,8 @@ namespace Code.Scripts.Player
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private GameObject pauseCanvas;
         [SerializeField] private float burstStrength = 10f;
-        
+        [SerializeField] private float moveDeadzone = .5f;
+
         [Header("StateSettings")]
         [SerializeField] private MoveSettings moveSettings;
         [SerializeField] private JumpStartSettings jumpStartSettings;
@@ -339,10 +340,10 @@ namespace Code.Scripts.Player
         /// <param name="input"></param>
         private void CheckMoving(Vector2 input)
         {
-            if (input.x != 0 || input.y != 0)
+            if (Mathf.Abs(input.x) > moveDeadzone)
             {    
                 movementState.Enter();
-                if (isWalking == false)
+                if (!isWalking)
                     isWalking = true;
             }
 

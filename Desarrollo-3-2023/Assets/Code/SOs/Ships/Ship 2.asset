@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 60f4d859323c71f4ab2981f8ca1392a3, type: 3}
   position:
-    min: 2.5
-    max: 10
+    min: 0
+    max: 7.5
   speed:
     min: 15
     max: 25

@@ -12,12 +12,30 @@ namespace Code.Scripts.Spawn
 
         private float speed;
         
-        public event Action<Ship> Return;
+        private static UnityEngine.Camera _mainCam;
+
+        private static int _id;
+        
+        public int ID { get; private set; }
+
+        private void Start()
+        {
+            if (!_mainCam)
+                _mainCam = UnityEngine.Camera.main;
+        }
+
+        public void Initialize()
+        {
+            ID = _id;
+
+            _id++;
+            
+            gameObject.name = "Ship " + ID;
+        }
 
         private void Update()
         {
             Move();
-            CheckPosition();
         }
 
         /// <summary>
@@ -37,14 +55,11 @@ namespace Code.Scripts.Spawn
         /// Checks the current position of the ship and invokes the Return event
         /// if the ship's local x position is less than the variant's destroy position.
         /// </summary>
-        private void CheckPosition()
+        public bool ShouldReturn()
         {
-            if (transform.localPosition.x < ShipVariants.DestroyPos)
-                Return?.Invoke(this);
+            float screenPosX = _mainCam.WorldToScreenPoint(transform.position).x;
 
-            Vector3 vector3 = transform.localPosition;
-            vector3.x = 0f;
-            transform.localPosition = vector3;
+            return screenPosX > 2f * Screen.width;
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Code.Scripts.SOs.Level;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -15,15 +15,23 @@ namespace Code.Scripts.Spawn
     {
         private static ObjectPool<Ship> _pool;
 
+        private static UnityEngine.Camera MainCam => UnityEngine.Camera.main;
+
         [Header("SpawnSettings")] [SerializeField]
         private int maxWave = 5;
+
         [SerializeField] private float minWaitTime = .5f;
         [SerializeField] private float maxWaitTime = 3f;
+        
+        [Header("PositionSettings")] [SerializeField]
+        private float positionOffset = -5f;
 
         [Header("References")] [SerializeField]
         private Ship ship;
-
+        
         [SerializeField] private List<ShipVariants> variants;
+
+        private List<Ship> activeShips = new();
 
         private bool spawn = true;
 
@@ -42,6 +50,17 @@ namespace Code.Scripts.Spawn
             StartCoroutine(SpawnLoop());
         }
 
+        private void Update()
+        {
+            Vector3 vector3 = transform.position;
+            vector3.x = MainCam.transform.position.x + positionOffset;
+            
+            transform.position = vector3;
+            
+            foreach (Ship activeShip in activeShips.Where(activeShip => activeShip.ShouldReturn()).ToList())
+                _pool.Release(activeShip);
+        }
+
         /// <summary>
         /// Called when a ship is returned to the pool.
         /// Disables the ship's game object and unsubscribes from the Return event.
@@ -49,8 +68,8 @@ namespace Code.Scripts.Spawn
         /// <param name="obj">The ship being returned to the pool.</param>
         private void OnReturnedToPool(Ship obj)
         {
-            ship.Return -= OnReturnShip;
-
+            activeShips.Remove(obj);
+            
             obj.gameObject.SetActive(false);
         }
 
@@ -61,11 +80,9 @@ namespace Code.Scripts.Spawn
         /// <param name="obj">The ship being taken from the pool.</param>
         private void OnTakeFromPool(Ship obj)
         {
-            obj.gameObject.SetActive(true);
-
-            ship.Return += OnReturnShip;
-
             obj.SetVariant(variants[Random.Range(0, variants.Count)]);
+
+            obj.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -76,18 +93,12 @@ namespace Code.Scripts.Spawn
         private Ship CreateShip()
         {
             ship = Instantiate(ship, transform);
-
+            
+            ship.Initialize();
+            
+            ship.gameObject.SetActive(false);
+            
             return ship;
-        }
-
-        /// <summary>
-        /// Called when a ship returns to the spawner.
-        /// Releases the ship back into the pool so it can be reused.
-        /// </summary>
-        /// <param name="obj">The ship that returned to the spawner.</param>
-        private void OnReturnShip(Ship obj)
-        {
-            _pool.Release(obj);
         }
 
         /// <summary>
@@ -98,10 +109,10 @@ namespace Code.Scripts.Spawn
         {
             while (spawn)
             {
-                int waveSize = Random.Range(0, maxWave);
+                int waveSize = Random.Range(1, maxWave);
 
                 for (int i = 0; i < waveSize; i++)
-                    _pool.Get();
+                    activeShips.Add(_pool.Get());
 
                 yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
             }

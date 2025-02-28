@@ -19,7 +19,8 @@ namespace Code.Scripts.Attack
         [SerializeField] private Transform attacker;
         [SerializeField] private SpriteRenderer characterOutline;
         [SerializeField] private Color objectiveColor;
-                
+        [SerializeField] private bool showHitBox;
+        
         public event Action OnParried;
         
         private readonly List<Damageable> hitObjects = new();
@@ -85,7 +86,7 @@ namespace Code.Scripts.Attack
         {
             yield return new WaitForSeconds(hitDelay);
             
-            if (sprite)
+            if (sprite && showHitBox)
                 sprite.enabled = true;
             
             started = true;

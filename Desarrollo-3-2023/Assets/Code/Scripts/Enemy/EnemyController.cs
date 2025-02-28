@@ -105,7 +105,7 @@ namespace Code.Scripts.Enemy
             attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", EnemySettings.attackStartSettings,
                 outline);
             attackEndState =
-                new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject);
+                new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject, this);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
                 EnemySettings.damagedSettings, rb);
             parriedState = new DamagedState<EnemyStates>(EnemyStates.Parried, "ParriedState", EnemyStates.Block, EnemySettings.parriedSettings, rb);

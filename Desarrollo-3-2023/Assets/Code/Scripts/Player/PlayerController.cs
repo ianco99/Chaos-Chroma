@@ -42,7 +42,8 @@ namespace Code.Scripts.Player
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private GameObject pauseCanvas;
         [SerializeField] private float burstStrength = 10f;
-        
+        [SerializeField] private float moveDeadzone = .5f;
+
         [Header("StateSettings")]
         [SerializeField] private MoveSettings moveSettings;
         [SerializeField] private JumpStartSettings jumpStartSettings;
@@ -92,7 +93,7 @@ namespace Code.Scripts.Player
             attackStartState =
                 new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", attackStartSettings,
                     outline);
-            attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit, playEspada);
+            attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit, this, playEspada);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parrySettings);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
             jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, playJump, trans, rb);
@@ -339,10 +340,10 @@ namespace Code.Scripts.Player
         /// <param name="input"></param>
         private void CheckMoving(Vector2 input)
         {
-            if (input.x != 0 || input.y != 0)
+            if (Mathf.Abs(input.x) > moveDeadzone)
             {    
                 movementState.Enter();
-                if (isWalking == false)
+                if (!isWalking)
                     isWalking = true;
             }
 

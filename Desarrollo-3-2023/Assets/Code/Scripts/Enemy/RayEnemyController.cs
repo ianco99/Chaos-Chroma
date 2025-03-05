@@ -42,11 +42,40 @@ namespace Code.Scripts.Enemy
         {
             fsm.Update();
 
+            CheckRotation();
         }
 
         private void FixedUpdate()
         {
             fsm.FixedUpdate();
+        }
+
+        private void CheckRotation()
+        {
+            if (fsm.GetCurrentState() == patrolState)
+            {
+                switch (patrolState.dir.x)
+                {
+                    case > 0:
+                        {
+                            if (!facingRight)
+                            {
+                                Flip();
+                            }
+
+                            break;
+                        }
+                    case < 0:
+                        {
+                            if (facingRight)
+                            {
+                                Flip();
+                            }
+
+                            break;
+                        }
+                }
+            }
         }
     }
 }

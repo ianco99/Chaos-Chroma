@@ -25,6 +25,8 @@ namespace Code.Scripts.Enemy
         Death
     }
 
+//TODO: Fsm should subscribe to update method of the monobehaviour. States behaviours should not be in this script. Keep update function lightweight
+//I've designed a refactor for this class, it's in Ian's phone.
     public class EnemyController : BaseEnemyController
     {
         [SerializeField] private EnemyStates startingState;

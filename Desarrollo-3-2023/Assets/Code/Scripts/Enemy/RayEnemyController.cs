@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Code.Scripts.Enemy
 {
@@ -29,6 +30,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float damagedTime = 2.0f;
         [SerializeField] private SpriteRenderer suspectMeterSprite;
         [SerializeField] private SpriteMask suspectMeterMask;
+        [SerializeField] private SpriteRenderer outline;
 
         private Transform detectedPlayer;
 
@@ -44,6 +46,7 @@ namespace Code.Scripts.Enemy
 
         private PatrolState<int> patrolState;
         private AlertState<int> alertState;
+        private AttackStartState<int> attackStartState;
 
 
 
@@ -60,11 +63,16 @@ namespace Code.Scripts.Enemy
 
             patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings, groundCheckPoint);
+            attackStartState = new AttackStartState<int>(2, "AttackStart", rayEnemySettings.attackStartSettings, outline);
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
 
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > rayEnemySettings.alertValue);
+
+            fsm.AddTransition(alertState, attackStartState, IsAttackTransitionable);
+            fsm.AddTransition(alertState, patrolState, () => !DetectedPlayer);
+
             //fsm.AddTransition(alertState, attackStartState,
             //    () => IsAttackTransitionable());
             //fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
@@ -150,7 +158,6 @@ namespace Code.Scripts.Enemy
             if (fov.visibleTargets.Count <= 0)
             {
                 suspectMeter -= suspectUnit * Time.deltaTime;
-                Debug.Log("no hay nada amigo");
             }
             else
             {
@@ -188,6 +195,24 @@ namespace Code.Scripts.Enemy
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
+        }
+
+        /// <summary>
+        /// Checks if the enemy can transition to an attack state from its current state.
+        /// </summary>
+        /// <returns>True if the enemy can transition to an attack state, false otherwise.</returns>
+        /// <remarks>
+        /// An attack state can be transitioned to if the enemy has a detected player and the distance
+        /// between the enemy and the detected player is within the alert attack distance.
+        /// </remarks>
+        private bool IsAttackTransitionable()
+        {
+            if (Vector3.Distance(transform.position, DetectedPlayer.position) < rayEnemySettings.alertSettings.alertAttackUpDistance) Debug.Log("attacking");
+
+            if (DetectedPlayer != null)
+                return Vector3.Distance(transform.position, DetectedPlayer.position) < rayEnemySettings.alertSettings.alertAttackUpDistance;
+
+            return false;
         }
     }
 }

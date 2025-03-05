@@ -1,3 +1,6 @@
+using Code.FOV;
+using Code.Scripts.Attack;
+using Code.Scripts.States;
 using Code.SOs.Enemy;
 using Patterns.FSM;
 using System.Collections;
@@ -17,12 +20,38 @@ namespace Code.Scripts.Enemy
         private RayEnemySettings rayEnemySettings => settings as RayEnemySettings;
 
         [SerializeField] private Transform groundCheckPoint;
+        [SerializeField] private FieldOfView fov;
+
+        [Header("Suspect")]
+        [SerializeField] private float suspectMeter;
+        [SerializeField] private float suspectUnit = 0.5f;
+        [SerializeField] private float attackDelay = 0.2f;
+        [SerializeField] private float damagedTime = 2.0f;
+        [SerializeField] private SpriteRenderer suspectMeterSprite;
+        [SerializeField] private SpriteMask suspectMeterMask;
+
+        private Transform detectedPlayer;
+
+        private Transform DetectedPlayer
+        {
+            get => detectedPlayer;
+            set
+            {
+                detectedPlayer = value;
+                //shootState.SetTarget(value);
+            }
+        }
 
         private PatrolState<int> patrolState;
+        private AlertState<int> alertState;
+
+
 
         private void Awake()
         {
             InitFSM();
+
+            fov.ToggleFindingTargets(true);
         }
 
         private void InitFSM()
@@ -30,8 +59,20 @@ namespace Code.Scripts.Enemy
             fsm = new FiniteStateMachine<int>();
 
             patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
+            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings, groundCheckPoint);
 
             fsm.AddState(patrolState);
+            fsm.AddState(alertState);
+
+            fsm.AddTransition(patrolState, alertState, () => suspectMeter > rayEnemySettings.alertValue);
+            //fsm.AddTransition(alertState, attackStartState,
+            //    () => IsAttackTransitionable());
+            //fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
+            //fsm.AddTransition(attackStartState, attackEndState,
+            //    () => !attackStartState.Active && detectedPlayer != null);
+            //fsm.AddTransition(attackEndState, alertState,
+            //    () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
+
 
             fsm.SetCurrentState(patrolState);
 
@@ -43,6 +84,8 @@ namespace Code.Scripts.Enemy
             fsm.Update();
 
             CheckRotation();
+            CheckFieldOfView();
+
         }
 
         private void FixedUpdate()
@@ -76,6 +119,75 @@ namespace Code.Scripts.Enemy
                         }
                 }
             }
+            else if (fsm.GetCurrentState() == alertState)
+            {
+                switch (alertState.dir.x)
+                {
+                    case > 0:
+                        {
+                            if (!facingRight)
+                            {
+                                Flip();
+                            }
+
+                            break;
+                        }
+                    case < 0:
+                        {
+                            if (facingRight)
+                            {
+                                Flip();
+                            }
+
+                            break;
+                        }
+                }
+            }
+        }
+
+        private void CheckFieldOfView()
+        {
+            if (fov.visibleTargets.Count <= 0)
+            {
+                suspectMeter -= suspectUnit * Time.deltaTime;
+                Debug.Log("no hay nada amigo");
+            }
+            else
+            {
+                detectedPlayer = fov.visibleTargets[0];
+                alertState.SetTarget(detectedPlayer);
+
+                suspectMeter += suspectUnit *
+                                Mathf.Clamp(
+                                    fov.viewRadius - Vector3.Distance(fov.visibleTargets[0].transform.position,
+                                        transform.position), 0, fov.viewRadius) * Time.deltaTime;
+
+                if (suspectMeter < rayEnemySettings.alertValue)
+                {
+
+                    detectedPlayer = null;
+                    suspectMeterSprite.color = Color.white;
+                }
+            }
+
+            if (suspectMeter >= rayEnemySettings.alertValue)
+            {
+                suspectMeterSprite.color = Color.yellow;
+            }
+
+            else if (suspectMeter < rayEnemySettings.suspectMeterMaximum)
+            {
+                suspectMeterSprite.color = Color.white;
+            }
+
+            suspectMeter = Mathf.Clamp(suspectMeter, rayEnemySettings.suspectMeterMinimum, rayEnemySettings.suspectMeterMaximum);
+
+
+            var normalizedSuspectMeter = (suspectMeter - (rayEnemySettings.suspectMeterMinimum)) /
+                                         ((rayEnemySettings.suspectMeterMaximum) - (rayEnemySettings.suspectMeterMinimum));
+
+            suspectMeterMask.transform.localPosition = new Vector3(0.0f,
+                Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
         }
     }
 }

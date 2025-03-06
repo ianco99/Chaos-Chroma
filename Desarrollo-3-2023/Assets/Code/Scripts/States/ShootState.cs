@@ -1,4 +1,4 @@
-using Code.Scripts.Attack;
+using Code.Scripts.Abstracts;
 using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
@@ -11,29 +11,29 @@ namespace Code.Scripts.States
     /// <typeparam name="T"></typeparam>
     public class ShootState<T> : TimerTransitionState<T>
     {
-        private readonly ProjectileLauncher projectileLauncher;
+        private readonly IShooter shooter;
         
         private Transform target;
 
-        public ShootState(T id, string name, T nextStateID, TimerSettings timerSettings, ProjectileLauncher projectileLauncher) : base(id, name, nextStateID, timerSettings)
+        public ShootState(T id, string name, T nextStateID, TimerSettings timerSettings, IShooter shooter) : base(id, name, nextStateID, timerSettings)
         {
-            this.projectileLauncher = projectileLauncher;
+            this.shooter = shooter;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
             
-            projectileLauncher.SetAim(target.position - projectileLauncher.transform.position);
+            shooter.SetAim(target.position - shooter.GetTransform().position);
 
-            projectileLauncher.Shoot();
+            shooter.Shoot();
         }
 
         public override void OnExit()
         {
             base.OnExit();
             
-            projectileLauncher.transform.rotation = Quaternion.identity;
+            shooter.GetTransform().rotation = Quaternion.identity;
         }
         
         /// <summary>

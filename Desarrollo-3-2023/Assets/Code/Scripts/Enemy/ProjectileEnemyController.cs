@@ -1,4 +1,5 @@
 using Code.FOV;
+using Code.Scripts.Abstracts;
 using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
@@ -20,7 +21,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private Animator animator;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteRenderer outline;
-        [SerializeField] private ProjectileLauncher projectileLauncher;
+        [SerializeField] private ProjectileLauncher shooter;
         [SerializeField] private Damageable damageable;
         
         [Header("Suspect")]
@@ -74,7 +75,7 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, ProjectileEnemySettings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", alertState.ID, ProjectileEnemySettings.shootTimerSettings, projectileLauncher);
+            shootState = new ShootState<int>(3, "ShootState", alertState.ID, ProjectileEnemySettings.shootTimerSettings, shooter);
             damagedState = new DamagedState<int>(4, "DamagedState", alertState.ID, ProjectileEnemySettings.damagedSettings, rb);
             deathState = new DeathState<int>(5, "DeathState", ProjectileEnemySettings.deathTimerSettings);
             

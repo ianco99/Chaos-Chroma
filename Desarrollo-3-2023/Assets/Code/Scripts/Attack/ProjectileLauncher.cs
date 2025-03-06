@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Code.Scripts.Abstracts;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
@@ -9,7 +10,7 @@ namespace Code.Scripts.Attack
     /// <summary>
     /// Projectile launcher component
     /// </summary>
-    public class ProjectileLauncher : MonoBehaviour
+    public class ProjectileLauncher : MonoBehaviour, IShooter
     {
         private static GameObject _projectiles;
 
@@ -125,5 +126,7 @@ namespace Code.Scripts.Attack
         /// </summary>
         /// <param name="aim">The direction to aim the projectile.</param>
         public void SetAim(Vector2 aim) => this.aim = aim;
+
+        public Transform GetTransform() => spawnPos.transform;
     }
 }

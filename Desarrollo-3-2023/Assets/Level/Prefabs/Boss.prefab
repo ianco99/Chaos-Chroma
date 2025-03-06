@@ -562,6 +562,7 @@ MonoBehaviour:
   attacker: {fileID: 7447287461447200753}
   characterOutline: {fileID: 0}
   objectiveColor: {r: 0, g: 0, b: 0, a: 0}
+  showHitBox: 0
 --- !u!1 &3333625459351967137
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +661,7 @@ MonoBehaviour:
   attacker: {fileID: 7447287461447200753}
   characterOutline: {fileID: 0}
   objectiveColor: {r: 0, g: 0, b: 0, a: 0}
+  showHitBox: 0
 --- !u!1 &3354471406429959078
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +999,7 @@ Transform:
   - {fileID: 4461748847753651257}
   - {fileID: 3840721248536089983}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6660972805920217182
 MonoBehaviour:
@@ -1018,6 +1020,7 @@ MonoBehaviour:
   - trans: {fileID: 4461748847753651257}
     sprite: {fileID: 0}
     transformFlip: 0
+  settings: {fileID: 0}
   initialState: Idle
   detectionArea: {fileID: 8796829815296455739}
   attackArea: {fileID: 1580397228942104752}
@@ -1025,8 +1028,6 @@ MonoBehaviour:
   rightPunch: {fileID: 5397680888766976982}
   leftRetrieve: {fileID: 1156298478108974962}
   rightRetrieve: {fileID: 112336210925785604}
-  leftHand: {fileID: 4748955373487805031}
-  rightHand: {fileID: 850656403992607110}
   leftHit: {fileID: 7406330644167445759}
   rightHit: {fileID: 97222697007980748}
   timerSettings: {fileID: 11400000, guid: f39254182e6fcea4c8a0b9c57505ca91, type: 2}
@@ -1436,6 +1437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LifeBar
       objectReference: {fileID: 0}
+    - target: {fileID: 5803107453142577440, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8125589277634878923, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.70147926
@@ -1553,7 +1558,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5803107453142577440, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6957f82b720fe0149969bee77e495eaa, type: 3}

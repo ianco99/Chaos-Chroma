@@ -10,9 +10,9 @@ namespace Code.Scripts.States
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ShootState<T> : TimerTransitionState<T>
-    {
+    {        
         private readonly IShooter shooter;
-        
+
         private Transform target;
 
         public ShootState(T id, string name, T nextStateID, TimerSettings timerSettings, IShooter shooter) : base(id, name, nextStateID, timerSettings)
@@ -23,7 +23,7 @@ namespace Code.Scripts.States
         public override void OnEnter()
         {
             base.OnEnter();
-            
+
             shooter.SetAim(target.position - shooter.GetTransform().position);
 
             shooter.Shoot();
@@ -32,10 +32,10 @@ namespace Code.Scripts.States
         public override void OnExit()
         {
             base.OnExit();
-            
+
             shooter.GetTransform().rotation = Quaternion.identity;
         }
-        
+
         /// <summary>
         /// Sets the target position for the projectile to aim at.
         /// </summary>

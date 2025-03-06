@@ -28,6 +28,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float attackDelay = 0.2f;
         [SerializeField] private float damagedTime = 2.0f;
+        [SerializeField] private RayLauncher rayLauncher;
         [SerializeField] private SpriteRenderer suspectMeterSprite;
         [SerializeField] private SpriteMask suspectMeterMask;
         [SerializeField] private SpriteRenderer outline;
@@ -40,14 +41,14 @@ namespace Code.Scripts.Enemy
             set
             {
                 detectedPlayer = value;
-                //shootState.SetTarget(value);
+                shootState.SetTarget(value);
             }
         }
 
         private PatrolState<int> patrolState;
         private AlertState<int> alertState;
         private AttackStartState<int> attackStartState;
-
+        private ShootState<int> shootState;
 
 
         private void Awake()
@@ -63,7 +64,8 @@ namespace Code.Scripts.Enemy
 
             patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings, groundCheckPoint);
-            attackStartState = new AttackStartState<int>(2, "AttackStart", rayEnemySettings.attackStartSettings, outline);
+            attackStartState = new AttackStartState<int>(2, "AttackStartState", rayEnemySettings.attackStartSettings, outline);
+            shootState = new ShootState<int>(3, "ShootState", 1, rayEnemySettings.shootTimerSettings, rayLauncher);
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
@@ -73,13 +75,7 @@ namespace Code.Scripts.Enemy
             fsm.AddTransition(alertState, attackStartState, IsAttackTransitionable);
             fsm.AddTransition(alertState, patrolState, () => !DetectedPlayer);
 
-            //fsm.AddTransition(alertState, attackStartState,
-            //    () => IsAttackTransitionable());
-            //fsm.AddTransition(alertState, patrolState, () => detectedPlayer == null && !turnedAggro);
-            //fsm.AddTransition(attackStartState, attackEndState,
-            //    () => !attackStartState.Active && detectedPlayer != null);
-            //fsm.AddTransition(attackEndState, alertState,
-            //    () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
+            fsm.AddTransition(attackStartState, shootState, () => !attackStartState.Active && DetectedPlayer);
 
 
             fsm.SetCurrentState(patrolState);
@@ -93,7 +89,7 @@ namespace Code.Scripts.Enemy
 
             CheckRotation();
             CheckFieldOfView();
-
+            ReleaseAttack();
         }
 
         private void FixedUpdate()
@@ -161,7 +157,7 @@ namespace Code.Scripts.Enemy
             }
             else
             {
-                detectedPlayer = fov.visibleTargets[0];
+                DetectedPlayer = fov.visibleTargets[0];
                 alertState.SetTarget(detectedPlayer);
 
                 suspectMeter += suspectUnit *
@@ -172,7 +168,7 @@ namespace Code.Scripts.Enemy
                 if (suspectMeter < rayEnemySettings.alertValue)
                 {
 
-                    detectedPlayer = null;
+                    DetectedPlayer = null;
                     suspectMeterSprite.color = Color.white;
                 }
             }
@@ -195,6 +191,17 @@ namespace Code.Scripts.Enemy
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
+        }
+
+        /// <summary>
+        /// Check if enemy is preparing an attack and release it
+        /// </summary>
+        private void ReleaseAttack()
+        {
+            if (fsm.GetCurrentState().ID == attackStartState.ID && attackStartState.Active)
+            {
+                attackStartState.Release();
+            }
         }
 
         /// <summary>

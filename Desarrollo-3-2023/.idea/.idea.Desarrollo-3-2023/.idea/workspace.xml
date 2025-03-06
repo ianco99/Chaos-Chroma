@@ -6,14 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Music/MusicController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Music/MusicController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/WinTrigger.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/WinTrigger.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level2.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/NextLevelTrigger.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/NextLevelTrigger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +99,7 @@
     "WebServerToolWindowFactoryState": "false",
     "XThreadsFramesViewSplitterKey": "0.94426227",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "fix-audio",
+    "git-widget-placeholder": "bug-fixing",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -225,7 +224,7 @@
       <workItem from="1740493515590" duration="4825000" />
       <workItem from="1740516026396" duration="5375000" />
       <workItem from="1740682724983" duration="2138000" />
-      <workItem from="1741293105301" duration="3654000" />
+      <workItem from="1741293105301" duration="4657000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />

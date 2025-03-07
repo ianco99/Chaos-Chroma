@@ -16,14 +16,14 @@ namespace Code.Scripts.Enemy
         private FiniteStateMachine<int> fsm;
 
         private ProjectileEnemySettings ProjectileEnemySettings => settings as ProjectileEnemySettings;
-        
+
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private Animator animator;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private ProjectileLauncher shooter;
         [SerializeField] private Damageable damageable;
-        
+
         [Header("Suspect")]
         [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
@@ -33,7 +33,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private SpriteMask suspectMeterMask;
 
         private Transform detectedPlayer;
-        
+
         private Transform DetectedPlayer
         {
             get => detectedPlayer;
@@ -43,7 +43,7 @@ namespace Code.Scripts.Enemy
                 shootState.SetTarget(value);
             }
         }
-        
+
         // States
         private PatrolState<int> patrolState;
         private AlertState<int> alertState;
@@ -57,9 +57,9 @@ namespace Code.Scripts.Enemy
         private void Awake()
         {
             InitFsm();
-            
+
             fov.ToggleFindingTargets(true);
-            
+
             damageable.OnTakeDamage += OnTakeDamageHandler;
             damagedState.onTimerEnded += OnTimerStateEndedHandler;
             deathState.onTimerEnded += () => Destroy(gameObject);
@@ -71,31 +71,31 @@ namespace Code.Scripts.Enemy
         private void InitFsm()
         {
             fsm = new FiniteStateMachine<int>();
-            
+
             patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, ProjectileEnemySettings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
             shootState = new ShootState<int>(3, "ShootState", alertState.ID, ProjectileEnemySettings.shootTimerSettings, shooter);
             damagedState = new DamagedState<int>(4, "DamagedState", alertState.ID, ProjectileEnemySettings.damagedSettings, rb);
             deathState = new DeathState<int>(5, "DeathState", ProjectileEnemySettings.deathTimerSettings);
-            
+
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
             fsm.AddState(attackStartState);
             fsm.AddState(shootState);
             fsm.AddState(damagedState);
             fsm.AddState(deathState);
-            
+
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > ProjectileEnemySettings.alertValue);
-            
+
             fsm.AddTransition(alertState, attackStartState, IsAttackTransitionable);
             fsm.AddTransition(alertState, patrolState, () => !DetectedPlayer);
-            
+
             fsm.AddTransition(attackStartState, shootState, () => !attackStartState.Active && DetectedPlayer);
             fsm.AddTransition(attackStartState, patrolState, () => !attackStartState.Active);
-            
+
             fsm.SetCurrentState(patrolState);
-            
+
             fsm.Init();
         }
 
@@ -116,18 +116,18 @@ namespace Code.Scripts.Enemy
         private void Update()
         {
             fsm.Update();
-            
+
             CheckRotation();
             CheckFieldOfView();
             UpdateAnimationState();
             ReleaseAttack();
         }
-        
+
         private void FixedUpdate()
         {
             fsm.FixedUpdate();
         }
-        
+
         /// <summary>
         /// Sets the parameter for the animator states
         /// </summary>
@@ -217,7 +217,7 @@ namespace Code.Scripts.Enemy
                             {
                                 Flip();
                             }
-            
+
                             break;
                         }
                     case < 0:
@@ -226,7 +226,7 @@ namespace Code.Scripts.Enemy
                             {
                                 Flip();
                             }
-            
+
                             break;
                         }
                 }
@@ -244,7 +244,7 @@ namespace Code.Scripts.Enemy
             //     }
             // }
         }
-        
+
         /// <summary>
         /// Checks if the enemy can transition to an attack state from its current state.
         /// </summary>
@@ -256,7 +256,7 @@ namespace Code.Scripts.Enemy
         private bool IsAttackTransitionable()
         {
             if (DetectedPlayer != null)
-                    return Vector3.Distance(transform.position, DetectedPlayer.position) < ProjectileEnemySettings.alertSettings.alertAttackUpDistance;
+                return Vector3.Distance(transform.position, DetectedPlayer.position) < ProjectileEnemySettings.alertSettings.alertAttackUpDistance;
 
             return false;
         }
@@ -271,7 +271,7 @@ namespace Code.Scripts.Enemy
                 attackStartState.Release();
             }
         }
-        
+
         private void OnTakeDamageHandler(Vector2 origin)
         {
             if (damageable.GetLife() <= 0)

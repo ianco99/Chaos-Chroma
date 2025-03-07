@@ -7,13 +7,13 @@ namespace Code.Scripts.Menus
     {
         [SerializeField] private GameObject winScreen;
         [SerializeField] private GameObject loseScreen;
-
+        [SerializeField] private Animator animator;
+        
+        private static readonly int Won = Animator.StringToHash("Won");
+        
         private void Awake()
         {
-            if (GameManager.Won)
-                winScreen.SetActive(true);
-            else
-                loseScreen.SetActive(true);
+            animator.SetBool(Won, GameManager.Won);
         }
 
         public void Restart()

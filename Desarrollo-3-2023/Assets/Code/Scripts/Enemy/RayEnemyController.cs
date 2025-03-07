@@ -29,6 +29,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float attackDelay = 0.2f;
         [SerializeField] private float damagedTime = 2.0f;
         [SerializeField] private RayLauncher rayLauncher;
+        [SerializeField] private SpriteRenderer headSprite;
         [SerializeField] private SpriteRenderer suspectMeterSprite;
         [SerializeField] private SpriteMask suspectMeterMask;
         [SerializeField] private SpriteRenderer outline;
@@ -121,6 +122,7 @@ namespace Code.Scripts.Enemy
                             if (!facingRight)
                             {
                                 Flip();
+                                headSprite.flipX = true;
                             }
 
                             break;
@@ -130,6 +132,7 @@ namespace Code.Scripts.Enemy
                             if (facingRight)
                             {
                                 Flip();
+                                headSprite.flipX = false;
                             }
 
                             break;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5719339784242492743}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267608237537555984}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.34, z: 0}
+  m_LocalPosition: {x: 0, y: 0.553, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -103,7 +103,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 23c3717e6af341c41bf2434539d6b948, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,7 +135,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.11485624
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -178,7 +178,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -313,7 +313,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 19496782, guid: 22132380e002394498764d472f7cfce7, type: 3}
+  m_Sprite: {fileID: -476792485, guid: 39884baeb810ba54b855022abb4ab661, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 1
   m_FlipY: 0
@@ -398,7 +398,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c4612ae6040841341b48ae92a9e6cfff, type: 3}
+  m_Sprite: {fileID: -179475321, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -516,7 +516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6514862828763115849}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8999999, y: 0, z: 0}
+  m_LocalPosition: {x: -1.2, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -598,10 +598,11 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 2066278896924938667}
   fov: {fileID: 5742770265507020480}
   animator: {fileID: 7293920599139236263}
+  damageable: {fileID: 8464018664269154465}
   suspectMeter: 0
   suspectUnit: 30
-  attackDelay: 0.5
-  damagedTime: 0.45
+  attackDelay: 1.2
+  damagedTime: 0.9
   rayLauncher: {fileID: 3710052934808025113}
   headSprite: {fileID: 7562965955529428974}
   suspectMeterSprite: {fileID: 6167343064649016161}
@@ -619,7 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d992111b98cb44e9dbce588d1bb76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 100
+  startLife: 20
   lifeBar: {fileID: 2025513295940949060}
   parry: 0
   OnDeath: {fileID: 0}
@@ -741,7 +742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8397816728163076282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.213, z: 0}
   m_LocalScale: {x: 1, y: 1.187023, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -789,7 +790,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2097947004, guid: d29d8a432b9bdfa48810947dabf73c6e, type: 3}
+  m_Sprite: {fileID: -476792485, guid: 39884baeb810ba54b855022abb4ab661, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -959,11 +960,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459832129265988843, guid: 4dcc9e78d76965846858f5f9ee53c15d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.042017
       objectReference: {fileID: 0}
     - target: {fileID: 4459832129265988843, guid: 4dcc9e78d76965846858f5f9ee53c15d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.334
+      value: 1.267
       objectReference: {fileID: 0}
     - target: {fileID: 4459832129265988843, guid: 4dcc9e78d76965846858f5f9ee53c15d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -71,6 +71,9 @@ namespace Code.Scripts.Enemy
         {
             fsm = new FiniteStateMachine<int>();
 
+            Debug.Log(ProjectileEnemySettings);
+            Debug.Log(ProjectileEnemySettings.patrolSettings);
+
             patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform,
                 ProjectileEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform,

@@ -6,14 +6,15 @@ namespace Patterns.FSM
 {
     public class GodState<T> : MovementState<T>
     {
-        public GodState(T id, string name, GodSettings settings, Transform transform, Rigidbody2D rb) : base(id, name, settings.moveSettings, transform, rb)
+        public GodState(T id, string name, GodSettings settings, Transform transform, Rigidbody2D rb) : base(id, name,
+            settings.moveSettings, transform, rb)
         {
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            
+
             rb.isKinematic = true;
         }
 
@@ -29,6 +30,11 @@ namespace Patterns.FSM
             transform.Translate(dir * (Time.deltaTime * settings.speed));
         }
 
+        /// <summary>
+        /// Toggles the state between active and inactive.
+        /// When active, the state is entered and the god mode is activated.
+        /// When inactive, the state is exited and the god mode is deactivated.
+        /// </summary>
         public void Toggle()
         {
             if (Active)

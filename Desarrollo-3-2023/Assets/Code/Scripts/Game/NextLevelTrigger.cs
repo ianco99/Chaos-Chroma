@@ -9,10 +9,10 @@ namespace Code.Scripts.Game
     /// </summary>
     public class NextLevelTrigger : MonoBehaviour
     {
-        [SerializeField] private Animator anim;
+        [SerializeField] private UnityEngine.Animator anim;
         [SerializeField] private string levelName;
 
-        private static readonly int FadeIn = Animator.StringToHash("FadeIn");
+        private static readonly int FadeIn = UnityEngine.Animator.StringToHash("FadeIn");
 
         private void OnTriggerEnter2D(Collider2D other)
         {

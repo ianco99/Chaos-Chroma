@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Code.Scripts.Camera
 {
+    /// <summary>
+    /// Controls the camera
+    /// </summary>
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private Transform target;

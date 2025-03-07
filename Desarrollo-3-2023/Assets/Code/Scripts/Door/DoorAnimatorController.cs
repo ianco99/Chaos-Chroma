@@ -1,14 +1,17 @@
-using Code.Scripts.SOs.Animator;
+using Code.Scripts.Animator;
 using UnityEngine;
 
 namespace Code.Scripts.Door
 {
+    /// <summary>
+    /// Controls the animation of the door
+    /// </summary>
     public class DoorAnimatorController : MonoBehaviour
     {
         [SerializeField] private bool openDoor;
         [SerializeField] private bool closeDoor;
                 
-        [SerializeField] private Animator animator;
+        [SerializeField] private UnityEngine.Animator animator;
         [SerializeField] private string parameterName;
 
         private const string CloseState = "Close";
@@ -39,11 +42,17 @@ namespace Code.Scripts.Door
             }
         }
         
+        /// <summary>
+        /// Opens the door by setting the animator to the open state
+        /// </summary>
         public void OpenDoor()
         {
             animatorStateSetter.AnimatorSetValue(OpenState);
         }
         
+        /// <summary>
+        /// Closes the door by setting the animator to the close state.
+        /// </summary>
         public void CloseDoor()
         {
             animatorStateSetter.AnimatorSetValue(CloseState);

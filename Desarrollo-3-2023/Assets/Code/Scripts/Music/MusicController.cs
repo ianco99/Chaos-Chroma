@@ -5,6 +5,9 @@ using Event = AK.Wwise.Event;
 
 namespace Code.Scripts.Music
 {
+    /// <summary>
+    /// Controls the music
+    /// </summary>
     public class MusicController : MonoBehaviour
     {
         [SerializeField] private Event music;

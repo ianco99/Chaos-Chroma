@@ -21,7 +21,8 @@ namespace Code.Scripts.States
 
         public Vector2 dir;
 
-        public MovementState(T id, MoveSettings settings, Transform transform, Rigidbody2D rb, AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id)
+        public MovementState(T id, MoveSettings settings, Transform transform, Rigidbody2D rb,
+            AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id)
         {
             this.settings = settings;
             this.transform = transform;
@@ -31,7 +32,8 @@ namespace Code.Scripts.States
             this.stopFootstep = stopFootstep;
         }
 
-        public MovementState(T id, string name, MoveSettings settings, Transform transform, Rigidbody2D rb, AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id, name)
+        public MovementState(T id, string name, MoveSettings settings, Transform transform, Rigidbody2D rb,
+            AK.Wwise.Event playFootstep = null, AK.Wwise.Event stopFootstep = null) : base(id, name)
         {
             this.settings = settings;
             this.transform = transform;
@@ -58,7 +60,9 @@ namespace Code.Scripts.States
             Vector2 direction = transform.right * dir.x;
 
             if (dir.x == 0.0f)
-                rb.velocity = IsGrounded() ? new Vector2(0.0f, rb.velocity.y) : new Vector2(rb.velocity.x / 1.3f, rb.velocity.y);
+                rb.velocity = IsGrounded()
+                    ? new Vector2(0.0f, rb.velocity.y)
+                    : new Vector2(rb.velocity.x / 1.3f, rb.velocity.y);
             else
                 MoveInDirection(direction);
 
@@ -90,7 +94,10 @@ namespace Code.Scripts.States
         /// </summary>
         private void ClampSpeed()
         {
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -settings.speed * Time.fixedDeltaTime, settings.speed * Time.fixedDeltaTime), rb.velocity.y);
+            rb.velocity =
+                new Vector2(
+                    Mathf.Clamp(rb.velocity.x, -settings.speed * Time.fixedDeltaTime,
+                        settings.speed * Time.fixedDeltaTime), rb.velocity.y);
         }
 
         /// <summary>
@@ -104,13 +111,22 @@ namespace Code.Scripts.States
 
             Vector3 pos = transform.position + Vector3.down * 1f;
             Vector3 scale = transform.localScale;
-            RaycastHit2D hit = Physics2D.Raycast(pos + Vector3.up * settings.groundDistance, Vector2.down, settings.groundDistance * 2f, LayerMask.GetMask("Static", "Platform", "Default"));
+            RaycastHit2D hit = Physics2D.Raycast(pos + Vector3.up * settings.groundDistance, Vector2.down,
+                settings.groundDistance * 2f, LayerMask.GetMask("Static", "Platform", "Default"));
 
-            Debug.DrawLine(pos + Vector3.up * settings.groundDistance, pos + Vector3.down * settings.groundDistance, Color.red);
+            Debug.DrawLine(pos + Vector3.up * settings.groundDistance, pos + Vector3.down * settings.groundDistance,
+                Color.red);
 
             return hit.collider;
         }
 
+        /// <summary>
+        /// Checks if the object is grounded and plays or stops the footstep sound
+        /// </summary>
+        /// <remarks>
+        /// If the object is grounded, the footstep sound is played if it is not already playing.
+        /// If the object is not grounded, the footstep sound is stopped if it is playing.
+        /// </remarks>
         private void CheckSound()
         {
             if (playFootstep == null)

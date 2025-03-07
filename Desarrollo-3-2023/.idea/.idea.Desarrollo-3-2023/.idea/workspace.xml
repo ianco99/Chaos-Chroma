@@ -6,8 +6,83 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Character/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/IPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/IPublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/IShooter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/IShooter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/ISubscriber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/ISubscriber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/MonobehaviourSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/MonobehaviourSingleton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Publisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Publisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Subscriber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/Subscriber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/Damageable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/HitsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/ProjectileLauncher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/ProjectileLauncher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RayLauncher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Attack/RayLauncher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Camera/Target.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorAnimatorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorAnimatorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorCloser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Door/DoorCloser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Editor/Enemy/FieldOfViewEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Editor/Enemy/FieldOfViewEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BaseEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BaseEnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/BossController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/CooldownState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/CooldownState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/EnemyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/FieldOfView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/FieldOfView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/ProjectileEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/ProjectileEnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/RayEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/RayEnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/AlertState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/AlertState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/DamagedState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/DamagedState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PatrolState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Enemy/States/PatrolState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Events/FallTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Events/FallTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Events/InputEventSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Events/InputEventSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Events/WinTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Events/WinTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/BaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/BaseState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/FiniteStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/FiniteStateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/Transition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/FSM/Transition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Game/GameSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Game/GameSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Game/NextLevelTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Game/NextLevelTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Input/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Input/InputManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Input/InputTutorialSwitcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Input/InputTutorialSwitcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/LineRenderer/ChainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/LineRenderer/ChainController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/OptionsMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/OptionsMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/WinLoseScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Menus/WinLoseScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/WinLoseScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/WinLoseScreen.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Music/MusicController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Music/MusicController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/BasePickup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/BasePickup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/IPickup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/IPickup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/LifePickup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/LifePickup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/SpeedPickup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Pickup/SpeedPickup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Animator.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Animator.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Animator/AnimatorStateSetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Animator/AnimatorStateSetter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Animator/AnimatorStateSetter.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Animator/AnimatorStateSetter.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/BaseEnemySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/BaseEnemySettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/EnemySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/EnemySettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/ProjectileEnemySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/ProjectileEnemySettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/RayEnemySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Enemy/RayEnemySettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Level/ShipVariants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/Level/ShipVariants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/AlertSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/AlertSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/AttackStartSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/AttackStartSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/DamagedSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/DamagedSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/GodSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/GodSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/IAlertSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/IAlertSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/IPatrolSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/IPatrolSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/JumpEndSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/JumpEndSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/JumpStartSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/JumpStartSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/MoveSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/MoveSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/ParrySettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/ParrySettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/PatrolSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/PatrolSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/StunnedSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/StunnedSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/TimerSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SOs/States/TimerSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/EnemySpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Factory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Factory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Pool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Pool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Spawn/Ship.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/AttackEndState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/AttackEndState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/DeathState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/DeathState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/GodState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/GodState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/Settings/Interfaces/IKnockbackBlockSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/Settings/Interfaces/IKnockbackBlockSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/States/Settings/KnockbackBlockSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/States/Settings/KnockbackBlockSettings.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +169,7 @@
     "WebServerToolWindowFactoryState": "false",
     "XThreadsFramesViewSplitterKey": "0.94426227",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "delete-unused-assets",
+    "git-widget-placeholder": "docstring",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

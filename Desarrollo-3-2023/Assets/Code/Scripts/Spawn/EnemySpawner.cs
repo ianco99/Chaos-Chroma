@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Code.Scripts.Spawn
 {
+    /// <summary>
+    /// Spawns the enemies
+    /// </summary>
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private List<GameObject> prefabs;

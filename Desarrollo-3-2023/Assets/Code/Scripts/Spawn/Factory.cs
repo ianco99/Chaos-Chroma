@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 
 namespace Code.Scripts.Spawn
 {
+    /// <summary>
+    /// Spawns objects
+    /// </summary>
     public class Factory : Pool
     {
         [Header("Spawn Settings:")] [SerializeField]

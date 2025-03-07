@@ -1,3 +1,4 @@
+using Code.Scripts.Abstracts;
 using Code.Scripts.Input;
 using kuznickiEventChannel;
 using UnityEngine;
@@ -25,21 +26,34 @@ namespace Code.Scripts.Events
             InputManager.onJump += JumpJumpers;
         }
 
+        /// <summary>
+        /// Raises the move event channel with the given axis.
+        /// </summary>
+        /// <param name="axis">The axis to pass to the move event channel.</param>
         private void MoveCharacters(Vector2 axis)
         {
             onMoveChannel?.RaiseEvent(axis);
         }
 
+        /// <summary>
+        /// Raises the attack event channel.
+        /// </summary>
         private void AttackPressedAttackers()
         {
             onAttackChannel.RaiseEvent();
         }
     
+        /// <summary>
+        /// Raises the block event channel.
+        /// </summary>
         private void BlockBlockers()
         {
             onBlockChannel.RaiseEvent();
         }
 
+        /// <summary>
+        /// Raises the jump event channel.
+        /// </summary>
         private void JumpJumpers()
         {
             onJumpChannel.RaiseEvent();

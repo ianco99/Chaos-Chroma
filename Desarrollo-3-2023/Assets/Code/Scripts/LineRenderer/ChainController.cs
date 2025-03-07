@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Code.Scripts.LineRenderer
 {
+    /// <summary>
+    /// Controls the chain
+    /// </summary>
     public class ChainController : MonoBehaviour
     {
         [SerializeField] private Transform handTransform;

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Code.Scripts.SOs.Level
 {
+    /// <summary>
+    /// Settings for the ships
+    /// </summary>
     [CreateAssetMenu(menuName = "ScriptableObjects/Ship", fileName = "Ship", order = 0)]
     public class ShipVariants : ScriptableObject
     {

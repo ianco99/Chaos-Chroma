@@ -18,7 +18,8 @@ namespace Code.Scripts.States
         private bool isAttacking;
         private readonly MonoBehaviour mb;
 
-        public AttackEndState(T id, string name, GameObject hit, MonoBehaviour mb, AK.Wwise.Event playEspada = null) : base(id, name)
+        public AttackEndState(T id, string name, GameObject hit, MonoBehaviour mb, AK.Wwise.Event playEspada = null) :
+            base(id, name)
         {
             this.hit = hit;
             this.playEspada = playEspada;
@@ -80,9 +81,12 @@ namespace Code.Scripts.States
             hitsManager.SetDir(direction);
         }
 
+        /// <summary>
+        /// Waits until the character is no longer attacking, then sets the direction for the attack.
+        /// </summary>
         private IEnumerator WaitAndSetDir(Vector2 direction)
         {
-            yield return new WaitUntil(() =>!isAttacking);
+            yield return new WaitUntil(() => !isAttacking);
         }
 
         public int Dir => hitsManager.DirAsInt;

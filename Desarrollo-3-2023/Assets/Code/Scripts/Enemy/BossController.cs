@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Code.Scripts.Animator;
 using Code.Scripts.Attack;
-using Code.Scripts.SOs.Animator;
 using Code.Scripts.SOs.States;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
@@ -12,6 +12,9 @@ using UnityEngine;
 
 namespace Code.Scripts.Enemy
 {
+    /// <summary>
+    /// Controls the boss
+    /// </summary>
     public class BossController : BaseEnemyController
     {
         private FiniteStateMachine<string> fsm;
@@ -46,7 +49,7 @@ namespace Code.Scripts.Enemy
 
         [Header("Animations:")]
         [SerializeField] private string animatorParameterName;
-        [SerializeField] private Animator animator;
+        [SerializeField] private UnityEngine.Animator animator;
         
         [Header("GroundCheck: ")]
         [SerializeField] private Transform groundCheck;

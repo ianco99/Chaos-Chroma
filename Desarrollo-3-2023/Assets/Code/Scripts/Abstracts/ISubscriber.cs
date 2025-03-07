@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface ISubscriber
+namespace Code.Scripts.Abstracts
 {
-    public void DoAction();
+    /// <summary>
+    /// Interface for subscriber
+    /// </summary>
+    public interface ISubscriber
+    {
+        public void DoAction();
+    }
 }

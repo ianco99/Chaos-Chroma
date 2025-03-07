@@ -13,7 +13,9 @@ namespace Patterns.FSM
 
         private float originalGravScale;
 
-        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, JumpStartSettings startSettings, AK.Wwise.Event playJump, Transform transform, Rigidbody2D rb) : base(id, name, startSettings.moveSettings, transform, rb)
+        public JumpStartState(T id, MonoBehaviour coroutineContainer, string name, JumpStartSettings startSettings,
+            AK.Wwise.Event playJump, Transform transform, Rigidbody2D rb) : base(id, name, startSettings.moveSettings,
+            transform, rb)
         {
             this.playJump = playJump;
             jumpStartSettings = startSettings;
@@ -39,7 +41,7 @@ namespace Patterns.FSM
         public override void OnExit()
         {
             base.OnExit();
-            
+
             rb.gravityScale = originalGravScale;
         }
 
@@ -47,6 +49,13 @@ namespace Patterns.FSM
         {
         }
 
+        /// <summary>
+        /// Adds the given force to the object's rigidbody, using the given force mode.
+        /// This coroutine waits for the next fixed update before applying the force,
+        /// and also posts the jump sound event.
+        /// </summary>
+        /// <param name="force">The force to apply</param>
+        /// <param name="mode">The force mode to use</param>
         private IEnumerator AddForce(Vector3 force, ForceMode2D mode)
         {
             yield return new WaitForFixedUpdate();
@@ -58,7 +67,7 @@ namespace Patterns.FSM
         {
             if (rb.velocity.y < 0)
                 Exit();
-            
+
             base.OnFixedUpdate();
         }
     }

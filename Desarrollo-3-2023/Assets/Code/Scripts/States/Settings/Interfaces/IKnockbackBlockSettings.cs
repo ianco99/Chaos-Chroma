@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IKnockbackBlockSettings
+namespace Code.Scripts.States.Settings.Interfaces
 {
-    public float knockbackForce { get => knockbackForce; set => knockbackForce = value; }
+    /// <summary>
+    /// Settings for the knockback block
+    /// </summary>
+    public interface IKnockbackBlockSettings
+    {
+        public float knockbackForce { get => knockbackForce; set => knockbackForce = value; }
+    }
 }

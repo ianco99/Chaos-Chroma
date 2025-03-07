@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 namespace Code.Scripts.Input
 {
+    /// <summary>
+    /// Switches the sprite based on the current input device
+    /// </summary>
     public class InputTutorialSwitcher : MonoBehaviour
     {
         [SerializeField] private Sprite controllerSprite;

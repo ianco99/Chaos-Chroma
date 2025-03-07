@@ -18,14 +18,13 @@ namespace Code.Scripts.Enemy
         private ProjectileEnemySettings ProjectileEnemySettings => settings as ProjectileEnemySettings;
 
         [SerializeField] private Transform groundCheckPoint;
-        [SerializeField] private Animator animator;
+        [SerializeField] private UnityEngine.Animator animator;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private ProjectileLauncher shooter;
         [SerializeField] private Damageable damageable;
 
-        [Header("Suspect")]
-        [SerializeField] private float suspectMeter;
+        [Header("Suspect")] [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float attackDelay = 0.2f;
         [SerializeField] private float damagedTime = 2.0f;
@@ -52,7 +51,7 @@ namespace Code.Scripts.Enemy
         private DamagedState<int> damagedState;
         private DeathState<int> deathState;
 
-        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
+        private static readonly int CharacterState = UnityEngine.Animator.StringToHash("CharacterState");
 
         private void Awake()
         {
@@ -72,11 +71,16 @@ namespace Code.Scripts.Enemy
         {
             fsm = new FiniteStateMachine<int>();
 
-            patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform, ProjectileEnemySettings.patrolSettings);
-            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, ProjectileEnemySettings.alertSettings, groundCheckPoint);
-            attackStartState = new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", alertState.ID, ProjectileEnemySettings.shootTimerSettings, shooter);
-            damagedState = new DamagedState<int>(4, "DamagedState", alertState.ID, ProjectileEnemySettings.damagedSettings, rb);
+            patrolState = new PatrolState<int>(rb, 0, "PatrolState", groundCheckPoint, this, transform,
+                ProjectileEnemySettings.patrolSettings);
+            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform,
+                ProjectileEnemySettings.alertSettings, groundCheckPoint);
+            attackStartState =
+                new AttackStartState<int>(2, "AttackStart", ProjectileEnemySettings.attackStartSettings, outline);
+            shootState = new ShootState<int>(3, "ShootState", alertState.ID, ProjectileEnemySettings.shootTimerSettings,
+                shooter);
+            damagedState = new DamagedState<int>(4, "DamagedState", alertState.ID,
+                ProjectileEnemySettings.damagedSettings, rb);
             deathState = new DeathState<int>(5, "DeathState", ProjectileEnemySettings.deathTimerSettings);
 
             fsm.AddState(patrolState);
@@ -171,16 +175,26 @@ namespace Code.Scripts.Enemy
                 suspectMeterSprite.color = Color.white;
             }
 
-            suspectMeter = Mathf.Clamp(suspectMeter, ProjectileEnemySettings.suspectMeterMinimum, ProjectileEnemySettings.suspectMeterMaximum);
+            suspectMeter = Mathf.Clamp(suspectMeter, ProjectileEnemySettings.suspectMeterMinimum,
+                ProjectileEnemySettings.suspectMeterMaximum);
 
 
             float normalizedSuspectMeter = (suspectMeter - (ProjectileEnemySettings.suspectMeterMinimum)) /
-                                           ((ProjectileEnemySettings.suspectMeterMaximum) - (ProjectileEnemySettings.suspectMeterMinimum));
+                                           ((ProjectileEnemySettings.suspectMeterMaximum) -
+                                            (ProjectileEnemySettings.suspectMeterMinimum));
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
         }
 
+        /// <summary>
+        /// Adjusts the enemy's orientation based on its current state and direction.
+        /// </summary>
+        /// <remarks>
+        /// - In the patrol state, the enemy flips to match the patrol direction.
+        /// - In the alert state, the enemy flips based on the direction of the alert target.
+        /// - In the attack end state (commented out), if there are visible targets, the enemy flips to face the first visible target.
+        /// </remarks>
         private void CheckRotation()
         {
             if (fsm.GetCurrentState() == patrolState)
@@ -188,23 +202,23 @@ namespace Code.Scripts.Enemy
                 switch (patrolState.dir.x)
                 {
                     case > 0:
+                    {
+                        if (!facingRight)
                         {
-                            if (!facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                     case < 0:
+                    {
+                        if (facingRight)
                         {
-                            if (facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                 }
             }
             else if (fsm.GetCurrentState() == alertState)
@@ -212,23 +226,23 @@ namespace Code.Scripts.Enemy
                 switch (alertState.dir.x)
                 {
                     case > 0:
+                    {
+                        if (!facingRight)
                         {
-                            if (!facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                     case < 0:
+                    {
+                        if (facingRight)
                         {
-                            if (facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                 }
             }
             // else if (fsm.GetCurrentState() == attackEndState)
@@ -256,7 +270,8 @@ namespace Code.Scripts.Enemy
         private bool IsAttackTransitionable()
         {
             if (DetectedPlayer != null)
-                return Vector3.Distance(transform.position, DetectedPlayer.position) < ProjectileEnemySettings.alertSettings.alertAttackUpDistance;
+                return Vector3.Distance(transform.position, DetectedPlayer.position) <
+                       ProjectileEnemySettings.alertSettings.alertAttackUpDistance;
 
             return false;
         }
@@ -272,6 +287,16 @@ namespace Code.Scripts.Enemy
             }
         }
 
+        /// <summary>
+        /// Handles damage being taken by the enemy.
+        /// </summary>
+        /// <param name="origin">The origin of the damage.</param>
+        /// <remarks>
+        /// - If the enemy's life reaches zero, calls <see cref="OnDeathHandler"/>.
+        /// - If the enemy is in the <see cref="shootState"/> state, stops the state.
+        /// - If the enemy is not in the <see cref="damagedState"/> state, sets the direction of the <see cref="damagedState"/> based on the direction of the origin and
+        ///   sets the current state to the <see cref="damagedState"/>.
+        /// </remarks>
         private void OnTakeDamageHandler(Vector2 origin)
         {
             if (damageable.GetLife() <= 0)
@@ -295,6 +320,12 @@ namespace Code.Scripts.Enemy
             }
         }
 
+        /// <summary>
+        /// Handles the death event of the enemy.
+        /// </summary>
+        /// <remarks>
+        /// Sets the current state of the Finite State Machine to the <see cref="deathState"/>.
+        /// </remarks>
         private void OnDeathHandler()
         {
             fsm.SetCurrentState(deathState);

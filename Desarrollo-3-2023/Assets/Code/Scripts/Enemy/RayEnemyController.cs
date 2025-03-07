@@ -58,6 +58,11 @@ namespace Code.Scripts.Enemy
             fov.ToggleFindingTargets(true);
         }
 
+        private void OnEnable()
+        {
+            shootState.onTimerEnded += OnTimerStateEndedHandler;
+        }
+
         private void InitFSM()
         {
             fsm = new FiniteStateMachine<int>();
@@ -65,7 +70,7 @@ namespace Code.Scripts.Enemy
             patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
             alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings, groundCheckPoint);
             attackStartState = new AttackStartState<int>(2, "AttackStartState", rayEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", 1, rayEnemySettings.shootTimerSettings, rayLauncher);
+            shootState = new ShootState<int>(3, "ShootState", alertState.ID, rayEnemySettings.shootTimerSettings, rayLauncher);
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
@@ -77,7 +82,6 @@ namespace Code.Scripts.Enemy
 
             fsm.AddTransition(attackStartState, shootState, () => !attackStartState.Active && DetectedPlayer);
 
-
             fsm.SetCurrentState(patrolState);
 
             fsm.Init();
@@ -87,6 +91,8 @@ namespace Code.Scripts.Enemy
         {
             fsm.Update();
 
+            Debug.Log("Timer: " + shootState.currentTimer);
+
             CheckRotation();
             CheckFieldOfView();
             ReleaseAttack();
@@ -95,6 +101,15 @@ namespace Code.Scripts.Enemy
         private void FixedUpdate()
         {
             fsm.FixedUpdate();
+        }
+
+        /// <summary>
+        /// Handles the timer ending event for the shoot state.
+        /// </summary>
+        /// <param name="nextId">The ID of the next state to transition to.</param>
+        private void OnTimerStateEndedHandler(int nextId)
+        {
+            fsm.SetCurrentState(fsm.GetState(nextId));
         }
 
         private void CheckRotation()
@@ -214,7 +229,14 @@ namespace Code.Scripts.Enemy
         /// </remarks>
         private bool IsAttackTransitionable()
         {
-            if (Vector3.Distance(transform.position, DetectedPlayer.position) < rayEnemySettings.alertSettings.alertAttackUpDistance) Debug.Log("attacking");
+            if (Vector3.Distance(transform.position, DetectedPlayer.position) < rayEnemySettings.alertSettings.alertAttackUpDistance)
+            {
+                Debug.Log("ojo eh");
+            }
+            else
+            {
+                Debug.Log("que mierda pasa viejo");
+            }
 
             if (DetectedPlayer != null)
                 return Vector3.Distance(transform.position, DetectedPlayer.position) < rayEnemySettings.alertSettings.alertAttackUpDistance;

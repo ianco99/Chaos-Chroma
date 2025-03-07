@@ -6,14 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="a5ca6592-eeff-43f7-b677-2dff65f8ad77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Desarrollo-3-2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/Boss.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Prefabs/WinTrigger.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Prefabs/WinTrigger.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Level2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scene/Tutorial.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NextLevelTrigger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NextLevelTrigger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wwise/API/Runtime/Plugins/Windows/x86/Profile/AkSoundEngine.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wwise/API/Runtime/Plugins/Windows/x86/Profile/AkSoundEngine.dll.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wwise/API/Runtime/Plugins/Windows/x86_64/Profile/AkSoundEngine.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wwise/API/Runtime/Plugins/Windows/x86_64/Profile/AkSoundEngine.dll.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/.cache/Mac/SFX/Wwise.dat" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/.cache/Mac/SFX/Wwise.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/.cache/SoundBankInfoCache.dat" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/.cache/SoundBankInfoCache.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/.cache/Windows/SFX/Wwise.dat" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/.cache/Windows/SFX/Wwise.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/Events/Default Work Unit.wwu" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/Events/Default Work Unit.wwu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/Main.bnk" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/Main.bnk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/Main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/Main.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/PluginInfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/PluginInfo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/SoundbanksInfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Mac/SoundbanksInfo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/Main.bnk" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/Main.bnk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/Main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/Main.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/PluginInfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/PluginInfo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/SoundbanksInfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/GeneratedSoundBanks/Windows/SoundbanksInfo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/Interactive Music Hierarchy/Default Work Unit.wwu" beforeDir="false" afterPath="$PROJECT_DIR$/Desarrollo-3-2023_WwiseProject/Interactive Music Hierarchy/Default Work Unit.wwu" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +39,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/92/28c77369/Object.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/20ec2084e3e54ecaa99fcb1c13b2e6c216e400/ef/7d483cd0/SetupCoroutine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5d4cbfbeb62e454f98e19b231866113e46ac00/cb/d42fb56c/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d18341e808be4529a1a4512a7e51ab3d940a00/62/9562dce4/SerializedProperty.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/Abstracts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -110,7 +119,7 @@
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../Downloads/0.13.0\Chaos Chroma Defying the System.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Downloads/ChaosChroma\Chaos Chroma Defying the System.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="F:\Chino\Desarrollo-3-01" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -146,13 +155,15 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="14556">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="14556" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -224,7 +235,7 @@
       <workItem from="1740493515590" duration="4825000" />
       <workItem from="1740516026396" duration="5375000" />
       <workItem from="1740682724983" duration="2138000" />
-      <workItem from="1741293105301" duration="4657000" />
+      <workItem from="1741293105301" duration="9768000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed ground check">
       <option name="closed" value="true" />
@@ -478,6 +489,23 @@
     <option name="LAST_COMMIT_MESSAGE" value="Removed boss damaging when retrieving" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Code/Scripts/Game/NextLevelTrigger.cs</url>
+          <line>31</line>
+          <properties documentPath="C:\Users\Administrator\Documents\Unity\Projects\Chaos-Chroma\Desarrollo-3-2023\Assets\Code\Scripts\Game\NextLevelTrigger.cs" containingFunctionPresentation="Method 'NextLevel'">
+            <startOffsets>
+              <option value="952" />
+            </startOffsets>
+            <endOffsets>
+              <option value="986" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
         <watch expression="rb.velocity.y" language="C#" />

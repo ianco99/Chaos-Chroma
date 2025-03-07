@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5381754add9b77148bf88631f33757d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 4.66
+  viewRadius: 8
   viewAngle: 107
   targetMask:
     serializedVersion: 2
@@ -640,7 +640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6946180288233466874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43337846, y: 0.15249994, z: 0}
+  m_LocalPosition: {x: -0.55837846, y: 0.15249994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

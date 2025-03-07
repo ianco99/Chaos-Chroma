@@ -18,9 +18,9 @@ MonoBehaviour:
   alertValue: 20
   suspectMeterMaximum: 100
   deathEvent: {fileID: 0}
-  patrolSettings: {fileID: 11400000, guid: 3ba78d0446e325a49a9852ed7ec5cb39, type: 2}
+  patrolSettings: {fileID: 11400000, guid: 88583f0b0bf26c04f9294a0394705972, type: 2}
   alertSettings: {fileID: 11400000, guid: a98d3d129a45eaf4999542c2a1ec7fd6, type: 2}
-  attackStartSettings: {fileID: 11400000, guid: e111bb221964cef49ad7d0644afbc3b0, type: 2}
-  damagedSettings: {fileID: 11400000, guid: 2de781c9949e356449bcbccfc15c13c4, type: 2}
-  shootTimerSettings: {fileID: 11400000, guid: 178e74bcab7e9f049a0d255f750f3ad2, type: 2}
+  attackStartSettings: {fileID: 11400000, guid: b4cfac6473f129e468dd03623f3c776e, type: 2}
+  damagedSettings: {fileID: 11400000, guid: f3483091e74b56d41aa25d9e7256e78e, type: 2}
+  shootTimerSettings: {fileID: 11400000, guid: c2018f8a1ff7d3041bab30d8c38886e3, type: 2}
   deathTimerSettings: {fileID: 11400000, guid: 1386354598dfc99488517b6706ba104d, type: 2}

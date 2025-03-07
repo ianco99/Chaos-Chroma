@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3496fdf29e879864eb52b949c417c37f, type: 3}
-  m_Name: EnemyMoveSettingsSO
+  m_Script: {fileID: 11500000, guid: 9f94a1f5bea623b4092c37c33446c517, type: 3}
+  m_Name: EnemyRayAttackStartSettingsSO
   m_EditorClassIdentifier: 
-  speed: 100
-  accel: 100
-  groundOffset: 1
-  groundDistance: 0.02
+  minTimeOnHold: 1
+  objectiveColor: {r: 0.6627451, g: 0.18823531, b: 0.7294118, a: 1}

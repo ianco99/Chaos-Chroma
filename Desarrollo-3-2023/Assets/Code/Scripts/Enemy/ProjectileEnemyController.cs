@@ -245,18 +245,18 @@ namespace Code.Scripts.Enemy
                     }
                 }
             }
-            // else if (fsm.GetCurrentState() == attackEndState)
-            // {
-            //     if (fov.visibleTargets.Count > 0)
-            //     {
-            //         var targetPos = fov.visibleTargets[0].transform.position;
-            //
-            //         if (targetPos.x > transform.position.x && !facingRight)
-            //             Flip();
-            //         else if (targetPos.x < transform.position.x && facingRight)
-            //             Flip();
-            //     }
-            // }
+            else if (fsm.GetCurrentState() == attackStartState)
+            {
+                if (fov.visibleTargets.Count > 0)
+                {
+                    var targetPos = fov.visibleTargets[0].transform.position;
+            
+                    if (targetPos.x > transform.position.x && !facingRight)
+                        Flip();
+                    else if (targetPos.x < transform.position.x && facingRight)
+                        Flip();
+                }
+            }
         }
 
         /// <summary>

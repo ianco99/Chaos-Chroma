@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3496fdf29e879864eb52b949c417c37f, type: 3}
-  m_Name: EnemyMoveSettingsSO
+  m_Script: {fileID: 11500000, guid: 372ed9e6ab01a0a418bd26512096cc9a, type: 3}
+  m_Name: EnemyRayDamagedSettingsSO
   m_EditorClassIdentifier: 
-  speed: 100
-  accel: 100
-  groundOffset: 1
-  groundDistance: 0.02
+  timerSettings: {fileID: 11400000, guid: 2e77ce32cc3814047a84e55966a83b8d, type: 2}
+  force: 4.4

@@ -19,6 +19,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private FieldOfView fov;
         [SerializeField] private UnityEngine.Animator animator;
+        [SerializeField] private Damageable damageable;
 
         [Header("Suspect")] [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
@@ -48,6 +49,8 @@ namespace Code.Scripts.Enemy
         private AlertState<int> alertState;
         private AttackStartState<int> attackStartState;
         private ShootState<int> shootState;
+        private DamagedState<int> damagedState;
+        private DeathState<int> deathState;
 
 
         private void Awake()
@@ -59,7 +62,11 @@ namespace Code.Scripts.Enemy
 
         private void OnEnable()
         {
+            damageable.OnTakeDamage += OnTakeDamageHandler;
+
             shootState.onTimerEnded += OnTimerStateEndedHandler;
+            damagedState.onTimerEnded += OnTimerStateEndedHandler;
+            deathState.onTimerEnded += () => Destroy(gameObject);
         }
 
         /// <summary>
@@ -69,17 +76,27 @@ namespace Code.Scripts.Enemy
         {
             fsm = new FiniteStateMachine<int>();
 
-            patrolState =
-                new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
-            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings,
-                groundCheckPoint);
-            attackStartState =
-                new AttackStartState<int>(2, "AttackStartState", rayEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", alertState.ID, rayEnemySettings.shootTimerSettings,
-                rayLauncher);
+            patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, 
+                rayEnemySettings.patrolSettings);
+
+            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform,
+                rayEnemySettings.alertSettings, groundCheckPoint);
+
+            attackStartState = new AttackStartState<int>(2, "AttackStartState",
+                rayEnemySettings.attackStartSettings, outline);
+
+            shootState = new ShootState<int>(3, "ShootState", alertState.ID,
+                rayEnemySettings.shootTimerSettings, rayLauncher);
+
+            damagedState = new DamagedState<int>(4, "DamagedState", 
+                alertState.ID, rayEnemySettings.damagedSettings, rb);
+
+            deathState = new DeathState<int>(5, "DeathState", rayEnemySettings.deathTimerSettings);
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
+            fsm.AddState(damagedState);
+            fsm.AddState(deathState);
 
             fsm.AddTransition(patrolState, alertState, () => suspectMeter > rayEnemySettings.alertValue);
 
@@ -178,6 +195,31 @@ namespace Code.Scripts.Enemy
             }
         }
 
+        private void OnTakeDamageHandler(Vector2 origin)
+        {
+            if (damageable.GetLife() <= 0)
+            {
+                OnDeathHandler();
+                return;
+            }
+
+            if (origin.x > transform.position.x && !facingRight)
+                Flip();
+            else if (origin.x < transform.position.x && facingRight)
+                Flip();
+
+            if (fsm.GetCurrentState() != damagedState)
+            {
+                damagedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
+                fsm.SetCurrentState(damagedState);
+            }
+        }
+
+        private void OnDeathHandler()
+        {
+            fsm.SetCurrentState(deathState);
+        }
+
         /// <summary>
         /// Sets the parameter for the animator states
         /// </summary>
@@ -261,16 +303,6 @@ namespace Code.Scripts.Enemy
         /// </remarks>
         private bool IsAttackTransitionable()
         {
-            if (Vector3.Distance(transform.position, DetectedPlayer.position) <
-                rayEnemySettings.alertSettings.alertAttackUpDistance)
-            {
-                Debug.Log("ojo eh");
-            }
-            else
-            {
-                Debug.Log("que mierda pasa viejo");
-            }
-
             if (DetectedPlayer != null)
                 return Vector3.Distance(transform.position, DetectedPlayer.position) <
                        rayEnemySettings.alertSettings.alertAttackUpDistance;

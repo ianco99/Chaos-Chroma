@@ -58,22 +58,23 @@ namespace Code.Scripts.Attack
             {
                 Debug.Log(hit.rigidbody?.name);
 
-                if (!hit.collider.TryGetComponent(out Damageable damageable)) return;
+                if (!hit.collider.TryGetComponent(out Damageable damageable))
+                {
+                    //miss
+                }
 
                 if (!damageable.TakeDamage(damage, transform.position))
                 {
-                    Debug.Log("parry!");
-                    return;
+                    //parry
+                    //return;
                 }
             }
-            else
-            {
-                Debug.Log("nope");
-            }
+
+            Vector3 endPos = spawnPos.position + new Vector3(direction.x, direction.y, 0);
 
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, spawnPos.position);
-            lineRenderer.SetPosition(1, spawnPos.position + new Vector3(direction.x, direction.y, 0));
+            lineRenderer.SetPosition(1, endPos);
             StopAllCoroutines();
             StartCoroutine(DisappearRay());
             //direction;

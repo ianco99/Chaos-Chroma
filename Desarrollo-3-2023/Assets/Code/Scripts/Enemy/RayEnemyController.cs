@@ -76,11 +76,21 @@ namespace Code.Scripts.Enemy
         {
             fsm = new FiniteStateMachine<int>();
 
-            patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
-            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings, groundCheckPoint);
-            attackStartState = new AttackStartState<int>(2, "AttackStartState", rayEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", alertState.ID, rayEnemySettings.shootTimerSettings, rayLauncher);
-            damagedState = new DamagedState<int>(4, "DamagedState", alertState.ID, rayEnemySettings.damagedSettings, rb);
+            patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, 
+                rayEnemySettings.patrolSettings);
+
+            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform,
+                rayEnemySettings.alertSettings, groundCheckPoint);
+
+            attackStartState = new AttackStartState<int>(2, "AttackStartState",
+                rayEnemySettings.attackStartSettings, outline);
+
+            shootState = new ShootState<int>(3, "ShootState", alertState.ID,
+                rayEnemySettings.shootTimerSettings, rayLauncher);
+
+            damagedState = new DamagedState<int>(4, "DamagedState", 
+                alertState.ID, rayEnemySettings.damagedSettings, rb);
+
             deathState = new DeathState<int>(5, "DeathState", rayEnemySettings.deathTimerSettings);
 
             fsm.AddState(patrolState);
@@ -293,16 +303,6 @@ namespace Code.Scripts.Enemy
         /// </remarks>
         private bool IsAttackTransitionable()
         {
-            if (Vector3.Distance(transform.position, DetectedPlayer.position) <
-                rayEnemySettings.alertSettings.alertAttackUpDistance)
-            {
-                Debug.Log("ojo eh");
-            }
-            else
-            {
-                Debug.Log("que mierda pasa viejo");
-            }
-
             if (DetectedPlayer != null)
                 return Vector3.Distance(transform.position, DetectedPlayer.position) <
                        rayEnemySettings.alertSettings.alertAttackUpDistance;

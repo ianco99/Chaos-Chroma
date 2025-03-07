@@ -50,9 +50,9 @@ AnimationClip:
     - time: 0.4
       value: {fileID: -88240095, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
     - time: 0.53333336
-      value: {fileID: 683263880, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
+      value: {fileID: -179475321, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
     attribute: m_Sprite
-    path: GameObject/Laesor Head idle
+    path: Gun/Laesor Head idle
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -73,7 +73,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1704990817
+      path: 983726862
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -93,7 +93,7 @@ AnimationClip:
     - {fileID: -745499449, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
     - {fileID: 2122509478, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
     - {fileID: -88240095, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
-    - {fileID: 683263880, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
+    - {fileID: -179475321, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

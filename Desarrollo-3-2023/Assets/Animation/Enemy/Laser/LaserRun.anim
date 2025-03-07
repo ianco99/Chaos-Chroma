@@ -35,6 +35,15 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: -179475321, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
+    attribute: m_Sprite
+    path: Gun/Laesor Head idle
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -51,12 +60,22 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 983726862
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -2097947004, guid: d29d8a432b9bdfa48810947dabf73c6e, type: 3}
     - {fileID: -844619630, guid: d29d8a432b9bdfa48810947dabf73c6e, type: 3}
     - {fileID: 850488236, guid: d29d8a432b9bdfa48810947dabf73c6e, type: 3}
     - {fileID: 1319988911, guid: d29d8a432b9bdfa48810947dabf73c6e, type: 3}
     - {fileID: -2097947004, guid: d29d8a432b9bdfa48810947dabf73c6e, type: 3}
+    - {fileID: -179475321, guid: b1ac1f3bb5d6ecb47a60481cf458d10e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

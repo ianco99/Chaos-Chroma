@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LaserEnemy
+  m_Controller: {fileID: 9100000, guid: daca956a45fbdf943bb30f8efb7ea2bd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 66c2bd91dbb02fe46a64665e41fff762, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 82169eb4d72e25d4ba6d91e18fd6a42e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9affdbd3135254347a086e4f2aa05356, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bc7add730dfbc2843badbb605b15842d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: bcc911aa17021bb4082d86f991bf5590, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ef4580d5a72ee28489554365c40f619f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9b6d65cd04f937d429f362be6de270e4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 14404f98c3a64fe4c99ad91f80d2fc0e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e3e6faaecfba3c5489d4ee81003e7cbe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f7ae5152903a75c4c91d5991b837daa8, type: 2}

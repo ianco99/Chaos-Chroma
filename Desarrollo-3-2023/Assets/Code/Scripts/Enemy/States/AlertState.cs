@@ -50,7 +50,7 @@ namespace Patterns.FSM
         {
             base.OnUpdate();
 
-            if(alertTarget)
+            if (alertTarget)
             {
                 dir = alertTarget.transform.position - patroller.transform.position;
             }
@@ -61,35 +61,36 @@ namespace Patterns.FSM
             CheckGround();
         }
 
+        /// <summary>
+        /// Checks if the character is grounded and if there is no ground within a certain distance.
+        /// If the character is grounded and there is no ground, flips the character's orientation.
+        /// </summary>
         private void CheckGround()
         {
             if (!IsGrounded())
                 return;
 
-            if(alertTarget)
-            {
-                //if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
-                //{
-                //    base.speed = 0;
-                //}
-                //else
-                //{
-                //    base.speed = settings.alertSpeed;
-                //}
-            }
-            else
-            {
+            if (!alertTarget)
                 if (!Physics2D.Raycast(groundCheckPoint.position, -groundCheckPoint.up, settings.groundCheckDistance, LayerMask.GetMask("Static")))
                     FlipDirection();
-            }
-
         }
 
+        /// <summary>
+        /// Sets the target of the alert state, which is the transform to face.
+        /// </summary>
+        /// <param name="target">The target transform.</param>
         public void SetTarget(Transform target)
         {
             alertTarget = target;
         }
 
+        /// <summary>
+        /// Flips the direction of the alert state.
+        /// </summary>
+        /// <remarks>
+        /// This method is used to flip the direction of the character when there is no ground
+        /// within a certain distance.
+        /// </remarks>
         public void FlipDirection()
         {
             dir = -dir;

@@ -1,17 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class Publisher : IPublisher
+namespace Code.Scripts.Abstracts
 {
-    public abstract string Name { get; }
-    public void Publish()
+    /// <summary>
+    /// Interface for publisher
+    /// </summary>
+    public abstract class Publisher : IPublisher
     {
-        throw new System.NotImplementedException();
-    }
+        public abstract string Name { get; }
+        public abstract void Publish();
 
-    public void Subscribe()
-    {
-        throw new System.NotImplementedException();
+        public abstract void Subscribe();
     }
 }

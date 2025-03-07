@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Code.Scripts.Door
 {
+    /// <summary>
+    /// Closes the door
+    /// </summary>
     public class DoorCloser : MonoBehaviour
     {
         public kuznickiEventChannel.VoidEventChannel closeDoorEventChannel;
@@ -14,6 +17,9 @@ namespace Code.Scripts.Door
                 CloseDoorEvent();
         }
 
+        /// <summary>
+        /// Raises the close door event channel
+        /// </summary>
         private void CloseDoorEvent()
         {
             closeDoorEventChannel?.RaiseEvent();

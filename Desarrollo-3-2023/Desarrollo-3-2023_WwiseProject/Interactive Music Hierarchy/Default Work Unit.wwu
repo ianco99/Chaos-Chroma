@@ -19,7 +19,7 @@
 						<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
 						<Property Name="MaxSoundPerInstance" Type="int16">
 							<ValueList>
-								<Value>2</Value>
+								<Value>1</Value>
 							</ValueList>
 						</Property>
 						<Property Name="Tempo" Type="Real64" Value="165"/>

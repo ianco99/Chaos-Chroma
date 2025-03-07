@@ -42,15 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GodMode",
-                    "type": "Button",
-                    "id": "a4da2c3e-eb13-4349-91c3-af7dd59e7a2d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "36cf4666-0dbf-4a6b-9494-9431ccd8cef9",
@@ -190,28 +181,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b79f1ecb-0645-4a45-8bc8-6c168ac65d3a",
-                    "path": "<Keyboard>/g",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GodMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e6a611ac-0de6-4875-8058-51f577027650",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GodMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IPublisher
+namespace Code.Scripts.Abstracts
 {
-    public void Subscribe();
-    public void Publish();
+    /// <summary>
+    /// Interface for publisher
+    /// </summary>
+    public interface IPublisher
+    {
+        public void Subscribe();
+        public void Publish();
+    }
 }

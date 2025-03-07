@@ -50,7 +50,7 @@ namespace Code.Scripts.Attack
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            Stop();
+            Move = false;
         }
 
         /// <summary>

@@ -1,3 +1,4 @@
+using System.Collections;
 using Code.Scripts.Attack;
 using Patterns.FSM;
 using UnityEngine;
@@ -12,10 +13,18 @@ namespace Code.Scripts.States
     {
         private readonly GameObject hit;
         private AK.Wwise.Event playEspada;
-        public AttackEndState(T id, string name, GameObject hit, AK.Wwise.Event playEspada = null) : base(id, name)
+        private readonly HitsManager hitsManager;
+
+        private bool isAttacking;
+        private readonly MonoBehaviour mb;
+
+        public AttackEndState(T id, string name, GameObject hit, MonoBehaviour mb, AK.Wwise.Event playEspada = null) :
+            base(id, name)
         {
             this.hit = hit;
             this.playEspada = playEspada;
+            this.mb = mb;
+            hitsManager = this.hit.GetComponent<HitsManager>();
         }
 
         public override void OnEnter()
@@ -23,11 +32,17 @@ namespace Code.Scripts.States
             base.OnEnter();
 
             hit.SetActive(true);
-            
-            if(playEspada != null)
-            {
-                playEspada.Post(hit);
-            }
+
+            playEspada?.Post(hit);
+
+            isAttacking = true;
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            isAttacking = false;
         }
 
         public override void OnUpdate()
@@ -35,7 +50,9 @@ namespace Code.Scripts.States
             base.OnUpdate();
 
             if (!hit.activeSelf)
+            {
                 Exit();
+            }
         }
 
         /// <summary>
@@ -43,11 +60,35 @@ namespace Code.Scripts.States
         /// </summary>
         public void Stop()
         {
-            if (hit.TryGetComponent(out HitsManager hitManager))
-                hitManager.Stop();
+            if (hitsManager)
+            {
+                hitsManager.Stop();
+            }
 
             hit.SetActive(false);
             Exit();
         }
+
+        /// <summary>
+        /// Sets the direction for the attack if the character is not currently attacking.
+        /// </summary>
+        /// <param name="direction">The direction vector to set for the attack.</param>
+        public void SetDir(Vector2 direction)
+        {
+            if (isAttacking)
+                mb.StartCoroutine(WaitAndSetDir(direction));
+
+            hitsManager.SetDir(direction);
+        }
+
+        /// <summary>
+        /// Waits until the character is no longer attacking, then sets the direction for the attack.
+        /// </summary>
+        private IEnumerator WaitAndSetDir(Vector2 direction)
+        {
+            yield return new WaitUntil(() => !isAttacking);
+        }
+
+        public int Dir => hitsManager.DirAsInt;
     }
 }

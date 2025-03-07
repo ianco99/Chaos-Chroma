@@ -1,12 +1,13 @@
 using Code.Scripts.Abstracts.Character;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BasePickup : MonoBehaviour, IPickup
+namespace Code.Scripts.Pickup
 {
-    public virtual void Pickup(Character character)
+    /// <summary>
+    /// Base class for pickups
+    /// </summary>
+    public abstract class BasePickup : MonoBehaviour, IPickup
     {
-
+        public abstract void Pickup(Character character);
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using Code.Scripts.Abstracts;
 using Code.Scripts.Game;
 using UnityEngine;
@@ -6,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 namespace Code.Scripts.Menus
 {
+    /// <summary>
+    /// Controls the options menu
+    /// </summary>
     public class OptionsMenu : MonoBehaviour
     {
         private void Start()
@@ -55,6 +57,10 @@ namespace Code.Scripts.Menus
             GameManager.RetryLevel();
         }
 
+        /// <summary>
+        /// Set the time scale to 1f when the component is destroyed.
+        /// This is used to prevent the game from being paused when the options menu is closed.
+        /// </summary>
         private void OnDestroy()
         {
             Time.timeScale = 1f;

@@ -1,28 +1,35 @@
 using Code.Scripts.Abstracts.Character;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedPickup : BasePickup
+namespace Code.Scripts.Pickup
 {
-    [SerializeField] private float speedBump = 100;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Pickup for speed
+    /// </summary>
+    public class SpeedPickup : BasePickup
     {
-        Character character;
+        [SerializeField] private float speedBump = 100;
 
-        collision.TryGetComponent(out character);
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Character character;
+
+            collision.TryGetComponent(out character);
         
-        if (character != null)
-            Pickup(character);
-    }
+            if (character != null)
+                Pickup(character);
+        }
 
-    public override void Pickup(Character character)
-    {
-        base.Pickup(character);
+        /// <summary>
+        /// Called when the character enters the trigger of the pickup.
+        /// Applies the speed bump to the character and destroys the pickup.
+        /// </summary>
+        /// <param name="character">The character that entered the trigger.</param>
+        public override void Pickup(Character character)
+        {
+            character.speedPickup?.Invoke(speedBump);
 
-        character.speedPickup?.Invoke(speedBump);
-
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

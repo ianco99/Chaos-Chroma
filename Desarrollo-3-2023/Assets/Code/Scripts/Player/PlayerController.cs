@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Code.Scripts.Abstracts;
 using Code.Scripts.Abstracts.Character;
 using Code.Scripts.Attack;
@@ -9,6 +8,7 @@ using Code.Scripts.States;
 using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
+using Event = AK.Wwise.Event;
 
 namespace Code.Scripts.Player
 {
@@ -42,9 +42,11 @@ namespace Code.Scripts.Player
         [SerializeField] private SpriteRenderer outline;
         [SerializeField] private GameObject pauseCanvas;
         [SerializeField] private float burstStrength = 10f;
-        
-        [Header("StateSettings")]
-        [SerializeField] private MoveSettings moveSettings;
+        [SerializeField] private float moveDeadzone = .5f;
+
+        [Header("StateSettings")] [SerializeField]
+        private MoveSettings moveSettings;
+
         [SerializeField] private JumpStartSettings jumpStartSettings;
         [SerializeField] private JumpEndSettings jumpEndSettings;
         [SerializeField] private GodSettings godSettings;
@@ -52,18 +54,19 @@ namespace Code.Scripts.Player
         [SerializeField] private ParrySettings parrySettings;
         [SerializeField] private DamagedSettings damagedSettings;
         [SerializeField] private DamagedSettings knockbackSettings;
-                                
-        [Header("Animation")] [SerializeField] private Animator animator;
 
-        [Header("Audio Events")]
-        [SerializeField] private AK.Wwise.Event playEspada;
-        [SerializeField] private AK.Wwise.Event playJump;
-        [SerializeField] private AK.Wwise.Event playDefense;
-        [SerializeField] private AK.Wwise.Event playHit;
-        [SerializeField] private AK.Wwise.Event playFootstep;
-        [SerializeField] private AK.Wwise.Event stopFootstep;
-        private bool isWalking = false;
-        
+        [Header("Animation")] [SerializeField] private UnityEngine.Animator animator;
+
+        [Header("Audio Events")] [SerializeField]
+        private Event playEspada;
+
+        [SerializeField] private Event playJump;
+        [SerializeField] private Event playDefense;
+        [SerializeField] private Event playHit;
+        [SerializeField] private Event playFootstep;
+        [SerializeField] private Event stopFootstep;
+        private bool isWalking;
+
         // States
         private MovementState<PlayerStates> movementState;
         private IdleState<PlayerStates> idleState;
@@ -78,27 +81,34 @@ namespace Code.Scripts.Player
         private DamagedState<PlayerStates> knockbackState;
 
         private FiniteStateMachine<PlayerStates> fsm;
-        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
-        private static readonly int Grounded = Animator.StringToHash("OnGround");
+        private static readonly int CharacterState = UnityEngine.Animator.StringToHash("CharacterState");
+        private static readonly int Grounded = UnityEngine.Animator.StringToHash("OnGround");
+        private static readonly int DirTag = UnityEngine.Animator.StringToHash("Dir");
 
         private void Awake()
         {
             Transform trans = transform;
 
             movementState =
-                new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", moveSettings, trans, rb, playFootstep, stopFootstep);
+                new MovementState<PlayerStates>(PlayerStates.Move, "MovementState", moveSettings, trans, rb,
+                    playFootstep, stopFootstep);
             idleState = new IdleState<PlayerStates>(PlayerStates.Idle, "IdleState");
             attackStartState =
                 new AttackStartState<PlayerStates>(PlayerStates.AttackStart, "AttackStartState", attackStartSettings,
                     outline);
-            attackEndState = new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit, playEspada);
+            attackEndState =
+                new AttackEndState<PlayerStates>(PlayerStates.AttackEnd, "AttackEndState", hit, this, playEspada);
             parryState = new ParryState<PlayerStates>(PlayerStates.Parry, "ParryState", damageable, parrySettings);
             blockState = new BlockState<PlayerStates>(PlayerStates.Block, "BlockState", damageable);
-            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState", jumpStartSettings, playJump, trans, rb);
-            jumpEndState = new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);
-            damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Block, damagedSettings, rb);
+            jumpStartState = new JumpStartState<PlayerStates>(PlayerStates.JumpStart, this, "JumpStartState",
+                jumpStartSettings, playJump, trans, rb);
+            jumpEndState =
+                new JumpEndState<PlayerStates>(PlayerStates.JumpEnd, "JumpEndState", jumpEndSettings, trans, rb);
+            damagedState = new DamagedState<PlayerStates>(PlayerStates.Damaged, "DamagedState", PlayerStates.Block,
+                damagedSettings, rb);
             godState = new GodState<PlayerStates>(PlayerStates.GodMode, "GodState", godSettings, trans, rb);
-            knockbackState = new DamagedState<PlayerStates>(PlayerStates.Knockback, "KnockbackState", PlayerStates.Block, knockbackSettings, rb);
+            knockbackState = new DamagedState<PlayerStates>(PlayerStates.Knockback, "KnockbackState",
+                PlayerStates.Block, knockbackSettings, rb);
 
             fsm = new FiniteStateMachine<PlayerStates>();
 
@@ -140,7 +150,7 @@ namespace Code.Scripts.Player
             hit.GetComponent<HitsManager>().OnParried += OnParriedHandler;
             speedPickup += OnSpeedPickUp;
             lifePickup += OnLifePickUp;
-            
+
             BossController.OnBurst += OnBurstHandler;
         }
 
@@ -163,7 +173,7 @@ namespace Code.Scripts.Player
             hit.GetComponent<HitsManager>().OnParried -= OnParriedHandler;
             speedPickup -= OnSpeedPickUp;
             lifePickup -= OnLifePickUp;
-            
+
             BossController.OnBurst -= OnBurstHandler;
 
             //TODO: Move to a better place
@@ -185,6 +195,12 @@ namespace Code.Scripts.Player
             fsm.FixedUpdate();
         }
 
+        /// <summary>
+        /// Overrides the base character's Flip method to additionally update the damaged state's direction.
+        /// </summary>
+        /// <remarks>
+        /// This method flips the character's orientation and updates the direction of the damaged state based on the current facing direction.
+        /// </remarks>
         protected override void Flip()
         {
             base.Flip();
@@ -226,6 +242,7 @@ namespace Code.Scripts.Player
         {
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
             animator.SetBool(Grounded, movementState.IsGrounded());
+            animator.SetInteger(DirTag, attackEndState.Dir);
         }
 
         /// <summary>
@@ -297,11 +314,19 @@ namespace Code.Scripts.Player
                 attackEndState.Stop();
         }
 
+        /// <summary>
+        /// Handles the speed pickup event by increasing the player's speed.
+        /// </summary>
+        /// <param name="speedBump">The amount to increase the player's speed.</param>
         private void OnSpeedPickUp(float speedBump)
         {
             moveSettings.speed += speedBump;
         }
 
+        /// <summary>
+        /// Handles the life pickup event by healing the player's damageable.
+        /// </summary>
+        /// <param name="healBump">The amount to heal the player's damageable.</param>
         private void OnLifePickUp(float healBump)
         {
             damageable.Heal(healBump);
@@ -337,28 +362,22 @@ namespace Code.Scripts.Player
         /// <param name="input"></param>
         private void CheckMoving(Vector2 input)
         {
-            if (input.x != 0 || input.y != 0)
-         
-            {    
+            if (Mathf.Abs(input.x) > moveDeadzone)
+            {
                 movementState.Enter();
-                if (isWalking == false)
-                {
+                if (!isWalking)
                     isWalking = true;
-                    Debug.Log("caminando");
-                }
             }
 
-            if (input.x == 0 && isWalking == true)
-            {
+            if (input.x == 0 && isWalking)
                 isWalking = false;
-                Debug.Log("quieto");
-            }
+
             movementState.dir = input;
             jumpStartState.dir = input;
             jumpEndState.dir = input;
             godState.dir = input;
 
-         
+            attackEndState.SetDir(input);
         }
 
         /// <summary>

@@ -6,6 +6,9 @@ using Random = UnityEngine.Random;
 
 namespace Code.Scripts.Spawn
 {
+    /// <summary>
+    /// Spawns objects
+    /// </summary>
     public class Pool : MonoBehaviour
     {
         [Serializable]

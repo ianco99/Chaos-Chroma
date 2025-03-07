@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Patterns.FSM
 {
+    /// <summary>
+    /// Finite state machine
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class FiniteStateMachine<T>
     {
         private Dictionary<T, BaseState<T>> states = new();
@@ -102,6 +106,16 @@ namespace Patterns.FSM
             currentState?.OnEnter();
         }
 
+        /// <summary>
+        /// Adds transition to FiniteStateMachine
+        /// </summary>
+        /// <param name="from">State to transition from</param>
+        /// <param name="to">State to transition to</param>
+        /// <param name="condition">Condition to check for transition</param>
+        /// <remarks>
+        /// Transitions are stored in a dictionary by type, so if you add two transitions with the same type of from state,
+        /// the second one will be stored in the list of transitions for that type.
+        /// </remarks>
         public void AddTransition(BaseState<T> from, BaseState<T> to, Func<bool> condition)
         {
             if (_transitions.TryGetValue(from.GetType(), out var transitions) == false)
@@ -113,6 +127,10 @@ namespace Patterns.FSM
             transitions.Add(new Transition<T>(to, condition));
         }
 
+        /// <summary>
+        /// Gets a transition from the current state, if one exists that matches the condition
+        /// </summary>
+        /// <returns>The transition, or null if no transition matches the condition</returns>
         private Transition<T> GetTransition()
         {
             foreach (var transition in currentTransitions)

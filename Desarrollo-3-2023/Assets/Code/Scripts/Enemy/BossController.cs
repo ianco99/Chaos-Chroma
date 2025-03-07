@@ -1,16 +1,21 @@
 using System;
 using System.Collections;
-using Code.Scripts.Abstracts.Character;
+using System.Collections.Generic;
+using Code.Scripts.Animator;
 using Code.Scripts.Attack;
-using Code.Scripts.SOs.Animator;
+using Code.Scripts.SOs.States;
 using Code.Scripts.States;
+using Code.SOs.Enemy;
 using Code.SOs.States;
 using Patterns.FSM;
 using UnityEngine;
 
 namespace Code.Scripts.Enemy
 {
-    public class BossController : Character
+    /// <summary>
+    /// Controls the boss
+    /// </summary>
+    public class BossController : BaseEnemyController
     {
         private FiniteStateMachine<string> fsm;
 
@@ -36,13 +41,15 @@ namespace Code.Scripts.Enemy
         [SerializeField] private MoveSettings moveSettings;
         [SerializeField] private DamagedSettings damagedSettings;
         [SerializeField] private PatrolSettings patrolSettings;
-
+        [SerializeField] private TimerSettings deathTimerSettings;
+        [SerializeField] private StunnedSettings stunnedSettings;
+        
         [Header("Life:")]
         [SerializeField] private Damageable damageable;
 
         [Header("Animations:")]
         [SerializeField] private string animatorParameterName;
-        [SerializeField] private Animator animator;
+        [SerializeField] private UnityEngine.Animator animator;
         
         [Header("GroundCheck: ")]
         [SerializeField] private Transform groundCheck;
@@ -62,11 +69,15 @@ namespace Code.Scripts.Enemy
         private MovementState<string> movementState;
         private DamagedState<string> damagedState;
         private PatrolState<string> patrolState;
+        private DeathState<string> deathState;
+        private StunnedState<string> stunnedState;
 
         private void Awake()
         {
             InitFsm();
             InitStateSetter();
+            
+            deathState.onTimerEnded += () => Destroy(gameObject);
         }
 
         /// <summary>
@@ -84,6 +95,8 @@ namespace Code.Scripts.Enemy
             movementState = new MovementState<string>("Movement", moveSettings, trans, rb);
             damagedState = new DamagedState<string>("Damaged", idleState.ID, "Idle", damagedSettings, rb);
             patrolState = new PatrolState<string>(rb, "Patrol", groundCheck, this, trans, patrolSettings);
+            deathState = new DeathState<string>("Death", deathTimerSettings);
+            stunnedState = new StunnedState<string>("Stunned", patrolState.ID, stunnedSettings);
 
             fsm.AddState(idleState);
             fsm.AddState(punchState);
@@ -91,6 +104,8 @@ namespace Code.Scripts.Enemy
             fsm.AddState(movementState);
             fsm.AddState(damagedState);
             fsm.AddState(patrolState);
+            fsm.AddState(deathState);
+            fsm.AddState(stunnedState);
 
             AddTransitions();
 
@@ -112,15 +127,22 @@ namespace Code.Scripts.Enemy
             fsm.AddTransition(movementState, punchState, attackArea.IsDetectableInArea);
 
             fsm.AddTransition(punchState, damagedState, () => damagedState.Active);
+            fsm.AddTransition(punchState, stunnedState, () => stunnedState.Active);
+            fsm.AddTransition(punchState, deathState, () => damageable.GetLife() <= 0f);
             fsm.AddTransition(punchState, retrieveState, () => punchState.Ended);
 
             fsm.AddTransition(retrieveState, damagedState, () => damagedState.Active);
+            fsm.AddTransition(retrieveState, deathState, () => damageable.GetLife() <= 0f);
             fsm.AddTransition(retrieveState, patrolState, () => retrieveState.Ended);
 
             fsm.AddTransition(patrolState, damagedState, () => damagedState.Active);
+            fsm.AddTransition(patrolState, deathState, () => damageable.GetLife() <= 0f);
             fsm.AddTransition(patrolState, idleState, () => !patrolState.Active);
 
+            fsm.AddTransition(damagedState, deathState, () => damageable.GetLife() <= 0f && !damagedState.Active);
             fsm.AddTransition(damagedState, patrolState, () => !damagedState.Active);
+            
+            fsm.AddTransition(stunnedState, patrolState, () => !stunnedState.Active);
         }
 
         private void OnEnable()
@@ -130,8 +152,8 @@ namespace Code.Scripts.Enemy
             damagedState.onEnter += OnEnterDamagedHandler;
             retrieveState.onEnter += OnEnterRetrieveHandler;
             damageable.OnTakeDamage += OnTakeDamageHandler;
-            leftHit.OnParried += OnLeftParriedHandler;
-            rightHit.OnParried += OnRightParriedHandler;
+            leftHit.OnParried += OnParriedHandler;
+            rightHit.OnParried += OnParriedHandler;
         }
 
         private void OnDisable()
@@ -141,8 +163,8 @@ namespace Code.Scripts.Enemy
             damagedState.onEnter -= OnEnterDamagedHandler;
             retrieveState.onEnter -= OnEnterRetrieveHandler;
             damageable.OnTakeDamage -= OnTakeDamageHandler;
-            leftHit.OnParried -= OnLeftParriedHandler;
-            rightHit.OnParried -= OnRightParriedHandler;
+            leftHit.OnParried -= OnParriedHandler;
+            rightHit.OnParried -= OnParriedHandler;
         }
 
         private void Update()
@@ -175,6 +197,8 @@ namespace Code.Scripts.Enemy
             animatorStateSetter.AddState(patrolState.ID, 3);
             animatorStateSetter.AddState(movementState.ID, 4);
             animatorStateSetter.AddState(damagedState.ID, 5);
+            animatorStateSetter.AddState(deathState.ID, 6);
+            animatorStateSetter.AddState(stunnedState.ID, 7);
         }
         
         /// <summary>
@@ -195,6 +219,8 @@ namespace Code.Scripts.Enemy
         {
             patrolState.Enter();
             StartCoroutine(StopCooldown(timerSettings.maxTime));
+            
+            
         }
 
         /// <summary>
@@ -203,6 +229,8 @@ namespace Code.Scripts.Enemy
         private void OnEnterDamagedHandler()
         {
             damagedState.Enter();
+            
+            ResetPunches();
         }
 
         /// <summary>
@@ -215,25 +243,13 @@ namespace Code.Scripts.Enemy
         }
 
         /// <summary>
-        /// Set damaged state on parried
+        /// Set stunned state on parried
         /// </summary>
-        private void OnLeftParriedHandler()
+        private void OnParriedHandler()
         {
             ResetPunches();
 
-            damagedState.SetDirection(Vector2.left);
-            damagedState.Enter();
-        }
-
-        /// <summary>
-        /// Set damaged state on parried
-        /// </summary>
-        private void OnRightParriedHandler()
-        {
-            ResetPunches();
-
-            damagedState.SetDirection(Vector2.right);
-            damagedState.Enter();
+            stunnedState.Enter();
         }
 
         /// <summary>

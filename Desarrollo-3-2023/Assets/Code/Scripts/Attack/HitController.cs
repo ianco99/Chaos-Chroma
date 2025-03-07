@@ -19,8 +19,8 @@ namespace Code.Scripts.Attack
         [SerializeField] private Transform attacker;
         [SerializeField] private SpriteRenderer characterOutline;
         [SerializeField] private Color objectiveColor;
+        [SerializeField] private bool showHitBox;
         
-                
         public event Action OnParried;
         
         private readonly List<Damageable> hitObjects = new();
@@ -51,7 +51,12 @@ namespace Code.Scripts.Attack
         {
             if (characterOutline)
                 UpdateCharacterOutlineColor();
-                
+
+            Hit();
+        }
+
+        private void Hit()
+        {
             if (!started) return;
 
             Transform trans = transform;
@@ -81,12 +86,19 @@ namespace Code.Scripts.Attack
         {
             yield return new WaitForSeconds(hitDelay);
             
-            if (sprite)
+            if (sprite && showHitBox)
                 sprite.enabled = true;
             
             started = true;
+            
             if (finishByDuration)
+            {
                 StartCoroutine(StopOnTime());
+            }
+            else
+            {
+                Hit();
+            }
         }
 
         /// <summary>
@@ -96,8 +108,7 @@ namespace Code.Scripts.Attack
         private IEnumerator StopOnTime()
         {
             yield return new WaitForSeconds(hitDuration);
-            hitObjects.Clear();
-            gameObject.SetActive(false);
+            Stop();
         }
 
         /// <summary>

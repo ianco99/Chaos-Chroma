@@ -1,63 +1,36 @@
-using Code.Scripts.Abstracts;
-using Code.Scripts.Menus;
-using System.Collections;
-using System.Collections.Generic;
-
+using AK.Wwise;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Event = AK.Wwise.Event;
 
-public class MusicController : MonoBehaviour
+namespace Code.Scripts.Music
 {
-    [SerializeField] private AK.Wwise.Event music;
-    [SerializeField] AK.Wwise.State menu;
-    [SerializeField] AK.Wwise.State combate;
-    
-     
-     bool menuActivo = false;
-     bool winActivo = false;
-
-
-    private void Awake()
+    /// <summary>
+    /// Controls the music
+    /// </summary>
+    public class MusicController : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
-    }
+        [SerializeField] private Event music;
+        [SerializeField] private State menu;
+        [SerializeField] private State combate;
 
-    private void Start()
-    {
-        music.Post(gameObject);
-        menu.SetValue();
-        //menuActivo = true;
-       // winActivo = false;
-
-    }
-
-    private void Update()
-    {
-       
-        if (SceneManager.GetActiveScene().name == "Level1")
+        private void Start()
         {
-            //&& menuActivo == false
-            combate.SetValue();
-            //menuActivo= false;
-        }
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "Level1":
+                case "Level2":
+                case "Tutorial":
+                    combate.SetValue();
+                    break;
+                case "WinLoseScreen":
+                    menu.SetValue();
+                    break;
+            }
 
-        if (SceneManager.GetActiveScene().name == "Tutorial")
-        {
-            //&& menuActivo == false
-            combate.SetValue();
-           // menuActivo = false;
-        }
-
-        if (SceneManager.GetActiveScene().name == "WinLoseScreen" )
-        {
-            //&& winActivo == false
+            music.Post(gameObject);
             menu.SetValue();
-            //winActivo = true;
         }
-
-
-
     }
-
 }
 

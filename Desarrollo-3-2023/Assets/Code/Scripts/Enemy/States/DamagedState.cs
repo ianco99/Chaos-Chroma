@@ -25,17 +25,21 @@ namespace Patterns.FSM
             ResetState();
         }
 
+        /// <summary>
+        /// Sets the direction of the push force that is applied to the character
+        /// when this state is entered.
+        /// </summary>
+        /// <param name="newDirection">The new direction to set the push force to.</param>
         public void SetDirection(Vector2 newDirection)
         {
             pushDirection = newDirection;
         }
 
-        public void SetForce(float newForce)
-        {
-            damagedSettings.force = newForce;
-        }
-
-        public void ResetState()
+        /// <summary>
+        /// Resets the state by resetting the timer and applying a force
+        /// to the character in the direction specified by <see cref="pushDirection"/>.
+        /// </summary>
+        private void ResetState()
         {
             currentTimer = 0;
             rb.AddForce(pushDirection * damagedSettings.force, ForceMode2D.Impulse);

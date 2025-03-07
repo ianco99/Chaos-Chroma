@@ -22,6 +22,7 @@ namespace Code.Scripts.Enemy
 
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private FieldOfView fov;
+        [SerializeField] private Animator animator;
 
         [Header("Suspect")]
         [SerializeField] private float suspectMeter;
@@ -45,6 +46,8 @@ namespace Code.Scripts.Enemy
                 shootState.SetTarget(value);
             }
         }
+
+        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
 
         private PatrolState<int> patrolState;
         private AlertState<int> alertState;
@@ -94,6 +97,7 @@ namespace Code.Scripts.Enemy
 
             CheckRotation();
             CheckFieldOfView();
+            UpdateAnimationState();
             ReleaseAttack();
         }
 
@@ -163,6 +167,14 @@ namespace Code.Scripts.Enemy
                         }
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets the parameter for the animator states
+        /// </summary>
+        private void UpdateAnimationState()
+        {
+            animator.SetInteger(CharacterState, fsm.GetCurrentState().ID);
         }
 
         private void CheckFieldOfView()

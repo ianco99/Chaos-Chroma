@@ -1,13 +1,12 @@
 {
   "dependencies": {
     "com.kuznicki.eventchannel": "https://github.com/ianco99/Kuznicki-Event-Channel.git",
-    "com.unity.collab-proxy": "2.0.0",
     "com.unity.feature.2d": "1.0.0",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.34",
     "com.unity.inputsystem": "1.5.1",
-    "com.unity.textmeshpro": "3.0.6",
-    "com.unity.timeline": "1.7.3",
+    "com.unity.textmeshpro": "3.0.9",
+    "com.unity.timeline": "1.7.7",
     "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.8.0",

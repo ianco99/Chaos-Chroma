@@ -2,6 +2,7 @@ using Code.Scripts.Abstracts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Code.Scripts.Menus
 {
@@ -49,14 +50,9 @@ namespace Code.Scripts.Menus
             EventSystem.current.SetSelectedGameObject(firstSelectedObjectMainMenu);
         }
 
-        public void SelectTutorial()
+        public void LoadLevel(string levelName)
         {
-            GameManager.StartTutorial();
-        }
-
-        public void SelectLevel1()
-        {
-            GameManager.LoadLevel1();
+            SceneManager.LoadScene(levelName);
         }
 
         public void Exit()

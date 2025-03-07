@@ -98,7 +98,6 @@ namespace Code.Scripts.Attack
             else
             {
                 Hit();
-                Stop();
             }
         }
 

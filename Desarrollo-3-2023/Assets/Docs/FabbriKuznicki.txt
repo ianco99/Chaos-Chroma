@@ -1,5 +1,0 @@
-Repository:
-https://github.com/ianco99/Desarrollo-3-2023
-
-Game Design Docs:
-Mecanics & Systems: https://docs.google.com/document/d/1XJqVsB-fHPV27tiMxcX6Q5890Dnysx0PlrwGilP-JZk/edit?usp=sharing

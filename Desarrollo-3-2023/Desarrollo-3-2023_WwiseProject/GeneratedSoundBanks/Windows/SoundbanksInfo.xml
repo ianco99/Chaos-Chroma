@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\Administrator\Documents\Unity\Projects\Chaos-Chroma\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Administrator\Documents\Unity\Projects\Chaos-Chroma\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Administrator\Documents\Unity\Projects\Chaos-Chroma\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\Manu\Documents\GitHub\Desarrollo-3-2023\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\Administrator\Documents\Unity\Projects\Chaos-Chroma\Desarrollo-3-2023\Desarrollo-3-2023_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="1876450591">
+		<SoundBank Id="3161908922" Language="SFX" Hash="458577190">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>

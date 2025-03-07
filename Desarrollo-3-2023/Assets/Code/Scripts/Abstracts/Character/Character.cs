@@ -76,6 +76,7 @@ namespace Code.Scripts.Abstracts.Character
             facingRight = !facingRight;
             sprite.flipX = !sprite.flipX;
         }
+        
         public bool IsFacingRight() => facingRight;
     }    
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Code.Scripts.SOs.Animator
+namespace Code.Scripts.Animator
 {
     /// <summary>
     /// Class to manage a parameter of an animator

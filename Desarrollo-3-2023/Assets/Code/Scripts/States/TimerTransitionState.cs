@@ -1,11 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM
 {
+    /// <summary>
+    /// Timer transition base state
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class TimerTransitionState<T> : BaseState<T>
     {
         public Action<T> onTimerEnded;

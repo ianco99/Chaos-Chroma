@@ -1,7 +1,5 @@
-using Code.SOs.States;
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Code.SOs.States;
 using UnityEngine;
 
 namespace Patterns.FSM

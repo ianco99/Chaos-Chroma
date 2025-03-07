@@ -3,11 +3,7 @@ using Code.Scripts.Attack;
 using Code.Scripts.States;
 using Code.SOs.Enemy;
 using Patterns.FSM;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Code.Scripts.Enemy
 {
@@ -22,10 +18,9 @@ namespace Code.Scripts.Enemy
 
         [SerializeField] private Transform groundCheckPoint;
         [SerializeField] private FieldOfView fov;
-        [SerializeField] private Animator animator;
+        [SerializeField] private UnityEngine.Animator animator;
 
-        [Header("Suspect")]
-        [SerializeField] private float suspectMeter;
+        [Header("Suspect")] [SerializeField] private float suspectMeter;
         [SerializeField] private float suspectUnit = 0.5f;
         [SerializeField] private float attackDelay = 0.2f;
         [SerializeField] private float damagedTime = 2.0f;
@@ -47,7 +42,7 @@ namespace Code.Scripts.Enemy
             }
         }
 
-        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
+        private static readonly int CharacterState = UnityEngine.Animator.StringToHash("CharacterState");
 
         private PatrolState<int> patrolState;
         private AlertState<int> alertState;
@@ -67,14 +62,21 @@ namespace Code.Scripts.Enemy
             shootState.onTimerEnded += OnTimerStateEndedHandler;
         }
 
+        /// <summary>
+        /// Initialize the Finite State Machine with all states and transitions.
+        /// </summary>
         private void InitFSM()
         {
             fsm = new FiniteStateMachine<int>();
 
-            patrolState = new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
-            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings, groundCheckPoint);
-            attackStartState = new AttackStartState<int>(2, "AttackStartState", rayEnemySettings.attackStartSettings, outline);
-            shootState = new ShootState<int>(3, "ShootState", alertState.ID, rayEnemySettings.shootTimerSettings, rayLauncher);
+            patrolState =
+                new PatrolState<int>(rb, 0, groundCheckPoint, this, transform, rayEnemySettings.patrolSettings);
+            alertState = new AlertState<int>(rb, 1, "AlertState", this, transform, rayEnemySettings.alertSettings,
+                groundCheckPoint);
+            attackStartState =
+                new AttackStartState<int>(2, "AttackStartState", rayEnemySettings.attackStartSettings, outline);
+            shootState = new ShootState<int>(3, "ShootState", alertState.ID, rayEnemySettings.shootTimerSettings,
+                rayLauncher);
 
             fsm.AddState(patrolState);
             fsm.AddState(alertState);
@@ -115,6 +117,13 @@ namespace Code.Scripts.Enemy
             fsm.SetCurrentState(fsm.GetState(nextId));
         }
 
+        /// <summary>
+        /// Adjusts the enemy's orientation based on its current state and direction.
+        /// </summary>
+        /// <remarks>
+        /// - In the patrol state, the enemy flips its orientation to match the direction of movement.
+        /// - In the alert state, the enemy flips its orientation based on the direction of the alert target.
+        /// </remarks>
         private void CheckRotation()
         {
             if (fsm.GetCurrentState() == patrolState)
@@ -122,25 +131,25 @@ namespace Code.Scripts.Enemy
                 switch (patrolState.dir.x)
                 {
                     case > 0:
+                    {
+                        if (!facingRight)
                         {
-                            if (!facingRight)
-                            {
-                                Flip();
-                                headSprite.flipX = true;
-                            }
-
-                            break;
+                            Flip();
+                            headSprite.flipX = true;
                         }
+
+                        break;
+                    }
                     case < 0:
+                    {
+                        if (facingRight)
                         {
-                            if (facingRight)
-                            {
-                                Flip();
-                                headSprite.flipX = false;
-                            }
-
-                            break;
+                            Flip();
+                            headSprite.flipX = false;
                         }
+
+                        break;
+                    }
                 }
             }
             else if (fsm.GetCurrentState() == alertState)
@@ -148,23 +157,23 @@ namespace Code.Scripts.Enemy
                 switch (alertState.dir.x)
                 {
                     case > 0:
+                    {
+                        if (!facingRight)
                         {
-                            if (!facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                     case < 0:
+                    {
+                        if (facingRight)
                         {
-                            if (facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                 }
             }
         }
@@ -177,6 +186,15 @@ namespace Code.Scripts.Enemy
             animator.SetInteger(CharacterState, fsm.GetCurrentState().ID);
         }
 
+        /// <summary>
+        /// Checks the field of view and updates the suspect meter accordingly.
+        /// </summary>
+        /// <remarks>
+        /// If the field of view has no visible targets, the suspect meter decreases over time.
+        /// If the field of view has visible targets, the suspect meter increases based on the distance
+        /// between the closest target and the enemy.
+        /// The suspect meter is then clamped to the specified minimum and maximum values.
+        /// </remarks>
         private void CheckFieldOfView()
         {
             if (fov.visibleTargets.Count <= 0)
@@ -195,7 +213,6 @@ namespace Code.Scripts.Enemy
 
                 if (suspectMeter < rayEnemySettings.alertValue)
                 {
-
                     DetectedPlayer = null;
                     suspectMeterSprite.color = Color.white;
                 }
@@ -211,11 +228,13 @@ namespace Code.Scripts.Enemy
                 suspectMeterSprite.color = Color.white;
             }
 
-            suspectMeter = Mathf.Clamp(suspectMeter, rayEnemySettings.suspectMeterMinimum, rayEnemySettings.suspectMeterMaximum);
+            suspectMeter = Mathf.Clamp(suspectMeter, rayEnemySettings.suspectMeterMinimum,
+                rayEnemySettings.suspectMeterMaximum);
 
 
             var normalizedSuspectMeter = (suspectMeter - (rayEnemySettings.suspectMeterMinimum)) /
-                                         ((rayEnemySettings.suspectMeterMaximum) - (rayEnemySettings.suspectMeterMinimum));
+                                         ((rayEnemySettings.suspectMeterMaximum) -
+                                          (rayEnemySettings.suspectMeterMinimum));
 
             suspectMeterMask.transform.localPosition = new Vector3(0.0f,
                 Mathf.Lerp(-0.798f, 0.078f, (0.078f - (-0.798f)) * normalizedSuspectMeter), 0.0f);
@@ -242,7 +261,8 @@ namespace Code.Scripts.Enemy
         /// </remarks>
         private bool IsAttackTransitionable()
         {
-            if (Vector3.Distance(transform.position, DetectedPlayer.position) < rayEnemySettings.alertSettings.alertAttackUpDistance)
+            if (Vector3.Distance(transform.position, DetectedPlayer.position) <
+                rayEnemySettings.alertSettings.alertAttackUpDistance)
             {
                 Debug.Log("ojo eh");
             }
@@ -252,7 +272,8 @@ namespace Code.Scripts.Enemy
             }
 
             if (DetectedPlayer != null)
-                return Vector3.Distance(transform.position, DetectedPlayer.position) < rayEnemySettings.alertSettings.alertAttackUpDistance;
+                return Vector3.Distance(transform.position, DetectedPlayer.position) <
+                       rayEnemySettings.alertSettings.alertAttackUpDistance;
 
             return false;
         }

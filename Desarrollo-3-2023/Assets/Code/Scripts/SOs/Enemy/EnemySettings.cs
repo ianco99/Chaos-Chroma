@@ -1,11 +1,14 @@
+using Code.Scripts.SOs.States;
+using Code.Scripts.States.Settings;
 using Code.SOs.States;
-using kuznickiEventChannel;
 using UnityEngine;
 
 namespace Code.SOs.Enemy
 {
+    /// <summary>
+    /// Settings for the common enemy
+    /// </summary>
     [CreateAssetMenu(fileName = "EnemySettings", menuName = "ScriptableObjects/EnemySettings")]
-
     public class EnemySettings : BaseEnemySettings
     {
 

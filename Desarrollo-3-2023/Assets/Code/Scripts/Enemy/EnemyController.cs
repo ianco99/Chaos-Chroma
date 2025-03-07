@@ -25,8 +25,9 @@ namespace Code.Scripts.Enemy
         Death
     }
 
-//TODO: Fsm should subscribe to update method of the monobehaviour. States behaviours should not be in this script. Keep update function lightweight
-//I've designed a refactor for this class, it's in Ian's phone.
+    /// <summary>
+    /// Controls the enemy
+    /// </summary>
     public class EnemyController : BaseEnemyController
     {
         [SerializeField] private EnemyStates startingState;
@@ -47,7 +48,7 @@ namespace Code.Scripts.Enemy
         [SerializeField] private float attackDelay = 0.2f;
         [SerializeField] private float damagedTime = 2.0f;
 
-        [Header("Animation")][SerializeField] private Animator animator;
+        [Header("Animation")] [SerializeField] private UnityEngine.Animator animator;
 
         private Transform detectedPlayer;
         private bool turnedAggro;
@@ -64,7 +65,7 @@ namespace Code.Scripts.Enemy
         private DamagedState<EnemyStates> impulseState;
         private DeathState<EnemyStates> deathState;
 
-        private static readonly int CharacterState = Animator.StringToHash("CharacterState");
+        private static readonly int CharacterState = UnityEngine.Animator.StringToHash("CharacterState");
 
         private EnemySettings EnemySettings => settings as EnemySettings;
 
@@ -104,15 +105,19 @@ namespace Code.Scripts.Enemy
             patrolState.SetDirection(1.0f);
             alertState = new AlertState<EnemyStates>(rb, EnemyStates.Alert, "AlertState", this, trans,
                 EnemySettings.alertSettings, groundCheckPoint);
-            attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart", EnemySettings.attackStartSettings,
+            attackStartState = new AttackStartState<EnemyStates>(EnemyStates.AttackStart, "AttackStart",
+                EnemySettings.attackStartSettings,
                 outline);
             attackEndState =
                 new AttackEndState<EnemyStates>(EnemyStates.AttackEnd, "AttackState", hitsManager.gameObject, this);
             damagedState = new DamagedState<EnemyStates>(EnemyStates.Damaged, "DamagedState", EnemyStates.Block,
                 EnemySettings.damagedSettings, rb);
-            parriedState = new DamagedState<EnemyStates>(EnemyStates.Parried, "ParriedState", EnemyStates.Block, EnemySettings.parriedSettings, rb);
-            blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable, EnemySettings.parrySettings);
-            impulseState = new DamagedState<EnemyStates>(EnemyStates.Impulsed, "ImpulseState", EnemyStates.Alert, EnemySettings.damagedSettings, rb);
+            parriedState = new DamagedState<EnemyStates>(EnemyStates.Parried, "ParriedState", EnemyStates.Block,
+                EnemySettings.parriedSettings, rb);
+            blockState = new ParryState<EnemyStates>(EnemyStates.Block, "BlockState", damageable,
+                EnemySettings.parrySettings);
+            impulseState = new DamagedState<EnemyStates>(EnemyStates.Impulsed, "ImpulseState", EnemyStates.Alert,
+                EnemySettings.damagedSettings, rb);
 
             deathState = new DeathState<EnemyStates>(EnemyStates.Death, EnemySettings.deathSettings);
 
@@ -135,10 +140,7 @@ namespace Code.Scripts.Enemy
             fsm.AddTransition(attackEndState, alertState,
                 () => !hitsManager.gameObject.activeSelf && detectedPlayer != null);
 
-            blockState.onEnter += () =>
-            {
-                StartCoroutine(ParryTimer());
-            };
+            blockState.onEnter += () => { StartCoroutine(ParryTimer()); };
 
 
             fsm.SetCurrentState(fsm.GetState(startingState));
@@ -157,6 +159,12 @@ namespace Code.Scripts.Enemy
             ReleaseAttack();
         }
 
+        /// <summary>
+        /// Timer for parry state duration.
+        /// Waits for the duration set in <see cref="EnemySettings.parrySettings.duration"/>,
+        /// then sets the current state to <see cref="EnemyStates.Alert"/>.
+        /// </summary>
+        /// <returns>Yield instruction for waiting.</returns>
         private IEnumerator ParryTimer()
         {
             yield return new WaitForSeconds(EnemySettings.parrySettings.duration);
@@ -187,6 +195,15 @@ namespace Code.Scripts.Enemy
             animator.SetInteger(CharacterState, (int)fsm.GetCurrentState().ID);
         }
 
+        /// <summary>
+        /// Checks the field of view and updates the suspect meter accordingly.
+        /// </summary>
+        /// <remarks>
+        /// If the field of view has no visible targets, the suspect meter decreases over time.
+        /// If the field of view has visible targets, the suspect meter increases based on the distance
+        /// between the closest target and the enemy.
+        /// The suspect meter is then clamped to the specified minimum and maximum values.
+        /// </remarks>
         private void CheckFieldOfView()
         {
             if (fov.visibleTargets.Count <= 0)
@@ -219,7 +236,8 @@ namespace Code.Scripts.Enemy
                 suspectMeterSprite.color = Color.white;
             }
 
-            suspectMeter = Mathf.Clamp(suspectMeter, EnemySettings.suspectMeterMinimum, EnemySettings.suspectMeterMaximum);
+            suspectMeter = Mathf.Clamp(suspectMeter, EnemySettings.suspectMeterMinimum,
+                EnemySettings.suspectMeterMaximum);
 
 
             var normalizedSuspectMeter = (suspectMeter - (EnemySettings.suspectMeterMinimum)) /
@@ -239,8 +257,8 @@ namespace Code.Scripts.Enemy
                 Vector3 targetPos = detectedPlayer.position;
 
                 if (targetPos.x > transform.position.x - bodyCollider.size.x / 0.2f &&
-                targetPos.x < transform.position.x + bodyCollider.size.x / 0.2f && 
-                targetPos.y > hitsManager.transform.position.y + 1.0f)
+                    targetPos.x < transform.position.x + bodyCollider.size.x / 0.2f &&
+                    targetPos.y > hitsManager.transform.position.y + 1.0f)
                 {
                     hitsManager.SetDir(Vector2.up);
                 }
@@ -251,6 +269,14 @@ namespace Code.Scripts.Enemy
             }
         }
 
+        /// <summary>
+        /// Adjusts the character's orientation based on its current state and direction.
+        /// </summary>
+        /// <remarks>
+        /// - In the patrol state, the character flips its orientation to match the direction of movement.
+        /// - In the alert state, the character flips its orientation based on the direction of the alert target.
+        /// - In the attack end state, if there are visible targets, the character flips to face the first visible target.
+        /// </remarks>
         private void CheckRotation()
         {
             if (fsm.GetCurrentState() == patrolState)
@@ -258,23 +284,23 @@ namespace Code.Scripts.Enemy
                 switch (patrolState.dir.x)
                 {
                     case > 0:
+                    {
+                        if (!facingRight)
                         {
-                            if (!facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                     case < 0:
+                    {
+                        if (facingRight)
                         {
-                            if (facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                 }
             }
             else if (fsm.GetCurrentState() == alertState)
@@ -282,23 +308,23 @@ namespace Code.Scripts.Enemy
                 switch (alertState.dir.x)
                 {
                     case > 0:
+                    {
+                        if (!facingRight)
                         {
-                            if (!facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                     case < 0:
+                    {
+                        if (facingRight)
                         {
-                            if (facingRight)
-                            {
-                                Flip();
-                            }
-
-                            break;
+                            Flip();
                         }
+
+                        break;
+                    }
                 }
             }
             else if (fsm.GetCurrentState() == attackEndState)
@@ -315,6 +341,17 @@ namespace Code.Scripts.Enemy
             }
         }
 
+        /// <summary>
+        /// Handles damage being taken by the enemy.
+        /// </summary>
+        /// <param name="origin">The origin of the damage.</param>
+        /// <remarks>
+        /// - If the enemy's life reaches zero, calls <see cref="OnDeathHandler"/>.
+        /// - If the enemy is in the <see cref="EnemyStates.AttackEnd"/> state, stops the state.
+        /// - If the enemy is not in the <see cref="EnemyStates.Block"/> or <see cref="EnemyStates.Damaged"/> states, 
+        ///   sets the direction of the <see cref="damagedState"/> based on the direction of the origin and 
+        ///   sets the current state to the <see cref="damagedState"/>.
+        /// </remarks>
         private void OnTakeDamageHandler(Vector2 origin)
         {
             if (damageable.GetLife() <= 0)
@@ -338,6 +375,13 @@ namespace Code.Scripts.Enemy
             }
         }
 
+        /// <summary>
+        /// Handles the character's behavior when a block action is triggered.
+        /// </summary>
+        /// <param name="dir">The direction vector indicating the source of the block.</param>
+        /// <remarks>
+        /// Flips the character's orientation based on the direction of the block relative to the character's position.
+        /// </remarks>
         private void OnBlockHandler(Vector2 dir)
         {
             if (dir.x > transform.position.x && !facingRight)
@@ -346,36 +390,76 @@ namespace Code.Scripts.Enemy
                 Flip();
         }
 
+        /// <summary>
+        /// Handles the timer ending event for states that transition to another state upon completion.
+        /// </summary>
+        /// <param name="nextId">The ID of the next state to transition to.</param>
+        /// <remarks>
+        /// Sets the current state of the Finite State Machine to the state with the given ID.
+        /// </remarks>
         private void OnTimerEndedHandler(EnemyStates nextId)
         {
             fsm.SetCurrentState(fsm.GetState(nextId));
         }
 
+        /// <summary>
+        /// Handles parried event.
+        /// </summary>
+        /// <remarks>
+        /// Sets the direction of the <see cref="parriedState"/> based on the character's orientation and
+        /// sets the current state to the <see cref="parriedState"/>.
+        /// </remarks>
         private void OnParriedHandler()
         {
             parriedState.SetDirection(facingRight ? Vector2.left : Vector2.right);
             fsm.SetCurrentState(parriedState);
         }
 
+        /// <summary>
+        /// Handles the parry action triggered on the character.
+        /// </summary>
+        /// <param name="dir">The direction vector indicating the source of the parry.</param>
+        /// <remarks>
+        /// Sets the direction of the <see cref="impulseState"/> based on the direction of the parry
+        /// relative to the character's position and sets the current state to the <see cref="impulseState"/>.
+        /// </remarks>
         private void OnParryHandler(Vector2 dir)
         {
             impulseState.SetDirection(dir.x > transform.position.x ? Vector2.left : Vector2.right);
             fsm.SetCurrentState(impulseState);
         }
 
+        /// <summary>
+        /// Handles the death event of the enemy.
+        /// </summary>
+        /// <remarks>
+        /// Sets the current state of the Finite State Machine to the <see cref="deathState"/>.
+        /// </remarks>
         public void OnDeathHandler()
         {
             fsm.SetCurrentState(deathState);
         }
 
+        /// <summary>
+        /// Checks if the enemy can transition to an attack state from its current state.
+        /// </summary>
+        /// <returns>
+        /// True if the enemy can transition to an attack state, false otherwise.
+        /// </returns>
+        /// <remarks>
+        /// An attack state can be transitioned to if the enemy has a detected player and the distance
+        /// between the enemy and the detected player is within the alert attack distance.
+        /// </remarks>
         private bool IsAttackTransitionable()
         {
             if (detectedPlayer != null)
             {
                 if (hitsManager.GetDir() == 2)
-                    return Vector3.Distance(transform.position, detectedPlayer.position) < EnemySettings.alertSettings.alertAttackUpDistance;
+                    return Vector3.Distance(transform.position, detectedPlayer.position) <
+                           EnemySettings.alertSettings.alertAttackUpDistance;
                 else
-                    return Vector3.Distance(transform.position, detectedPlayer.position) < EnemySettings.alertSettings.alertAttackSideDistance;
+                    return Vector3.Distance(transform.position, detectedPlayer.position) <
+                           EnemySettings.alertSettings.alertAttackSideDistance;
             }
 
             return false;

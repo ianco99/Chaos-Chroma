@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Patterns.FSM
 {
+    /// <summary>
+    /// Handler for parry state
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ParryState<T> : BaseState<T>
     {
         private ParrySettings parrySettings;

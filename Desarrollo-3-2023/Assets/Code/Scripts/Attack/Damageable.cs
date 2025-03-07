@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Patterns.FSM
 {
+    /// <summary>
+    /// Controls the life of the object
+    /// </summary>
     public class Damageable : MonoBehaviour
     {
         [SerializeField] private float startLife = 100f;
@@ -70,6 +73,14 @@ namespace Patterns.FSM
                 GameManager.Lose();
         }
 
+        /// <summary>
+        /// Heal the object by a given amount.
+        /// </summary>
+        /// <param name="heal">The amount to heal by.</param>
+        /// <remarks>
+        /// This will increase the object's life by the given amount,
+        /// and update the life bar if one is present.
+        /// </remarks>
         public void Heal(float heal)
         {
             life += heal;
@@ -102,6 +113,10 @@ namespace Patterns.FSM
             StartCoroutine(Parry(parryDuration));
         }
 
+        /// <summary>
+        /// Get the current life of the object.
+        /// </summary>
+        /// <returns>The current life of the object.</returns>
         public float GetLife()
         {
             return life;

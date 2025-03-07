@@ -1,21 +1,23 @@
-using System;
 using Code.Scripts.SOs.Level;
 using UnityEngine;
 
 namespace Code.Scripts.Spawn
 {
+    /// <summary>
+    /// Controls the ship
+    /// </summary>
     public class Ship : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
-        
+
         private ShipVariants variant;
 
         private float speed;
-        
+
         private static UnityEngine.Camera _mainCam;
 
         private static int _id;
-        
+
         public int ID { get; private set; }
 
         private void Start()
@@ -24,12 +26,15 @@ namespace Code.Scripts.Spawn
                 _mainCam = UnityEngine.Camera.main;
         }
 
+        /// <summary>
+        /// Initializes the ship by assigning a unique ID and naming the game object.
+        /// </summary>
         public void Initialize()
         {
             ID = _id;
 
             _id++;
-            
+
             gameObject.name = "Ship " + ID;
         }
 
@@ -45,7 +50,7 @@ namespace Code.Scripts.Spawn
         public void SetVariant(ShipVariants variant)
         {
             this.variant = variant;
-            
+
             spriteRenderer.sprite = variant.sprite;
             transform.localPosition = new Vector3(0f, variant.position.Get(), 0f);
             speed = variant.speed.Get();

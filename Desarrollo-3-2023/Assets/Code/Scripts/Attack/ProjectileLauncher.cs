@@ -127,6 +127,10 @@ namespace Code.Scripts.Attack
         /// <param name="aim">The direction to aim the projectile.</param>
         public void SetAim(Vector2 aim) => this.aim = aim;
 
+        /// <summary>
+        /// Returns the transform of the spawn position.
+        /// </summary>
+        /// <returns>The transform of the spawn position.</returns>
         public Transform GetTransform() => spawnPos.transform;
     }
 }

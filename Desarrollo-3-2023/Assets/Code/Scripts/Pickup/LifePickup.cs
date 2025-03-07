@@ -1,28 +1,35 @@
 using Code.Scripts.Abstracts.Character;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LifePickup : BasePickup
+namespace Code.Scripts.Pickup
 {
-    [SerializeField] private float lifeBump = 100;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <summary>
+    /// Pickup for life
+    /// </summary>
+    public class LifePickup : BasePickup
     {
-        Character character;
+        [SerializeField] private float lifeBump = 100;
 
-        collision.TryGetComponent(out character);
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Character character;
 
-        if (character != null)
-            Pickup(character);
-    }
+            collision.TryGetComponent(out character);
 
-    public override void Pickup(Character character)
-    {
-        base.Pickup(character);
+            if (character != null)
+                Pickup(character);
+        }
 
-        character.lifePickup?.Invoke(lifeBump);
+        /// <summary>
+        /// Called when the character enters the trigger of the pickup.
+        /// Applies the life bump to the character and destroys the pickup.
+        /// </summary>
+        /// <param name="character">The character that entered the trigger.</param>
+        public override void Pickup(Character character)
+        {
+            character.lifePickup?.Invoke(lifeBump);
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

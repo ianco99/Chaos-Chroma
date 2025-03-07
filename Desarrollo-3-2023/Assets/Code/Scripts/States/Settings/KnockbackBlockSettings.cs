@@ -1,9 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using Code.Scripts.States.Settings.Interfaces;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "KnockbackBlockSettingsSO", menuName = "ScriptableObjects/StateSettings/KnockbackBlockSettings")]
-public class KnockbackBlockSettings : ScriptableObject, IKnockbackBlockSettings
+namespace Code.Scripts.States.Settings
 {
-    public float knockbackForce;
+    /// <summary>
+    /// Settings for the knockback block
+    /// </summary>
+    [CreateAssetMenu(fileName = "KnockbackBlockSettingsSO", menuName = "ScriptableObjects/StateSettings/KnockbackBlockSettings")]
+    public class KnockbackBlockSettings : ScriptableObject, IKnockbackBlockSettings
+    {
+        public float knockbackForce;
+    }
 }

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Settings for the patrol state
+/// </summary>
 public interface IPatrolSettings 
 {
     public float patrolSpeed { get => patrolSpeed; set => patrolSpeed = value; }

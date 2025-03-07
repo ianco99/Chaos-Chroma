@@ -1,5 +1,8 @@
 namespace Code.Scripts.Game
 {
+    /// <summary>
+    /// Game settings
+    /// </summary>
     public class GameSettings
     {
         private static GameSettings instance;

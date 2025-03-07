@@ -1,9 +1,12 @@
+using Code.Scripts.SOs.States;
 using Code.SOs.States;
-using kuznickiEventChannel;
 using UnityEngine;
 
 namespace Code.SOs.Enemy
 {
+    /// <summary>
+    /// Settings for the ray enemy
+    /// </summary>
     [CreateAssetMenu(fileName = "RayEnemySettings", menuName = "ScriptableObjects/RayEnemySettings")]
     public class RayEnemySettings : BaseEnemySettings
     {

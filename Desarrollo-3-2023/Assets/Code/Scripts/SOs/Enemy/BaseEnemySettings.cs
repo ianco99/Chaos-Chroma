@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Code.SOs.Enemy
 {
+    /// <summary>
+    /// Base class for all enemy settings
+    /// </summary>
     public abstract class BaseEnemySettings : ScriptableObject
     {
         [Header("Field of View")]

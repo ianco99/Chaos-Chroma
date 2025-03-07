@@ -91,8 +91,6 @@ namespace Code.Scripts.Enemy
         {
             fsm.Update();
 
-            Debug.Log("Timer: " + shootState.currentTimer);
-
             CheckRotation();
             CheckFieldOfView();
             ReleaseAttack();

@@ -1,4 +1,5 @@
 using Code.Scripts.Abstracts;
+using Patterns.FSM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class RayLauncher : MonoBehaviour, IShooter
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Transform spawnPos;
+    [SerializeField] private float damage = 5;
 
     private Vector2 direction;
 
@@ -28,13 +30,13 @@ public class RayLauncher : MonoBehaviour, IShooter
         {
             Debug.Log(hit.rigidbody.name);
 
-            //if (!col.gameObject.TryGetComponent(out Damageable damageable)) return;
-            //
-            //if (!damageable.TakeDamage(settings.damage, transform.position))
-            //{
-            //    rb.velocity *= -1f;
-            //    return;
-            //}
+            if (!hit.collider.TryGetComponent(out Damageable damageable)) return;
+            
+            if (!damageable.TakeDamage(damage, transform.position))
+            {
+                Debug.Log("parry!");
+                return;
+            }
 
         }
         else

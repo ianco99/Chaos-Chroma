@@ -63,7 +63,7 @@ namespace Code.Scripts.Attack
                     //miss
                 }
 
-                if (!damageable.TakeDamage(damage, transform.position))
+                if (damageable && !damageable.TakeDamage(damage, transform.position))
                 {
                     //parry
                     //return;

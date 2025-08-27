@@ -85,6 +85,9 @@ namespace Patterns.FSM
         {
             life += heal;
 
+            if(life >= startLife)
+                life = startLife;
+            
             if (lifeBar)
                 lifeBar.fillAmount = life / startLife;
         }
